@@ -1,0 +1,14 @@
+﻿Species_ID,Abbreviation,(Sub)Order,Family,Location,Kelley_Lab
+Anarhichas lupus,Alupus,Zoarcoidei,Anarhichadidae,HB,Yes
+Anarhichas minor,Aminor,Zoarcoidei,Anarhichadidae,HB,Yes
+Bathymaster signatus,Bsig,Zoarcoidei,Bathymasteridae,HB,Yes
+Lycodes platyrhinus,Norway,Zoarcoidei,Zoarcidae,HB,Yes
+Lycodes diapterus,BYU,Zoarcoidei,Zoarcidae,HB,Yes
+Melanostigma gelatinosum,Mgel,Zoarcoidei,Zoarcidae,NCBI,No
+Lycodes pacificus,Lpac,Zoarcoidei,Zoarcidae,NCBI,No
+Ophthalmolycus amberensis,Oamb,Zoarcoidei,Zoarcidae,HB,Yes
+Pholis gunnellus,Pgunn,Zoarcoidei,Pholidae,NCBI,No
+Cebidichthys violaceus,Cviol,Zoarcoidei,Stichaeidae,NCBI,No
+Leptoclinus maculatus,Lmac,Zoarcoidei,Stichaeidae,NCBI,No
+Gasterosteus aculeatus,Gacul,Scorpaeniformes,Gasterosteidae,NCBI,No
+Pungitius pungitius,Ppung,Scorpaeniformes,Gasterosteidae,NCBI,No
