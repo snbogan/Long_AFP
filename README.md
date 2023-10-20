@@ -11,7 +11,11 @@ Joanna Kelley (PI, UCSC)
 2. bash
 
 ## Contents
+Directories
 1. /Archive - unused or significantly edited scripts w/ README explaining
-2. /HB_jobs - Job scripts
+2. /HB_jobs - SLURM job scripts run on UCSC Hummingbird (HB)
+
+Files
+2. AFP_LongRead_Notebook.Rmd - R markdown-style lab notebook
 3. Long_AFP.Rproj - git version-controlled R project for interfacing GitHub and R markdown
 4. LongRead_SpeciesID.csv - basic metadata file detailing assembly species names, abbreviations, and location
