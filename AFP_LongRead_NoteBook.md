@@ -1,52 +1,63 @@
----
-title: "AFP_LongRead_Notebook"
-author: "Sam Bogan and Nathan Surendran"
-output:
-  github_document: default
----
+AFP_LongRead_Notebook
+================
+Sam Bogan and Nathan Surendran
 
-#Summary
+\#Summary
 
-This is an R markdown lab notebook for all research, wet lab work, and analyses related to a study on type AFP III evolution revealed by long read sequencing and genome assembly in Zoarcoid fishes. The 11 Zoarcoid species included in the study and Scorpaeiformes outgroups (sticklebacks) are indexed
+This is an R markdown lab notebook for all research, wet lab work, and
+analyses related to a study on type AFP III evolution revealed by long
+read sequencing and genome assembly in Zoarcoid fishes. The 11 Zoarcoid
+species included in the study and Scorpaeiformes outgroups
+(sticklebacks) are indexed
 
-File registry
-1. Metadata
-  + LongRead_SpeciesIDs.csv (index of species names and genome IDs)
+File registry 1. Metadata + LongRead_SpeciesIDs.csv (index of species
+names and genome IDs)
 
-\br
-
-Below is a quick visual representation of the species' relatedness using the rfishtree time-calibrated phylogeny
-
-```{r setup, include=FALSE}
-
-knitr::opts_knit$set(root.dir = '~/Documents/GitHub/Long_AFP/')
-
-# Load packages for plotting quick species tree
-library(tidyverse)
-library(fishtree)
-library(ggtree)
-library(MatrixModels)
-library(rfishbase)
-library(phytools)
-
-```
+Below is a quick visual representation of the species’ relatedness using
+the rfishtree time-calibrated phylogeny
 
 What genomes are we working with?
 
-```{r}
-
+``` r
 # Read in list of species
 Species_df <- read.csv("LongRead_SpeciesIDs.csv")
 
 # Print list to show which genomes came from public source vs. Kelley Lab
 Species_df
-
 ```
+
+    ##                   Species_ID Abbreviation     X.Sub.Order          Family
+    ## 1           Anarhichas lupus       Alupus      Zoarcoidei  Anarhichadidae
+    ## 2           Anarhichas minor       Aminor      Zoarcoidei  Anarhichadidae
+    ## 3       Bathymaster signatus         Bsig      Zoarcoidei Bathymasteridae
+    ## 4        Lycodes platyrhinus       Norway      Zoarcoidei       Zoarcidae
+    ## 5          Lycodes diapterus          BYU      Zoarcoidei       Zoarcidae
+    ## 6   Melanostigma gelatinosum         Mgel      Zoarcoidei       Zoarcidae
+    ## 7          Lycodes pacificus         Lpac      Zoarcoidei       Zoarcidae
+    ## 8  Ophthalmolycus amberensis         Oamb      Zoarcoidei       Zoarcidae
+    ## 9           Pholis gunnellus        Pgunn      Zoarcoidei        Pholidae
+    ## 10    Cebidichthys violaceus        Cviol      Zoarcoidei     Stichaeidae
+    ## 11     Leptoclinus maculatus         Lmac      Zoarcoidei     Stichaeidae
+    ## 12    Gasterosteus aculeatus        Gacul Scorpaeniformes  Gasterosteidae
+    ## 13       Pungitius pungitius        Ppung Scorpaeniformes  Gasterosteidae
+    ##    Location Kelley_Lab
+    ## 1        HB        Yes
+    ## 2        HB        Yes
+    ## 3        HB        Yes
+    ## 4        HB        Yes
+    ## 5        HB        Yes
+    ## 6      NCBI         No
+    ## 7      NCBI         No
+    ## 8        HB        Yes
+    ## 9      NCBI         No
+    ## 10     NCBI         No
+    ## 11     NCBI         No
+    ## 12     NCBI         No
+    ## 13     NCBI         No
 
 Extract and plot species phylogeny with important metadata
 
-```{r, eval = FALSE}
-
+``` r
 # Extract eelpout phylogeny
 species_phy <- fishtree_phylogeny(species = Species_df$Species_ID, type=c("chronogram"))
 
@@ -110,30 +121,20 @@ ggtree(species_phy, layout = "rectangular",
   labs(color = "Latitude", shape = "Region") +
   geom_rect(xmin = max_y-2, xmax = max_y-3, ymin = -Inf, ymax = Inf, fill = "skyblue", alpha = 0.01, lty = 0) +
   geom_rect(xmin = max_y-10, xmax = max_y-15, ymin = -Inf, ymax = Inf, fill = "pink", alpha = 0.01, lty = 0)
-
 ```
 
 # HB SLURM Scripts
 
 ### 10/26/2023
 
-NS: Ran a BUSCO analysis on the fasta genome data for eelpouts and zoarcoids.  Single seq files then compressed using tar.gz
+NS: Ran a BUSCO analysis on the fasta genome data for eelpouts and
+zoarcoids. Single seq files then compressed using tar.gz
 
-The slurm job script below was ran for the following species:
-* alupus
-* aminor
-* bsig
-* byu
-* cviol1
-* gacul
-* lmac1
-* lpac
-* melgel1
-* norway
-* oamb
-* pgunn1
+The slurm job script below was ran for the following species: \* alupus
+\* aminor \* bsig \* byu \* cviol1 \* gacul \* lmac1 \* lpac \* melgel1
+\* norway \* oamb \* pgunn1
 
-```{bash, eval = FALSE}
+``` bash
 
 
 #!/bin/bash
@@ -151,18 +152,20 @@ The slurm job script below was ran for the following species:
 
 module load hb hb-gnu busco/busco-5.4.7
 busco -c 16 -i /hb/groups/kelley_training/assemblies/alupus.asm.p_ctg.fa -o busco_assembly_alupus --auto-lineage -m genome -f
-
 ```
 
 ### 10/29/2023
 
-SB ran reran BUSCO on the 12 assemblies above using his HB allocation and input the BUSCO output to BUSCO_to_phylogeny pipeline described here: https://github.com/jamiemcg/BUSCO_phylogenomics
+SB ran reran BUSCO on the 12 assemblies above using his HB allocation
+and input the BUSCO output to BUSCO_to_phylogeny pipeline described
+here: <https://github.com/jamiemcg/BUSCO_phylogenomics>
 
-NS's BUSCO job's per species were moved to Archive directory
+NS’s BUSCO job’s per species were moved to Archive directory
 
-The job script below has an annotation for where NS would start the script since he has already run BUSCO on the 12 assemblies
+The job script below has an annotation for where NS would start the
+script since he has already run BUSCO on the 12 assemblies
 
-```{bash, eval = FALSE}
+``` bash
 
 #!/bin/bash
 #SBATCH --job-name=BUSCO_to_phy
@@ -214,8 +217,4 @@ mv busco_assembly_* /hb/home/snbogan/PolarFish/Long_AFP/BUSCO_results
 python BUSCO_phylogenomics.py -i BUSCO_results -o output_busco_phylogenomics -t 8
 
 ## If data look patchy, run python <python count_buscos.py -i BUSCO_runs>
-
 ```
-
-
-
