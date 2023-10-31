@@ -14,6 +14,10 @@
 #### NS should start here ####
 ##################################
 
+# Activate BUSCO_phylogenomics conda env
+module load miniconda3.9
+conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
+
 # Go to working directory
 cd /hb/home/snbogan/PolarFish/Long_AFP/
 

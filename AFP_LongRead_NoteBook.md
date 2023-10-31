@@ -165,6 +165,25 @@ NS’s BUSCO job’s per species were moved to Archive directory
 The job script below has an annotation for where NS would start the
 script since he has already run BUSCO on the 12 assemblies
 
+Before running the job, install BUSCO_phylogenomics and its dependencies
+
+``` bash
+
+# Clone and enter repo
+git clone https://github.com/jamiemcg/BUSCO_phylogenomics
+
+# Create supplementary conda environment
+conda env create -p BUSCO_phylogenomics_supp
+conda activate BUSCO_phylogenomics_supp
+
+# Install the following packages
+mamba install biopython
+conda install -c bioconda muscle
+conda install -c bioconda trimal
+conda install -c bioconda fasttree
+conda install -c bioconda iqtree
+```
+
 ``` bash
 
 #!/bin/bash
@@ -203,13 +222,17 @@ export -f run_busco
 find . -maxdepth 1 -name "*.fa" | parallel -j2 run_busco {}
 
 ##################################
-#### NS should start here ####
+###### NS should start here ######
 ##################################
 
-# Move BUSCO outputs to BUSCO_results
-mv busco_assembly_* /hb/home/snbogan/PolarFish/Long_AFP/BUSCO_results 
+# Activate BUSCO_phylogenomics conda env
+module load miniconda3.9
+conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
 
-# Run pipeline command - must pull .py script from BUSCO_phylogenomics directory
+# Go to working directory
+cd /hb/home/snbogan/PolarFish/Long_AFP/
+
+# Run pipeline command
 python /hb/home/snbogan/BUSCO_phylogenomics/BUSCO_phylogenomics.py \
  -i BUSCO_results -o output_busco_phylogenomics -t 8
 
