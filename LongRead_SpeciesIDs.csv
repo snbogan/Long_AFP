@@ -1,14 +1,14 @@
-﻿Species_ID,Abbreviation,(Sub)Order,Family,Location,Kelley_Lab
-Anarhichas lupus,Alupus,Zoarcoidei,Anarhichadidae,HB,Yes
-Anarhichas minor,Aminor,Zoarcoidei,Anarhichadidae,HB,Yes
-Bathymaster signatus,Bsig,Zoarcoidei,Bathymasteridae,HB,Yes
-Lycodes platyrhinus,Norway,Zoarcoidei,Zoarcidae,HB,Yes
-Lycodes diapterus,BYU,Zoarcoidei,Zoarcidae,HB,Yes
-Melanostigma gelatinosum,Mgel,Zoarcoidei,Zoarcidae,NCBI,No
-Lycodes pacificus,Lpac,Zoarcoidei,Zoarcidae,NCBI,No
-Ophthalmolycus amberensis,Oamb,Zoarcoidei,Zoarcidae,HB,Yes
-Pholis gunnellus,Pgunn,Zoarcoidei,Pholidae,NCBI,No
-Cebidichthys violaceus,Cviol,Zoarcoidei,Stichaeidae,NCBI,No
-Leptoclinus maculatus,Lmac,Zoarcoidei,Stichaeidae,NCBI,No
-Gasterosteus aculeatus,Gacul,Scorpaeniformes,Gasterosteidae,NCBI,No
-Pungitius pungitius,Ppung,Scorpaeniformes,Gasterosteidae,NCBI,No
+﻿Species_ID,Abbreviation,(Sub)Order,Family,Location,Kelley_Lab,SASA_locus,SASB_locus,SASA_acc,SASB_acc
+Anarhichas lupus,Alupus,Zoarcoidei,Anarhichadidae,HB,Yes,,,,
+Anarhichas minor,Aminor,Zoarcoidei,Anarhichadidae,HB,Yes,,,,
+Bathymaster signatus,Bsig,Zoarcoidei,Bathymasteridae,HB,Yes,,,,
+Lycodes platyrhinus,Norway,Zoarcoidei,Zoarcidae,HB,Yes,,,,
+Lycodes diapterus,BYU,Zoarcoidei,Zoarcidae,HB,Yes,,,,
+Melanostigma gelatinosum,Mgel,Zoarcoidei,Zoarcidae,NCBI,No,,,,
+Lycodes pacificus,Lpac,Zoarcoidei,Zoarcidae,NCBI,No,,,,
+Ophthalmolycus amberensis,Oamb,Zoarcoidei,Zoarcidae,HB,Yes,,,,
+Pholis gunnellus,Pgunn,Zoarcoidei,Pholidae,NCBI,No,,,,
+Cebidichthys violaceus,Cviol,Zoarcoidei,Stichaeidae,NCBI,No,,,,
+Leptoclinus maculatus,Lmac,Zoarcoidei,Stichaeidae,NCBI,No,,,,
+Gasterosteus aculeatus,Gacul,Scorpaeniformes,Gasterosteidae,NCBI,No,LOC120825501,LOC120825503,"NC_053220.1 (8553001..8556783, complement)","NC_053220.1 (8557311..8562485, complement)"
+Pungitius pungitius,Ppung,Scorpaeniformes,Gasterosteidae,NCBI,No,,,,

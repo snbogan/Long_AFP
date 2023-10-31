@@ -40,20 +40,48 @@ Species_df
     ## 11     Leptoclinus maculatus         Lmac      Zoarcoidei     Stichaeidae
     ## 12    Gasterosteus aculeatus        Gacul Scorpaeniformes  Gasterosteidae
     ## 13       Pungitius pungitius        Ppung Scorpaeniformes  Gasterosteidae
-    ##    Location Kelley_Lab
-    ## 1        HB        Yes
-    ## 2        HB        Yes
-    ## 3        HB        Yes
-    ## 4        HB        Yes
-    ## 5        HB        Yes
-    ## 6      NCBI         No
-    ## 7      NCBI         No
-    ## 8        HB        Yes
-    ## 9      NCBI         No
-    ## 10     NCBI         No
-    ## 11     NCBI         No
-    ## 12     NCBI         No
-    ## 13     NCBI         No
+    ##    Location Kelley_Lab   SASA_locus   SASB_locus
+    ## 1        HB        Yes                          
+    ## 2        HB        Yes                          
+    ## 3        HB        Yes                          
+    ## 4        HB        Yes                          
+    ## 5        HB        Yes                          
+    ## 6      NCBI         No                          
+    ## 7      NCBI         No                          
+    ## 8        HB        Yes                          
+    ## 9      NCBI         No                          
+    ## 10     NCBI         No                          
+    ## 11     NCBI         No                          
+    ## 12     NCBI         No LOC120825501 LOC120825503
+    ## 13     NCBI         No                          
+    ##                                      SASA_acc
+    ## 1                                            
+    ## 2                                            
+    ## 3                                            
+    ## 4                                            
+    ## 5                                            
+    ## 6                                            
+    ## 7                                            
+    ## 8                                            
+    ## 9                                            
+    ## 10                                           
+    ## 11                                           
+    ## 12 NC_053220.1 (8553001..8556783, complement)
+    ## 13                                           
+    ##                                      SASB_acc
+    ## 1                                            
+    ## 2                                            
+    ## 3                                            
+    ## 4                                            
+    ## 5                                            
+    ## 6                                            
+    ## 7                                            
+    ## 8                                            
+    ## 9                                            
+    ## 10                                           
+    ## 11                                           
+    ## 12 NC_053220.1 (8557311..8562485, complement)
+    ## 13
 
 Extract and plot species phylogeny with important metadata
 
@@ -173,7 +201,10 @@ Before running the job, install BUSCO_phylogenomics and its dependencies
 git clone https://github.com/jamiemcg/BUSCO_phylogenomics
 
 # Create supplementary conda environment
+module load miniconda3.9
+
 conda env create -p BUSCO_phylogenomics_supp
+
 conda activate BUSCO_phylogenomics_supp
 
 # Install the following packages
@@ -254,7 +285,7 @@ IQtree. SB’s supermatrix IQtree code is below.
 
 #!/bin/bash
 #SBATCH --job-name=IQtree_supermatrix
-#SBATCH --time=0-3:00:00
+#SBATCH --time=0-12:00:00
 #SBATCH --mail-user=snbogan@ucsc.edu
 #SBATCH --mail-type=ALL
 #SBATCH --output=IQtree_supermatrix.out
@@ -272,5 +303,5 @@ conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
 cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
 
 # Run phyml on supermatrix alignment
-iqtree -s SUPERMATRIX.phylip -m MFP
+iqtree -s SUPERMATRIX.phylip -m GTR
 ```

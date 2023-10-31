@@ -170,7 +170,10 @@ Before running the job, install BUSCO_phylogenomics and its dependencies
 git clone https://github.com/jamiemcg/BUSCO_phylogenomics
 
 # Create supplementary conda environment
+module load miniconda3.9
+
 conda env create -p BUSCO_phylogenomics_supp
+
 conda activate BUSCO_phylogenomics_supp
 
 # Install the following packages
@@ -248,7 +251,7 @@ SB used IQtree to create a species tree from the BUSCO_phylogenomics supermatrix
 
 #!/bin/bash
 #SBATCH --job-name=IQtree_supermatrix
-#SBATCH --time=0-3:00:00
+#SBATCH --time=0-12:00:00
 #SBATCH --mail-user=snbogan@ucsc.edu
 #SBATCH --mail-type=ALL
 #SBATCH --output=IQtree_supermatrix.out
@@ -266,7 +269,7 @@ conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
 cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
 
 # Run phyml on supermatrix alignment
-iqtree -s SUPERMATRIX.phylip -m MFP
+iqtree -s SUPERMATRIX.phylip -m GTR
 
 ```
 

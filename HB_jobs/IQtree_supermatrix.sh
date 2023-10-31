@@ -18,6 +18,6 @@ conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
 cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
 
 # Run phyml on supermatrix alignment
-iqtree -s SUPERMATRIX.phylip -m MFP
+iqtree -s SUPERMATRIX.phylip -m GTR
 
 
