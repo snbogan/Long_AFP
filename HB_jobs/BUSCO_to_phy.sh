@@ -10,10 +10,6 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=12GB
 
-# Activate BUSCO_to_phylogenomics environment
-module load miniconda3
-conda activate BUSCO_phylogenomics
-
 # Load BUSCO and parallel
 module load busco
 module load parallel
@@ -45,6 +41,7 @@ find . -maxdepth 1 -name "*.fa" | parallel -j2 run_busco {}
 mv busco_assembly_* /hb/home/snbogan/PolarFish/Long_AFP/BUSCO_results 
 
 # Run pipeline command
-python BUSCO_phylogenomics.py -i BUSCO_results -o output_busco_phylogenomics -t 8
+python /hb/home/snbogan/BUSCO_phylogenomics/BUSCO_phylogenomics.py \
+ -i BUSCO_results -o output_busco_phylogenomics -t 8
 
 ## If data look patchy, run python <python count_buscos.py -i BUSCO_runs>

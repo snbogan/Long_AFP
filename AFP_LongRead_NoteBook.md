@@ -179,10 +179,6 @@ script since he has already run BUSCO on the 12 assemblies
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=12GB
 
-# Activate BUSCO_to_phylogenomics environment
-module load miniconda3
-conda activate BUSCO_phylogenomics
-
 # Load BUSCO and parallel
 module load busco
 module load parallel
@@ -207,14 +203,15 @@ export -f run_busco
 find . -maxdepth 1 -name "*.fa" | parallel -j2 run_busco {}
 
 ##################################
-###### NS should start here ######
+#### NS should start here ####
 ##################################
 
 # Move BUSCO outputs to BUSCO_results
 mv busco_assembly_* /hb/home/snbogan/PolarFish/Long_AFP/BUSCO_results 
 
-# Run pipeline command
-python BUSCO_phylogenomics.py -i BUSCO_results -o output_busco_phylogenomics -t 8
+# Run pipeline command - must pull .py script from BUSCO_phylogenomics directory
+python /hb/home/snbogan/BUSCO_phylogenomics/BUSCO_phylogenomics.py \
+ -i BUSCO_results -o output_busco_phylogenomics -t 8
 
 ## If data look patchy, run python <python count_buscos.py -i BUSCO_runs>
 ```
