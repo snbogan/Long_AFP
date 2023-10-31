@@ -125,7 +125,7 @@ ggtree(species_phy, layout = "rectangular",
 
 # HB SLURM Scripts
 
-### 10/26/2023
+### 10/26/2023 Running BUCSO on long read assemblies
 
 NS: Ran a BUSCO analysis on the fasta genome data for eelpouts and
 zoarcoids. Single seq files then compressed using tar.gz
@@ -154,7 +154,7 @@ module load hb hb-gnu busco/busco-5.4.7
 busco -c 16 -i /hb/groups/kelley_training/assemblies/alupus.asm.p_ctg.fa -o busco_assembly_alupus --auto-lineage -m genome -f
 ```
 
-### 10/29/2023
+### 10/29/2023 Running BUSCO_phylogenomics to create multiple gene trees
 
 SB ran reran BUSCO on the 12 assemblies above using his HB allocation
 and input the BUSCO output to BUSCO_to_phylogeny pipeline described
@@ -183,6 +183,8 @@ conda install -c bioconda trimal
 conda install -c bioconda fasttree
 conda install -c bioconda iqtree
 ```
+
+Here is the job script
 
 ``` bash
 
@@ -237,4 +239,38 @@ python /hb/home/snbogan/BUSCO_phylogenomics/BUSCO_phylogenomics.py \
  -i BUSCO_results -o output_busco_phylogenomics -t 8
 
 ## If data look patchy, run python <python count_buscos.py -i BUSCO_runs>
+```
+
+### 10/31/2023 Creating species tree from supermatrix alignment
+
+SB used IQtree to create a species tree from the BUSCO_phylogenomics
+supermatrix alignment. This was a first pass at creating a species tree.
+NS will reproduce the BUSCO_phylogenomics and IQtree analyses and then
+move forward on creating a consensus species tree from the
+BUSCO_phylogenomics output of multiple gene trees. This will also use
+IQtree. SB’s supermatrix IQtree code is below.
+
+``` bash
+
+#!/bin/bash
+#SBATCH --job-name=IQtree_supermatrix
+#SBATCH --time=0-3:00:00
+#SBATCH --mail-user=snbogan@ucsc.edu
+#SBATCH --mail-type=ALL
+#SBATCH --output=IQtree_supermatrix.out
+#SBATCH --error=IQtree_supermatrix.err
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=12GB
+
+# Activate BUSCO_phylogenomics conda env
+module load miniconda3.9
+conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
+
+# Go to BUSCO_phylogenomics directory w/ supermatrix alignment
+cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
+
+# Run phyml on supermatrix alignment
+iqtree -s SUPERMATRIX.phylip -m MFP
 ```

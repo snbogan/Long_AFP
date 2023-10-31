@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=BUSCO_phylogenomics
-#SBATCH --time=0-24:00:00
+#SBATCH --time=0-3:00:00
 #SBATCH --mail-user=snbogan@ucsc.edu
 #SBATCH --mail-type=ALL
 #SBATCH --output=BUSCO_phylogenomics.out
