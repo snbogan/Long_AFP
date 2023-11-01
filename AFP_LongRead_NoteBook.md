@@ -23,75 +23,56 @@ What genomes are we working with?
 Species_df <- read.csv("LongRead_SpeciesIDs.csv")
 
 # Print list to show which genomes came from public source vs. Kelley Lab
-Species_df
+head(Species_df)
 ```
 
-    ##                   Species_ID Abbreviation     X.Sub.Order          Family
-    ## 1           Anarhichas lupus       Alupus      Zoarcoidei  Anarhichadidae
-    ## 2           Anarhichas minor       Aminor      Zoarcoidei  Anarhichadidae
-    ## 3       Bathymaster signatus         Bsig      Zoarcoidei Bathymasteridae
-    ## 4        Lycodes platyrhinus       Norway      Zoarcoidei       Zoarcidae
-    ## 5          Lycodes diapterus          BYU      Zoarcoidei       Zoarcidae
-    ## 6   Melanostigma gelatinosum         Mgel      Zoarcoidei       Zoarcidae
-    ## 7          Lycodes pacificus         Lpac      Zoarcoidei       Zoarcidae
-    ## 8  Ophthalmolycus amberensis         Oamb      Zoarcoidei       Zoarcidae
-    ## 9           Pholis gunnellus        Pgunn      Zoarcoidei        Pholidae
-    ## 10    Cebidichthys violaceus        Cviol      Zoarcoidei     Stichaeidae
-    ## 11     Leptoclinus maculatus         Lmac      Zoarcoidei     Stichaeidae
-    ## 12    Gasterosteus aculeatus        Gacul Scorpaeniformes  Gasterosteidae
-    ## 13       Pungitius pungitius        Ppung Scorpaeniformes  Gasterosteidae
-    ##    Location Kelley_Lab   SASA_locus   SASB_locus
-    ## 1        HB        Yes                          
-    ## 2        HB        Yes                          
-    ## 3        HB        Yes                          
-    ## 4        HB        Yes                          
-    ## 5        HB        Yes                          
-    ## 6      NCBI         No                          
-    ## 7      NCBI         No                          
-    ## 8        HB        Yes                          
-    ## 9      NCBI         No                          
-    ## 10     NCBI         No                          
-    ## 11     NCBI         No                          
-    ## 12     NCBI         No LOC120825501 LOC120825503
-    ## 13     NCBI         No                          
-    ##                                      SASA_acc
-    ## 1                                            
-    ## 2                                            
-    ## 3                                            
-    ## 4                                            
-    ## 5                                            
-    ## 6                                            
-    ## 7                                            
-    ## 8                                            
-    ## 9                                            
-    ## 10                                           
-    ## 11                                           
-    ## 12 NC_053220.1 (8553001..8556783, complement)
-    ## 13                                           
-    ##                                      SASB_acc
-    ## 1                                            
-    ## 2                                            
-    ## 3                                            
-    ## 4                                            
-    ## 5                                            
-    ## 6                                            
-    ## 7                                            
-    ## 8                                            
-    ## 9                                            
-    ## 10                                           
-    ## 11                                           
-    ## 12 NC_053220.1 (8557311..8562485, complement)
-    ## 13
+    ##                 Species_ID Abbreviation X.Sub.Order          Family Location
+    ## 1         Anarhichas lupus       Alupus  Zoarcoidei  Anarhichadidae       HB
+    ## 2         Anarhichas minor       Aminor  Zoarcoidei  Anarhichadidae       HB
+    ## 3     Bathymaster signatus         Bsig  Zoarcoidei Bathymasteridae       HB
+    ## 4      Lycodes platyrhinus       Norway  Zoarcoidei       Zoarcidae       HB
+    ## 5        Lycodes diapterus          BYU  Zoarcoidei       Zoarcidae       HB
+    ## 6 Melanostigma gelatinosum         Mgel  Zoarcoidei       Zoarcidae     NCBI
+    ##   Kelley_Lab SASA_locus SASB_locus SASA_acc SASB_acc
+    ## 1        Yes                                        
+    ## 2        Yes                                        
+    ## 3        Yes                                        
+    ## 4        Yes                                        
+    ## 5        Yes                                        
+    ## 6         No
 
 Extract and plot species phylogeny with important metadata
 
 ``` r
 # Extract eelpout phylogeny
 species_phy <- fishtree_phylogeny(species = Species_df$Species_ID, type=c("chronogram"))
+```
 
+    ## Warning: Requested 13 but only found 12 species.
+    ## • Lycodes platyrhinus
+
+``` r
 # How many species in phy object? 94
 length(species_phy$tip.label)
+```
 
+    ## [1] 12
+
+``` r
+# Plot multilocus phylogeny
+ggtree(species_phy, layout = "rectangular", size = .75) +
+  geom_tiplab(hjust = -0.05) +
+  scale_shape_manual(values = c(19,1,NA), na.translate = F) +
+  xlim(0, 90) +
+  theme_tree() +
+  labs(title = "Multilocus Rabosky FishTreeofLife phylogeny")
+```
+
+![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+Make phylogeny w/ metadata
+
+``` r
 ## Import habitat metadata from FishBase
 species_list <- tolower(gsub("_", " ", species_phy$tip.label))
   
@@ -303,7 +284,7 @@ conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
 cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
 
 # Run phyml on supermatrix alignment
-iqtree -s SUPERMATRIX.phylip -m LG4M # NS should switch to -m JTT+CF4+G
+iqtree -s SUPERMATRIX.phylip -m WAG # SB used LG4M
 ```
 
 IQtree finished but the distance matrix and tree files do not seem to
@@ -332,7 +313,7 @@ ggtree(dist_tree, layout = "rectangular") +
   labs(title = "IQtree distance tree")
 ```
 
-![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
 # Read tree file
@@ -340,8 +321,31 @@ tree <- read.tree("Trees/Supermatrix_IQtree_LG4M/SUPERMATRIX.phylip.treefile")
 
 ggtree(tree, layout = "rectangular") +
   geom_tiplab() +
+  xlim(0, .25) +
   geom_treescale() +
   labs(title = "Terrible looking IQtree LG4M substitution model")
 ```
 
-![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
+![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
+
+### 11/1/2023
+
+SB reran IQtree job replacing substitution model w/ WAG. The goal is to
+simplify the model and hopefully resolve a better variable rate tree. It
+produced another faulty tree.
+
+Next, SB rooted the tree by adding the parameter. The result looked
+better.
+
+``` r
+# Read tree file
+tree <- read.tree("Trees/Supermatrix_IQtree_WAGroot/SUPERMATRIX.phylip.treefile")
+
+ggtree(tree, layout = "rectangular") +
+  geom_tiplab() +
+  geom_treescale() +
+  xlim(0, .15) +
+  labs(title = "Rooted IQtree WAG substitution model")
+```
+
+![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->

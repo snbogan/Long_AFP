@@ -40,13 +40,13 @@ What genomes are we working with?
 Species_df <- read.csv("LongRead_SpeciesIDs.csv")
 
 # Print list to show which genomes came from public source vs. Kelley Lab
-Species_df
+head(Species_df)
 
 ```
 
 Extract and plot species phylogeny with important metadata
 
-```{r, eval = FALSE}
+```{r}
 
 # Extract eelpout phylogeny
 species_phy <- fishtree_phylogeny(species = Species_df$Species_ID, type=c("chronogram"))
@@ -54,6 +54,19 @@ species_phy <- fishtree_phylogeny(species = Species_df$Species_ID, type=c("chron
 # How many species in phy object? 94
 length(species_phy$tip.label)
 
+# Plot multilocus phylogeny
+ggtree(species_phy, layout = "rectangular", size = .75) +
+  geom_tiplab(hjust = -0.05) +
+  scale_shape_manual(values = c(19,1,NA), na.translate = F) +
+  xlim(0, 90) +
+  theme_tree() +
+  labs(title = "Multilocus Rabosky FishTreeofLife phylogeny")
+
+```
+
+Make phylogeny w/ metadata
+
+```{r, eval = FALSE}
 ## Import habitat metadata from FishBase
 species_list <- tolower(gsub("_", " ", species_phy$tip.label))
   
@@ -270,7 +283,7 @@ conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
 cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
 
 # Run phyml on supermatrix alignment
-iqtree -s SUPERMATRIX.phylip -m LG4M # NS should switch to -m JTT+CF4+G
+iqtree -s SUPERMATRIX.phylip -m WAG # SB used LG4M
 
 ```
 
@@ -304,13 +317,30 @@ tree <- read.tree("Trees/Supermatrix_IQtree_LG4M/SUPERMATRIX.phylip.treefile")
 
 ggtree(tree, layout = "rectangular") +
   geom_tiplab() +
+  xlim(0, .25) +
   geom_treescale() +
   labs(title = "Terrible looking IQtree LG4M substitution model")
 
-
-
 ```
 
+### 11/1/2023
+
+SB reran IQtree job replacing substitution model w/ WAG. The goal is to simplify the model and hopefully resolve a better variable rate tree. It produced another faulty tree.
+
+Next, SB rooted the tree by adding the parameter. The result looked better.
+
+```{r}
+
+# Read tree file
+tree <- read.tree("Trees/Supermatrix_IQtree_WAGroot/SUPERMATRIX.phylip.treefile")
+
+ggtree(tree, layout = "rectangular") +
+  geom_tiplab() +
+  geom_treescale() +
+  xlim(0, .15) +
+  labs(title = "Rooted IQtree WAG substitution model")
+
+```
 
 
 
