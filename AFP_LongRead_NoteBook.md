@@ -305,3 +305,43 @@ cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
 # Run phyml on supermatrix alignment
 iqtree -s SUPERMATRIX.phylip -m LG4M
 ```
+
+IQtree finished but the distance matrix and tree files do not seem to
+align. Something’s up.
+
+``` r
+# Read and print IQtree distance matrix
+mldist <- as.data.frame(
+  read.table("Trees/Supermatrix_IQtree_LG4M/SUPERMATRIX.phylip.txt")
+  )
+
+row.names(mldist) <- mldist$V1
+
+mldist_matrix <- as.matrix(mldist[,-c(1)])
+
+hc <- hclust(as.dist(mldist_matrix))
+
+# Convert hierarchical clustering tree to a phylogenetic tree
+dist_tree <- as.phylo(hc)
+
+# Plot distance tree
+ggtree(dist_tree, layout = "rectangular") +
+  geom_tiplab() +
+  geom_treescale(width = 0.10, x = 0) +
+  xlim(0, .15) +
+  labs(title = "IQtree distance tree")
+```
+
+![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+# Read tree file
+tree <- read.tree("Trees/Supermatrix_IQtree_LG4M/SUPERMATRIX.phylip.treefile")
+
+ggtree(tree, layout = "rectangular") +
+  geom_tiplab() +
+  geom_treescale() +
+  labs(title = "Terrible looking IQtree LG4M substitution model")
+```
+
+![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
