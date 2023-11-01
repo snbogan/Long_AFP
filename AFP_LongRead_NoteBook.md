@@ -303,7 +303,7 @@ conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
 cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
 
 # Run phyml on supermatrix alignment
-iqtree -s SUPERMATRIX.phylip -m LG4M
+iqtree -s SUPERMATRIX.phylip -m LG4M # NS should switch to -m JTT+CF4+G
 ```
 
 IQtree finished but the distance matrix and tree files do not seem to
