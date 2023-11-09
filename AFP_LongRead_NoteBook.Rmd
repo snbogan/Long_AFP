@@ -283,7 +283,7 @@ conda activate /hb/home/snbogan/BUSCO_phylogenomics_supp
 cd /hb/home/snbogan/PolarFish/Long_AFP/output_busco_phylogenomics/supermatrix
 
 # Run phyml on supermatrix alignment
-iqtree -s SUPERMATRIX.phylip -m WAG # SB used LG4M
+iqtree -s SUPERMATRIX.phylip -o busco_assembly_Gacul_UGA_v5_genomic -m WAG -redo
 
 ```
 
@@ -336,7 +336,7 @@ tree <- read.tree("Trees/Supermatrix_IQtree_WAGroot/SUPERMATRIX.phylip.treefile"
 
 ggtree(tree, layout = "rectangular") +
   geom_tiplab() +
-  geom_treescale() +
+  geom_treescale(width = 0.025, offset = -.55) +
   xlim(0, .15) +
   labs(title = "Rooted IQtree WAG substitution model")
 
