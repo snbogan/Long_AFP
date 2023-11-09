@@ -342,6 +342,19 @@ ggtree(tree, layout = "rectangular") +
 
 ```
 
-Testing testing
 
+### 11/7/2023
+
+Meeting w/ Ella Gustavson on reverse amplicon identification in Norway eelpout using PCR primers
+
+Goal: We are going to automate Ella's amplicon ID'ing process during a 11/9/2023 meeting using an R script
+
+Below is a list of Ella's steps for amplicon ID starting with forward and reverse primer set
+
+Alignment
+1. Create blast databases w/ parsed seqIDs
+2. Two blasts: one with forward, one w/ reverse primer
+2. From blast output, create table of hits and alignment metrics
+
+### 11/9/2023
 
