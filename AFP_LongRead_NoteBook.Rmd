@@ -453,4 +453,26 @@ library(fishtree)
 
 ```
 
+```{r}
 
+# Read in astral output NS tree
+astral_tree <- read.tree("Trees/Astral/ASTRAL_out_NS.tree")
+
+# ggplot
+astral_tree$tip.label <- gsub("busco_assembly_", "", astral_tree$tip.label)
+
+astral_tree$edge.length <- ifelse(is.na(astral_tree$edge.length) == TRUE, 
+                                  1, astral_tree$edge.length)
+
+astral_tree <- reroot(astral_tree,
+                      node.number = 1,
+                      position = .5*(max(tree$edge.length)))
+
+ggtree(astral_tree, layout = "slanted") +
+  geom_tiplab() + 
+  geom_nodelab(vjust = -.75, hjust = 1.5, color = "red") +
+  geom_treescale(width = 1, offset = -.5) +
+  xlim(0, 12) +
+  labs(title = "Rooted astral multigene coalescence tree NS version")
+
+```
