@@ -346,12 +346,30 @@ tree <- reroot(tree,
              node.number = 12, 
              position = .5*(max(tree$edge.length)))
 
+tree$tip.label <- c("Anarhichas minor", "Anarhichas lupus", "Lycodes diapterus", 
+                    "Ophthalmolycus amberensis", "Lycodes pacificus", "Melanostigma gelatinosum",
+                    "Lycodes platyrhinus", "Leptoclinus maculatus", "Pholis gunnellus", 
+                    "Cebidichthys violaceus", "Bathymaster signatus", "Gasterosteus aculeatus")
+
+busco_df <- read.csv(("Busco_results_genome_size.csv"))
+
 # Plot
-ggtree(tree, layout = "rectangular") +
-  geom_tiplab() +
+Fig_1A <- ggtree(tree, layout = "rectangular", size = 1.5) %<+% busco_df +
+  geom_tiplab(color = "black", nudge_x = .005) +
+  geom_tippoint(aes(size = log(Genome_size))) +
   geom_treescale(width = 0.025, offset = -.55) +
-  xlim(0, .125) +
-  labs(title = "Rooted IQtree WAG substitution model")
+  scale_color_viridis_c(direction = -1) +
+  theme(legend.position = "none") +
+  xlim(0, .15)
+
+# Export Fig 1B as png
+png("~/Documents/GitHub/Long_AFP/Figures/Fig_1A.png", units = "in", width = 8, 
+    height = 6, 
+    res = 600)
+
+Fig_1A
+       
+
 
 ```
 
