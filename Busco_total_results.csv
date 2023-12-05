@@ -1,0 +1,13 @@
+Species ID,Genome size,Contig N50,Scaffold N50,BUSCO % complete,% Repetitive elements
+Anarhichas lupus,"627,663,113",23 MB,23 MB,98.5% (3587),1.0% (38)
+Anarhichas minor,"643,864,434",13 MB,13 MB,98.5% (3587),1.1% (41)
+Bathymaster signatus,"714,261,117",3 MB,3 MB,98.3% (3587),2.1% (78)
+Lycodes platyrhinus,"718,505,254",2 MB,2 MB,98.3% (3579),2.0% (72)
+Lycodes diapterus,"711,911,251",5 MB,5 MB,98.5% (3585),2.7% (97)
+Melanostigma gelatinosum,"661,975,483",1 MB,27 MB,98.1% (3569),1.6% (58)
+Lycodes pacificus,"646,369,862",4 MB,27 MB,98.1% (3573),1.2% (45)
+Ophthalmolycus amberensis,"712,582,824",5 MB,5 MB,98.5% (3586),2.6% (94)
+Pholis gunnellus,"588,696,950",3 MB,25 MB,98.6% (3591),0.8% (30)
+Cebidichthys violaceus,"575,660,146",1 MB,16 MB,93.3% (3396),1.2% (44)
+Leptoclinus maculatus,"699,894,842",2 MB,23 MB,98.0% (3569),1.6% (60)
+Gasterosteus aculeatus,"471,894,361",485 KB,20 MB,97.0% (3534),2.4% (89)
