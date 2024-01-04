@@ -169,6 +169,65 @@ Fig_1B
                    
 ```
 
+Calculate 
+
+```{r}
+
+df_species_sf <- st_as_sf(centroids, coords = c("longitude", "latitude"), crs = 4326)
+
+nearest_indices <- st_nearest_feature(df_species_sf, df)
+
+df_species_sf$nearest_temperature <- df$sst[nearest_indices]
+
+as.data.frame(df_species_sf)[,c(1,13)]
+
+## Regression of crude freezing risk and AFP number
+busco_df <- read.csv(("Busco_results_genome_size.csv"))
+
+# No phylo correction
+anova(lm(AFPs ~ Risk + Mode_lat + UsMid_depth + (Mode_lat^2):UsMid_depth, data = busco_df))
+
+library(scales)
+
+ggplot(data = busco_df,
+       aes(x = Mode_lat*Risk*(1/UsMid_depth), y = AFPs)) +
+  geom_point() +
+  scale_x_continuous(trans = pseudo_log_trans(0.001, 10)) +
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_classic()
+
+Fig_A <- ggplot(data = busco_df,
+       aes(x = Mode_lat*Risk*(1/UsMid_depth), y = AFPs)) +
+  geom_smooth(method = "loess", se = TRUE, span = .95) +
+  geom_point(size = 2) +
+  scale_x_continuous(trans = pseudo_log_trans(0.01, 10)) +
+  scale_y_continuous(trans = pseudo_log_trans(0.01, 10), breaks = c(0,1,2,5,10,25,50, 100, 1000, 1000)) +
+  theme_classic() +
+  labs(y = "log(AFP copy number)", x = "log(Polar x Latitude x 1/Depth)", title = "With depth")
+
+Fig_B <- ggplot(data = busco_df,
+       aes(x = Mode_lat*Risk, y = AFPs)) +
+  #geom_smooth(method = "lm", se = TRUE) +
+  geom_point(size = 2) +
+  #scale_x_continuous(trans = pseudo_log_trans(0.1, 10)) +
+  #scale_y_continuous(trans = pseudo_log_trans(0.1, 10), breaks = c(0,1,2,5,10,25,50, 100, 1000, 1000)) +
+  theme_classic() +
+  labs(y = "AFP copy number", x = "Polar x Latitude", title = "No depth")
+
+# Arrange
+Fig_1 <- ggarrange(Fig_A, Fig_B,
+                   labels = c("A", "B"),
+                   widths = c(1, 1),
+                   ncol = 2, nrow = 1, align = "hv")
+
+Fig_1
+
+# No phylo correction
+anova(lm(AFPs ~ Risk + Mode_lat + UsMid_depth + (Mode_lat^2):UsMid_depth, data = busco_df))
+
+```
+
+
 ```{r}
 
 # Read tree file
@@ -185,17 +244,56 @@ tree$tip.label <- c("Anarhichas minor", "Anarhichas lupus", "Lycodes diapterus",
                     "Lycodes platyrhinus", "Leptoclinus maculatus", "Pholis gunnellus", 
                     "Cebidichthys violaceus", "Bathymaster signatus", "Gasterosteus aculeatus")
 
-busco_df <- read.csv(("Busco_results_genome_size.csv"))
+# Plot AFP copy number
+busco_df$tip.label = factor(
+  busco_df$tip.label, 
+  levels = rev(c('Ophthalmolycus amberensis', 'Lycodes diapterus', 'Lycodes pacificus', 
+             'Lycodes platyrhinus', 'Melanostigma gelatinosum', 'Anarhichas lupus',
+             'Anarhichas minor', 'Pholis gunnellus', 'Leptoclinus maculatus',
+             'Cebidichthys violaceus', 'Bathymaster signatus', 'Gasterosteus aculeatus')))
 
-# Plot
+p1 <- ggplot(busco_df, aes(y = tip.label, x = AFPs)) + 
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=AFPs, y = tip.label), nudge_x = 5) +
+  theme_tree2() + 
+  theme(legend.position='none') +
+  scale_x_continuous(limits = c(0,50)) +
+  labs(title = "AFP copies")
+
+library(cowplot)
+
+```
+
+```{r}
+# Plot species tree
+
+tree$node.label <- seq(1,11,1)
+
+hl_nodes <- data.frame(id = c(10))
+
+selected_nodes <- data.frame(nodes = c(5,4))
+
 Fig_1A <- ggtree(tree, layout = "rectangular", size = 1) %<+% busco_df +
-  geom_tiplab(color = "black", nudge_x = .005) +
-  geom_tippoint(aes(size = log(Genome_size))) +
-  geom_treescale(width = 0.025, offset = -.55) + # NS should add axis label
-  scale_color_viridis_c(direction = -1) +
-  theme(legend.position = "none") +
-  scale_size_continuous(range = c(2.5, 5)) +
-  xlim(0, .15)
+  geom_tiplab(color = "black", nudge_x = .005, align = TRUE, size = 5) +
+  geom_tippoint(aes(size = Kelley_Lab), color = "skyblue3") +
+  #geom_nodepoint(data = selected_nodes, aes(node = nodes), shape = "square") +
+  theme(legend.position = "none",
+        strip.background = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank()) +
+  scale_size_manual(values = c(0,4)) +
+  xlim(0, .175)
+
+Fig_1A
+
+
+```
+
+
+```{r}
+library(patchwork)
+
+Fig_1Ap <- Fig_1A + p1 + plot_layout(widths = c(77, 23))
 
 # Export Fig 1B as png
 png("~/Documents/GitHub/Long_AFP/Figures/Fig_1A.png", units = "in", width = 8, 
@@ -208,17 +306,58 @@ Fig_1A
 
 ```{r}
 
-Fig_1 <- ggarrange(Fig_1A, Fig_1B,
+Fig_1 <- ggarrange(Fig_1Ap, Fig_1B,
                    labels = c("A", "B"),
-                   widths = c(.7, 1),
-                   ncol = 2, nrow = 1, align = "v")
+                   widths = c(1, 1.5),
+                   ncol = 2, nrow = 1, align = "hv")
+
+Fig_1
 
 # Export Fig 1A as png
-png("~/Documents/GitHub/Long_AFP/Figures//Fig_1.png", units = "in", width = 18, 
+png("~/Documents/GitHub/Long_AFP/Figures//Fig_1.png", units = "in", width = 24, 
     height = 6, 
     res = 600)
 
 Fig_1
+
+```
+
+# AFPIII Gene Tree
+
+```{r}
+
+# Read tree file
+prelim_gene_tree <- read.newick(
+  "Hand_Annot/GetFasta/01032024_JustAFPs.newick"
+  )
+
+tree$tip.label <- gsub("busco_assembly_", "", tree$tip.label)
+
+tree <- reroot(tree, 
+             node.number = 12, 
+             position = .5*(max(tree$edge.length)))
+
+tree$tip.label <- c("Anarhichas minor", "Anarhichas lupus", "Lycodes diapterus", 
+                    "Ophthalmolycus amberensis", "Lycodes pacificus", "Melanostigma gelatinosum",
+                    "Lycodes platyrhinus", "Leptoclinus maculatus", "Pholis gunnellus", 
+                    "Cebidichthys violaceus", "Bathymaster signatus", "Gasterosteus aculeatus")
+
+# Plot AFP copy number
+busco_df$tip.label = factor(
+  busco_df$tip.label, 
+  levels = rev(c('Ophthalmolycus amberensis', 'Lycodes diapterus', 'Lycodes pacificus', 
+             'Lycodes platyrhinus', 'Melanostigma gelatinosum', 'Anarhichas lupus',
+             'Anarhichas minor', 'Pholis gunnellus', 'Leptoclinus maculatus',
+             'Cebidichthys violaceus', 'Bathymaster signatus', 'Gasterosteus aculeatus')))
+
+p1 <- ggplot(busco_df, aes(y = tip.label, x = AFPs)) + 
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=AFPs, y = tip.label), nudge_x = 5) +
+  theme_tree2() + 
+  theme(legend.position='none') +
+  scale_x_continuous(limits = c(0,50)) +
+  labs(title = "AFP copies")
+
 
 ```
 
