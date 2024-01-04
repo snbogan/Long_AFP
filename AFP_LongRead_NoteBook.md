@@ -2,7 +2,7 @@ AFP_LongRead_Notebook
 ================
 Sam Bogan and Nathan Surendran
 
-\#Summary
+# Summary
 
 This is an R markdown lab notebook for all research, wet lab work, and
 analyses related to a study on type AFP III evolution revealed by long
@@ -33,13 +33,34 @@ head(Species_df)
     ## 4      Lycodes platyrhinus       Norway  Zoarcoidei       Zoarcidae       HB
     ## 5        Lycodes diapterus          BYU  Zoarcoidei       Zoarcidae       HB
     ## 6 Melanostigma gelatinosum         Mgel  Zoarcoidei       Zoarcidae     NCBI
-    ##   Kelley_Lab SASA_locus SASB_locus SASA_acc SASB_acc
-    ## 1        Yes                                        
-    ## 2        Yes                                        
-    ## 3        Yes                                        
-    ## 4        Yes                                        
-    ## 5        Yes                                        
-    ## 6         No
+    ##   Kelley_Lab AFPs AFP_compl_num AFP_acccessions AFP_ranges AFP_strand
+    ## 1        Yes   19            NA                                      
+    ## 2        Yes    6            NA                                      
+    ## 3        Yes    0            NA                                      
+    ## 4        Yes    1            NA                                      
+    ## 5        Yes    0            NA                                      
+    ## 6         No    1             1                                      
+    ##   SASA_locus SASB_locus SASA_acc SASB_acc Syn_locus Syn_accession LIM_locus
+    ## 1                                                                          
+    ## 2                                                                          
+    ## 3                                                                          
+    ## 4                                                                          
+    ## 5                                                                          
+    ## 6                                                                          
+    ##   LIM_accession Sinuclein_LIM_coord Sinuclein_LIM_range Syn_LIM_gapped
+    ## 1                                                    NA               
+    ## 2                                                    NA               
+    ## 3                                                    NA               
+    ## 4                                                    NA               
+    ## 5                                                    NA               
+    ## 6                                                    NA               
+    ##   Syn_Lim_dist AFP_Syn_dist
+    ## 1           NA           NA
+    ## 2           NA           NA
+    ## 3           NA           NA
+    ## 4           NA           NA
+    ## 5           NA           NA
+    ## 6           NA           NA
 
 Extract and plot species phylogeny with important metadata
 
@@ -48,7 +69,7 @@ Extract and plot species phylogeny with important metadata
 species_phy <- fishtree_phylogeny(species = Species_df$Species_ID, type=c("phylogram"))
 ```
 
-    ## Warning: Requested 13 but only found 12 species.
+    ## Warning: Requested 12 but only found 11 species.
     ## • Lycodes platyrhinus
 
 ``` r
@@ -56,7 +77,7 @@ species_phy <- fishtree_phylogeny(species = Species_df$Species_ID, type=c("phylo
 length(species_phy$tip.label)
 ```
 
-    ## [1] 12
+    ## [1] 11
 
 ``` r
 # Plot multilocus phylogeny
@@ -132,7 +153,7 @@ ggtree(species_phy, layout = "rectangular",
   geom_rect(xmin = max_y-10, xmax = max_y-15, ymin = -Inf, ymax = Inf, fill = "pink", alpha = 0.01, lty = 0)
 ```
 
-# HB SLURM Scripts
+# Species tree construction
 
 ### 10/26/2023 Running BUCSO on long read assemblies
 
@@ -353,15 +374,29 @@ tree <- reroot(tree,
              node.number = 12, 
              position = .5*(max(tree$edge.length)))
 
-# Plot
-ggtree(tree, layout = "rectangular") +
-  geom_tiplab() +
-  geom_treescale(width = 0.025, offset = -.55) +
-  xlim(0, .125) +
-  labs(title = "Rooted IQtree WAG substitution model")
-```
+tree$tip.label <- c("Anarhichas minor", "Anarhichas lupus", "Lycodes diapterus", 
+                    "Ophthalmolycus amberensis", "Lycodes pacificus", "Melanostigma gelatinosum",
+                    "Lycodes platyrhinus", "Leptoclinus maculatus", "Pholis gunnellus", 
+                    "Cebidichthys violaceus", "Bathymaster signatus", "Gasterosteus aculeatus")
 
-![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+busco_df <- read.csv(("Busco_results_genome_size.csv"))
+
+# Plot
+Fig_1A <- ggtree(tree, layout = "rectangular", size = 1.5) %<+% busco_df +
+  geom_tiplab(color = "black", nudge_x = .005) +
+  geom_tippoint(aes(size = log(Genome_size))) +
+  geom_treescale(width = 0.025, offset = -.55) +
+  scale_color_viridis_c(direction = -1) +
+  theme(legend.position = "none") +
+  xlim(0, .15)
+
+# Export Fig 1B as png
+png("~/Documents/GitHub/Long_AFP/Figures/Fig_1A.png", units = "in", width = 8, 
+    height = 6, 
+    res = 600)
+
+Fig_1A
+```
 
 ### 11/7/2023
 
@@ -442,24 +477,318 @@ ggtree(astral_tree, layout = "rectangular") +
 Looks like IQtree performed well. Let’s move forward with creating a
 time-calibrated tree.
 
-From Hotaling et al. 2021:
+### 11/30/2023
 
-“Agnevicthys gretchinae and Palaeopholis laevis (family Pholidae, age
-11.5-12.3 Mya; Nazarkin, 2002)—were allowed to be placed as either the
-stem (outside of the clade formed by extant species) or crown (within
-the clade of extant species) for the group during exploration of the
-tree space. We included several fossils identified as Stichaeidae but
-because preliminary analysis demonstrated polyphyly of this family, we
-allowed these fossils to be placed anywhere within the in-group
-excluding Bathymasteridae: Nivchia makushoki, Stichaeus brachigrammus,
-and Stichaeopsis sakhalinensis (age 11.5-12.3 Mya; Nazarkin, 1998),
-undescribed fossils NSM PV 22683 (age 13-16 Mya) and PIN 3181/1050
-(11.6-13.5 Mya; Nazarkin and Yabumoto, 2015), and Stichaeus matsubarai
-(age 5.3-23 Mya; Yabumoto and Uyeno, 1994). We used fossils assigned to
-the contemporary species Lycodes pacificus (family Zoarcidae) to date
-its age at 0.78-2.59 Mya (Fitch, 1967).”
+A .Rmd for figures 1 and 2 of the manuscript was created under
+Figures.Rmd
+
+# Gene tree construction
+
+### 12/13/2023
+
+Hand annotation of AFP regions was performed by SB using two fasta files
+of zoarcoid AFPs using the following blast parameters mimicking NCBI
+blastn ‘more dissimilar sequences/discontinguous blast’.
+
+AFPs were documented as putatively complete genes if they contained the
+following:
+
+All blast outputs can be found in
+\~/Documents/GitHub/Long_AFP/Hand_Annot/Blasts
+
+- Start codon
+- Complete exons 1 and 2
+
+``` bash
+
+blastn -query /path/to/query.fa \
+       -subject /path/to/genome.fa \
+       -out output.txt \
+       -evalue 0.1 \
+       -word_size 11 \
+       -gapopen 5 \
+       -gapextend 2 \
+       -penalty -3 \
+       -reward 2 \
+       -dust yes \
+       -soft_masking true \
+       -task blastn
+```
+
+The resulting annotations are in the file AFP_SASA_SASB_ranges.csv and
+can be seen below:
 
 ``` r
-# Load fishtree
-library(fishtree)
+# Read in hand annotation csv and print
+head(read.csv("AFP_SASA_SASB_ranges.csv"), n = 50)
 ```
+
+    ##                      Species             ID  Chrom_scaf   Gene AFP_copies
+    ## 1          Lycodes pacificus Lpac_AFP_psCDS          21 AFPIII          0
+    ## 2          Lycodes pacificus     Lpac_exon2          21 AFPIII          0
+    ## 3          Lycodes pacificus   Lpac_exon1_1          21 AFPIII          0
+    ## 4          Lycodes pacificus   Lpac_exon1_2          21 AFPIII          0
+    ## 5          Lycodes pacificus   Lpac_exon1_3          21 AFPIII          0
+    ## 6          Lycodes pacificus   Lpac_exon1_4          21 AFPIII          0
+    ## 7          Lycodes pacificus   Lpac_exon1_5          21 AFPIII          0
+    ## 8          Lycodes pacificus   Lpac_exon1_6          21 AFPIII          0
+    ## 9   Melanostigma gelatinosum       Mgel_CDS          21 AFPIII          1
+    ## 10 Ophthalmolycus amberensis     Oamb_CDS_1 tig00002579 AFPIII         13
+    ## 11 Ophthalmolycus amberensis   Oamb_exon1_1 tig00002579 AFPIII         13
+    ## 12 Ophthalmolycus amberensis   Oamb_exon2_1 tig00002579 AFPIII         13
+    ## 13 Ophthalmolycus amberensis     Oamb_CDS_2 tig00002579 AFPIII         13
+    ## 14 Ophthalmolycus amberensis   Oamb_exon1_2 tig00002579 AFPIII         13
+    ## 15 Ophthalmolycus amberensis   Oamb_exon2_2 tig00002579 AFPIII         13
+    ## 16 Ophthalmolycus amberensis     Oamb_CDS_3 tig00002579 AFPIII         13
+    ## 17 Ophthalmolycus amberensis   Oamb_exon1_3 tig00002579 AFPIII         13
+    ## 18 Ophthalmolycus amberensis   Oamb_exon2_3 tig00002579 AFPIII         13
+    ## 19 Ophthalmolycus amberensis     Oamb_CDS_4 tig00002579 AFPIII         13
+    ## 20 Ophthalmolycus amberensis   Oamb_exon1_4 tig00002579 AFPIII         13
+    ## 21 Ophthalmolycus amberensis   Oamb_exon2_4 tig00002579 AFPIII         13
+    ## 22 Ophthalmolycus amberensis     Oamb_CDS_5 tig00002579 AFPIII         13
+    ## 23 Ophthalmolycus amberensis   Oamb_exon1_5 tig00002579 AFPIII         13
+    ## 24 Ophthalmolycus amberensis   Oamb_exon2_5 tig00002579 AFPIII         13
+    ## 25 Ophthalmolycus amberensis     Oamb_CDS_6 tig00002579 AFPIII         13
+    ## 26 Ophthalmolycus amberensis   Oamb_exon1_6 tig00002579 AFPIII         13
+    ## 27 Ophthalmolycus amberensis   Oamb_exon2_6 tig00002579 AFPIII         13
+    ## 28 Ophthalmolycus amberensis     Oamb_CDS_7 tig00002579 AFPIII         13
+    ## 29 Ophthalmolycus amberensis   Oamb_exon1_7 tig00002579 AFPIII         13
+    ## 30 Ophthalmolycus amberensis   Oamb_exon2_7 tig00002579 AFPIII         13
+    ## 31 Ophthalmolycus amberensis     Oamb_CDS_8 tig00002579 AFPIII         13
+    ## 32 Ophthalmolycus amberensis   Oamb_exon1_8 tig00002579 AFPIII         13
+    ## 33 Ophthalmolycus amberensis   Oamb_exon2_8 tig00002579 AFPIII         13
+    ## 34 Ophthalmolycus amberensis  Oamb_exon1_14 tig00002579 AFPIII         13
+    ## 35 Ophthalmolycus amberensis  Oamb_exon1_15 tig00002579 AFPIII         13
+    ## 36 Ophthalmolycus amberensis  Oamb_exon1_16 tig00002579 AFPIII         13
+    ## 37 Ophthalmolycus amberensis  Oamb_exon1_17 tig00002579 AFPIII         13
+    ## 38 Ophthalmolycus amberensis  Oamb_exon1_18 tig00002579 AFPIII         13
+    ## 39 Ophthalmolycus amberensis  Oamb_exon2_14 tig00002579 AFPIII         13
+    ## 40 Ophthalmolycus amberensis  Oamb_exon2_15 tig00002579 AFPIII         13
+    ## 41 Ophthalmolycus amberensis     Oamb_CDS_9 tig00320117 AFPIII         13
+    ## 42 Ophthalmolycus amberensis   Oamb_exon1_9 tig00320117 AFPIII         13
+    ## 43 Ophthalmolycus amberensis   Oamb_exon2_9 tig00320117 AFPIII         13
+    ## 44 Ophthalmolycus amberensis    Oamb_CDS_10 tig00320117 AFPIII         13
+    ## 45 Ophthalmolycus amberensis  Oamb_exon1_10 tig00320117 AFPIII         13
+    ## 46 Ophthalmolycus amberensis  Oamb_exon2_10 tig00320117 AFPIII         13
+    ## 47 Ophthalmolycus amberensis    Oamb_CDS_11 tig00320117 AFPIII         13
+    ## 48 Ophthalmolycus amberensis  Oamb_exon1_11 tig00320117 AFPIII         13
+    ## 49 Ophthalmolycus amberensis  Oamb_exon2_11 tig00320117 AFPIII         13
+    ## 50 Ophthalmolycus amberensis    Oamb_CDS_12 tig00320117 AFPIII         13
+    ##      Exon    Start     Stop Strand Length Between_Syn_LIM             Notes
+    ## 1     CDS  7753639  7754542  Minus    903             Yes                  
+    ## 2  Exon_2       NA       NA            NA             Yes                  
+    ## 3  Exon_1  7763217  7763706   Plus    489             Yes                  
+    ## 4  Exon_1  7799144  7799634   Plus    490             Yes                  
+    ## 5  Exon_1  7767041  7767530   Plus    489             Yes                  
+    ## 6  Exon_1  7775013  7775503   Plus    490             Yes                  
+    ## 7  Exon_1  7795880  7796370   Plus    490             Yes                  
+    ## 8  Exon_1  7786259  7786744   Plus    485             Yes                  
+    ## 9     CDS 17022759 17022225  Minus    872                 Large_trunc_exon2
+    ## 10    CDS  1065522  1066451  Minus    929                                  
+    ## 11 Exon_1  1066221  1066451  Minus    230                                  
+    ## 12 Exon_2  1065522  1066036  Minus    514                                  
+    ## 13    CDS   955954   956884   Plus    930                                  
+    ## 14 Exon_1   955954   956187   Plus    233                                  
+    ## 15 Exon_2   956361   956884   Plus    523                                  
+    ## 16    CDS   989541   990230   Plus    689                       Trunc_exon2
+    ## 17 Exon_1   989541   989774   Plus    233                                  
+    ## 18 Exon_2   989948   990230   Plus    282                             Trunc
+    ## 19    CDS   998502   999191   Plus    689                       Trunc_exon2
+    ## 20 Exon_1   998502   998735   Plus    233                                  
+    ## 21 Exon_2   998909   999191   Plus    282                             Trunc
+    ## 22    CDS   962034   962723   Plus    689                       Trunc_exon2
+    ## 23 Exon_1   962034   962267   Plus    233                                  
+    ## 24 Exon_2   962441   962723   Plus    282                             Trunc
+    ## 25    CDS  1014092  1014781   Plus    689                       Trunc_exon2
+    ## 26 Exon_1  1014092  1014325   Plus    233                                  
+    ## 27 Exon_2  1014499  1014781   Plus    282                             Trunc
+    ## 28    CDS  1036539  1037228  Minus    689                       Trunc_exon2
+    ## 29 Exon_1  1036995  1037228  Minus    233                                  
+    ## 30 Exon_2  1036539  1036821  Minus    282                             Trunc
+    ## 31    CDS   980832   981522   Plus    690                       Trunc_exon2
+    ## 32 Exon_1   980832   981065   Plus    233                                  
+    ## 33 Exon_2   981240   981522   Plus    282                             Trunc
+    ## 34 Exon_1   908083   908573  Minus    490                          Floating
+    ## 35 Exon_1   869897   870379  Minus    482                          Floating
+    ## 36 Exon_1   875035   875512  Minus    477                          Floating
+    ## 37 Exon_1   919574   920045  Minus    471                          Floating
+    ## 38 Exon_1   970751   971174   Plus    423                          Floating
+    ## 39 Exon_2  1047233  1047759  Minus    526                          Floating
+    ## 40 Exon_2  1029043  1029562  Minus    519                          Floating
+    ## 41    CDS    94631    95561   Plus    930                                  
+    ## 42 Exon_1    94631    94864   Plus    233                                  
+    ## 43 Exon_2    95038    95561   Plus    523                                  
+    ## 44    CDS    34216    35146   Plus    930                                  
+    ## 45 Exon_1    34216    34449   Plus    233                                  
+    ## 46 Exon_2    34623    35146   Plus    523                                  
+    ## 47    CDS    43864    44793   Plus    929                                  
+    ## 48 Exon_1    43864    44097   Plus    233                                  
+    ## 49 Exon_2    44272    44793   Plus    521                                  
+    ## 50    CDS    60352    61217   Plus    865                                  
+    ##    Comments Start_codon
+    ## 1                      
+    ## 2                      
+    ## 3                      
+    ## 4                      
+    ## 5                      
+    ## 6                      
+    ## 7                      
+    ## 8                      
+    ## 9   Inspect            
+    ## 10                     
+    ## 11                     
+    ## 12                     
+    ## 13                     
+    ## 14                     
+    ## 15                     
+    ## 16  Inspect            
+    ## 17                     
+    ## 18  Inspect            
+    ## 19  Inspect            
+    ## 20                     
+    ## 21  Inspect            
+    ## 22  Inspect            
+    ## 23                     
+    ## 24  Inspect            
+    ## 25  Inspect            
+    ## 26                     
+    ## 27  Inspect            
+    ## 28  Inspect            
+    ## 29                     
+    ## 30  Inspect            
+    ## 31  Inspect            
+    ## 32                     
+    ## 33  Inspect            
+    ## 34  Inspect            
+    ## 35  Inspect            
+    ## 36  Inspect            
+    ## 37  Inspect            
+    ## 38  Inspect            
+    ## 39  Inspect            
+    ## 40  Inspect            
+    ## 41                     
+    ## 42                     
+    ## 43                     
+    ## 44                     
+    ## 45                     
+    ## 46                     
+    ## 47                     
+    ## 48                     
+    ## 49                     
+    ## 50
+
+The AFP fasta’s used for AFP annotations were:
+
+- J03924.1: Macrozoarces americanus antifreeze protein (OP5A) gene,
+  complete cds (primary)
+- JQ040521.1: Anarhichas lupus clone AWG1 type III antifreeze protein
+  (AFP III) gene, complete cds
+
+JQ040521.1 was used to double check species for which no apparent AFPs
+were annotated
+
+### 01/02/2024
+
+Hand annotations of SAS-A and SAS-B were performed by SB using G.
+aculeatus paralogs:
+
+- NC_053220.1:c8556783-8553001 (SAS-A)
+- NC_053220.1:c8562485-8557311 (SAS-B)
+
+SAS-B was identified based on its homology to Zoarcoid AFP III orthologs
+
+All blast outputs can be found in
+\~/Documents/GitHub/Long_AFP/Hand_Annot/Blasts
+
+### 01/04/2024
+
+A gene tree was constructed by converting hand annotations of SAS and
+AFP regions to .bed files by hand and extracting their underlying
+sequences using bedtools getfasta. FASTA files were then concatenated
+into one file and aligned using MAFFT and constructed into a
+phylogenetic tree using IQTREE.
+
+Below is the code for FASTA extraction and concatenation
+
+``` bash
+
+# Extract fasta sequencing using .bed coordinates
+bedtools getfasta -fi /path/to/genome.fa \ 
+-bed /path/to/coordinates.bed \
+-fo /path/to/output.fa # Repeat across all SAS/AFP coordinates
+```
+
+``` bash
+#!/bin/bash
+
+## Combine all fasta's using concat.sh in 'Scripts' folder
+# Target directory containing .fa files
+TARGET_DIR="/Users/sambogan/Documents/GitHub/Long_AFP/Hand_Annot/GetFasta"
+
+# Output file
+OUTPUT_FILE="combined.fa"
+
+# Navigate to target directory
+cd "$TARGET_DIR"
+
+# Check if output file already exists
+if [ -f "$OUTPUT_FILE" ]; then
+    echo "Output file $OUTPUT_FILE already exists. Removing it."
+    rm "$OUTPUT_FILE"
+fi
+
+# Concatenate all .fa files into one
+for file in *.fa; do
+    cat "$file" >> "$OUTPUT_FILE"
+    echo "Concatenated $file"
+done
+
+echo "All .fa files have been concatenated into $OUTPUT_FILE."
+```
+
+The resulting concatentation of fasta sequences was aligned using MAFFT
+set to preset parameters at: <https://www.ebi.ac.uk/Tools/msa/mafft/>
+
+The .fa alignment file was input to IQTREE set to automated substitution
+model selection and free rate variation = FALSE. The selected
+substitution model was K3Pu+F+G4.
+
+The resulting IQTREE gene tree is stored under
+Trees/Gene_Trees/01042024_IQTREE_K3Pu+F+G4_SAS_AFP_genetree.newick and
+is shown here:
+
+``` r
+# Read in IQTree gene tree
+IQ_genetree <- read.tree("Trees/Gene_Trees/01042024_IQTREE_K3Pu+F+G4_SAS_AFP_genetree.newick")
+
+# Create factor for AFPs and SAS genes
+group_df <- data.frame(tip.label = IQ_genetree$tip.label,
+  group = ifelse(
+  grepl("SAS", IQ_genetree$tip.label), "SAS",
+  ifelse(grepl("AFP", IQ_genetree$tip.label), "AFP", NA)))
+
+IQ_genetree <- reroot(IQ_genetree, 
+             node.number = 193, 
+             position = .5*(max(tree$edge.length)))
+
+# Plot tree
+ggtree(IQ_genetree, aes(color = group), layout = "rectangular") %<+% group_df +
+  geom_tiplab(size = 1) +
+  geom_treescale() +
+  labs(title = "Rooted IQtree gene tree K3Pu+F+G4 substitution model")
+```
+
+![](AFP_LongRead_NoteBook_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+As shown above, this preliminary analysis demonstrates two indpendent
+origins of AFP III genes arising from SAS. This is highly unlikely given
+the prior literature. The most derived clade of SAS genes should be
+inspected. The following explanations may explain this result:
+
+- Derived SAS genes were incorrectly annotated as AFPs and only possess
+  first and last exon of SAS-B.
+- These derived SAS genes underwent relaxed constraint resemble AFPs in
+  terms of their conserved exons
+
+Additionally, some sorting of SAS-A and SAS-B appears incorrect and
+needs to be inspected as well.

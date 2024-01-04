@@ -5,7 +5,7 @@ output:
   github_document: default
 ---
 
-#Summary
+# Summary
 
 This is an R markdown lab notebook for all research, wet lab work, and analyses related to a study on type AFP III evolution revealed by long read sequencing and genome assembly in Zoarcoid fishes. The 11 Zoarcoid species included in the study and Scorpaeiformes outgroups (sticklebacks) are indexed
 
@@ -127,7 +127,7 @@ ggtree(species_phy, layout = "rectangular",
 
 ```
 
-# HB SLURM Scripts
+# Species tree construction
 
 ### 10/26/2023 Running BUCSO on long read assemblies
 
@@ -448,49 +448,145 @@ ggtree(astral_tree, layout = "rectangular") +
 ```
 Looks like IQtree performed well. Let's move forward with creating a time-calibrated tree.
 
-From Hotaling et al. 2021:
+### 11/30/2023
 
-"Agnevicthys gretchinae and Palaeopholis laevis (family
-Pholidae, age 11.5-12.3 Mya; Nazarkin, 2002)—were allowed to be placed as either the stem
-(outside of the clade formed by extant species) or crown (within the clade of extant species) for
-the group during exploration of the tree space. We included several fossils identified as
-Stichaeidae but because preliminary analysis demonstrated polyphyly of this family, we allowed
-these fossils to be placed anywhere within the in-group excluding Bathymasteridae: Nivchia
-makushoki, Stichaeus brachigrammus, and Stichaeopsis sakhalinensis (age 11.5-12.3 Mya;
-Nazarkin, 1998), undescribed fossils NSM PV 22683 (age 13-16 Mya) and PIN 3181/1050
-(11.6-13.5 Mya; Nazarkin and Yabumoto, 2015), and Stichaeus matsubarai (age 5.3-23 Mya;
-Yabumoto and Uyeno, 1994). We used fossils assigned to the contemporary species Lycodes
-pacificus (family Zoarcidae) to date its age at 0.78-2.59 Mya (Fitch, 1967)."
+A .Rmd for figures 1 and 2 of the manuscript was created under Figures.Rmd
+
+# Gene tree construction
+
+### 12/13/2023
+
+Hand annotation of AFP regions was performed by SB using two fasta files of zoarcoid AFPs using the following blast parameters mimicking NCBI blastn 'more dissimilar sequences/discontinguous blast'.
+
+AFPs were documented as putatively complete genes if they contained the following:
+
+All blast outputs can be found in ~/Documents/GitHub/Long_AFP/Hand_Annot/Blasts
+
+* Start codon
+* Complete exons 1 and 2
+
+```{bash, eval = FALSE}
+
+blastn -query /path/to/query.fa \
+       -subject /path/to/genome.fa \
+       -out output.txt \
+       -evalue 0.1 \
+       -word_size 11 \
+       -gapopen 5 \
+       -gapextend 2 \
+       -penalty -3 \
+       -reward 2 \
+       -dust yes \
+       -soft_masking true \
+       -task blastn
+
+```
+
+The resulting annotations are in the file AFP_SASA_SASB_ranges.csv and can be seen below:
 
 ```{r}
 
-# Load fishtree
-library(fishtree)
+# Read in hand annotation csv and print
+head(read.csv("AFP_SASA_SASB_ranges.csv"), n = 50)
 
+```
+
+The AFP fasta's used for AFP annotations were:
+
+* J03924.1: Macrozoarces americanus antifreeze protein (OP5A) gene, complete cds (primary)
+* JQ040521.1: Anarhichas lupus clone AWG1 type III antifreeze protein (AFP III) gene, complete cds
+
+JQ040521.1 was used to double check species for which no apparent AFPs were annotated
+
+### 01/02/2024
+
+Hand annotations of SAS-A and SAS-B were performed by SB using G. aculeatus paralogs:
+
+* NC_053220.1:c8556783-8553001 (SAS-A)
+* NC_053220.1:c8562485-8557311 (SAS-B)
+
+SAS-B was identified based on its homology to Zoarcoid AFP III orthologs
+
+All blast outputs can be found in ~/Documents/GitHub/Long_AFP/Hand_Annot/Blasts
+
+### 01/04/2024
+
+A gene tree was constructed by converting hand annotations of SAS and AFP regions to .bed files by hand and extracting their underlying sequences using bedtools getfasta. FASTA files were then concatenated into one file and aligned using MAFFT and constructed into a phylogenetic tree using IQTREE.
+
+Below is the code for FASTA extraction and concatenation
+
+```{bash, eval = FALSE}
+
+# Extract fasta sequencing using .bed coordinates
+bedtools getfasta -fi /path/to/genome.fa \ 
+-bed /path/to/coordinates.bed \
+-fo /path/to/output.fa # Repeat across all SAS/AFP coordinates
+
+```
+
+```{bash, eval = FALSE}
+#!/bin/bash
+
+## Combine all fasta's using concat.sh in 'Scripts' folder
+# Target directory containing .fa files
+TARGET_DIR="/Users/sambogan/Documents/GitHub/Long_AFP/Hand_Annot/GetFasta"
+
+# Output file
+OUTPUT_FILE="combined.fa"
+
+# Navigate to target directory
+cd "$TARGET_DIR"
+
+# Check if output file already exists
+if [ -f "$OUTPUT_FILE" ]; then
+    echo "Output file $OUTPUT_FILE already exists. Removing it."
+    rm "$OUTPUT_FILE"
+fi
+
+# Concatenate all .fa files into one
+for file in *.fa; do
+    cat "$file" >> "$OUTPUT_FILE"
+    echo "Concatenated $file"
+done
+
+echo "All .fa files have been concatenated into $OUTPUT_FILE."
+
+```
+
+The resulting concatentation of fasta sequences was aligned using MAFFT set to preset parameters at: https://www.ebi.ac.uk/Tools/msa/mafft/
+
+The .fa alignment file was input to IQTREE set to automated substitution model selection and free rate variation = FALSE. The selected substitution model was K3Pu+F+G4.
+
+The resulting IQTREE gene tree is stored under Trees/Gene_Trees/01042024_IQTREE_K3Pu+F+G4_SAS_AFP_genetree.newick and is shown here:
+
+```{r}
+
+# Read in IQTree gene tree
+IQ_genetree <- read.tree("Trees/Gene_Trees/01042024_IQTREE_K3Pu+F+G4_SAS_AFP_genetree.newick")
+
+# Create factor for AFPs and SAS genes
+group_df <- data.frame(tip.label = IQ_genetree$tip.label,
+  group = ifelse(
+  grepl("SAS", IQ_genetree$tip.label), "SAS",
+  ifelse(grepl("AFP", IQ_genetree$tip.label), "AFP", NA)))
+
+IQ_genetree <- reroot(IQ_genetree, 
+             node.number = 193, 
+             position = .5*(max(tree$edge.length)))
+
+# Plot tree
+ggtree(IQ_genetree, aes(color = group), layout = "rectangular") %<+% group_df +
+  geom_tiplab(size = 1) +
+  geom_treescale() +
+  labs(title = "Rooted IQtree gene tree K3Pu+F+G4 substitution model")
 
 
 ```
 
-```{r}
+As shown above, this preliminary analysis demonstrates two indpendent origins of AFP III genes arising from SAS. This is highly unlikely given the prior literature. The most derived clade of SAS genes should be inspected. The following explanations may explain this result:
 
-# Read in astral output NS tree
-astral_tree <- read.tree("Trees/Astral/ASTRAL_out_NS.tree")
+* Derived SAS genes were incorrectly annotated as AFPs and only possess first and last exon of SAS-B.
+* These derived SAS genes underwent relaxed constraint resemble AFPs in terms of their conserved exons 
 
-# ggplot
-astral_tree$tip.label <- gsub("busco_assembly_", "", astral_tree$tip.label)
+Additionally, some sorting of SAS-A and SAS-B appears incorrect and needs to be inspected as well.
 
-astral_tree$edge.length <- ifelse(is.na(astral_tree$edge.length) == TRUE, 
-                                  1, astral_tree$edge.length)
-
-astral_tree <- reroot(astral_tree,
-                      node.number = 1,
-                      position = .5*(max(tree$edge.length)))
-
-ggtree(astral_tree, layout = "slanted") +
-  geom_tiplab() + 
-  geom_nodelab(vjust = -.75, hjust = 1.5, color = "red") +
-  geom_treescale(width = 1, offset = -.5) +
-  xlim(0, 12) +
-  labs(title = "Rooted astral multigene coalescence tree NS version")
-
-```
