@@ -1,0 +1,259 @@
+RID: RN4Z39D5016	
+Job Title:gb|J03924.1|  				
+Program: BLASTN 
+Query: Macrozoarces americanus antifreeze protein (OP5A) gene, complete cds ID: J03924.1(nucleic acid) Length: 946
+Database: genomic/1091424/GCA_949748355.1 
+	
+Sequences producing significant alignments:
+                                                                  Scientific      Common                     Max    Total Query   E    Per.   Acc.                        
+Description                                                       Name            Name            Taxid      Score  Score cover Value  Ident  Len        Accession        
+Melanostigma gelatinosum genome assembly, chromosome: 21          Melanostigma... limp eelpout    1091424    635    940   82%   7e-180 86.08  21295439   OX456518.1       
+Melanostigma gelatinosum genome assembly, chromosome: 11          Melanostigma... limp eelpout    1091424    175    635   74%   2e-41  69.80  28063322   OX456508.1       
+Melanostigma gelatinosum genome assembly, chromosome: 1           Melanostigma... limp eelpout    1091424    73.4   73.4  7%    5e-11  84.06  33573374   OX456498.1       
+Melanostigma gelatinosum genome assembly, chromosome: 10          Melanostigma... limp eelpout    1091424    45.5   45.5  2%    0.022  96.30  27810069   OX456507.1       
+
+Alignments:
+
+>Melanostigma gelatinosum genome assembly, chromosome: 21
+Sequence ID: OX456518.1 Length: 21295439
+Range 1: 17022060 to 17022591
+
+Score:635 bits(703), Expect:7e-180, 
+Identities:470/546(86%),  Gaps:26/546(4%), Strand: Plus/Minus
+
+Query  413       AAAGACAG--AGAACCTTTTAAGTAAACATTTTTAGAATTTTCTTTTTCAACTGTGCCAT  470
+                 ||| ||||  |||||| |||||| |||||| ||| |||||||  ||||||||||||||||
+Sbjct  17022591  AAACACAGACAGAACC-TTTAAGAAAACATGTTT-GAATTTTTGTTTTCAACTGTGCCAT  17022534
+
+Query  471       GAGAACAATAATAACGTCTGACCTTTTATCTTCCATTCTTCAACGGTCAGTCCGTGGTGG  530
+                 |||||||||||||| |||||||||||||| |||||||||||||      |||||||||||
+Sbjct  17022533  GAGAACAATAATAATGTCTGACCTTTTATTTTCCATTCTTCAA------GTCCGTGGTGG  17022480
+
+Query  531       CCACCCAGCTGATCCCCATAAATACTGCCCTGACTCCGGTGATGATGGAGGGGAAGGTGA  590
+                 ||| ||||||||||||||||||||||||||||||||| | |||||||  || |||||   
+Sbjct  17022479  CCAGCCAGCTGATCCCCATAAATACTGCCCTGACTCCAGCGATGATGATGGCGAAGGAAG  17022420
+
+Query  591       CCAACCCAATAGGCATCCCGTTCGCAGAGATGTCCCAAATAGTGGGGAAGCAAGTGAACA  650
+                  || |||||  ||||||||   ||  ||||||||| |||||||||| | |||||||||||
+Sbjct  17022419  TCAGCCCAAAGGGCATCCCTGCCGAGGAGATGTCCAAAATAGTGGGAATGCAAGTGAACA  17022360
+
+Query  651       CGCCAGTGGCTAAGGGCCAAACCCTCATGCCAAACATGGTGAAAACGTACGCCGCGGGAA  710
+                  | ||||||||  || | | |||||| ||||| | ||||||||||||||          |
+Sbjct  17022359  GGGCAGTGGCTCTGGACGAGACCCTCGTGCCAGATATGGTGAAAACGTA------TAAGA  17022306
+
+Query  711       AGTAGTTCTGAGGGTGCCAAGGAGCTTCTTCCCAAAACCAAAAGAAGAAATGCCCCCTCT  770
+                 || ||||||||||||||||||||| |||||||||||||||||||||||||||||||||||
+Sbjct  17022305  AGCAGTTCTGAGGGTGCCAAGGAGTTTCTTCCCAAAACCAAAAGAAGAAATGCCCCCTCT  17022246
+
+Query  771       CACAATTAACCCTGTTTTTGTCACAAACCCAAGTCTGT--------TAACTGAACATGTC  822
+                 ||||||||||| ||||||||||||||||||||||||||         |||||||||||||
+Sbjct  17022245  CACAATTAACCTTGTTTTTGTCACAAACCCAAGTCTGTCCGTATGTCAACTGAACATGTC  17022186
+
+Query  823       AAAACCTGTGGAGACT--GTTGAGATTTGATGTTCTGAAAAGATAAAGCCTATAAATAAA  880
+                 ||||||||||||||||  ||||||||||||||||||||||||||||||||||||||||||
+Sbjct  17022185  AAAACCTGTGGAGACTATGTTGAGATTTGATGTTCTGAAAAGATAAAGCCTATAAATAAA  17022126
+
+Query  881       ATGTTGCCCAAATTTCCTGCCTGATGTTTTTCTTTGTCGTTGCTACATGGCTTTGCTGCT  940
+                 |||||||||||||||||||||||| ||||||| ||||| ||||||||| |||||||||||
+Sbjct  17022125  ATGTTGCCCAAATTTCCTGCCTGAGGTTTTTCCTTGTCTTTGCTACATTGCTTTGCTGCT  17022066
+
+Query  941       CGGATC  946
+                 ||||||
+Sbjct  17022065  CGGATC  17022060
+
+
+
+
+Range 2: 17022665 to 17022932
+
+Score:305 bits(337), Expect:1e-80, 
+Identities:225/268(84%),  Gaps:26/268(9%), Strand: Plus/Minus
+
+Query  1         AAGCTTGTGATAGTTTGGACAAAAACAAGTTATACTTTACTTATAAGAATATAAAATTTC  60
+                 ||||||||||||||||| |||||||||||| ||| |||||| |||||||||| ||||  |
+Sbjct  17022932  AAGCTTGTGATAGTTTGCACAAAAACAAGTGATAATTTACTCATAAGAATATCAAATGAC  17022873
+
+Query  61        CATTGCAATTGGCATAAGGAGGTGTGACACAGTGACCTACTTTCAGGCCAATAGGAAACG  120
+                 ||||  ||||||||||||||||||||||||||||||||||||||||||||||||||||| 
+Sbjct  17022872  CATTATAATTGGCATAAGGAGGTGTGACACAGTGACCTACTTTCAGGCCAATAGGAAACA  17022813
+
+Query  121       GGATATGCCGGTT----------------------AAGTCCTCCCACATACTGTATATTA  158
+                 |||||||| ||||                      ||||||||||||||||||||||| |
+Sbjct  17022812  GGATATGCTGGTTGAACAGGAGCGGCCCTCCAGGCAAGTCCTCCCACATACTGTATATAA  17022753
+
+Query  159       GATGCAGCACATGGACCTGTCCTGTCAGA----AGTCTCAGCTACAGCTTTCACTTCGAT  214
+                 |||||||||| || |||||||||||||||    ||||||||||||||||||||||||| |
+Sbjct  17022752  GATGCAGCACCTGAACCTGTCCTGTCAGATACAAGTCTCAGCTACAGCTTTCACTTCGTT  17022693
+
+Query  215       CTCCGAtaattaattaattaattaatta  242
+                 ||||| ||||||||||||| ||||||||
+Sbjct  17022692  CTCCGCTAATTAATTAATTGATTAATTA  17022665
+
+
+
+
+>Melanostigma gelatinosum genome assembly, chromosome: 11
+Sequence ID: OX456508.1 Length: 28063322
+Range 1: 4386448 to 4386832
+
+Score:175 bits(193), Expect:2e-41, 
+Identities:282/404(70%),  Gaps:25/404(6%), Strand: Plus/Plus
+
+Query  337      AGGTGAGATATTCTTGCTCCACTAAAA--AATATTCAAAAATGTGAGCTACAGTAAAATT  394
+                |||||||||||||| ||||||| ||||    | ||   ||||| |||| ||||| |||||
+Sbjct  4386448  AGGTGAGATATTCTGGCTCCACAAAAACCTTTTTTTTTAAATGCGAGCCACAGTTAAATT  4386507
+
+Query  395      CAACAGTGTT-CTGTTTAGAAAGACAGAGAACCTTTTAAGTAAACATTTTTAGAATTTTC  453
+                  ||| | || ||||||||||||||||| ||||||| ||| |||||              
+Sbjct  4386508  --ACATTTTTACTGTTTAGAAAGACAGATAACCTTT-AAGAAAACA--------------  4386550
+
+Query  454      TTTTTCAACTGTGCCATGAGAACAATAATAACGTCTGACCTTTTATCTTCCATTCTTCAA  513
+                  |||| ||||||||||||||||||||||||  || |||||||||| ||| ||||| |||
+Sbjct  4386551  --TTTCTACTGTGCCATGAGAACAATAATAATTTCAGACCTTTTATTTTCTATTCTCCAA  4386608
+
+Query  514      C---GGTCAGTCCGTGGTGGCCACCCAGCTGATCCCCATAAATACTGCCCTGACTCCGGT  570
+                    ||| | || ||||||||||     | |||||||| |   || | |||||||| || 
+Sbjct  4386609  GCTGGGTAAATCTGTGGTGGCCAAGGTCCAGATCCCCAAAGGAACCGTCCTGACTCAGGA  4386668
+
+Query  571      GATGATGGAGGGGAAGGTGACCAACCCAATAGGCATCCCGTTCGCAGAGATGTCCCAAAT  630
+                 ||| ||| || ||||| | || | || || || ||| ||  ||  ||  ||| | ||||
+Sbjct  4386669  CATGTTGGCGGTGAAGGCGGCCGAGCCGATGGGTATCGCGGCCGAGGACTTGTGCAAAAT  4386728
+
+Query  631      AGTGGGGAAGCAAGTGAACACGCCAGTGGCTAAGGGCCAAACCCTCATGCCAAACATGGT  690
+                 ||||| |||   ||||    |   ||||   ||| | | | | |||||||| | |||||
+Sbjct  4386729  GGTGGGAAAGACCGTGACGGAGGACGTGGAGGAGGACGACAGCGTCATGCCAGAGATGGT  4386788
+
+Query  691      GAAAACGTACGCCGCGGGAAAGTAGTTCTGAGGGTGCCAAGGAG  734
+                |||   ||||  |  |   ||  ||| |||||| || |||||||
+Sbjct  4386789  GAACGGGTACTGCAAGAACAATAAGTGCTGAGGATGACAAGGAG  4386832
+
+
+
+
+Range 2: 4373030 to 4373214
+
+Score:157 bits(173), Expect:5e-36, 
+Identities:162/218(74%),  Gaps:42/218(19%), Strand: Plus/Plus
+
+Query  738      CTTCCC-AAAACCAAAAGAAGAAATGCCCCCTCTCACAATTAACCCTGTTTTTGTCACAA  796
+                |||||| |||||||||||||||||||||||||||| ||||||||| |||||||||||  |
+Sbjct  4373030  CTTCCCAAAAACCAAAAGAAGAAATGCCCCCTCTCTCAATTAACCTTGTTTTTGTCATGA  4373089
+
+Query  797      ACCCAA----GTC----TGTTAACTGAACATGTCAAAACCTGTGGAGACTGTTGAGATTT  848
+                ||||||    |||    |||||||||||||||||||||||||||||| ||          
+Sbjct  4373090  ACCCAAACCCGTCCGGATGTTAACTGAACATGTCAAAACCTGTGGAGCCT----------  4373139
+
+Query  849      GATGTTCTGAAAAGATAAAGCCTATAAATAAAATGTTGCCCAAATTTCCTGCCTGATGTT  908
+                                    ||   |||||||||||| ||| |||||||  ||||| |||
+Sbjct  4373140  --------------------CC---AAATAAAATGTTACCCGAATTTCCACCCTGACGTT  4373176
+
+Query  909      TTTCTTTGTCGTTGCTACATGGCTTTGCTGCTCGGATC  946
+                || ||||||| ||||||||| |||||| ||||||||||
+Sbjct  4373177  TTCCTTTGTCTTTGCTACATCGCTTTGATGCTCGGATC  4373214
+
+
+
+
+Range 3: 4387244 to 4387413
+
+Score:117 bits(129), Expect:4e-24, 
+Identities:151/213(71%),  Gaps:43/213(20%), Strand: Plus/Plus
+
+Query  734      GCTTCTTCCCAAAACCAAAAGAAGAAATGCCCCCTCTCACAATTAACCCTGTTTTTGTCA  793
+                |||||  ||||||||||||||||||||||||||||||| ||||||||| |||||||||||
+Sbjct  4387244  GCTTC--CCCAAAACCAAAAGAAGAAATGCCCCCTCTCTCAATTAACCTTGTTTTTGTCA  4387301
+
+Query  794      CAAACCCAAGTCTGTTAACTGAACATGTCAAAACCTGTGGAGACTGTTGAGATTTGATGT  853
+                  |||||||  | ||   | ||   ||   |||||||||||| ||               
+Sbjct  4387302  TGAACCCAAACCCGTC--CGGA---TG---AAACCTGTGGAGCCT---------------  4387338
+
+Query  854      TCTGAAAAGATAAAGCCTATAAATAAAATGTTGCCCAAATTTCCTGCCTGATGTTTTTCT  913
+                               ||   |||||||||| | ||| |||||||| ||||| ||||| ||
+Sbjct  4387339  ---------------CC---AAATAAAATGCTACCCGAATTTCCTCCCTGAGGTTTTCCT  4387380
+
+Query  914      TTGTCGTTGCTACATGGCTTTGCTGCTCGGATC  946
+                ||||| ||||||||| |||||| ||||||||||
+Sbjct  4387381  TTGTCTTTGCTACATCGCTTTGATGCTCGGATC  4387413
+
+
+
+
+Range 4: 4372242 to 4372508
+
+Score:106 bits(117), Expect:8e-21, 
+Identities:184/267(69%),  Gaps:3/267(1%), Strand: Plus/Plus
+
+Query  471      GAGAACAATAATAACGTCTGACCTTTTATCTTCCATTCTTCAAC---GGTCAGTCCGTGG  527
+                ||||||||||||||  || |||||||||| ||| |||||||||    ||| ||||| |||
+Sbjct  4372242  GAGAACAATAATAATTTCAGACCTTTTATTTTCTATTCTTCAAGCTGGGTAAGTCCTTGG  4372301
+
+Query  528      TGGCCACCCAGCTGATCCCCATAAATACTGCCCTGACTCCGGTGATGATGGAGGGGAAGG  587
+                ||||| |      |||||||| |   || | |||||||| ||  ||| ||  || |||||
+Sbjct  4372302  TGGCCGCGGTCAAGATCCCCAAAGGCACCGTCCTGACTCAGGACATGTTGACGGTGAAGG  4372361
+
+Query  588      TGACCAACCCAATAGGCATCCCGTTCGCAGAGATGTCCCAAATAGTGGGGAAGCAAGTGA  647
+                || || | || || ||| || ||  ||  || || | |||||| ||||| |||   ||| 
+Sbjct  4372362  TGGCCGAGCCGATGGGCGTCGCGGCCGAGGACATCTTCCAAATGGTGGGAAAGACCGTGT  4372421
+
+Query  648      ACACGCCAGTGGCTAAGGGCCAAACCCTCATGCCAAACATGGTGAAAACGTACGCCGCGG  707
+                  | |   ||||   ||| | | | |||| ||||| |  |||||||   ||||  |  | 
+Sbjct  4372422  CGAAGGATGTGGAGGAGGACGACAGCCTCTTGCCAGAGGTGGTGAACGGGTACTGCAAGA  4372481
+
+Query  708      GAAAGTAGTTCTGAGGGTGCCAAGGAG  734
+                  | | ||| ||||||||  |||||||
+Sbjct  4372482  AGAGGAAGTGCTGAGGGTCGCAAGGAG  4372508
+
+
+
+
+Range 5: 4381494 to 4381589
+
+Score:78.8 bits(86), Expect:1e-12, 
+Identities:80/102(78%),  Gaps:12/102(11%), Strand: Plus/Plus
+
+Query  1        AAGCTTGTGATAGTTTGGACAAAAACAAGTTATAC-----TTTACTTATAAGAATATAAA  55
+                ||||||||||||||||| ||||||||||||||||      |||||||| || ||| ||||
+Sbjct  4381494  AAGCTTGTGATAGTTTGCACAAAAACAAGTTATAAAACAGTTTACTTAAAATAATGTAAA  4381553
+
+Query  56       ATTTCCATTGCAATTGGCATAAGGAGGT-GTGACACAGTGAC  96
+                ||||||| |  | |    |||||||||| ||| ||  |||||
+Sbjct  4381554  ATTTCCACT--AGT----ATAAGGAGGTGGTGGCAGTGTGAC  4381589
+
+
+
+
+>Melanostigma gelatinosum genome assembly, chromosome: 1
+Sequence ID: OX456498.1 Length: 33573374
+Range 1: 18422865 to 18422933
+
+Score:73.4 bits(80), Expect:5e-11, 
+Identities:58/69(84%),  Gaps:2/69(2%), Strand: Plus/Minus
+
+Query  1         AAGCTTGTGATAGTTTGGACAAAAACAAGTTATAC--TTTACTTATAAGAATATAAAATT  58
+                 ||||||||||||||||| |||| ||    | | ||  ||||||||||||||||||| |||
+Sbjct  18422933  AAGCTTGTGATAGTTTGAACAATAAGTTATGAAACAGTTTACTTATAAGAATATAAGATT  18422874
+
+Query  59        TCCATTGCA  67
+                 |||||||||
+Sbjct  18422873  TCCATTGCA  18422865
+
+
+
+
+>Melanostigma gelatinosum genome assembly, chromosome: 10
+Sequence ID: OX456507.1 Length: 27810069
+Range 1: 15102587 to 15102613
+
+Score:45.5 bits(49), Expect:0.022, 
+Identities:26/27(96%),  Gaps:0/27(0%), Strand: Plus/Plus
+
+Query  38        TACTTATAAGAATATAAAATTTCCATT  64
+                 ||||||||||||||||| |||||||||
+Sbjct  15102587  TACTTATAAGAATATAATATTTCCATT  15102613
+
+
+
+
+		
+
+

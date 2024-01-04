@@ -1,0 +1,233 @@
+RID: RRRKR1ZM016	
+Job Title:J03924:Macrozoarces americanus antifreeze...				
+Program: BLASTN 
+Query: Macrozoarces americanus antifreeze protein (OP5A) gene, complete cds ID: J03924.1(nucleic acid) Length: 946
+Database: genomic/271503/GCA_023349555.1 
+	
+Sequences producing significant alignments:
+                                                                  Scientific      Common                     Max    Total Query   E    Per.   Acc.                        
+Description                                                       Name            Name            Taxid      Score  Score cover Value  Ident  Len        Accession        
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_4, whole...                                   0          458    1353  100%  1e-126 72.49  19723382   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_7, whole...                                   0          44.6   44.6  4%    0.020  86.84  18507585   JAKSXS0100000... 
+
+Alignments:
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_4, whole genome shotgun sequence
+Sequence ID: JAKSXS010000004.1 Length: 19723382
+Range 1: 18554082 to 18554767
+
+Score:458 bits(507), Expect:1e-126, 
+Identities:535/738(72%),  Gaps:126/738(17%), Strand: Plus/Plus
+
+Query  37        TTACTTATAAGAATATAAAATTTCCATTGCAATTGGCATAAGGAGG---------TGTGA  87
+                 |||||||||||||||||||||| ||||| |||||||||||||||||         |||||
+Sbjct  18554082  TTACTTATAAGAATATAAAATTCCCATTACAATTGGCATAAGGAGGCGGTGCTAGTGTGA  18554141
+
+Query  88        CA------CAGTGACCTAC---TTTCAGGCCAATAGGAAACGGGATATGCCGGTT-----  133
+                 ||      ||||| |||||   ||||||||||||||||||||||| |||||||||     
+Sbjct  18554142  CAGTCTCACAGTGGCCTACCACTTTCAGGCCAATAGGAAACGGGACATGCCGGTTGAACA  18554201
+
+Query  134       ------------------AAGTCCTCCCACATACTGTATATTAGATG--CAGCACATGGA  173
+                                   || ||||| ||| |||||||||| |||||  ||||||||| |
+Sbjct  18554202  GGAGCGGCCGCTCCAGGCAATTCCTCTCACGTACTGTATATCAGATGTGCAGCACATGAA  18554261
+
+Query  174       CCTGTCCTGTCAGA----AGTCTCAGCTACAGCTTTCACTTCGATCTCCGAtaattaatt  229
+                 ||||||||||||||    |||||||| |||  |||||||||||||||||| |||||||||
+Sbjct  18554262  CCTGTCCTGTCAGATTCAAGTCTCAGATACGTCTTTCACTTCGATCTCCGCTAATTAATT  18554321
+
+Query  230       aattaattaattattaattaattaaGTCTCAGCCACAGCCATGAAGTCCGTTATTTTAAC  289
+                                                                ||||||||||   
+Sbjct  18554322  -----------------------------------------------CCGTTATTTT---  18554331
+
+Query  290       CGGTTTGCTTTTCGTCCTCCTTTGTGTCGACCACATGAC--------------AGCCA-G  334
+                 | ||||| |||||||  || |||  || ||| | |||||              ||||  |
+Sbjct  18554332  CCGTTTGTTTTTCGTTTTCTTTTCAGTGGACAAAATGACTTCAGCCTGCAGCAAGCCGTG  18554391
+
+Query  335       CCA------GGTGAGATATTCTTGCTCCACTAAAAAAT--ATTCAAAAATGTGAGCTACA  386
+                 |||      ||||||||||||||||||||| ||||||   |||||||||||||||| |||
+Sbjct  18554392  CCATGATATGGTGAGATATTCTTGCTCCACAAAAAAAATAATTCAAAAATGTGAGCAACA  18554451
+
+Query  387       GTAAAATTCAACAGTGTT-CTGTTTAGAAAGACAGAGAACCTTTTAAGTAAACATTTTTA  445
+                 |||||||| |    | || | ||| ||||||||||||||||||| ||| |||||||||| 
+Sbjct  18554452  GTAAAATTTATTTTTTTTACAGTTCAGAAAGACAGAGAACCTTT-AAGAAAACATTTTT-  18554509
+
+Query  446       GAATTTTCTTTTTCAACTGTGCCATGAGAACAATAATAACGTCTGACCTTTTATCTTCCA  505
+                 ||||||| |||||||||||||| |||||||||||||||| ||| |||||||||| ||| |
+Sbjct  18554510  GAATTTTTTTTTTCAACTGTGCTATGAGAACAATAATAATGTCAGACCTTTTATTTTCTA  18554569
+
+Query  506       TTCTTCAACG---GTCAGTCCGTGGTGGCCACCCAGCTGATCCCCATAAATACTGCCCTG  562
+                 |||||||| |   || ||||||||||||||| |||||||||||||||||||||||| |||
+Sbjct  18554570  TTCTTCAAGGTGGGTGAGTCCGTGGTGGCCAACCAGCTGATCCCCATAAATACTGCTCTG  18554629
+
+Query  563       ACTCCGGTGATGATGGAGGGGAAGGTGACCAACCCAATAGGCATCCCGTTCGCAGAGATG  622
+                 |||| |||||||||| ||  | |||||  | | ||||| |||||| ||  ||  ||||||
+Sbjct  18554630  ACTCTGGTGATGATGAAGAAGGAGGTGGTCGAGCCAATGGGCATCGCGGGCGAGGAGATG  18554689
+
+Query  623       TCCCAAATAGTGGGGAAGCAAGTGAACACGCCAGTGGCTAAGGGCCAAACCCTCATGCCA  682
+                 |   || ||||||| | ||||||||||| | ||||||| | |||| | ||||||||||||
+Sbjct  18554690  TGGAAATTAGTGGGAATGCAAGTGAACAGGGCAGTGGCGATGGGCGACACCCTCATGCCA  18554749
+
+Query  683       AACATGGTGAAAACGTAC  700
+                  | |||||||||  ||||
+Sbjct  18554750  GAGATGGTGAAAGGGTAC  18554767
+
+
+
+
+Range 2: 18549106 to 18549330
+
+Score:254 bits(281), Expect:2e-65, 
+Identities:192/225(85%),  Gaps:16/225(7%), Strand: Plus/Plus
+
+Query  738       CTTCCCAAAACCAAAAGAAGAAATGCCCCCTCTCACAATTAACCCTGTTTTTGTCACAAA  797
+                 |||||||||||||||||||||||||||||||||||||||||||| ||||||||| || ||
+Sbjct  18549106  CTTCCCAAAACCAAAAGAAGAAATGCCCCCTCTCACAATTAACCTTGTTTTTGTTACGAA  18549165
+
+Query  798       CCCAAGTC--------TGTTAACTGAACATGT----CAAAACCTGTGGAGA--CTGTTGA  843
+                 ||||| ||        ||||||||||||||||    || ||||||||||||  |||||||
+Sbjct  18549166  CCCAAATCCGTCTAGATGTTAACTGAACATGTCATACATAACCTGTGGAGACTCTGTTGA  18549225
+
+Query  844       GATTTGATGTTCTGAAAAGATAAAGCCTATAAATAAAATGTTGCCCAAATTTCCTGCCTG  903
+                 ||||| |||||| |||||||| |||||||| ||||||||||||||| |||||||| ||||
+Sbjct  18549226  GATTTCATGTTCCGAAAAGATGAAGCCTATGAATAAAATGTTGCCCGAATTTCCTCCCTG  18549285
+
+Query  904       ATGTTTTTC--TTTGTCGTTGCTACATGGCTTTGCTGCTCGGATC  946
+                 | ||||| |  |||||| ||||| ||| |||||| ||||||||||
+Sbjct  18549286  AGGTTTTCCCTTTTGTCTTTGCTTCATCGCTTTGATGCTCGGATC  18549330
+
+
+
+
+Range 3: 18532647 to 18532871
+
+Score:236 bits(261), Expect:6e-60, 
+Identities:188/225(84%),  Gaps:16/225(7%), Strand: Plus/Plus
+
+Query  738       CTTCCCAAAACCAAAAGAAGAAATGCCCCCTCTCACAATTAACCCTGTTTTTGTCACAAA  797
+                 |||||||||||||||||||||||||||||||||||||||||||| ||||||||| || ||
+Sbjct  18532647  CTTCCCAAAACCAAAAGAAGAAATGCCCCCTCTCACAATTAACCTTGTTTTTGTTACGAA  18532706
+
+Query  798       CCCAAGTC--------TGTTAACTGAACATGT----CAAAACCTGTGGAGA--CTGTTGA  843
+                  |||| ||        |||||| |||||||||    || ||||||||||||  |||||||
+Sbjct  18532707  TCCAAATCCGTCCAAATGTTAAATGAACATGTCATACATAACCTGTGGAGACTCTGTTGA  18532766
+
+Query  844       GATTTGATGTTCTGAAAAGATAAAGCCTATAAATAAAATGTTGCCCAAATTTCCTGCCTG  903
+                 ||||| |||||| |||||||| ||||||  |||||||||||||||| |||||||| ||||
+Sbjct  18532767  GATTTCATGTTCCGAAAAGATGAAGCCTCCAAATAAAATGTTGCCCGAATTTCCTCCCTG  18532826
+
+Query  904       ATGTTTTTC--TTTGTCGTTGCTACATGGCTTTGCTGCTCGGATC  946
+                 | ||||| |  |||||| ||||| ||| |||||| ||||| ||||
+Sbjct  18532827  AGGTTTTCCCTTTTGTCTTTGCTTCATCGCTTTGATGCTCAGATC  18532871
+
+
+
+
+Range 4: 18557087 to 18557334
+
+Score:180 bits(199), Expect:4e-43, 
+Identities:187/248(75%),  Gaps:43/248(17%), Strand: Plus/Plus
+
+Query  1         AAGCTTGTGATAGTTTGGACAAAAACAAGTTA-----TACTTTACTTATAAGAATATAAA  55
+                 ||||||||| ||||||  ||||||||||||||     || ||||||||||||||||||||
+Sbjct  18557087  AAGCTTGTGGTAGTTTCCACAAAAACAAGTTACAAAATAGTTTACTTATAAGAATATAAA  18557146
+
+Query  56        ATTTCCATTGCAATTGGCATAAGGAG---------GTGTGA------CACAGTGACCT--  98
+                 || |||||  ||||||||||||||||         ||||||      ||||||| |||  
+Sbjct  18557147  ATGTCCATCACAATTGGCATAAGGAGGCGGTGCTAGTGTGACAGTCTCACAGTGGCCTAT  18557206
+
+Query  99        ---ACTTTCAGGCCAATAGGAAACGGGATATGCCGGTTAA------------GTCCTCCC  143
+                    | ||||||||||||| |||||||||||||  |||| |             |||||||
+Sbjct  18557207  ACCATTTTCAGGCCAATAAGAAACGGGATATGTTGGTTGAACAGGAGCAGCCATCCTCCC  18557266
+
+Query  144       ACATACTGTATATTAGA--TGCAGCACATGGACCTGTCCTGTCAG----AAGTCTCAGCT  197
+                 || | ||||||||||||  ||||||||||| ||||||||||||||    |||||||||||
+Sbjct  18557267  ACGTTCTGTATATTAGATGTGCAGCACATGAACCTGTCCTGTCAGATTCAAGTCTCAGCT  18557326
+
+Query  198       ACAGCTTT  205
+                 || |||||
+Sbjct  18557327  ACGGCTTT  18557334
+
+
+
+
+Range 5: 18548126 to 18548506
+
+Score:143 bits(158), Expect:3e-32, 
+Identities:279/415(67%),  Gaps:48/415(11%), Strand: Plus/Plus
+
+Query  337       AGGTGAGATATTCTTGCTCCACTAAAAAATATTCAAAAA--------TGTGAGCTACAGT  388
+                 ||||||||||||| |||||||| |||||| |   |||||        |  |||| | |||
+Sbjct  18548126  AGGTGAGATATTCCTGCTCCACAAAAAAAAAAAAAAAAAAAAAAAAATTGGAGCCATAGT  18548185
+
+Query  389       AAAATTCAACAGTGTTCTGTTTAGAAAGACAGAGAACCTTTTAAGTAAACATTTTTAGAA  448
+                 || |||      | | | ||||||||||||||| ||||||         ||     ||||
+Sbjct  18548186  AACATT------TTTACAGTTTAGAAAGACAGATAACCTT---------CA-----AGAA  18548225
+
+Query  449       TTTTCTTTTTCAACTGTGCCATGAGAACAATAATAACGTCTGACCTTTTATCTTCCATTC  508
+                            |||||||||| ||||||||||||||  || |||||||||| ||| ||||
+Sbjct  18548226  -----------AACTGTGCCACGAGAACAATAATAATATCAGACCTTTTATTTTCTATTC  18548274
+
+Query  509       TTCAA---CGGTCAGTCCGTGGTGGCCACCCAGCT---GATCCCCATAAATACTGCCCTG  562
+                 |||||    ||| |||||||||||||||   || |   |||||||| |   ||| |||||
+Sbjct  18548275  TTCAAGCTGGGTAAGTCCGTGGTGGCCA---AGGTCAAGATCCCCAAAGGAACTACCCTG  18548331
+
+Query  563       ACTCCGGTGATGATGGAGGGGAAGGTGACCAACCCAATAGGCATCCCGTTCGCAGAGATG  622
+                 |||| ||  ||| ||| || ||||| | || | ||||| || |||  |  ||  ||  ||
+Sbjct  18548332  ACTCAGGACATGTTGGCGGTGAAGGCGGCCGAGCCAATGGGAATCGTGGCCGAGGACTTG  18548391
+
+Query  623       TCCCAAATAGTGGGGAAGCAAGTGAACACGCCAGTGGCTAAGGGCCAAACCCTCATGCCA  682
+                 | |||||| ||||| |||   ||||  | |   ||||   ||| | | | | || |||||
+Sbjct  18548392  TGCCAAATGGTGGGAAAGACCGTGACGAAGGATGTGGAAGAGGACGACAGCATCTTGCCA  18548451
+
+Query  683       AACATGGTGAAAACGTACGCCGCGGGAAAGTAGTTCTGAGGGTGCCAAGGAGCTT  737
+                  | |||||| ||  ||||  |  |   |   ||| ||||||||| ||||||| ||
+Sbjct  18548452  GAGATGGTGGAAGGGTACTGCAAGAAGACAAAGTGCTGAGGGTGGCAAGGAGTTT  18548506
+
+
+
+
+Range 6: 18543653 to 18543894
+
+Score:79.7 bits(87), Expect:1e-12, 
+Identities:166/243(68%),  Gaps:56/243(23%), Strand: Plus/Plus
+
+Query  42        TATAAGAATATAAAATTTCCATTGCAATTGGCATAAGGAGG---------TGTGA-----  87
+                 || |||||||||||||||||||| |||||||||||||||||         |||||     
+Sbjct  18543653  TAAAAGAATATAAAATTTCCATTACAATTGGCATAAGGAGGCGGTGGTACTGTGACAGTC  18543712
+
+Query  88        -CACAGTGAC---CTACTTTCAG-GCCAATAGGA-----------AACGGGATATGCCGG  131
+                  ||||||| |   | ||||||||  ||||  |||           |||||||||||||||
+Sbjct  18543713  TCACAGTGGCCGACCACTTTCAGACCCAACGGGATATGCCGGTTGAACGGGATATGCCGG  18543772
+
+Query  132       TT----AAG-TCCTC----CCA-------CATAC--TGTATATTAGA--TGCAGCACATG  171
+                 ||    |||  || |    |||       | |||    |||||| ||  ||||| |||| 
+Sbjct  18543773  TTGAACAAGAGCCGCAGCTCCAGGCAAATCTTACCACATATATTGGATGTGCAGTACAT-  18543831
+
+Query  172       GACCT-GTCCTGTCAG----AAGTCTCAGCTACAGCTTTCACTTCGATCTCCGAtaatta  226
+                 ||||| ||||| ||||    ||||||||||||| ||| |||||||| |||| | ||| ||
+Sbjct  18543832  GACCTGGTCCTTTCAGATTCAAGTCTCAGCTACGGCTCTCACTTCGTTCTCTGCTAAATA  18543891
+
+Query  227       att  229
+                 |||
+Sbjct  18543892  ATT  18543894
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_7, whole genome shotgun sequence
+Sequence ID: JAKSXS010000007.1 Length: 18507585
+Range 1: 14976642 to 14976677
+
+Score:44.6 bits(48), Expect:0.020, 
+Identities:33/38(87%),  Gaps:2/38(5%), Strand: Plus/Plus
+
+Query  362       AAAATATTCAAAAATGTGAGCTACAGTAAAATTCAACA  399
+                 ||||||  ||||| ||||| |||||| |||||||||||
+Sbjct  14976642  AAAATA--CAAAACTGTGAACTACAGAAAAATTCAACA  14976677
+
+
+
+
+		
+
+

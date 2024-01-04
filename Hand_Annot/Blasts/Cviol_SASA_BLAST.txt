@@ -1,0 +1,2717 @@
+RID: TBYPEVJD013	
+Job Title:NC_053220.1:c8556783-8553001 SASA				
+Program: BLASTN 
+Query: NC_053220.1:c8556783-8553001 SASA ID: lcl|Query_9857(dna) Length: 3783
+Database: genomic/271503/GCA_023349555.1 
+	
+Sequences producing significant alignments:
+                                                                  Scientific      Common                     Max    Total Query   E   Per.   Acc.                        
+Description                                                       Name            Name            Taxid      Score  Score cover Value Ident  Len        Accession        
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_4, whole...                                   0          855    5045  75%   0.0   77.91  19723382   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_2, whole...                                   0          63.5   281   1%    3e-07 83.61  24031391   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_85, whole...                                  0          62.6   62.6  1%    3e-07 94.87  820241     JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_16, whole...                                  0          62.6   426   1%    3e-07 81.82  15391113   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_3, whole...                                   0          62.6   371   1%    3e-07 94.87  23057489   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_78, whole...                                  0          61.7   161   1%    1e-06 86.54  969200     JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_5, whole...                                   0          61.7   330   2%    1e-06 92.68  19500424   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_58, whole...                                  0          60.8   60.8  1%    1e-06 94.74  1374804    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_52, whole...                                  0          60.8   60.8  1%    1e-06 94.74  1878038    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_51, whole...                                  0          60.8   60.8  1%    1e-06 94.74  1907296    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_9, whole...                                   0          59.9   258   3%    4e-06 92.50  18192833   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_1, whole...                                   0          59.9   373   4%    4e-06 77.33  25343235   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_404, whole...                                 0          59.0   59.0  1%    4e-06 87.50  37537      JAKSXS0100004... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_41, whole...                                  0          59.0   333   1%    4e-06 90.48  2400410    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_27, whole...                                  0          59.0   158   1%    4e-06 85.19  6318818    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_17, whole...                                  0          59.0   325   1%    4e-06 87.76  14590071   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_8, whole...                                   0          59.0   542   1%    4e-06 87.50  18243177   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_461, whole...                                 0          58.1   58.1  1%    1e-05 92.31  32799      JAKSXS0100004... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_359, whole...                                 0          58.1   58.1  1%    1e-05 92.31  41419      JAKSXS0100003... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_133, whole...                                 0          58.1   58.1  1%    1e-05 88.64  351598     JAKSXS0100001... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_102, whole...                                 0          58.1   58.1  1%    1e-05 92.31  597290     JAKSXS0100001... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_42, whole...                                  0          58.1   164   1%    1e-05 92.31  2378476    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_26, whole...                                  0          58.1   161   1%    1e-05 92.31  7235462    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_24, whole...                                  0          58.1   108   1%    1e-05 92.31  8588670    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_23, whole...                                  0          58.1   259   1%    1e-05 88.64  10684169   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_15, whole...                                  0          58.1   207   1%    1e-05 92.31  16359613   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_14, whole...                                  0          58.1   170   1%    1e-05 92.31  16527700   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_10, whole...                                  0          58.1   328   2%    1e-05 92.31  18168694   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_12, whole...                                  0          57.2   216   2%    1e-05 77.46  17117253   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_80, whole...                                  0          56.3   56.3  1%    5e-05 92.11  954625     JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_65, whole...                                  0          56.3   56.3  1%    5e-05 92.11  1211337    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_22, whole...                                  0          56.3   110   2%    5e-05 92.11  11719132   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_66, whole...                                  0          55.4   55.4  1%    5e-05 90.00  1181886    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_44, whole...                                  0          55.4   102   1%    5e-05 90.00  2337344    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_7, whole...                                   0          55.4   55.4  1%    5e-05 86.67  18507585   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_6, whole...                                   0          55.4   155   1%    5e-05 86.67  19234555   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_43, whole...                                  0          54.5   107   1%    2e-04 88.10  2352819    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_19, whole...                                  0          54.5   207   1%    2e-04 85.42  13256254   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_197, whole...                                 0          53.6   53.6  1%    2e-04 89.74  126121     JAKSXS0100001... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_92, whole...                                  0          53.6   53.6  1%    2e-04 89.74  730250     JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_84, whole...                                  0          53.6   53.6  1%    2e-04 89.74  823527     JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_40, whole...                                  0          53.6   53.6  1%    2e-04 89.74  2488124    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_21, whole...                                  0          53.6   304   1%    2e-04 89.74  12617956   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_20, whole...                                  0          53.6   158   2%    2e-04 89.74  12637581   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_13, whole...                                  0          53.6   100   1%    2e-04 89.74  16819117   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_39, whole...                                  0          51.8   51.8  1%    6e-04 77.78  2580828    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_28, whole...                                  0          51.8   103   2%    6e-04 89.47  5300624    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_11, whole...                                  0          51.8   198   1%    6e-04 89.47  17261045   JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_46, whole...                                  0          50.9    99   1%    0.002 80.00  2291183    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_38, whole...                                  0          50.9   50.9  1%    0.002 87.50  2672339    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_95, whole...                                  0          50.0   50.0  0%    0.002 89.19  682114     JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_717, whole...                                 0          49.1   49.1  1%    0.007 87.18  15768      JAKSXS0100007... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_400, whole...                                 0          49.1   49.1  1%    0.007 87.18  37639      JAKSXS0100003... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_71, whole...                                  0          49.1   49.1  1%    0.007 87.18  1109761    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_69, whole...                                  0          49.1   49.1  1%    0.007 87.18  1134149    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_49, whole...                                  0          49.1   49.1  0%    0.007 91.18  1975030    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_100, whole...                                 0          48.2   48.2  0%    0.007 88.89  625602     JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_588, whole...                                 0          47.3   47.3  1%    0.024 87.50  25304      JAKSXS0100005... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_550, whole...                                 0          47.3   47.3  1%    0.024 86.84  27404      JAKSXS0100005... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_55, whole...                                  0          46.4   46.4  0%    0.024 88.57  1518863    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_37, whole...                                  0          46.4   46.4  0%    0.024 88.57  2680642    JAKSXS0100000... 
+Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_33, whole...                                  0          46.4   46.4  1%    0.024 85.00  3078565    JAKSXS0100000... 
+
+Alignments:
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_4, whole genome shotgun sequence
+Sequence ID: JAKSXS010000004.1 Length: 19723382
+Range 1: 18545926 to 18547019
+
+Score:855 bits(947), Expect:0.0, 
+Identities:857/1100(78%),  Gaps:57/1100(5%), Strand: Plus/Plus
+
+Query  705       ATAATGAAAAACAACTGAGGTAATTGAACACTATCTCCTATCTCTCATTTAGTACCAAAT  764
+                 ||||||||   ||| ||  ||||||||| ||   |||||    || ||| ||||||||||
+Sbjct  18545926  ATAATGAATGGCAAGTGTAGTAATTGAATACGGCCTCCT----CTTATT-AGTACCAAAT  18545980
+
+Query  765       AGAGCTTTCAATGTCCCTTCCTGTGACTTTAGGGTGCTTTTTG-----GGACCGTCTGTA  819
+                 ||  ||||| | |  |||| |||||||||||  ||| |||||      ||||  ||||||
+Sbjct  18545981  AGTCCTTTCTAGGAACCTTACTGTGACTTTAAAGTGTTTTTTTTTTTAGGACAATCTGTA  18546040
+
+Query  820       GGAGCCCTTAAAC-CAATCATCAGAA-----TA--------CCTTCTTTTTATTCCCTTA  865
+                 ||| |||  |||  |||||||||  |     ||        |||| |||||| ||||| |
+Sbjct  18546041  GGACCCCAAAAAAACAATCATCAATACTTAGTATGTTTTCCCCTTGTTTTTAATCCCTCA  18546100
+
+Query  866       TTCACTCGTGCCTTCACAGGACTGCGGTGCGGATTGTGCCAAATTTCAGAAGAGTGAATT  925
+                  | | |  |||||||||||||||||||||| |||||||||||||| ||||||||||||||
+Sbjct  18546101  CTTATTTCTGCCTTCACAGGACTGCGGTGCTGATTGTGCCAAATTCCAGAAGAGTGAATT  18546160
+
+Query  926       GGATCATAAATTCAACAAGAAAGCTTTGGAGCGCCCGTACAATTCTGTTCACTCCTGGGG  985
+                  || |||||||||||||||||||| |||||||||  ||||||||||||||||||||||||
+Sbjct  18546161  AGAGCATAAATTCAACAAGAAAGCCTTGGAGCGCGAGTACAATTCTGTTCACTCCTGGGG  18546220
+
+Query  986       GAAAACTTATGGTGAACACAAACGCCACCTGGAGTTCAGCCATGAGCAGTACAAGGAACT  1045
+                 ||||||||||||||||||||| ||||| ||||||||||||||||| ||||||| ||||||
+Sbjct  18546221  GAAAACTTATGGTGAACACAAGCGCCATCTGGAGTTCAGCCATGATCAGTACAGGGAACT  18546280
+
+Query  1046      GCAGAAATATGCTGAGGAGGTGGACATCTGTTTCACTGCGTCTGGGATGGATGAGGTAAA  1105
+                 | ||||||| |||||||||||||  ||||  |||||||| ||||||||||||||||||| 
+Sbjct  18546281  GAAGAAATACGCTGAGGAGGTGGGGATCTTCTTCACTGCCTCTGGGATGGATGAGGTAAG  18546340
+
+Query  1106      ATAGA----ATAGAA-TAGCCTCTATATGGTTTTGATCAGGTTGAAGTTTAAGCATATAT  1160
+                 | |||     | |||  || || | ||||||||| |||||||| |||||||| ||   ||
+Sbjct  18546341  AAAGAGACGTTTGAAGAAGGCTTTCTATGGTTTTAATCAGGTTAAAGTTTAACCA-CCAT  18546399
+
+Query  1161      GTTGTTTTTGTC-TCCAGATGGCAGTGGAGTTCCTCCATGAGCTTAATATTCCTTTCTTT  1219
+                 |||  || |||| |  |||||||||||||||||||| |||| |||||| | |||||||||
+Sbjct  18546400  GTTTGTTCTGTCTTTTAGATGGCAGTGGAGTTCCTCGATGAACTTAATGTGCCTTTCTTT  18546459
+
+Query  1220      AAAGTGGGCTCAGGAGACACCAACAACTTCCCTTATTTGGAGAAGACTGCCAAGAAAGGT  1279
+                 ||||||| ||||  |||| ||||||||||| | ||| |||||||||||||||| ||| ||
+Sbjct  18546460  AAAGTGGCCTCACTAGACGCCAACAACTTCTCCTATCTGGAGAAGACTGCCAAAAAAAGT  18546519
+
+Query  1280      GAGAGTGACCCGTCGC--ATGGGCGAAATGTTTCATGAATGAAGTTCCAT--TAGCA-GT  1334
+                 |||||||| | |  ||  |||      ||||| |||   | || ||  ||  ||  |   
+Sbjct  18546520  GAGAGTGAACTGCAGCAGATGTATTTTATGTTACATATTTAAATTTAAATGCTAAAATCA  18546579
+
+Query  1335      TGAATG---TTAA--ATGACAT-AAGCAAATAGTATATTTTGTAAAACAAAA-------A  1381
+                 | | ||   ||||  || |||| || |||||| ||||||  ||||||||| |       |
+Sbjct  18546580  TCAGTGCACTTAACCATTACATCAAACAAATACTATATTAAGTAAAACAATAAAAGAGCA  18546639
+
+Query  1382      CCAATATAAGCAGAACAAATGCATCCATGAGTATTTAAAAATAAGTTTCAAAATGGGa--  1439
+                   |||| |||||||| |||||||   |||  |   || |||| ||||  ||| |||||  
+Sbjct  18546640  AAAATAGAAGCAGAAAAAATGCACAAATGTTTCAGTAGAAATTAGTTAAAAAGTGGGAGT  18546699
+
+Query  1440      -aaaaaaTAAATAAAGTAAGCTTGAATGTTCA-----TGTAGTTCACTAAGAGGAAGGGG  1493
+                   |||||||||| |||| ||||||| |||| |      | || ||| ||||||||| | |
+Sbjct  18546700  CGAAAAATAAATGAAGTGAGCTTGATTGTTGAACTACAGGAGCTCATTAAGAGGAAAGAG  18546759
+
+Query  1494      GAGTACTGCATTTCCCCCGTCGTCCATGTGGGACGTAACGTTTGACAGGCAGTTGTCCTC  1553
+                  ||   ||||||| |||  | | |||||   ||| ||  |||   ||||| |||| ||||
+Sbjct  18546760  AAGGGTTGCATTTTCCCTTTTGCCCATGCTAGACATATTGTTGATCAGGCTGTTGCCCTC  18546819
+
+Query  1554      CTGTTTGTGTCAGGACGGCCCATGATTGTATCCAGCGGGATGCAGAACATGGAGACGATG  1613
+                 |||| || |||||||||||||||| | || ||||| |||||||||| |||||||||||||
+Sbjct  18546820  CTGTCTGCGTCAGGACGGCCCATGGTGGTGTCCAGTGGGATGCAGAGCATGGAGACGATG  18546879
+
+Query  1614      CGTCAGGTCTACAAAACCGTGAAGGAGCACAACCCAAACTTTACCATCCTGCAGTGCACC  1673
+                 |||| |||||||||||| ||||||||||||||||| ||||||  ||||||||||||||||
+Sbjct  18546880  CGTCGGGTCTACAAAACGGTGAAGGAGCACAACCCCAACTTTGTCATCCTGCAGTGCACC  18546939
+
+Query  1674      AGCGCCTATCCTCTGGAAGCAGAAGATGTCAACCTCAGAGTGCTAACGGTGAGGAAAGTA  1733
+                 |||||||| ||||||||||| ||||||||||||||||||||| |||||||||| ||||||
+Sbjct  18546940  AGCGCCTACCCTCTGGAAGCCGAAGATGTCAACCTCAGAGTGATAACGGTGAGAAAAGTA  18546999
+
+Query  1734      GAGTAGATTGCAGCATCACT  1753
+                 || |||| |  ||||| |||
+Sbjct  18547000  GAATAGAGTAGAGCATTACT  18547019
+
+
+
+
+Range 2: 18547741 to 18548615
+
+Score:760 bits(842), Expect:0.0, 
+Identities:705/885(80%),  Gaps:32/885(3%), Strand: Plus/Plus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATG-AATTTACAAATGTG  2459
+                 ||||||||||||||||||||||||||||||||||||||| ||||  || | |||||||||
+Sbjct  18547741  TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTCAAATTTAACTCACAAATGTG  18547800
+
+Query  2460      AAATATATTGTCAATCTTTCCAGAAATGTAAGAGTAACGCTCAGCCACTTGTAAACTACA  2519
+                 |  | |  ||||||||||   ||| || || ||||||| || | ||||||||||||||||
+Sbjct  18547801  AC-TGTGGTGTCAATCTTCTTAGAGATTTAGGAGTAACACTTACCCACTTGTAAACTACA  18547859
+
+Query  2520      GGAGTACCAGAAGGAATTTCCCGATATTCCCATTGGGTATTCCGGCCATGAGTCTGGGAT  2579
+                 ||| ||||||||||||||||||||||||||||||||||| |||||||||||| |||||||
+Sbjct  18547860  GGAATACCAGAAGGAATTTCCCGATATTCCCATTGGGTACTCCGGCCATGAGACTGGGAT  18547919
+
+Query  2580      CGTTATTTCTGTTGCGGCCGTAGCAATGGGTGCAAAGGTCGTCGAGCGCCACGTGACCTT  2639
+                 |  |||||| |||||||||||||| |||||||| |||||| ||||||||||||| |||||
+Sbjct  18547920  CAGTATTTCAGTTGCGGCCGTAGCTATGGGTGCTAAGGTCATCGAGCGCCACGTAACCTT  18547979
+
+Query  2640      GGACAAGACCTGGAAAGGAAATGACCACGAAGCCTCTCTGGTGCCCAGTGAGCTGGCCGA  2699
+                 ||||||||| ||||||||||||||||||   |||||||||| |||| |||||||    ||
+Sbjct  18547980  GGACAAGACTTGGAAAGGAAATGACCACAGCGCCTCTCTGGAGCCCTGTGAGCTAAAAGA  18548039
+
+Query  2700      GTTGGTTCGCTCCATCCGGCTGGTGGAAAGGGCGCTGGGCAACGGCGTCAAGCAGATGCT  2759
+                   |||||   |||||||| | |||||| ||||||| ||| | |||| ||||||||||| |
+Sbjct  18548040  ACTGGTTGATTCCATCCGACGGGTGGAGAGGGCGCAGGGGACCGGCATCAAGCAGATGTT  18548099
+
+Query  2760      TCCTTGTGAGAAGCCGTGCCATGATAAGGTGAGATATTCTCGCTTCAC--------TGGA  2811
+                  || |||||||||||||||||||||||||||||||||||  ||| |||           |
+Sbjct  18548100  ACCATGTGAGAAGCCGTGCCATGATAAGGTGAGATATTCCTGCTCCACAAAAAAAAAAAA  18548159
+
+Query  2812      GAGATACAAGTAATGTGAGCCATTGGAAAA---TTACA-TCTCTAAA-AGAGCAAACTTT  2866
+                  | | | ||  |||  ||||||| | || |   ||||| | |  ||| | ||  ||| ||
+Sbjct  18548160  AAAAAAAAAAAAATTGGAGCCATAGTAACATTTTTACAGTTTAGAAAGACAGATAACCTT  18548219
+
+Query  2867      TAAGAGTACTACTCTGCTCCATTAGGTTAATAATA--AGGCCTGTTTTTTAAAAATGTAT  2924
+                  ||||  |||   |  | | |  |   ||||||||  || ||| || |||     | |||
+Sbjct  18548220  CAAGAAAACTGTGC--CACGAGAACAATAATAATATCAGACCTTTTATTT-----TCTAT  18548272
+
+Query  2925      TTGCTTCCAGCTTGGTAAGTCCTTGGTGGCTAAGGTCAAGATCCCCAAAGGAACTGTCCT  2984
+                 |  |||| |||| ||||||||| ||||||| ||||||||||||||||||||||||  |||
+Sbjct  18548273  T--CTTCAAGCTGGGTAAGTCCGTGGTGGCCAAGGTCAAGATCCCCAAAGGAACTACCCT  18548330
+
+Query  2985      GACTCAGGACATGTTGGCGGTGAAGGTGGCCGAACCAATGGGCATCGACGCCGAGGACAT  3044
+                 |||||||||||||||||||||||||| |||||| |||||||| ||||  ||||||||| |
+Sbjct  18548331  GACTCAGGACATGTTGGCGGTGAAGGCGGCCGAGCCAATGGGAATCGTGGCCGAGGACTT  18548390
+
+Query  3045      CTTCAAAATGGTTGGAAAGAAGGTCAAAAAGGACGTGGAGGAGGATGAGAGCATCTTGCC  3104
+                  | | ||||||| |||||||  || |  ||||| ||||| ||||| || |||||||||||
+Sbjct  18548391  GTGCCAAATGGTGGGAAAGACCGTGACGAAGGATGTGGAAGAGGACGACAGCATCTTGCC  18548450
+
+Query  3105      AGAGGTGGTGGAAGGGTACTGCAAGAAGAGAAAGTGCTGATGGTGGCCGGGAGTTCATAG  3164
+                 |||| |||||||||||||||||||||||| |||||||||| ||||||  |||||| ||| 
+Sbjct  18548451  AGAGATGGTGGAAGGGTACTGCAAGAAGACAAAGTGCTGAGGGTGGCAAGGAGTTTATAA  18548510
+
+Query  3165      ATTGGTAGAAAAAGAATTTAATTTGAGA-GATTTGTTATCAATTATTCTGGTACAAATGG  3223
+                 || | ||||||| | |  | |||||||| ||  ||||||| |||  |||||    |||||
+Sbjct  18548511  ATGGATAGAAAAGGCACATCATTTGAGAGGAAATGTTATCGATTCCTCTGGCGATAATGG  18548570
+
+Query  3224      TAATTTTATTTGGTGGT-----GCTTTTCCGACATAGAAGTACTG  3263
+                 | ||||| |||||||||     | ||||||||  | ||||| |||
+Sbjct  18548571  TCATTTTGTTTGGTGGTGATGGGATTTTCCGATGTTGAAGTCCTG  18548615
+
+
+
+
+Range 3: 18531395 to 18532156
+
+Score:692 bits(767), Expect:0.0, 
+Identities:622/776(80%),  Gaps:30/776(3%), Strand: Plus/Plus
+
+Query  2504      CCACTTGTAAACTACAGGAGTACCAGAAGGAATTTCCCGATATTCCCATTGGGTATTCCG  2563
+                 ||||||||||||||||||| ||||||||||||||||||||||||||||||||||| ||||
+Sbjct  18531395  CCACTTGTAAACTACAGGAATACCAGAAGGAATTTCCCGATATTCCCATTGGGTACTCCG  18531454
+
+Query  2564      GCCATGAGTCTGGGATCGTTATTTCTGTTGCGGCCGTAGCAATGGGTGCAAAGGTCGTCG  2623
+                 |||||||||||||||||  |||||| |||||||||||||| |||||||| |||||| | |
+Sbjct  18531455  GCCATGAGTCTGGGATCAGTATTTCAGTTGCGGCCGTAGCTATGGGTGCCAAGGTCATTG  18531514
+
+Query  2624      AGCGCCACGTGACCTTGGACAAGACCTGGAAAGGAAATGACCACGAAGCCTCTCTGGTGC  2683
+                 |||||||||| |||||||||||||| ||||||||||||||||||||||||||||||| ||
+Sbjct  18531515  AGCGCCACGTAACCTTGGACAAGACTTGGAAAGGAAATGACCACGAAGCCTCTCTGGAGC  18531574
+
+Query  2684      CCAGTGAGCTGGCCGAGTTGGTTCGCTCCATCCGGCTGGTGGAAAGGGCGCTGGGCAACG  2743
+                 |   ||||||    ||  ||||||| |||||||| |||||||| ||||||| ||| | ||
+Sbjct  18531575  CTTCTGAGCTAAAAGAACTGGTTCGTTCCATCCGCCTGGTGGAGAGGGCGCAGGGGACCG  18531634
+
+Query  2744      GCGTCAAGCAGATGCTTCCTTGTGAGAAGCCGTGCCATGATAAGGTGAGATATTCTCGCT  2803
+                 || ||||||||||| | || |||||||||||||||||||||||||||||||||||  |||
+Sbjct  18531635  GCATCAAGCAGATGTTACCATGTGAGAAGCCGTGCCATGATAAGGTGAGATATTCCTGCT  18531694
+
+Query  2804      TCACTGGAGAGATACAAGTAATGTGAGCCATTGGAAAATTACATCTCTA--------AAA  2855
+                  |||   | | | | ||  ||||  | |||| | ||  ||  || | ||        |||
+Sbjct  18531695  CCAC--AAAAAAAAAAAAAAATGCAAACCATAGTAACCTTCAATTTTTACTGTTTAGAAA  18531752
+
+Query  2856      G--AGCAAACTTTTAAGAGTACTACTCTGCTCCATTAGGTTAATAATAAGGCCTGTTTTT  2913
+                 |  || |||| |||||||  |  | | ||    |||  |||   ||      ||   |||
+Sbjct  18531753  GACAGAAAACCTTTAAGAAAATAATTTTG--AAATT--GTTTTCAA------CTCCCTTT  18531802
+
+Query  2914      TAAAAATGTATTTGCTTCCAGCTTGGTAAGTCCTTGGTGGCTAAGGTCAAGATCCCCAAA  2973
+                 | |   | ||||  |||| |||| ||||||||||||||||| ||||||||||||||||||
+Sbjct  18531803  TTATTTTCTATT--CTTCAAGCTGGGTAAGTCCTTGGTGGCCAAGGTCAAGATCCCCAAA  18531860
+
+Query  2974      GGAACTGTCCTGACTCAGGACATGTTGGCGGTGAAGGTGGCCGAACCAATGGGCATCGAC  3033
+                 ||||||  ||||||||||||||||||| |||||||||||||||| ||||||||| |||  
+Sbjct  18531861  GGAACTACCCTGACTCAGGACATGTTGACGGTGAAGGTGGCCGAGCCAATGGGCGTCGTG  18531920
+
+Query  3034      GCCGAGGACATCTTCAAAATGGTTGGAAAGAAGGTCAAAAAGGACGTGGAGGAGGATGAG  3093
+                 ||||||||||||||| ||||||| |||||||  || | |||||| ||||||||||| || 
+Sbjct  18531921  GCCGAGGACATCTTCCAAATGGTGGGAAAGACCGTGACAAAGGATGTGGAGGAGGACGAC  18531980
+
+Query  3094      AGCATCTTGCCAGAGGTGGTGGAAGGGTACTGCAAGAAGAGAAAGTGCTGATGGTGGCCG  3153
+                 ||| ||||||||||| ||||||||||||||||||||||||| ||||||||| ||||||  
+Sbjct  18531981  AGCCTCTTGCCAGAGATGGTGGAAGGGTACTGCAAGAAGAGGAAGTGCTGAGGGTGGCAA  18532040
+
+Query  3154      GGAGTTCATAGATTGGTAGAAAAAGAATTTAATTTGAGA-GATTTGTTATCAATTATTCT  3212
+                 |||||| ||| || | ||||||| | |  | |||||||| ||  ||||||  |||  |||
+Sbjct  18532041  GGAGTTTATAAATGGATAGAAAAGGCACATCATTTGAGAGGAAATGTTATTGATTCCTCT  18532100
+
+Query  3213      GGTACAAATGGTAATTTTATTTGGTGGT-----GCTTTTCCGACATAGAAGTACTG  3263
+                 ||    |||||| ||||| |||||||||     | ||||||||  | ||||| |||
+Sbjct  18532101  GGCGATAATGGTCATTTTGTTTGGTGGTGATGGGATTTTCCGATGTTGAAGTCCTG  18532156
+
+
+
+
+Range 4: 18528811 to 18529464
+
+Score:594 bits(658), Expect:2e-167, 
+Identities:530/660(80%),  Gaps:43/660(6%), Strand: Plus/Plus
+
+Query  665       AAGCAACTACTTGTTACGCTGGAATTGGATTATAATAATTATAATGAAA-AACAACTGAG  723
+                 || |||||| ||||  | || ||| |  ||| |||||  |||||||||| ||  | || |
+Sbjct  18528811  AAACAACTATTTGTAGCACTAGAAATATATTTTAATAGGTATAATGAAATAATGAATGTG  18528870
+
+Query  724       --GTAATTGAACACTATCTCCTATCTCTCATTTAGTACCAAATAGAGCTTTCAATGTCCC  781
+                   ||||||||||||| |||||| |   | ||  ||||||||||||   |||| | |  ||
+Sbjct  18528871  TAGTAATTGAACACTGTCTCCTCT---TAAT--AGTACCAAATAGTCTTTTCTAGGAACC  18528925
+
+Query  782       TTCCTGTGACTTTAGGGTGCTTTTTGGGACCGTCTGTAGGAGCCCTTAAACCAATCATCA  841
+                 ||  ||||||||||  ||| ||||| ||||  ||||||||| |||| ||| |||||||||
+Sbjct  18528926  TTATTGTGACTTTAAAGTG-TTTTTAGGACAATCTGTAGGACCCCTAAAATCAATCATCA  18528984
+
+Query  842       GAA--------------------TACCTTCTTTTTATTCCCTTATTCACTCGTGCCTTCA  881
+                   |                    | ||||||||||| ||||| | | | |  ||||||||
+Sbjct  18528985  CTACTTAGTATGTTGGCCAAGCTTCCCTTCTTTTTAATCCCTCACTTATTTCTGCCTTCA  18529044
+
+Query  882       CAGGACTGCGGTGCGGATTGTGCCAAATTTCAGAAGAGTGAATTGGATCATAAATTCAAC  941
+                 ||||| |||||||| |||||||||||||| |||||||||||||| || ||||||||||||
+Sbjct  18529045  CAGGATTGCGGTGCTGATTGTGCCAAATTCCAGAAGAGTGAATTAGAGCATAAATTCAAC  18529104
+
+Query  942       AAGAAAGCTTTGGAGCGCCCGTACAATTCTGTTCACTCCTGGGGGAAAACTTATGGTGAA  1001
+                 |||||||| |||||||||  ||||||||||||||||||||||||||||||||||||||||
+Sbjct  18529105  AAGAAAGCCTTGGAGCGCAAGTACAATTCTGTTCACTCCTGGGGGAAAACTTATGGTGAA  18529164
+
+Query  1002      CACAAACGCCACCTGGAGTTCAGCCATGAGCAGTACAAGGAACTGCAGAAATATGCTGAG  1061
+                 ||||| ||||| ||||||||||||||||| ||||||| ||||||| ||||||| ||||||
+Sbjct  18529165  CACAAGCGCCATCTGGAGTTCAGCCATGATCAGTACAGGGAACTGAAGAAATACGCTGAG  18529224
+
+Query  1062      GAGGTGGACATCTGTTTCACTGCGTCTGGGATGGATGAGGTAAAATAGA----ATAGAA-  1116
+                 |||||||  ||||| |||||||| ||||||||||||||||||| | |||     | ||| 
+Sbjct  18529225  GAGGTGGGGATCTGCTTCACTGCCTCTGGGATGGATGAGGTAAGAAAGAGACGTTTGAAG  18529284
+
+Query  1117      TAGCCTCTATATGGTTTTGATCAGGTTGAAGTTTAAGCAT-ATATGTTGTT--TTTGT--  1171
+                  || || | ||||||||| |||||||| | |||||| ||| || | | |||  |||||  
+Sbjct  18529285  AAGGCTTTTTATGGTTTTAATCAGGTTAACGTTTAACCATCATGTTTGGTTTGTTTGTTC  18529344
+
+Query  1172      ----CTCCAGATGGCAGTGGAGTTCCTCCATGAGCTTAATATTCCTTTCTTTAAAGTGGG  1227
+                      |  |||||||||||||||||||||||||||||||| | |||||||||||||||||
+Sbjct  18529345  TGTCTTTTAGATGGCAGTGGAGTTCCTCCATGAGCTTAATGTGCCTTTCTTTAAAGTGGG  18529404
+
+Query  1228      CTCAGGAGACACCAACAACTTCCCTTATTTGGAGAAGACTGCCAAGAAAGGTGAGAGTGA  1287
+                 |||||||||||||||||||||||| ||| |||||||||||||||| ||||||||||||||
+Sbjct  18529405  CTCAGGAGACACCAACAACTTCCCCTATCTGGAGAAGACTGCCAAAAAAGGTGAGAGTGA  18529464
+
+
+
+
+Range 5: 18530304 to 18530774
+
+Score:396 bits(438), Expect:1e-107, 
+Identities:374/474(79%),  Gaps:15/474(3%), Strand: Plus/Plus
+
+Query  1355      CAAATAGTATATTTTGTAAAACAAAAAC----CAATATAAGCAGAACAAATGCATCCATG  1410
+                 |||| | ||||||  ||||||||| ||     ||||| | |||||| |||||||  || |
+Sbjct  18530304  CAAACACTATATTAAGTAAAACAATAAAAGAGCAATAGATGCAGAAAAAATGCA--CACG  18530361
+
+Query  1411      AGTATTTAAAAATAAGTTTCAAAATGGGaaa---aaaaTAAATAAAGTAAGCTTGAATGT  1467
+                   |   || |||| ||||  ||| ||||| |   ||||||||| |||| ||||||| |||
+Sbjct  18530362  TTTCAGTAGAAATTAGTTAAAAAGTGGGAGATGAAAAATAAATGAAGTGAGCTTGATTGT  18530421
+
+Query  1468      TCATGTA-----GTTCACTAAGAGGAAGGGGGAGTACTGCATTTCCCCCGTCGTCCATGT  1522
+                 | |  ||     | ||| ||||||||| | | ||   ||||||| |||  | | ||||| 
+Sbjct  18530422  TGAACTACAGGAGCTCATTAAGAGGAAAGAGAAGGGTTGCATTTTCCCTTTTGCCCATGC  18530481
+
+Query  1523      GGGACGTAACGTTTGACAGGCAGTTGTCCTCCTGTTTGTGTCAGGACGGCCCATGATTGT  1582
+                   ||| ||  |||   ||||| |||| |||||||| || |||||||||||||||| | ||
+Sbjct  18530482  TAGACATATTGTTGATCAGGCTGTTGCCCTCCTGTCTGCGTCAGGACGGCCCATGGTGGT  18530541
+
+Query  1583      ATCCAGCGGGATGCAGAACATGGAGACGATGCGTCAGGTCTACAAAACCGTGAAGGAGCA  1642
+                  ||||| |||||||||| ||||||||||||||||| |||||||||||| || ||||||||
+Sbjct  18530542  GTCCAGTGGGATGCAGAGCATGGAGACGATGCGTCGGGTCTACAAAACGGTAAAGGAGCA  18530601
+
+Query  1643      CAACCCAAACTTTACCATCCTGCAGTGCACCAGCGCCTATCCTCTGGAAGCAGAAGATGT  1702
+                 |||||| ||||||  |||||||||||||||||||||||| ||||||||||| ||||||||
+Sbjct  18530602  CAACCCCAACTTTGTCATCCTGCAGTGCACCAGCGCCTACCCTCTGGAAGCCGAAGATGT  18530661
+
+Query  1703      CAACCTCAGAGTGCTAACGGTGAGGAAAGTAGAGTAGATTGCAGCATCACTCTGATATCA  1762
+                 ||||||||||||| |||||||||| |||||||| |||| |  ||||| ||||   |||||
+Sbjct  18530662  CAACCTCAGAGTGATAACGGTGAGAAAAGTAGAATAGAGTAGAGCATTACTCCTTTATCA  18530721
+
+Query  1763      AAAGGTTGGGTGCAAAAACAAGATGTCAACCAGTAAGAGTTGTCAAATGGTCTC  1816
+                 ||||||| ||| |||||||||||| |||||||    ||||||  |||| |||||
+Sbjct  18530722  AAAGGTT-GGTACAAAAACAAGATCTCAACCAAGTTGAGTTGGGAAATTGTCTC  18530774
+
+
+
+
+Range 6: 18532354 to 18532820
+
+Score:318 bits(352), Expect:3e-84, 
+Identities:351/468(75%),  Gaps:46/468(9%), Strand: Plus/Plus
+
+Query  3361      TCGGTACTAGTGCAACGCTTTCTGGGGTCTAACAAAAGCACTTTGTTAATGTTTAACACA  3420
+                 || |||||||||||  ||||||||  ||   |||||||| | |||||| |||| |  | |
+Sbjct  18532354  TCAGTACTAGTGCAGTGCTTTCTGACGTGGCACAAAAGCCCATTGTTACTGTTAACTAAA  18532413
+
+Query  3421      CATAGATTGCACTACCtttttttACTGCAATGTAGAGATGAAAGGAACATTGAAGACTTG  3480
+                 ||||  ||||||||   |||||  ||||  ||||||||| |||||||||||||| || ||
+Sbjct  18532414  CATACTTTGCACTATAGTTTTTGCCTGCTCTGTAGAGATTAAAGGAACATTGAACACATG  18532473
+
+Query  3481      AAGCTGCTAATGTTCATCTTCTCATGCAATAGTGAGATCACAAAGCCCCTTTGC--AACA  3538
+                 ||||||||| || |||||| ||||  ||   ||||||||||| |||||||||||  ||||
+Sbjct  18532474  AAGCTGCTACTGGTCATCTCCTCACACAGCGGTGAGATCACAGAGCCCCTTTGCCAAACA  18532533
+
+Query  3539      -----------CTTTGTGTAGTAGCTCATTAATTTAAGTTCAT-ATA-------------  3573
+                            |||  ||||   |||||||||| ||||||||| |||             
+Sbjct  18532534  GTCATTGTATTCTTCTTGTACCTGCTCATTAATGTAAGTTCATGATATCAGGCATGGTTT  18532593
+
+Query  3574      --GTTTGTGTACCTCTTTTGAGAGAAGCACAATGAGACTACTGCAGCCAGACGCTTTCCT  3631
+                   |||||||   ||  ||||||||||||||||| ||||||||| |||||||||||| || 
+Sbjct  18532594  GTGTTTGTGCTGCTTCTTTGAGAGAAGCACAATAAGACTACTGGAGCCAGACGCTTCCCA  18532653
+
+Query  3632      AAACTAAAAGA--AAATGCCCTTCTCTTTCAATTAACCTTGTTTTTGTCATGAACCGAAA  3689
+                 |||| ||||||  ||||||||  ||||  ||||||||||||||||||| | ||| | |||
+Sbjct  18532654  AAACCAAAAGAAGAAATGCCC-CCTCTCACAATTAACCTTGTTTTTGTTACGAATCCAAA  18532712
+
+Query  3690      TCCGTCCGAATGTAAAATGAACATGT----CTGAACCCGTCGCAACTCT-TTG-------  3737
+                 ||||||| ||||| ||||||||||||    |  |||| || |  ||||| |||       
+Sbjct  18532713  TCCGTCCAAATGTTAAATGAACATGTCATACATAACCTGTGGAGACTCTGTTGAGATTTC  18532772
+
+Query  3738      --GTTCTGAAAAGATGAAGCATCCAAATAAAATGTTGCCAGAAATTCC  3783
+                   |||| ||||||||||||| |||||||||||||||||| ||| ||||
+Sbjct  18532773  ATGTTCCGAAAAGATGAAGCCTCCAAATAAAATGTTGCCCGAATTTCC  18532820
+
+
+
+
+Range 7: 18548813 to 18549279
+
+Score:296 bits(327), Expect:3e-77, 
+Identities:346/468(74%),  Gaps:46/468(9%), Strand: Plus/Plus
+
+Query  3361      TCGGTACTAGTGCAACGCTTTCTGGGGTCTAACAAAAGCACTTTGTTAATGTTTAACACA  3420
+                 || |||||||||||  ||||||||  ||   |||||||| | |||||| |||| |  | |
+Sbjct  18548813  TCAGTACTAGTGCAGTGCTTTCTGACGTGGCACAAAAGCCCATTGTTACTGTTAACTAAA  18548872
+
+Query  3421      CATAGATTGCACTACCtttttttACTGCAATGTAGAGATGAAAGGAACATTGAAGACTTG  3480
+                 ||||  ||||||||   |||||  ||||  ||||||||| |||||||||||||| || ||
+Sbjct  18548873  CATACTTTGCACTATAGTTTTTGCCTGCTCTGTAGAGATTAAAGGAACATTGAACACATG  18548932
+
+Query  3481      AAGCTGCTAATGTTCATCTTCTCATGCAATAGTGAGATCACAAAGCCCCTTTGC--AACA  3538
+                 ||||||||| || |||||| ||||  ||   ||||||||||| |||||||||||  ||||
+Sbjct  18548933  AAGCTGCTACTGGTCATCTCCTCACACAGCGGTGAGATCACAGAGCCCCTTTGCCAAACA  18548992
+
+Query  3539      -----------CTTTGTGTAGTAGCTCATTAATTTAAGTTCAT-ATA-------------  3573
+                            |||  ||||   |||||||||| ||||||||| |||             
+Sbjct  18548993  GTCATTGTATTCTTCTTGTACCTGCTCATTAATGTAAGTTCATGATATCAGGCATGGTTT  18549052
+
+Query  3574      --GTTTGTGTACCTCTTTTGAGAGAAGCACAATGAGACTACTGCAGCCAGACGCTTTCCT  3631
+                   |||||||   ||  ||||||||||||||||| ||||||||| |||||||||||| || 
+Sbjct  18549053  GTGTTTGTGCTGCTTCTTTGAGAGAAGCACAATAAGACTACTGGAGCCAGACGCTTCCCA  18549112
+
+Query  3632      AAACTAAAAGA--AAATGCCCTTCTCTTTCAATTAACCTTGTTTTTGTCATGAACCGAAA  3689
+                 |||| ||||||  ||||||||  ||||  ||||||||||||||||||| | ||||| |||
+Sbjct  18549113  AAACCAAAAGAAGAAATGCCC-CCTCTCACAATTAACCTTGTTTTTGTTACGAACCCAAA  18549171
+
+Query  3690      TCCGTCCGAATGTAAAATGAACATGT----CTGAACCCGTCGCAACTCT-TTG-------  3737
+                 ||||||   |||| || |||||||||    |  |||| || |  ||||| |||       
+Sbjct  18549172  TCCGTCTAGATGTTAACTGAACATGTCATACATAACCTGTGGAGACTCTGTTGAGATTTC  18549231
+
+Query  3738      --GTTCTGAAAAGATGAAGCATCCAAATAAAATGTTGCCAGAAATTCC  3783
+                   |||| ||||||||||||| |   |||||||||||||| ||| ||||
+Sbjct  18549232  ATGTTCCGAAAAGATGAAGCCTATGAATAAAATGTTGCCCGAATTTCC  18549279
+
+
+
+
+Range 8: 18527886 to 18528158
+
+Score:293 bits(324), Expect:1e-76, 
+Identities:233/279(84%),  Gaps:6/279(2%), Strand: Plus/Plus
+
+Query  1         TCCCACATCCGGGATGTGCAGCGCATGAACTGGTCGGGACAGAATAAAGTCTCAGCCACT  60
+                 |||||||||| ||||||||||| |||||||||||| || |||| | |||||||||| || 
+Sbjct  18527886  TCCCACATCCTGGATGTGCAGCACATGAACTGGTCCGGTCAGATTCAAGTCTCAGCTACA  18527945
+
+Query  61        GCGTGCGCTTCTTCCTTCGCTAAATAGTTGCGATAGTTTGCGCTGTTCTGTTGATTGTTT  120
+                 || |  ||||| |     || | ||| || || || |||   | |||   ||  ||||||
+Sbjct  18527946  GCTTT-GCTTCGT-----GCAAGATAATTCCGTTATTTTCACCGGTTTGTTTTGTTGTTT  18527999
+
+Query  121       TCTATTTTGCGGACAAAATGCCTTTAGAGTTCGAGCTGTGTCCCGGTCGGATGATCGGAG  180
+                 ||| || |||||||||||||||||||  ||| ||||||||||||||| | ||||||||||
+Sbjct  18528000  TCTTTTCTGCGGACAAAATGCCTTTAACGTTAGAGCTGTGTCCCGGTAGAATGATCGGAG  18528059
+
+Query  181       GAAACCACCCGTGCTTCATTATCGCTGAAATTGGACAAAATCACCAGGGAGACATTGAGA  240
+                 | || || ||||||||||| ||||||||||||||||||||||||||||||||||||||||
+Sbjct  18528060  GGAATCATCCGTGCTTCATCATCGCTGAAATTGGACAAAATCACCAGGGAGACATTGAGA  18528119
+
+Query  241       TTGCCAAGAAAATGATCAAGATGGCAAAGGTAAAAATAT  279
+                 ||||||||||||||||||| ||||||||||||| || ||
+Sbjct  18528120  TTGCCAAGAAAATGATCAAAATGGCAAAGGTAATAAAAT  18528158
+
+
+
+
+Range 9: 18543817 to 18544075
+
+Score:253 bits(280), Expect:9e-65, 
+Identities:219/268(82%),  Gaps:9/268(3%), Strand: Plus/Plus
+
+Query  12        GGATGTGCAGCGCATGAACTGGTCGGGACAGAATAAAGTCTCAGCCACTGCGTGCGCTTC  71
+                 ||||||||||  ||||| ||||||    |||| | |||||||||| || ||   | ||||
+Sbjct  18543817  GGATGTGCAGTACATGACCTGGTCCTTTCAGATTCAAGTCTCAGCTACGGCTCTCACTTC  18543876
+
+Query  72        TTCCTTCGCTAAATAGTTGCGATAGTTTGCGCTGTTCTGTTGATTGTTTTCTATTTTGCG  131
+                  | ||  |||||||| || || || | |   | ||| ||||  ||||| |   |||||  
+Sbjct  18543877  GTTCTCTGCTAAATAATTCCGTTATTGTCACCGGTT-TGTT--TTGTTGT---TTTTG--  18543928
+
+Query  132       GACAAAATGCCTTTAGAGTTCGAGCTGTGTCCCGGTCGGATGATCGGAGGAAACCACCCG  191
+                  ||||||||||||||  ||||||||||||||||||| | ||||||||||| || || |||
+Sbjct  18543929  -ACAAAATGCCTTTAACGTTCGAGCTGTGTCCCGGTAGAATGATCGGAGGGAATCATCCG  18543987
+
+Query  192       TGCTTCATTATCGCTGAAATTGGACAAAATCACCAGGGAGACATTGAGATTGCCAAGAAA  251
+                 |||||||| |||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  18543988  TGCTTCATCATCGCTGAAATTGGACAAAATCACCAGGGAGACATTGAGATTGCCAAGAAA  18544047
+
+Query  252       ATGATCAAGATGGCAAAGGTAAAAATAT  279
+                 |||||||| ||||||||||||| || ||
+Sbjct  18544048  ATGATCAAAATGGCAAAGGTAATAAAAT  18544075
+
+
+
+
+Range 10: 18547194 to 18547286
+
+Score:91.5 bits(100), Expect:6e-16, 
+Identities:77/93(83%),  Gaps:4/93(4%), Strand: Plus/Plus
+
+Query  2185      TATATTC---TTTTGTTAGGATTAAAACAACAAA-ATATGAAGCGTTAACTAGTGAGTTT  2240
+                 |||||||   ||||||||||||||||  |||||| |||| | | ||||||||||||| ||
+Sbjct  18547194  TATATTCAGTTTTTGTTAGGATTAAACAAACAAACATATTATGTGTTAACTAGTGAGCTT  18547253
+
+Query  2241      TAGAGTTGCTGGTAGGTAGATTTGTTTTCAATG  2273
+                 ||||  ||||||| || |||||||||  |||||
+Sbjct  18547254  TAGAAGTGCTGGTCGGCAGATTTGTTACCAATG  18547286
+
+
+
+
+Range 11: 18531324 to 18531383
+
+Score:64.4 bits(70), Expect:9e-08, 
+Identities:50/60(83%),  Gaps:0/60(0%), Strand: Plus/Plus
+
+Query  2285      ACTTAATTCCATTACTTTGATTTATATTGTAATATTAAACATTGCATGCATACTCAAAAA  2344
+                 ||||||||  ||||||||||| |||| |||||||  |||||||| ||||||| |  ||||
+Sbjct  18531324  ACTTAATTTAATTACTTTGATATATAGTGTAATACAAAACATTGTATGCATATTAGAAAA  18531383
+
+
+
+
+Range 12: 15296914 to 15296952
+
+Score:62.6 bits(68), Expect:3e-07, 
+Identities:37/39(95%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||||||||||||||| |||||||||| ||||||
+Sbjct  15296952  TTATGCTAAGCTAAGCTAACCAGCAGCTGGCTGTAGCTT  15296914
+
+
+
+
+Range 13: 2320012 to 2320076
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:52/65(80%),  Gaps:1/65(1%), Strand: Plus/Plus
+
+Query  2399     AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT-AAAATGAATTTACAAATG  2457
+                || || ||||||||||||||||| || ||||||| |||||| | | | ||   |||||| 
+Sbjct  2320012  AGCTAAGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTTCATATTTAACAGACAAATA  2320071
+
+Query  2458     TGAAA  2462
+                |||||
+Sbjct  2320072  TGAAA  2320076
+
+
+
+
+Range 14: 6372498 to 6372554
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:47/57(82%),  Gaps:1/57(1%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGC-TTAAAATGAATTTACAAAT  2456
+                ||||||||| ||||||||||  || |||||||| ||| ||||| |||||  ||| ||
+Sbjct  6372498  TTATGCTAACCTAAGCTAACTTGCTGCTGGCTCCAGCTTTAAATTGAATGGACAGAT  6372554
+
+
+
+
+Range 15: 16988173 to 16988212
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:36/40(90%),  Gaps:0/40(0%), Strand: Plus/Plus
+
+Query  2399      AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                 || || |||||||||||||||||||| ||||||| |||||
+Sbjct  16988173  AGCTAAGCTAAGCTAAGCTAACCGGCTGCTGGCTGTAGCT  16988212
+
+
+
+
+Range 16: 17368396 to 17368432
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:34/37(92%),  Gaps:0/37(0%), Strand: Plus/Minus
+
+Query  2403      ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||||||||||| ||||| | ||||||
+Sbjct  17368432  ATGCTAAGCTAAGCTAACCGGCTGCTGGTTGTAGCTT  17368396
+
+
+
+
+Range 17: 4994005 to 4994043
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||| ||||||||||||| ||| |||||||  |||||
+Sbjct  4994043  TTATGCCAAGCTAAGCTAACTGGCTGCTGGCTTCAGCTT  4994005
+
+
+
+
+Range 18: 11217301 to 11217344
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:37/44(84%),  Gaps:0/44(0%), Strand: Plus/Minus
+
+Query  2396      TTCAGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 || || || |||| |||||||||||| || ||||||| ||||||
+Sbjct  11217344  TTAAGATACGCTACGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  11217301
+
+
+
+
+Range 19: 18557282 to 18557331
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:40/50(80%),  Gaps:0/50(0%), Strand: Plus/Plus
+
+Query  13        GATGTGCAGCGCATGAACTGGTCGGGACAGAATAAAGTCTCAGCCACTGC  62
+                 |||||||||| |||||||  |||  | |||| | |||||||||| || ||
+Sbjct  18557282  GATGTGCAGCACATGAACCTGTCCTGTCAGATTCAAGTCTCAGCTACGGC  18557331
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_2, whole genome shotgun sequence
+Sequence ID: JAKSXS010000002.1 Length: 24031391
+Range 1: 1273910 to 1273968
+
+Score:63.5 bits(69), Expect:3e-07, 
+Identities:51/61(84%),  Gaps:2/61(3%), Strand: Plus/Minus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAATTTACAAATGTGAA  2461
+                |||||||||||||||||||| || ||||||| |||||| | ||  || ||||||  ||||
+Sbjct  1273968  TATGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTTCATAT--ATATACAAACATGAA  1273911
+
+Query  2462     A  2462
+                |
+Sbjct  1273910  A  1273910
+
+
+
+
+Range 2: 9216122 to 9216160
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||||| || || |||||||||||
+Sbjct  9216160  TTATGCTAAGCTAAGCTAACCAGCTGCCGGCTCTAGCTT  9216122
+
+
+
+
+Range 3: 13486872 to 13486917
+
+Score:57.2 bits(62), Expect:1e-05, 
+Identities:40/46(87%),  Gaps:0/46(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGA  2446
+                 ||||||||||||| ||||||| || ||||||| |||||| | ||||
+Sbjct  13486917  TTATGCTAAGCTACGCTAACCAGCTGCTGGCTGTAGCTTCATATGA  13486872
+
+
+
+
+Range 4: 10352792 to 10352830
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Plus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 || ||||||||||||||||  ||| ||||||||||||||
+Sbjct  10352792  TTGTGCTAAGCTAAGCTAAATGGCTGCTGGCTCTAGCTT  10352830
+
+
+
+
+Range 5: 20909073 to 20909111
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||| |||||||| || | ||||||| ||||||
+Sbjct  20909111  TTATGCTAAGTTAAGCTAATCGCCTGCTGGCTATAGCTT  20909073
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_85, whole genome shotgun sequence
+Sequence ID: JAKSXS010000084.1 Length: 820241
+Range 1: 623083 to 623121
+
+Score:62.6 bits(68), Expect:3e-07, 
+Identities:37/39(95%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||||||||||||||||||||||| |||||||| ||||||
+Sbjct  623121  TTATGCTAAGCTAAGCTAACCGGAAGCTGGCTTTAGCTT  623083
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_16, whole genome shotgun sequence
+Sequence ID: JAKSXS010000016.1 Length: 15391113
+Range 1: 5473290 to 5473355
+
+Score:62.6 bits(68), Expect:3e-07, 
+Identities:54/66(82%),  Gaps:1/66(1%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAA-AATGAATTTACAAATGTG  2459
+                |||||||||||||||||||| ||| || || | |||||||| | | | | || |||| ||
+Sbjct  5473355  TTATGCTAAGCTAAGCTAACTGGCTGCAGGATGTAGCTTAATATTTACTGTAAAAATATG  5473296
+
+Query  2460     AAATAT  2465
+                ||||||
+Sbjct  5473295  AAATAT  5473290
+
+
+
+
+Range 2: 13080173 to 13080212
+
+Score:59.9 bits(65), Expect:4e-06, 
+Identities:37/40(93%),  Gaps:0/40(0%), Strand: Plus/Minus
+
+Query  2400      GTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||||||||||||||| ||| ||||||| ||||||
+Sbjct  13080212  GTTATGCTAAGCTAAGCTAACTGGCTGCTGGCTGTAGCTT  13080173
+
+
+
+
+Range 3: 13273729 to 13273767
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||||||||||||| |||| ||||||| ||||||
+Sbjct  13273767  TTATGCTAAGCTAAGCTAAACGGCTGCTGGCTGTAGCTT  13273729
+
+
+
+
+Range 4: 5686563 to 5686601
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||||| || ||||| || |||||
+Sbjct  5686601  TTATGCTAAGCTAAGCTAACCAGCTGCTGGTTCCAGCTT  5686563
+
+
+
+
+Range 5: 6319110 to 6319148
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||| |||||||||||||  ||| ||||||||||| ||
+Sbjct  6319110  TTATGGTAAGCTAAGCTAATTGGCTGCTGGCTCTAGTTT  6319148
+
+
+
+
+Range 6: 12955813 to 12955851
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||||| |||| || |||| ||| |||||
+Sbjct  12955851  TTATGCTAAGCTAAGCAAACCAGCTGCTGTCTCGAGCTT  12955813
+
+
+
+
+Range 7: 13408995 to 13409047
+
+Score:48.2 bits(52), Expect:0.007, 
+Identities:43/53(81%),  Gaps:1/53(1%), Strand: Plus/Minus
+
+Query  2402      TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATG-AATTTACA  2453
+                 || ||||||||||||| ||| || || |||| |||||| | ||| | ||||||
+Sbjct  13409047  TAAGCTAAGCTAAGCTTACCAGCTGCAGGCTGTAGCTTCACATGTACTTTACA  13408995
+
+
+
+
+Range 8: 1687060 to 1687099
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:34/40(85%),  Gaps:0/40(0%), Strand: Plus/Minus
+
+Query  2400     GTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||| |||||||||| |||||||  | ||||||| ||||||
+Sbjct  1687099  GTTCTGCTAAGCTACGCTAACCAACTGCTGGCTGTAGCTT  1687060
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_3, whole genome shotgun sequence
+Sequence ID: JAKSXS010000003.1 Length: 23057489
+Range 1: 6499381 to 6499419
+
+Score:62.6 bits(68), Expect:3e-07, 
+Identities:37/39(95%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||||||||||| ||||||| ||||||
+Sbjct  6499419  TTATGCTAAGCTAAGCTAACCGGCTGCTGGCTGTAGCTT  6499381
+
+
+
+
+Range 2: 771215 to 771251
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:34/37(92%),  Gaps:0/37(0%), Strand: Plus/Minus
+
+Query  2403    ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||||||||||||||||||| || ||||||| ||||||
+Sbjct  771251  ATGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  771215
+
+
+
+
+Range 3: 8612266 to 8612302
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:34/37(92%),  Gaps:0/37(0%), Strand: Plus/Minus
+
+Query  2403     ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||||||| | ||||||| ||||||
+Sbjct  8612302  ATGCTAAGCTAAGCTAACCGTCTGCTGGCTGTAGCTT  8612266
+
+
+
+
+Range 4: 16149637 to 16149675
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||||||||||||||| || ||||| | ||||||
+Sbjct  16149675  TTATGCTAAGCTAAGCTAACCCGCTGCTGGTTGTAGCTT  16149637
+
+
+
+
+Range 5: 18250284 to 18250318
+
+Score:50.9 bits(55), Expect:0.002, 
+Identities:32/35(91%),  Gaps:0/35(0%), Strand: Plus/Plus
+
+Query  2405      GCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||||| ||| |||||||| |||||
+Sbjct  18250284  GCTAAGCTAAGCTAACTGGCTGCTGGCTCAAGCTT  18250318
+
+
+
+
+Range 6: 19177381 to 19177419
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||| |||||||||||||| | | ||||||| ||||||
+Sbjct  19177419  TTATGTTAAGCTAAGCTAACGGTCTGCTGGCTGTAGCTT  19177381
+
+
+
+
+Range 7: 4440075 to 4440119
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:37/45(82%),  Gaps:0/45(0%), Strand: Plus/Minus
+
+Query  2403     ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAA  2447
+                |||||||| |||||||||| || ||||| | |||||| | || ||
+Sbjct  4440119  ATGCTAAGTTAAGCTAACCAGCTGCTGGTTGTAGCTTCATATTAA  4440075
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_78, whole genome shotgun sequence
+Sequence ID: JAKSXS010000077.1 Length: 969200
+Range 1: 532593 to 532644
+
+Score:61.7 bits(67), Expect:1e-06, 
+Identities:45/52(87%),  Gaps:3/52(5%), Strand: Plus/Plus
+
+Query  2395    TTTCAGT---TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAA  2443
+               |||||||   ||||||||||||||||||  ||| |||||||||||||| |||
+Sbjct  532593  TTTCAGTCTGTATGCTAAGCTAAGCTAATTGGCTGCTGGCTCTAGCTTCAAA  532644
+
+
+
+
+Range 2: 839961 to 839995
+
+Score:50.9 bits(55), Expect:0.002, 
+Identities:32/35(91%),  Gaps:0/35(0%), Strand: Plus/Minus
+
+Query  2405    GCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               |||||||||||||||||||| |||||||  |||||
+Sbjct  839995  GCTAAGCTAAGCTAACCGGCTGCTGGCTGGAGCTT  839961
+
+
+
+
+Range 3: 853121 to 853159
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||||||||||||||||||| |  | ||||||| ||||||
+Sbjct  853159  TTATGCTAAGCTAAGCTAATCATCTGCTGGCTGTAGCTT  853121
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_5, whole genome shotgun sequence
+Sequence ID: JAKSXS010000005.1 Length: 19500424
+Range 1: 12491780 to 12491820
+
+Score:61.7 bits(67), Expect:1e-06, 
+Identities:38/41(93%),  Gaps:0/41(0%), Strand: Plus/Plus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAA  2441
+                 ||||||| ||||||||||||| |||||||||| ||||||||
+Sbjct  12491780  TTATGCTTAGCTAAGCTAACCAGCAGCTGGCTGTAGCTTAA  12491820
+
+
+
+
+Range 2: 11842718 to 11842755
+
+Score:60.8 bits(66), Expect:1e-06, 
+Identities:36/38(95%),  Gaps:0/38(0%), Strand: Plus/Plus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                 || ||||||||||||||||||||||||||||| |||||
+Sbjct  11842718  TTGTGCTAAGCTAAGCTAACCGGCAGCTGGCTGTAGCT  11842755
+
+
+
+
+Range 3: 6329558 to 6329618
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:51/62(82%),  Gaps:2/62(3%), Strand: Plus/Minus
+
+Query  2379     GTTTCCAAGC-ATGTCATTTCAGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGC  2437
+                |||||||| | || |||   || |||||||||||||||||||||| | ||||| | ||||
+Sbjct  6329618  GTTTCCAACCTATTTCAAGCCA-TTATGCTAAGCTAAGCTAACCGACTGCTGGATGTAGC  6329560
+
+Query  2438     TT  2439
+                ||
+Sbjct  6329559  TT  6329558
+
+
+
+
+Range 4: 13793931 to 13793969
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||||||||| ||||| || ||||||| ||||||
+Sbjct  13793969  TTATGCTAAGCTAAGATAACCTGCTGCTGGCTGTAGCTT  13793931
+
+
+
+
+Range 5: 9450399 to 9450437
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||||  || ||||||| ||| ||
+Sbjct  9450437  TTATGCTAAGCTAAGCTAACTCGCTGCTGGCTTTAGATT  9450399
+
+
+
+
+Range 6: 15808948 to 15808986
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2225      GTTAACTAGTGAGTTTTAGAGTTGCTGGTAGGTAGATTT  2263
+                 ||||| | |||||||||| |||||||| | |||||||||
+Sbjct  15808986  GTTAATTGGTGAGTTTTAAAGTTGCTGATGGGTAGATTT  15808948
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_58, whole genome shotgun sequence
+Sequence ID: JAKSXS010000057.1 Length: 1374804
+Range 1: 772292 to 772329
+
+Score:60.8 bits(66), Expect:1e-06, 
+Identities:36/38(95%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+               |||||||||||||||||||||||| |||||||| ||||
+Sbjct  772329  TTATGCTAAGCTAAGCTAACCGGCTGCTGGCTCCAGCT  772292
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_52, whole genome shotgun sequence
+Sequence ID: JAKSXS010000051.1 Length: 1878038
+Range 1: 1564321 to 1564358
+
+Score:60.8 bits(66), Expect:1e-06, 
+Identities:36/38(95%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                ||||||||||||| |||||||||| |||||||||||||
+Sbjct  1564358  TTATGCTAAGCTATGCTAACCGGCTGCTGGCTCTAGCT  1564321
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_51, whole genome shotgun sequence
+Sequence ID: JAKSXS010000050.1 Length: 1907296
+Range 1: 657415 to 657452
+
+Score:60.8 bits(66), Expect:1e-06, 
+Identities:36/38(95%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2402    TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||||||||||||||||||||||| ||||||| ||||||
+Sbjct  657452  TATGCTAAGCTAAGCTAACCGGCTGCTGGCTGTAGCTT  657415
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_9, whole genome shotgun sequence
+Sequence ID: JAKSXS010000009.1 Length: 18192833
+Range 1: 12916895 to 12916934
+
+Score:59.9 bits(65), Expect:4e-06, 
+Identities:37/40(93%),  Gaps:0/40(0%), Strand: Plus/Plus
+
+Query  2400      GTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||| ||||| | |||||||||||||||||
+Sbjct  12916895  GTTATGCTAAGCTATGCTAATCAGCAGCTGGCTCTAGCTT  12916934
+
+
+
+
+Range 2: 17799757 to 17799831
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:60/76(79%),  Gaps:3/76(3%), Strand: Plus/Plus
+
+Query  1976      CAATGTGTAATGCCTGGGTAACATTTTTGAAG-GAATGGAGG-CAGCTTCTCACCTCTAC  2033
+                 |||| ||||||||||||  | ||| ||  ||  | |||| || |||| | ||||||||||
+Sbjct  17799757  CAATTTGTAATGCCTGGCCA-CATATTCCAAACGTATGGGGGGCAGCATTTCACCTCTAC  17799815
+
+Query  2034      TGCTGCGTCCATACAA  2049
+                 | ||| ||||||||||
+Sbjct  17799816  TACTGGGTCCATACAA  17799831
+
+
+
+
+Range 3: 15569546 to 15569589
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:37/44(84%),  Gaps:0/44(0%), Strand: Plus/Minus
+
+Query  2400      GTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAA  2443
+                 || ||||||||||||||||| |  | ||||||| |||||| |||
+Sbjct  15569589  GTAATGCTAAGCTAAGCTAATCCCCTGCTGGCTGTAGCTTCAAA  15569546
+
+
+
+
+Range 4: 7648786 to 7648823
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:33/38(87%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                ||||||||||||||| ||||| || ||||| || ||||
+Sbjct  7648823  TTATGCTAAGCTAAGATAACCAGCTGCTGGTTCCAGCT  7648786
+
+
+
+
+Range 5: 12488350 to 12488379
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:28/30(93%),  Gaps:0/30(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGG  2430
+                 ||||||||||||||||||||| || |||||
+Sbjct  12488379  TTATGCTAAGCTAAGCTAACCAGCTGCTGG  12488350
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_1, whole genome shotgun sequence
+Sequence ID: JAKSXS010000001.1 Length: 25343235
+Range 1: 14200061 to 14200135
+
+Score:59.9 bits(65), Expect:4e-06, 
+Identities:58/75(77%),  Gaps:0/75(0%), Strand: Plus/Minus
+
+Query  2189      TTCTTTTGTTAGGATTAAAACAACAAAATATGAAGCGTTAACTAGTGAGTTTTAGAGTTG  2248
+                 || |||||| |||||||||  ||||| ||||||    |||| ||||||  | ||||| ||
+Sbjct  14200135  TTTTTTTGTGAGGATTAAACAAACAAGATATGACATATTAATTAGTGACCTATAGAGGTG  14200076
+
+Query  2249      CTGGTAGGTAGATTT  2263
+                 ||| |||| | ||||
+Sbjct  14200075  CTGCTAGGCAAATTT  14200061
+
+
+
+
+Range 2: 4548813 to 4548850
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                || ||||||||||||||||||||| |||||||| ||||
+Sbjct  4548850  TTGTGCTAAGCTAAGCTAACCGGCTGCTGGCTCCAGCT  4548813
+
+
+
+
+Range 3: 3139991 to 3140029
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||||| || ||||| | ||||||
+Sbjct  3140029  TTATGCTAAGCTAAGCTAACCAGCTGCTGGTTATAGCTT  3139991
+
+
+
+
+Range 4: 14473105 to 14473145
+
+Score:52.7 bits(57), Expect:6e-04, 
+Identities:36/41(88%),  Gaps:0/41(0%), Strand: Plus/Minus
+
+Query  2399      AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 || || ||||||||||||||| |||| ||||||| ||||||
+Sbjct  14473145  AGCTAAGCTAAGCTAAGCTAAGCGGCTGCTGGCTGTAGCTT  14473105
+
+
+
+
+Range 5: 4824967 to 4825026
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:48/60(80%),  Gaps:1/60(1%), Strand: Plus/Minus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGC-TTAAAATGAATTTACAAATGTGA  2460
+                || ||||||||| |||||| ||| ||||| | |||| ||| | ||||   ||||||||||
+Sbjct  4825026  TAAGCTAAGCTACGCTAACAGGCTGCTGGTTGTAGCTTTATATTGAACAAACAAATGTGA  4824967
+
+
+
+
+Range 6: 21888839 to 21888877
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:36/40(90%),  Gaps:1/40(2%), Strand: Plus/Plus
+
+Query  2010      ATGGAGGCAGCTTCTCACCTCTACTGCTGCGTCCATACAA  2049
+                 |||| |||||| ||||||||||||| ||| ||||||||||
+Sbjct  21888839  ATGG-GGCAGCGTCTCACCTCTACTACTGGGTCCATACAA  21888877
+
+
+
+
+Range 7: 23659202 to 23659250
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:41/50(82%),  Gaps:1/50(2%), Strand: Plus/Minus
+
+Query  2214      AAATATGAAGCGTTAACTAGTGAGTTTTAGAGTTGCTGGTAGGTAGATTT  2263
+                 ||| ||||| | | || |||||||| |||||| ||||||| ||| |||||
+Sbjct  23659250  AAACATGAA-CATGAATTAGTGAGTGTTAGAGCTGCTGGTCGGTGGATTT  23659202
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_404, whole genome shotgun sequence
+Sequence ID: JAKSXS010000403.1 Length: 37537
+Range 1: 1119 to 1166
+
+Score:59.0 bits(64), Expect:4e-06, 
+Identities:42/48(88%),  Gaps:3/48(6%), Strand: Plus/Minus
+
+Query  2395  TTTCAG---TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+             ||||||   |||||||||||||||||||||| | ||||||| ||||||
+Sbjct  1166  TTTCAGCCTTTATGCTAAGCTAAGCTAACCGCCTGCTGGCTTTAGCTT  1119
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_41, whole genome shotgun sequence
+Sequence ID: JAKSXS010000040.1 Length: 2400410
+Range 1: 1770955 to 1770996
+
+Score:59.0 bits(64), Expect:4e-06, 
+Identities:38/42(90%),  Gaps:0/42(0%), Strand: Plus/Minus
+
+Query  2398     CAGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                || |||||||||||||||||||||| | ||||| ||||||||
+Sbjct  1770996  CATTTATGCTAAGCTAAGCTAACCGTCTGCTGGTTCTAGCTT  1770955
+
+
+
+
+Range 2: 1495706 to 1495744
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||||| || ||||||| ||||||
+Sbjct  1495744  TTATGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  1495706
+
+
+
+
+Range 3: 2205271 to 2205309
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||||||||| | ||||||| ||||||
+Sbjct  2205309  TTATGCTAAGCTAAGCTAACCGTCTGCTGGCTGTAGCTT  2205271
+
+
+
+
+Range 4: 861434 to 861478
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:39/45(87%),  Gaps:0/45(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATG  2445
+               || |||||||||||||||||| || ||||||| |||||| | |||
+Sbjct  861478  TTGTGCTAAGCTAAGCTAACCCGCTGCTGGCTGTAGCTTCATATG  861434
+
+
+
+
+Range 5: 2099891 to 2099930
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:36/40(90%),  Gaps:0/40(0%), Strand: Plus/Minus
+
+Query  2400     GTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||| ||||||||||||||||| ||| ||||||| ||||||
+Sbjct  2099930  GTTCTGCTAAGCTAAGCTAACTGGCTGCTGGCTTTAGCTT  2099891
+
+
+
+
+Range 6: 1329706 to 1329748
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:36/43(84%),  Gaps:0/43(0%), Strand: Plus/Plus
+
+Query  2399     AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAA  2441
+                || || ||||||||||||||| | || |||||  |||||||||
+Sbjct  1329706  AGCTAAGCTAAGCTAAGCTAAGCAGCTGCTGGTGCTAGCTTAA  1329748
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_27, whole genome shotgun sequence
+Sequence ID: JAKSXS010000026.1 Length: 6318818
+Range 1: 1912765 to 1912818
+
+Score:59.0 bits(64), Expect:4e-06, 
+Identities:46/54(85%),  Gaps:1/54(1%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAA-AATGAATTTACA  2453
+                |||||||| ||||||||||| | | ||||||| |||||||| | ||||| ||||
+Sbjct  1912765  TTATGCTATGCTAAGCTAACAGTCTGCTGGCTGTAGCTTAATATTGAATGTACA  1912818
+
+
+
+
+Range 2: 5264901 to 5264937
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:33/37(89%),  Gaps:0/37(0%), Strand: Plus/Minus
+
+Query  2403     ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||| || | ||||||| ||||||
+Sbjct  5264937  ATGCTAAGCTAAGCTAAGCGTCTGCTGGCTGTAGCTT  5264901
+
+
+
+
+Range 3: 4852811 to 4852849
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||| | || |||||||  |||||
+Sbjct  4852849  TTATGCTAAGCTAAGCTAAGCAGCTGCTGGCTTCAGCTT  4852811
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_17, whole genome shotgun sequence
+Sequence ID: JAKSXS010000017.1 Length: 14590071
+Range 1: 5614120 to 5614168
+
+Score:59.0 bits(64), Expect:4e-06, 
+Identities:43/49(88%),  Gaps:1/49(2%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT-AAAATGAAT  2448
+                ||||||||||||||||||||| || ||||||| |||||| | | |||||
+Sbjct  5614168  TTATGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTTCATATTGAAT  5614120
+
+
+
+
+Range 2: 8905701 to 8905753
+
+Score:57.2 bits(62), Expect:1e-05, 
+Identities:45/53(85%),  Gaps:1/53(1%), Strand: Plus/Minus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT-AAAATGAATTTACA  2453
+                ||||||||||||||||||| ||| ||||| |||||||| | | | || |||||
+Sbjct  8905753  TATGCTAAGCTAAGCTAACTGGCTGCTGGTTCTAGCTTCATATTTAACTTACA  8905701
+
+
+
+
+Range 3: 8431790 to 8431836
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:40/47(85%),  Gaps:0/47(0%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAA  2447
+                ||||||||| | |||||||||||| |||||||| |||||   |||||
+Sbjct  8431790  TTATGCTAAACAAAGCTAACCGGCCGCTGGCTCCAGCTTGGCATGAA  8431836
+
+
+
+
+Range 4: 8434628 to 8434675
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:41/48(85%),  Gaps:3/48(6%), Strand: Plus/Minus
+
+Query  2395     TTTCAGT---TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||   ||||||||||||||||||| ||| |||||||  |||||
+Sbjct  8434675  TTTCAGTCTTTATGCTAAGCTAAGCTAACTGGCTGCTGGCTACAGCTT  8434628
+
+
+
+
+Range 5: 11201999 to 11202037
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||||||||||  | ||||||| ||||||
+Sbjct  11202037  TTATGCTAAGCTAAGCTAACCAACTGCTGGCTGTAGCTT  11201999
+
+
+
+
+Range 6: 4618072 to 4618106
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:31/35(89%),  Gaps:0/35(0%), Strand: Plus/Minus
+
+Query  2405     GCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||| |||||||| ||| ||||||| ||||||
+Sbjct  4618106  GCTAAGCCAAGCTAACAGGCTGCTGGCTGTAGCTT  4618072
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_8, whole genome shotgun sequence
+Sequence ID: JAKSXS010000008.1 Length: 18243177
+Range 1: 4550196 to 4550243
+
+Score:59.0 bits(64), Expect:4e-06, 
+Identities:42/48(88%),  Gaps:3/48(6%), Strand: Plus/Plus
+
+Query  2395     TTTCAGT---TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||   | ||||||||||||||||||| | ||||||||||||||
+Sbjct  4550196  TTTCAGTCTTTGTGCTAAGCTAAGCTAACCGCCTGCTGGCTCTAGCTT  4550243
+
+
+
+
+Range 2: 15091894 to 15091929
+
+Score:57.2 bits(62), Expect:1e-05, 
+Identities:34/36(94%),  Gaps:0/36(0%), Strand: Plus/Plus
+
+Query  2404      TGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||||||||||||||| |||||||| |||||
+Sbjct  15091894  TGCTAAGCTAAGCTAACCGGCTGCTGGCTCCAGCTT  15091929
+
+
+
+
+Range 3: 5540363 to 5540400
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Plus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||||||| || |||||||| |||||
+Sbjct  5540363  TATGCTAAGCTAAGCTAACCAGCTGCTGGCTCCAGCTT  5540400
+
+
+
+
+Range 4: 13479543 to 13479580
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Plus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                 || ||||||||||||||||||||| |||||||| ||||
+Sbjct  13479543  TTGTGCTAAGCTAAGCTAACCGGCTGCTGGCTCCAGCT  13479580
+
+
+
+
+Range 5: 8267615 to 8267651
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:34/37(92%),  Gaps:0/37(0%), Strand: Plus/Minus
+
+Query  2403     ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||||||| | ||||||| ||||||
+Sbjct  8267651  ATGCTAAGCTAAGCTAACCGTCTGCTGGCTGTAGCTT  8267615
+
+
+
+
+Range 6: 72089 to 72127
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Plus
+
+Query  2401   TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+              |||||||| |||||||||||| || |||||||| |||||
+Sbjct  72089  TTATGCTAGGCTAAGCTAACCAGCTGCTGGCTCCAGCTT  72127
+
+
+
+
+Range 7: 8311660 to 8311698
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||| |||||||||| ||| ||||||| ||||||
+Sbjct  8311698  TTATGCTAAACTAAGCTAACTGGCTGCTGGCTGTAGCTT  8311660
+
+
+
+
+Range 8: 12477638 to 12477685
+
+Score:52.7 bits(57), Expect:6e-04, 
+Identities:41/48(85%),  Gaps:1/48(2%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT-AAAATGAA  2447
+                 ||||| ||||||||||||| | || ||||||| |||||| | ||||||
+Sbjct  12477685  TTATGATAAGCTAAGCTAATCAGCTGCTGGCTGTAGCTTCATAATGAA  12477638
+
+
+
+
+Range 9: 408664 to 408701
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:34/38(89%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2402    TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               || |||||||||||||||| |||||||| || ||||||
+Sbjct  408701  TAAGCTAAGCTAAGCTAACTGGCAGCTGACTGTAGCTT  408664
+
+
+
+
+Range 10: 16472959 to 16472991
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:30/33(91%),  Gaps:0/33(0%), Strand: Plus/Minus
+
+Query  2399      AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGC  2431
+                 || || |||||||||||||||||||| ||||||
+Sbjct  16472991  AGCTAAGCTAAGCTAAGCTAACCGGCCGCTGGC  16472959
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_461, whole genome shotgun sequence
+Sequence ID: JAKSXS010000460.1 Length: 32799
+Range 1: 25662 to 25700
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401   TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+              |||||||||||||||||||| ||| ||||||| ||||||
+Sbjct  25700  TTATGCTAAGCTAAGCTAACTGGCTGCTGGCTTTAGCTT  25662
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_359, whole genome shotgun sequence
+Sequence ID: JAKSXS010000358.1 Length: 41419
+Range 1: 22735 to 22773
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401   TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+              ||||||||||||||||||||| || ||||||| ||||||
+Sbjct  22773  TTATGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  22735
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_133, whole genome shotgun sequence
+Sequence ID: JAKSXS010000132.1 Length: 351598
+Range 1: 278346 to 278389
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:39/44(89%),  Gaps:0/44(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAAT  2444
+               ||||||||||||| |||||| | | |||||||||||||||| ||
+Sbjct  278389  TTATGCTAAGCTACGCTAACTGCCTGCTGGCTCTAGCTTAACAT  278346
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_102, whole genome shotgun sequence
+Sequence ID: JAKSXS010000101.1 Length: 597290
+Range 1: 473323 to 473361
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||||||||||||||||||||| || ||||||| ||||||
+Sbjct  473361  TTATGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  473323
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_42, whole genome shotgun sequence
+Sequence ID: JAKSXS010000041.1 Length: 2378476
+Range 1: 756933 to 756971
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Plus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               |||||||||||||||||||| ||| |||||||| |||||
+Sbjct  756933  TTATGCTAAGCTAAGCTAACAGGCTGCTGGCTCCAGCTT  756971
+
+
+
+
+Range 2: 1832124 to 1832162
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||||||| ||| ||||||| ||||||
+Sbjct  1832162  TTATGCTAAGCTAAGCTAACTGGCTGCTGGCTGTAGCTT  1832124
+
+
+
+
+Range 3: 850847 to 850887
+
+Score:48.2 bits(52), Expect:0.007, 
+Identities:35/41(85%),  Gaps:0/41(0%), Strand: Plus/Minus
+
+Query  2399    AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||| ||||| ||||||||||||| || || |||| ||||||
+Sbjct  850887  AGTCATGCTGAGCTAAGCTAACCAGCTGCCGGCTGTAGCTT  850847
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_26, whole genome shotgun sequence
+Sequence ID: JAKSXS010000025.1 Length: 7235462
+Range 1: 3744730 to 3744768
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||||| || ||||||| ||||||
+Sbjct  3744768  TTATGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  3744730
+
+
+
+
+Range 2: 1611267 to 1611305
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||||||| ||| |||||| | |||||
+Sbjct  1611267  TTATGCTAAGCTAAGCTAACTGGCTGCTGGCACAAGCTT  1611305
+
+
+
+
+Range 3: 6826855 to 6826901
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:39/47(83%),  Gaps:0/47(0%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAA  2447
+                ||||||||||||||||||||| ||  |||||| ||  |||| || ||
+Sbjct  6826855  TTATGCTAAGCTAAGCTAACCTGCCACTGGCTGTACTTTAATATTAA  6826901
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_24, whole genome shotgun sequence
+Sequence ID: JAKSXS010000023.1 Length: 8588670
+Range 1: 272926 to 272964
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Plus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               |||||||||||||||| ||| | ||||||||||||||||
+Sbjct  272926  TTATGCTAAGCTAAGCAAACTGCCAGCTGGCTCTAGCTT  272964
+
+
+
+
+Range 2: 2232531 to 2232567
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:33/37(89%),  Gaps:0/37(0%), Strand: Plus/Minus
+
+Query  2403     ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||| |||||| ||| |||||||| |||||
+Sbjct  2232567  ATGCTAAGCTATGCTAACTGGCTGCTGGCTCCAGCTT  2232531
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_23, whole genome shotgun sequence
+Sequence ID: JAKSXS010000022.1 Length: 10684169
+Range 1: 1774009 to 1774052
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:39/44(89%),  Gaps:0/44(0%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAAT  2444
+                |||||||||||||||||||  ||| ||||||| |||||||| ||
+Sbjct  1774009  TTATGCTAAGCTAAGCTAATTGGCTGCTGGCTGTAGCTTAATAT  1774052
+
+
+
+
+Range 2: 1961588 to 1961626
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||| |||||||||| ||||| | ||||||
+Sbjct  1961626  TTATGCTAAGCTAGGCTAACCGGCTGCTGGTTGTAGCTT  1961588
+
+
+
+
+Range 3: 1955760 to 1955796
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:33/37(89%),  Gaps:0/37(0%), Strand: Plus/Minus
+
+Query  2403     ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||| | | | ||||||||||||||
+Sbjct  1955796  ATGCTAAGCTAAGCTATCTGTCCGCTGGCTCTAGCTT  1955760
+
+
+
+
+Range 4: 7740776 to 7740829
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:44/54(81%),  Gaps:1/54(1%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAATT-TACA  2453
+                |||||||||||||||||||| ||| ||||| | ||| || | ||  ||| ||||
+Sbjct  7740829  TTATGCTAAGCTAAGCTAACAGGCTGCTGGTTGTAGTTTCATATTTATTATACA  7740776
+
+
+
+
+Range 5: 1059524 to 1059564
+
+Score:48.2 bits(52), Expect:0.007, 
+Identities:35/41(85%),  Gaps:0/41(0%), Strand: Plus/Minus
+
+Query  2399     AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                || || |||||||||||||||  ||| ||||||| ||||||
+Sbjct  1059564  AGCTAAGCTAAGCTAAGCTAAGAGGCCGCTGGCTGTAGCTT  1059524
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_15, whole genome shotgun sequence
+Sequence ID: JAKSXS010000015.1 Length: 16359613
+Range 1: 10502600 to 10502638
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||||||||||||| |||||||  |||||
+Sbjct  10502638  TTATGCTAAGCTAAGCTAACCGGCTGCTGGCTGCAGCTT  10502600
+
+
+
+
+Range 2: 13175720 to 13175757
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:34/38(89%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                 || |||||||||||||||||| || |||| ||||||||
+Sbjct  13175757  TTGTGCTAAGCTAAGCTAACCAGCTGCTGACTCTAGCT  13175720
+
+
+
+
+Range 3: 11110374 to 11110412
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 || |||||||||||||||||| || |||||||  |||||
+Sbjct  11110412  TTGTGCTAAGCTAAGCTAACCAGCTGCTGGCTGCAGCTT  11110374
+
+
+
+
+Range 4: 15234276 to 15234316
+
+Score:48.2 bits(52), Expect:0.007, 
+Identities:35/41(85%),  Gaps:0/41(0%), Strand: Plus/Plus
+
+Query  2399      AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 || || |||||||||||||||||| | ||||| || |||||
+Sbjct  15234276  AGCTAAGCTAAGCTAAGCTAACCGACTGCTGGTTCCAGCTT  15234316
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_14, whole genome shotgun sequence
+Sequence ID: JAKSXS010000014.1 Length: 16527700
+Range 1: 15853282 to 15853320
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||||||||||||||| || ||||||| ||||||
+Sbjct  15853320  TTATGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  15853282
+
+
+
+
+Range 2: 10983841 to 10983878
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Plus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                 |||||||||||||||||||||||| ||| |||| ||||
+Sbjct  10983841  TTATGCTAAGCTAAGCTAACCGGCTGCTAGCTCCAGCT  10983878
+
+
+
+
+Range 3: 11305009 to 11305046
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2402      TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||||||||| || |||||||| |||||
+Sbjct  11305046  TATGCTAAGCTAAGCTAACCAGCTGCTGGCTCCAGCTT  11305009
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_10, whole genome shotgun sequence
+Sequence ID: JAKSXS010000010.1 Length: 18168694
+Range 1: 13977346 to 13977384
+
+Score:58.1 bits(63), Expect:1e-05, 
+Identities:36/39(92%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||||||||||| | ||||||| ||||||
+Sbjct  13977384  TTATGCTAAGCTAAGCTAACCGACTGCTGGCTTTAGCTT  13977346
+
+
+
+
+Range 2: 7334823 to 7334885
+
+Score:57.2 bits(62), Expect:1e-05, 
+Identities:51/63(81%),  Gaps:1/63(1%), Strand: Plus/Minus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT-AAAATGAATTTACAAATGTGA  2460
+                ||||||||||||||||||| ||| ||||||| |||||| | | | | | ||||||  |||
+Sbjct  7334885  TATGCTAAGCTAAGCTAACTGGCTGCTGGCTGTAGCTTCATATTCACTATACAAACATGA  7334826
+
+Query  2461     AAT  2463
+                 ||
+Sbjct  7334825  GAT  7334823
+
+
+
+
+Range 3: 2675431 to 2675468
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||||||| ||||||| ||| ||
+Sbjct  2675468  TATGCTAAGCTAAGCTAACCGGCTGCTGGCTGTAGTTT  2675431
+
+
+
+
+Range 4: 15806088 to 15806127
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:36/40(90%),  Gaps:0/40(0%), Strand: Plus/Minus
+
+Query  2225      GTTAACTAGTGAGTTTTAGAGTTGCTGGTAGGTAGATTTG  2264
+                 ||||| ||||||| |||||||||||||||||| || ||||
+Sbjct  15806127  GTTAATTAGTGAGCTTTAGAGTTGCTGGTAGGCAGGTTTG  15806088
+
+
+
+
+Range 5: 6046974 to 6047009
+
+Score:52.7 bits(57), Expect:6e-04, 
+Identities:33/36(92%),  Gaps:0/36(0%), Strand: Plus/Minus
+
+Query  2404     TGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||| ||| ||||||| ||||||
+Sbjct  6047009  TGCTAAGCTAAGCTAACTGGCTGCTGGCTGTAGCTT  6046974
+
+
+
+
+Range 6: 9000409 to 9000447
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||| | || ||||||| ||| ||
+Sbjct  9000447  TTATGCTAAGCTAAGCTAATCAGCTGCTGGCTGTAGTTT  9000409
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_12, whole genome shotgun sequence
+Sequence ID: JAKSXS010000012.1 Length: 17117253
+Range 1: 16351570 to 16351640
+
+Score:57.2 bits(62), Expect:1e-05, 
+Identities:55/71(77%),  Gaps:0/71(0%), Strand: Plus/Plus
+
+Query  2192      TTTTGTTAGGATTAAAACAACAAAATATGAAGCGTTAACTAGTGAGTTTTAGAGTTGCTG  2251
+                 || |||  |||| |||  ||||| |||||  | ||||| ||||||| |||| || |||||
+Sbjct  16351570  TTATGTACGGATCAAACAAACAAGATATGCTGTGTTAAATAGTGAGCTTTACAGGTGCTG  16351629
+
+Query  2252      GTAGGTAGATT  2262
+                  ||||| ||||
+Sbjct  16351630  CTAGGTGGATT  16351640
+
+
+
+
+Range 2: 16259636 to 16259675
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:36/40(90%),  Gaps:0/40(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTA  2440
+                 |||||||||||||||||||||| || |||||||| | |||
+Sbjct  16259675  TTATGCTAAGCTAAGCTAACCGTCACCTGGCTCTGGTTTA  16259636
+
+
+
+
+Range 3: 12873480 to 12873518
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 |||||||||||||||||||||  | ||||||| ||||||
+Sbjct  12873518  TTATGCTAAGCTAAGCTAACCACCTGCTGGCTGTAGCTT  12873480
+
+
+
+
+Range 4: 11149139 to 11149175
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:33/37(89%),  Gaps:0/37(0%), Strand: Plus/Minus
+
+Query  2403      ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||||||||||| |||| || |||| ||||||
+Sbjct  11149175  ATGCTAAGCTAAGCTAAGCGGCGGCCGGCTGTAGCTT  11149139
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_80, whole genome shotgun sequence
+Sequence ID: JAKSXS010000079.1 Length: 954625
+Range 1: 264445 to 264482
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Plus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+               ||||||||||||||||||||| || |||||||| ||||
+Sbjct  264445  TTATGCTAAGCTAAGCTAACCAGCCGCTGGCTCCAGCT  264482
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_65, whole genome shotgun sequence
+Sequence ID: JAKSXS010000064.1 Length: 1211337
+Range 1: 1124040 to 1124077
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                ||||||||||||||||||||| || |||||||| ||||
+Sbjct  1124077  TTATGCTAAGCTAAGCTAACCAGCTGCTGGCTCGAGCT  1124040
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_22, whole genome shotgun sequence
+Sequence ID: JAKSXS010000021.1 Length: 11719132
+Range 1: 11568751 to 11568788
+
+Score:56.3 bits(61), Expect:5e-05, 
+Identities:35/38(92%),  Gaps:0/38(0%), Strand: Plus/Plus
+
+Query  2226      TTAACTAGTGAGTTTTAGAGTTGCTGGTAGGTAGATTT  2263
+                 |||| ||||||||||||||| |||||| ||||||||||
+Sbjct  11568751  TTAATTAGTGAGTTTTAGAGGTGCTGGAAGGTAGATTT  11568788
+
+
+
+
+Range 2: 2409389 to 2409436
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:41/48(85%),  Gaps:3/48(6%), Strand: Plus/Minus
+
+Query  2395     TTTCAGT---TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||   |||||||||||||||||||| || |||| ||| |||||
+Sbjct  2409436  TTTCAGTCTTTATGCTAAGCTAAGCTAACCAGCTGCTGACTCCAGCTT  2409389
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_66, whole genome shotgun sequence
+Sequence ID: JAKSXS010000065.1 Length: 1181886
+Range 1: 502040 to 502079
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:36/40(90%),  Gaps:0/40(0%), Strand: Plus/Plus
+
+Query  2399    AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+               || || |||||||||||||||| ||| |||||||||||||
+Sbjct  502040  AGCTAAGCTAAGCTAAGCTAACAGGCTGCTGGCTCTAGCT  502079
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_44, whole genome shotgun sequence
+Sequence ID: JAKSXS010000043.1 Length: 2337344
+Range 1: 1038733 to 1038772
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:36/40(90%),  Gaps:0/40(0%), Strand: Plus/Plus
+
+Query  2400     GTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||| |||||||||||||||| || ||||| |||||
+Sbjct  1038733  GTTATGCTCAGCTAAGCTAACCGGCTGCAGGCTCCAGCTT  1038772
+
+
+
+
+Range 2: 698860 to 698897
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:33/38(87%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2402    TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               || ||||||||||||| |||||| |||||||  |||||
+Sbjct  698897  TAAGCTAAGCTAAGCTGACCGGCTGCTGGCTTCAGCTT  698860
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_7, whole genome shotgun sequence
+Sequence ID: JAKSXS010000007.1 Length: 18507585
+Range 1: 11160533 to 11160577
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:39/45(87%),  Gaps:0/45(0%), Strand: Plus/Plus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATG  2445
+                 || ||||||||||||||||||||| |||||  ||||||| | |||
+Sbjct  11160533  TTGTGCTAAGCTAAGCTAACCGGCTGCTGGTGCTAGCTTCATATG  11160577
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_6, whole genome shotgun sequence
+Sequence ID: JAKSXS010000006.1 Length: 19234555
+Range 1: 14677325 to 14677369
+
+Score:55.4 bits(60), Expect:5e-05, 
+Identities:39/45(87%),  Gaps:0/45(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATG  2445
+                 |||| |||||||||||||| | || |||||||||||||| | |||
+Sbjct  14677369  TTATACTAAGCTAAGCTAATCAGCTGCTGGCTCTAGCTTCATATG  14677325
+
+
+
+
+Range 2: 1870918 to 1870955
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:34/38(89%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                || ||||||||||||||||| || |||||||| |||||
+Sbjct  1870955  TAGGCTAAGCTAAGCTAACCAGCTGCTGGCTCCAGCTT  1870918
+
+
+
+
+Range 3: 18439456 to 18439491
+
+Score:48.2 bits(52), Expect:0.007, 
+Identities:32/36(89%),  Gaps:0/36(0%), Strand: Plus/Minus
+
+Query  2404      TGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||| ||||||||||||||||| |||||||  |||||
+Sbjct  18439491  TGCAAAGCTAAGCTAACCGGCTGCTGGCTGAAGCTT  18439456
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_43, whole genome shotgun sequence
+Sequence ID: JAKSXS010000042.1 Length: 2352819
+Range 1: 1650695 to 1650736
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:37/42(88%),  Gaps:0/42(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAA  2442
+                ||||||||||||||||||||| ||||| |||| ||| || ||
+Sbjct  1650736  TTATGCTAAGCTAAGCTAACCAGCAGCAGGCTGTAGGTTCAA  1650695
+
+
+
+
+Range 2: 1672751 to 1672796
+
+Score:52.7 bits(57), Expect:6e-04, 
+Identities:39/46(85%),  Gaps:0/46(0%), Strand: Plus/Plus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAA  2447
+                || ||||||||||||||||| || ||||||| |||||| | || ||
+Sbjct  1672751  TAAGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTTCATATTAA  1672796
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_19, whole genome shotgun sequence
+Sequence ID: JAKSXS010000018.1 Length: 13256254
+Range 1: 1924559 to 1924606
+
+Score:54.5 bits(59), Expect:2e-04, 
+Identities:41/48(85%),  Gaps:3/48(6%), Strand: Plus/Minus
+
+Query  2395     TTTCAGT---TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||   |||||||||||||||||  |||| |||||||| |||||
+Sbjct  1924606  TTTCAGTCTTTATGCTAAGCTAAGCTAGGCGGCTGCTGGCTCCAGCTT  1924559
+
+
+
+
+Range 2: 3761796 to 3761853
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:50/61(82%),  Gaps:6/61(9%), Strand: Plus/Minus
+
+Query  2395     TTTCAGT---TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAATTTA  2451
+                |||||||   |||||||||||| ||||||| || |||||||| ||| ||| ||  |||||
+Sbjct  3761853  TTTCAGTCTTTATGCTAAGCTAGGCTAACCAGCTGCTGGCTCCAGC-TAACAT--ATTTA  3761797
+
+Query  2452     C  2452
+                |
+Sbjct  3761796  C  3761796
+
+
+
+
+Range 3: 4521722 to 4521767
+
+Score:52.7 bits(57), Expect:6e-04, 
+Identities:39/46(85%),  Gaps:0/46(0%), Strand: Plus/Minus
+
+Query  2399     AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAAT  2444
+                || || ||||||||||||||| | || ||||||| |||||||| ||
+Sbjct  4521767  AGCTAAGCTAAGCTAAGCTAAACAGCTGCTGGCTGTAGCTTAACAT  4521722
+
+
+
+
+Range 4: 9686008 to 9686047
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:34/40(85%),  Gaps:0/40(0%), Strand: Plus/Minus
+
+Query  2400     GTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||| ||||||||||||||||  ||| |||||||  |||||
+Sbjct  9686047  GTTGTGCTAAGCTAAGCTAATTGGCTGCTGGCTGCAGCTT  9686008
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_197, whole genome shotgun sequence
+Sequence ID: JAKSXS010000196.1 Length: 126121
+Range 1: 98544 to 98582
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401   TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+              || ||||||||||||||||| ||| ||||||| ||||||
+Sbjct  98582  TTGTGCTAAGCTAAGCTAACTGGCTGCTGGCTGTAGCTT  98544
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_92, whole genome shotgun sequence
+Sequence ID: JAKSXS010000091.1 Length: 730250
+Range 1: 516412 to 516450
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               || |||||||||||||||||| || ||||||| ||||||
+Sbjct  516450  TTGTGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  516412
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_84, whole genome shotgun sequence
+Sequence ID: JAKSXS010000083.1 Length: 823527
+Range 1: 440620 to 440658
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Plus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               |||||||||||||||||| ||| | || |||||||||||
+Sbjct  440620  TTATGCTAAGCTAAGCTAGCCGTCTGCCGGCTCTAGCTT  440658
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_40, whole genome shotgun sequence
+Sequence ID: JAKSXS010000039.1 Length: 2488124
+Range 1: 1219205 to 1219243
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||||||||||| ||||| | ||| ||
+Sbjct  1219243  TTATGCTAAGCTAAGCTAACCGGCTGCTGGTTGTAGTTT  1219205
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_21, whole genome shotgun sequence
+Sequence ID: JAKSXS010000020.1 Length: 12617956
+Range 1: 11338915 to 11338953
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||| |||||||||||||||||| | |||||||| |||||
+Sbjct  11338953  TTAAGCTAAGCTAAGCTAACCGCCTGCTGGCTCCAGCTT  11338915
+
+
+
+
+Range 2: 12359059 to 12359097
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 || |||||||||||||||| |||| ||||||| ||||||
+Sbjct  12359097  TTGTGCTAAGCTAAGCTAATCGGCTGCTGGCTGTAGCTT  12359059
+
+
+
+
+Range 3: 12183424 to 12183466
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:37/43(86%),  Gaps:0/43(0%), Strand: Plus/Minus
+
+Query  2403      ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATG  2445
+                 |||||||||||||||||  ||| |||||||  ||||| |||||
+Sbjct  12183466  ATGCTAAGCTAAGCTAATAGGCTGCTGGCTGCAGCTTGAAATG  12183424
+
+
+
+
+Range 4: 8851082 to 8851134
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:43/53(81%),  Gaps:3/53(5%), Strand: Plus/Minus
+
+Query  2395     TTTCAGT---TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAAT  2444
+                |||||||   ||||||| |||||||||||| || ||||||| |  || |||||
+Sbjct  8851134  TTTCAGTCTTTATGCTATGCTAAGCTAACCAGCTGCTGGCTTTTTCTCAAAAT  8851082
+
+
+
+
+Range 5: 5056509 to 5056547
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                || ||||||||||||||||| ||| |||||||  |||||
+Sbjct  5056547  TTGTGCTAAGCTAAGCTAACAGGCTGCTGGCTGCAGCTT  5056509
+
+
+
+
+Range 6: 1898981 to 1899025
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:37/45(82%),  Gaps:0/45(0%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATG  2445
+                |||||||||||||||||||  ||| || || || ||||| | |||
+Sbjct  1898981  TTATGCTAAGCTAAGCTAATTGGCTGCCGGTTCGAGCTTCATATG  1899025
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_20, whole genome shotgun sequence
+Sequence ID: JAKSXS010000019.1 Length: 12637581
+Range 1: 992154 to 992192
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2225    GTTAACTAGTGAGTTTTAGAGTTGCTGGTAGGTAGATTT  2263
+               ||||| | ||||||||||||||||||| ||||| |||||
+Sbjct  992192  GTTAATTGGTGAGTTTTAGAGTTGCTGATAGGTGGATTT  992154
+
+
+
+
+Range 2: 1089042 to 1089080
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                ||||||||||||||||||| || | || |||||||||||
+Sbjct  1089080  TTATGCTAAGCTAAGCTAATCGCCTGCGGGCTCTAGCTT  1089042
+
+
+
+
+Range 3: 5414503 to 5414540
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:34/38(89%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                || |||||||||||||||| ||| ||||||| ||||||
+Sbjct  5414540  TAAGCTAAGCTAAGCTAACTGGCTGCTGGCTGTAGCTT  5414503
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_13, whole genome shotgun sequence
+Sequence ID: JAKSXS010000013.1 Length: 16819117
+Range 1: 9523432 to 9523470
+
+Score:53.6 bits(58), Expect:2e-04, 
+Identities:35/39(90%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                || |||||||||| |||||||||| ||||||| ||||||
+Sbjct  9523470  TTGTGCTAAGCTATGCTAACCGGCCGCTGGCTGTAGCTT  9523432
+
+
+
+
+Range 2: 1148260 to 1148302
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:36/43(84%),  Gaps:0/43(0%), Strand: Plus/Minus
+
+Query  2402     TATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAAT  2444
+                || |||||||||||||||||  | |||||||  ||||||| ||
+Sbjct  1148302  TAAGCTAAGCTAAGCTAACCACCTGCTGGCTTCAGCTTAACAT  1148260
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_39, whole genome shotgun sequence
+Sequence ID: JAKSXS010000038.1 Length: 2580828
+Range 1: 873845 to 873907
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:49/63(78%),  Gaps:0/63(0%), Strand: Plus/Plus
+
+Query  2204    TAAAACAACAAAATATGAAGCGTTAACTAGTGAGTTTTAGAGTTGCTGGTAGGTAGATTT  2263
+               ||||  ||||| || ||| | || || ||||||| ||||||| ||||| |||||  ||||
+Sbjct  873845  TAAACAAACAAGATGTGATGTGTAAATTAGTGAGCTTTAGAGGTGCTGCTAGGTGCATTT  873904
+
+Query  2264    GTT  2266
+                ||
+Sbjct  873905  ATT  873907
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_28, whole genome shotgun sequence
+Sequence ID: JAKSXS010000027.1 Length: 5300624
+Range 1: 1012638 to 1012675
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:34/38(89%),  Gaps:0/38(0%), Strand: Plus/Plus
+
+Query  2401     TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                |||||||||||||||||||| ||| ||||||| || ||
+Sbjct  1012638  TTATGCTAAGCTAAGCTAACAGGCTGCTGGCTGTAACT  1012675
+
+
+
+
+Range 2: 2024654 to 2024716
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:49/63(78%),  Gaps:0/63(0%), Strand: Plus/Minus
+
+Query  2201     GATTAAAACAACAAAATATGAAGCGTTAACTAGTGAGTTTTAGAGTTGCTGGTAGGTAGA  2260
+                || ||||  |||||||||  | | ||||| || |||||||| ||| ||||| ||||| ||
+Sbjct  2024716  GACTAAAGAAACAAAATACAACGTGTTAATTACTGAGTTTTGGAGGTGCTGATAGGTCGA  2024657
+
+Query  2261     TTT  2263
+                 ||
+Sbjct  2024656  CTT  2024654
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_11, whole genome shotgun sequence
+Sequence ID: JAKSXS010000011.1 Length: 17261045
+Range 1: 13498975 to 13499012
+
+Score:51.8 bits(56), Expect:6e-04, 
+Identities:34/38(89%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                 ||||||||||||||| ||||| || |||||||| ||||
+Sbjct  13499012  TTATGCTAAGCTAAGATAACCAGCTGCTGGCTCCAGCT  13498975
+
+
+
+
+Range 2: 12421235 to 12421288
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:44/54(81%),  Gaps:1/54(1%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTA-GCTTAAAATGAATTTACA  2453
+                 |||||||||||||||||||| ||| ||||| | || | ||| | | || |||||
+Sbjct  12421288  TTATGCTAAGCTAAGCTAACTGGCTGCTGGTTTTAGGTTTATATTTAACTTACA  12421235
+
+
+
+
+Range 3: 11249354 to 11249392
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401      TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                 ||||||||| ||||||||||| || ||||| | ||||||
+Sbjct  11249392  TTATGCTAAACTAAGCTAACCTGCTGCTGGTTGTAGCTT  11249354
+
+
+
+
+Range 4: 16595256 to 16595293
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:33/38(87%),  Gaps:0/38(0%), Strand: Plus/Minus
+
+Query  2404      TGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAA  2441
+                 |||| ||||||||||||| || |||||||  |||||||
+Sbjct  16595293  TGCTGAGCTAAGCTAACCTGCTGCTGGCTAAAGCTTAA  16595256
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_46, whole genome shotgun sequence
+Sequence ID: JAKSXS010000045.1 Length: 2291183
+Range 1: 2197655 to 2197709
+
+Score:50.9 bits(55), Expect:0.002, 
+Identities:44/55(80%),  Gaps:0/55(0%), Strand: Plus/Plus
+
+Query  2393     CATTTCAGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAA  2447
+                |||||   ||||||||||||| ||||| |  | ||||||||||| |||| || ||
+Sbjct  2197655  CATTTGCTTTATGCTAAGCTACGCTAAACAACTGCTGGCTCTAGTTTAATATCAA  2197709
+
+
+
+
+Range 2: 376184 to 376232
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:40/49(82%),  Gaps:0/49(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTTAAAATGAATT  2449
+               ||||||||||||||||||| |||| |  |||| ||||  || || ||||
+Sbjct  376232  TTATGCTAAGCTAAGCTAAACGGCTGACGGCTGTAGCAGAACATTAATT  376184
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_38, whole genome shotgun sequence
+Sequence ID: JAKSXS010000037.1 Length: 2672339
+Range 1: 2097595 to 2097634
+
+Score:50.9 bits(55), Expect:0.002, 
+Identities:35/40(88%),  Gaps:0/40(0%), Strand: Plus/Plus
+
+Query  2399     AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCT  2438
+                || || ||||||||||||||||| || ||||||| |||||
+Sbjct  2097595  AGCTAAGCTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCT  2097634
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_95, whole genome shotgun sequence
+Sequence ID: JAKSXS010000094.1 Length: 682114
+Range 1: 241730 to 241766
+
+Score:50.0 bits(54), Expect:0.002, 
+Identities:33/37(89%),  Gaps:0/37(0%), Strand: Plus/Plus
+
+Query  2403    ATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               |||||||||||||||||||  | |||||||| |||||
+Sbjct  241730  ATGCTAAGCTAAGCTAACCAACTGCTGGCTCCAGCTT  241766
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_717, whole genome shotgun sequence
+Sequence ID: JAKSXS010000716.1 Length: 15768
+Range 1: 3349 to 3387
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401  TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+             ||||||||||||| |||||| | |||| |||| ||||||
+Sbjct  3387  TTATGCTAAGCTACGCTAACTGTCAGCAGGCTGTAGCTT  3349
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_400, whole genome shotgun sequence
+Sequence ID: JAKSXS010000399.1 Length: 37639
+Range 1: 35896 to 35934
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401   TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+              ||||||||||||| ||||| |||| || |||| ||||||
+Sbjct  35934  TTATGCTAAGCTAGGCTAAGCGGCTGCCGGCTGTAGCTT  35896
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_71, whole genome shotgun sequence
+Sequence ID: JAKSXS010000070.1 Length: 1109761
+Range 1: 265783 to 265821
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||||||||||||| |||||| | |||| |||| ||||||
+Sbjct  265821  TTATGCTAAGCTACGCTAACTGTCAGCAGGCTGTAGCTT  265783
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_69, whole genome shotgun sequence
+Sequence ID: JAKSXS010000068.1 Length: 1134149
+Range 1: 745813 to 745851
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:34/39(87%),  Gaps:0/39(0%), Strand: Plus/Minus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||||||||||||||||||||| || || ||||  |||||
+Sbjct  745851  TTATGCTAAGCTAAGCTAACCAGCTGCCGGCTGAAGCTT  745813
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_49, whole genome shotgun sequence
+Sequence ID: JAKSXS010000048.1 Length: 1975030
+Range 1: 1945166 to 1945199
+
+Score:49.1 bits(53), Expect:0.007, 
+Identities:31/34(91%),  Gaps:0/34(0%), Strand: Plus/Minus
+
+Query  2406     CTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+                |||||||||||||||| || ||||||| ||||||
+Sbjct  1945199  CTAAGCTAAGCTAACCAGCTGCTGGCTGTAGCTT  1945166
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_100, whole genome shotgun sequence
+Sequence ID: JAKSXS010000099.1 Length: 625602
+Range 1: 64441 to 64476
+
+Score:48.2 bits(52), Expect:0.007, 
+Identities:32/36(89%),  Gaps:0/36(0%), Strand: Plus/Plus
+
+Query  2399   AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCT  2434
+              || || ||||||||||||||| || |||||||||||
+Sbjct  64441  AGCTAAGCTAAGCTAAGCTAATCGCCAGCTGGCTCT  64476
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_588, whole genome shotgun sequence
+Sequence ID: JAKSXS010000587.1 Length: 25304
+Range 1: 1723 to 1761
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:35/40(88%),  Gaps:1/40(2%), Strand: Plus/Plus
+
+Query  2015  GGCAGCTTCTCACCTCTACTGCTGCGTCCATACAAATATA  2054
+             |||||| | ||||||||||||||| ||||||| |||| ||
+Sbjct  1723  GGCAGCATTTCACCTCTACTGCTGGGTCCATA-AAATCTA  1761
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_550, whole genome shotgun sequence
+Sequence ID: JAKSXS010000549.1 Length: 27404
+Range 1: 9661 to 9698
+
+Score:47.3 bits(51), Expect:0.024, 
+Identities:33/38(87%),  Gaps:0/38(0%), Strand: Plus/Plus
+
+Query  2399  AGTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAG  2436
+             || || ||||||||||||||||| || |||||||| ||
+Sbjct  9661  AGCTAAGCTAAGCTAAGCTAACCAGCTGCTGGCTCCAG  9698
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_55, whole genome shotgun sequence
+Sequence ID: JAKSXS010000054.1 Length: 1518863
+Range 1: 440657 to 440691
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:31/35(89%),  Gaps:0/35(0%), Strand: Plus/Minus
+
+Query  2405    GCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               ||||||||||||||||| || ||||| | ||||||
+Sbjct  440691  GCTAAGCTAAGCTAACCAGCCGCTGGTTGTAGCTT  440657
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_37, whole genome shotgun sequence
+Sequence ID: JAKSXS010000036.1 Length: 2680642
+Range 1: 944478 to 944512
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:31/35(89%),  Gaps:0/35(0%), Strand: Plus/Plus
+
+Query  2401    TTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTA  2435
+               || ||||||||||||||||| |||||| |||| ||
+Sbjct  944478  TTGTGCTAAGCTAAGCTAACTGGCAGCAGGCTATA  944512
+
+
+
+
+>Cebidichthys violaceus isolate CVI_PGR_0920_01 SCAF_33, whole genome shotgun sequence
+Sequence ID: JAKSXS010000032.1 Length: 3078565
+Range 1: 973420 to 973459
+
+Score:46.4 bits(50), Expect:0.024, 
+Identities:34/40(85%),  Gaps:0/40(0%), Strand: Plus/Minus
+
+Query  2400    GTTATGCTAAGCTAAGCTAACCGGCAGCTGGCTCTAGCTT  2439
+               |||||||||||||||| || || || ||||| | ||||||
+Sbjct  973459  GTTATGCTAAGCTAAGATAGCCAGCTGCTGGATGTAGCTT  973420
+
+
+
+
+		
+
+

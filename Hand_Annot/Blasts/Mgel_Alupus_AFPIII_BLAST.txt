@@ -1,0 +1,143 @@
+RID: RRVU585W01N	
+Job Title:J03924:Macrozoarces americanus antifreeze...				
+Program: BLASTN 
+Query: Anarhichas lupus clone AWG1 type III antifreeze protein (AFP III) gene, complete cds ID: JQ040521.1(nucleic acid) Length: 665
+Database: genomic/1091424/GCA_949748355.1 
+	
+Sequences producing significant alignments:
+                                                                  Scientific      Common                     Max    Total Query   E   Per.   Acc.                        
+Description                                                       Name            Name            Taxid      Score  Score cover Value Ident  Len        Accession        
+Melanostigma gelatinosum genome assembly, chromosome: 21          Melanostigma... limp eelpout    1091424    355    489   76%   6e-96 77.62  21295439   OX456518.1       
+Melanostigma gelatinosum genome assembly, chromosome: 11          Melanostigma... limp eelpout    1091424    164    422   50%   2e-38 72.38  28063322   OX456508.1       
+
+Alignments:
+>Melanostigma gelatinosum genome assembly, chromosome: 21
+Sequence ID: OX456518.1 Length: 21295439 
+Range 1: 17022225 to 17022591
+
+Score:355 bits(393), Expect:6e-96, 
+Identities:319/411(78%),  Gaps:46/411(11%), Strand: Plus/Minus
+
+Query  257       AAAGACAGA--GAACCTTTAAGAAGACATTTTTGAAATAGTTTTTTCAACTGTGCCATGA  314
+                 ||| |||||  ||||||||||||| |||| |||||| |  | ||||||||||||||||||
+Sbjct  17022591  AAACACAGACAGAACCTTTAAGAAAACATGTTTGAATTTTTGTTTTCAACTGTGCCATGA  17022532
+
+Query  315       GAACAATAATAATGTCTGACCTTTTATTTTCCATTCTTCAAGGCGTCCGTGGTGGCCACC  374
+                 ||||||||||||||||||||||||||||||||||||||||||   ||||||||||||| |
+Sbjct  17022531  GAACAATAATAATGTCTGACCTTTTATTTTCCATTCTTCAAG---TCCGTGGTGGCCAGC  17022475
+
+Query  375       CAGCTGATCCCCATAAATACTGCCCTGACTCTGGTGATGATGACGACCAGGGTGGTCTTC  434
+                 |||||||||||||||||||||||||||||||  | |||||||| | | | ||  |||  |
+Sbjct  17022474  CAGCTGATCCCCATAAATACTGCCCTGACTCCAGCGATGATGATGGCGAAGGAAGTCAGC  17022415
+
+Query  435       CCAACGGGCATCCCCGCCGAGGACATTCCCCGATTAGTCTCAATGCAAGTGAACAGGGCA  494
+                 |||| ||||||||| |||||||| ||  ||  | ||||   |||||||||||||||||||
+Sbjct  17022414  CCAAAGGGCATCCCTGCCGAGGAGATGTCCAAAATAGTGGGAATGCAAGTGAACAGGGCA  17022355
+
+Query  495       GTGCCGATGGGCACAACCCTCATGCCAGACATGGTGAAATTTTACTGCCTCTGCGCGCCG  554
+                 ||| |  ||| |   |||||| ||||||                                
+Sbjct  17022354  GTGGCTCTGGACGAGACCCTCGTGCCAG--------------------------------  17022327
+
+Query  555       AAGACCCAAAGATGGTGAAAACGTATGCGTAGTGGTCCTGAGGGTGCCAAGGAGTTTCTT  614
+                          | |||||||||||||||  | ||  || |||||||||||||||||||||||
+Sbjct  17022326  ---------ATATGGTGAAAACGTATAAGAAGCAGTTCTGAGGGTGCCAAGGAGTTTCTT  17022276
+
+Query  615       CCCAAAACCAAAAGAAGAAATGCCTCCTCTCACAATTAACCTTGTTTTTGT  665
+                 |||||||||||||||||||||||| ||||||||||||||||||||||||||
+Sbjct  17022275  CCCAAAACCAAAAGAAGAAATGCCCCCTCTCACAATTAACCTTGTTTTTGT  17022225
+
+
+
+
+Range 2: 17022658 to 17022759
+
+Score:133 bits(147), Expect:4e-29, 
+Identities:93/105(89%),  Gaps:7/105(6%), Strand: Plus/Minus
+
+Query  1         TATATTAGATGCAGCACATGAACCTGTCCTGTCAGA----AGTCTCAGCTACAGCTTTAA  56
+                 ||||| ||||||||||| ||||||||||||||||||    |||||||||||||||||| |
+Sbjct  17022759  TATATAAGATGCAGCACCTGAACCTGTCCTGTCAGATACAAGTCTCAGCTACAGCTTTCA  17022700
+
+Query  57        CTTCGTTCTCCGCTAATTAATTAATTACTGATTAATTAAGTCTCA  101
+                 |||||||||||||||||||||||||   ||||||||||| | |||
+Sbjct  17022699  CTTCGTTCTCCGCTAATTAATTAAT---TGATTAATTAATTTTCA  17022658
+
+
+
+>Melanostigma gelatinosum genome assembly, chromosome: 11
+Sequence ID: OX456508.1 Length: 28063322 
+Range 1: 4386448 to 4386717
+
+Score:164 bits(181), Expect:2e-38, 
+Identities:207/286(72%),  Gaps:24/286(8%), Strand: Plus/Plus
+
+Query  181      AGGTGAGATATTCTTGCTCCACAAATAAATATTCAA--AGATGTGAGCCACAGTAAAATT  238
+                |||||||||||||| |||||||||| |  | ||     | ||| |||||||||| |||||
+Sbjct  4386448  AGGTGAGATATTCTGGCTCCACAAAAACCTTTTTTTTTAAATGCGAGCCACAGTTAAATT  4386507
+
+Query  239      CAATTGTTTTCTGTTTAGAAAGACAGAGAACCTTTAAGAAGACATTTTTGAAATAGTTTT  298
+                  ||| ||| ||||||||||||||||| |||||||||||| |||||| |           
+Sbjct  4386508  ACATT-TTTACTGTTTAGAAAGACAGATAACCTTTAAGAAAACATTTCT-----------  4386555
+
+Query  299      TTCAACTGTGCCATGAGAACAATAATAATGTCTGACCTTTTATTTTCCATTCTTCAAGGC  358
+                    ||||||||||||||||||||||||| || |||||||||||||| ||||| ||||  
+Sbjct  4386556  ----ACTGTGCCATGAGAACAATAATAATTTCAGACCTTTTATTTTCTATTCTCCAAGCT  4386611
+
+Query  359      G------TCCGTGGTGGCCACCCAGCTGATCCCCATAAATACTGCCCTGACTCTGGTGAT  412
+                |      || ||||||||||     | |||||||| |   || | |||||||| ||  ||
+Sbjct  4386612  GGGTAAATCTGTGGTGGCCAAGGTCCAGATCCCCAAAGGAACCGTCCTGACTCAGGACAT  4386671
+
+Query  413      GATGACGACCAGGGTGGTCTTCCCAACGGGCATCCCCGCCGAGGAC  458
+                | || ||   | || || |   || | ||| ||| | |||||||||
+Sbjct  4386672  GTTGGCGGTGAAGGCGGCCGAGCCGATGGGTATCGCGGCCGAGGAC  4386717
+
+
+
+
+Range 2: 4372242 to 4372395
+
+Score:90.6 bits(99), Expect:4e-16, 
+Identities:112/154(73%),  Gaps:6/154(3%), Strand: Plus/Plus
+
+Query  313      GAGAACAATAATAATGTCTGACCTTTTATTTTCCATTCTTCAAG------GCGTCCGTGG  366
+                ||||||||||||||| || |||||||||||||| ||||||||||        |||| |||
+Sbjct  4372242  GAGAACAATAATAATTTCAGACCTTTTATTTTCTATTCTTCAAGCTGGGTAAGTCCTTGG  4372301
+
+Query  367      TGGCCACCCAGCTGATCCCCATAAATACTGCCCTGACTCTGGTGATGATGACGACCAGGG  426
+                ||||| |      |||||||| |   || | |||||||| ||  ||| |||||   | ||
+Sbjct  4372302  TGGCCGCGGTCAAGATCCCCAAAGGCACCGTCCTGACTCAGGACATGTTGACGGTGAAGG  4372361
+
+Query  427      TGGTCTTCCCAACGGGCATCCCCGCCGAGGACAT  460
+                ||| |   || | |||| || | |||||||||||
+Sbjct  4372362  TGGCCGAGCCGATGGGCGTCGCGGCCGAGGACAT  4372395
+
+
+
+
+Range 3: 4387249 to 4387299
+
+Score:84.2 bits(92), Expect:2e-14, 
+Identities:49/51(96%),  Gaps:0/51(0%), Strand: Plus/Plus
+
+Query  615      CCCAAAACCAAAAGAAGAAATGCCTCCTCTCACAATTAACCTTGTTTTTGT  665
+                |||||||||||||||||||||||| |||||| |||||||||||||||||||
+Sbjct  4387249  CCCAAAACCAAAAGAAGAAATGCCCCCTCTCTCAATTAACCTTGTTTTTGT  4387299
+
+
+
+
+Range 4: 4373030 to 4373084
+
+Score:83.3 bits(91), Expect:6e-14, 
+Identities:52/55(95%),  Gaps:1/55(1%), Strand: Plus/Plus
+
+Query  612      CTTCCCAAAA-CCAAAAGAAGAAATGCCTCCTCTCACAATTAACCTTGTTTTTGT  665
+                |||||||||| ||||||||||||||||| |||||| |||||||||||||||||||
+Sbjct  4373030  CTTCCCAAAAACCAAAAGAAGAAATGCCCCCTCTCTCAATTAACCTTGTTTTTGT  4373084
+
+
+
+
+		
+
+
