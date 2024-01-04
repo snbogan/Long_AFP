@@ -1,14 +1,13 @@
-﻿Species_ID,Abbreviation,(Sub)Order,Family,Location,Kelley_Lab,SASA_locus,SASB_locus,SASA_acc,SASB_acc
-Anarhichas lupus,Alupus,Zoarcoidei,Anarhichadidae,HB,Yes,,,,
-Anarhichas minor,Aminor,Zoarcoidei,Anarhichadidae,HB,Yes,,,,
-Bathymaster signatus,Bsig,Zoarcoidei,Bathymasteridae,HB,Yes,,,,
-Lycodes platyrhinus,Norway,Zoarcoidei,Zoarcidae,HB,Yes,,,,
-Lycodes diapterus,BYU,Zoarcoidei,Zoarcidae,HB,Yes,,,,
-Melanostigma gelatinosum,Mgel,Zoarcoidei,Zoarcidae,NCBI,No,,,,
-Lycodes pacificus,Lpac,Zoarcoidei,Zoarcidae,NCBI,No,,,,
-Ophthalmolycus amberensis,Oamb,Zoarcoidei,Zoarcidae,HB,Yes,,,,
-Pholis gunnellus,Pgunn,Zoarcoidei,Pholidae,NCBI,No,,,,
-Cebidichthys violaceus,Cviol,Zoarcoidei,Stichaeidae,NCBI,No,,,,
-Leptoclinus maculatus,Lmac,Zoarcoidei,Stichaeidae,NCBI,No,,,,
-Gasterosteus aculeatus,Gacul,Scorpaeniformes,Gasterosteidae,NCBI,No,LOC120825501,LOC120825503,"NC_053220.1 (8553001..8556783, complement)","NC_053220.1 (8557311..8562485, complement)"
-Pungitius pungitius,Ppung,Scorpaeniformes,Gasterosteidae,NCBI,No,,,,
+﻿Species_ID,Abbreviation,(Sub)Order,Family,Location,Kelley_Lab,AFPs,AFP_compl_num,AFP_acccessions,AFP_ranges,AFP_strand,SASA_locus,SASB_locus,SASA_acc,SASB_acc,Syn_locus,Syn_accession,LIM_locus,LIM_accession,Sinuclein_LIM_coord,Sinuclein_LIM_range,Syn_LIM_gapped,Syn_Lim_dist,AFP_Syn_dist
+Anarhichas lupus,Alupus,Zoarcoidei,Anarhichadidae,HB,Yes,19,,,,,,,,,,,,,,,,,
+Anarhichas minor,Aminor,Zoarcoidei,Anarhichadidae,HB,Yes,6,,,,,,,,,,,,,,,,,
+Bathymaster signatus,Bsig,Zoarcoidei,Bathymasteridae,HB,Yes,0,,,,,,,,,,,,,,,,,
+Lycodes platyrhinus,Norway,Zoarcoidei,Zoarcidae,HB,Yes,1,,,,,,,,,,,,,,,,,
+Lycodes diapterus,BYU,Zoarcoidei,Zoarcidae,HB,Yes,0,,,,,,,,,,,,,,,,,
+Melanostigma gelatinosum,Mgel,Zoarcoidei,Zoarcidae,NCBI,No,1,1,,,,,,,,,,,,,,,,
+Lycodes pacificus,Lpac,Zoarcoidei,Zoarcidae,NCBI,No,0,1,"Lycodopsis pacificus isolate fLycPai1 chromosome 21, whole genome shotgun sequence",7767192 - 7753804,Plus,,,,,Lycodopsis pacificus isolate fLycPai1 chromosome 21,CM051708.1,Lycodopsis pacificus isolate fLycPai1 chromosome 21,CM051708.1,7740306-13618643,,,5804861,26886
+Ophthalmolycus amberensis,Oamb,Zoarcoidei,Zoarcidae,HB,Yes,13,,,,,,,,,Ophthalmolycus amberensis isolate Oamber_1 tig00023989,JAFEUB010001102.1,Ophthalmolycus amberensis isolate Oamber_1 tig00023290,JAFEUB010001797.1,1598550-end + 0-100073,,Yes,,
+Pholis gunnellus,Pgunn,Zoarcoidei,Pholidae,NCBI,No,15,,,,,,,,,,,,,,,,,
+Cebidichthys violaceus,Cviol,Zoarcoidei,Stichaeidae,NCBI,No,0,,,,,,,,,,,,,,,,,
+Leptoclinus maculatus,Lmac,Zoarcoidei,Stichaeidae,NCBI,No,42,,,,,,,,,,,,,,,,,
+Gasterosteus aculeatus,Gacul,Scorpaeniformes,Gasterosteidae,NCBI,No,0,,,,,LOC120825501,LOC120825503,"NC_053220.1 (8553001..8556783, complement)","NC_053220.1 (8557311..8562485, complement)",120819005, NC_053216.1,LOC120819814,NC_053216.1,,,,,
