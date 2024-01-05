@@ -576,7 +576,7 @@ IQ_genetree <- reroot(IQ_genetree,
 
 # Plot tree
 ggtree(IQ_genetree, aes(color = group), layout = "rectangular") %<+% group_df +
-  geom_tiplab(size = 1) +
+  geom_tiplab(size = 1.5, align = TRUE) +
   geom_treescale() +
   labs(title = "Rooted IQtree gene tree K3Pu+F+G4 substitution model")
 

@@ -169,7 +169,7 @@ Fig_1B
                    
 ```
 
-Calculate 
+Calculate freezing risk and plot against AFP copy number
 
 ```{r}
 
@@ -183,9 +183,6 @@ as.data.frame(df_species_sf)[,c(1,13)]
 
 ## Regression of crude freezing risk and AFP number
 busco_df <- read.csv(("Busco_results_genome_size.csv"))
-
-# No phylo correction
-anova(lm(AFPs ~ Risk + Mode_lat + UsMid_depth + (Mode_lat^2):UsMid_depth, data = busco_df))
 
 library(scales)
 
@@ -223,7 +220,21 @@ Fig_1 <- ggarrange(Fig_A, Fig_B,
 Fig_1
 
 # No phylo correction
-anova(lm(AFPs ~ Risk + Mode_lat + UsMid_depth + (Mode_lat^2):UsMid_depth, data = busco_df))
+busco_df$fr_risk <- busco_df$Mode_lat * busco_df$Risk * (1/busco_df$UsMid_depth)
+busco_df$pslog_risk <- log10(busco_df$fr_risk + (0.5*0.03236466))
+busco_df$pslog_AFPs <- log10(busco_df$AFPs + (0.5*1))
+
+busco_df$exp_risk <- busco_df$fr_risk^2
+
+
+ggplot(busco_df,
+       aes(x = pslog_risk, y = pslog_AFPs)) +
+  geom_point() +
+  geom_smooth(method = "lm", 
+              se = TRUE)
+
+# ANOVA without phylogenetically independent contrast
+anova(lm(pslog_AFPs ~ pslog_risk, data = busco_df))
 
 ```
 
@@ -265,6 +276,7 @@ library(cowplot)
 ```
 
 ```{r}
+
 # Plot species tree
 
 tree$node.label <- seq(1,11,1)
@@ -326,37 +338,81 @@ Fig_1
 
 ```{r}
 
-# Read tree file
-prelim_gene_tree <- read.newick(
-  "Hand_Annot/GetFasta/01032024_JustAFPs.newick"
-  )
+# Read in IQTree gene tree
+IQ_genetree <- read.tree("Trees/Gene_Trees/01042024_IQTREE_K3Pu+F+G4_SAS_AFP_genetree.newick")
 
-tree$tip.label <- gsub("busco_assembly_", "", tree$tip.label)
+# Create factor for AFPs and SAS genes
+group_df <- data.frame(tip.label = IQ_genetree$tip.label,
+  group = ifelse(
+  grepl("SAS", IQ_genetree$tip.label), "SAS",
+  ifelse(grepl("AFP", IQ_genetree$tip.label), "AFP", NA)))
 
-tree <- reroot(tree, 
-             node.number = 12, 
+IQ_genetree <- reroot(IQ_genetree, 
+             node.number = 193, 
              position = .5*(max(tree$edge.length)))
 
-tree$tip.label <- c("Anarhichas minor", "Anarhichas lupus", "Lycodes diapterus", 
-                    "Ophthalmolycus amberensis", "Lycodes pacificus", "Melanostigma gelatinosum",
-                    "Lycodes platyrhinus", "Leptoclinus maculatus", "Pholis gunnellus", 
-                    "Cebidichthys violaceus", "Bathymaster signatus", "Gasterosteus aculeatus")
+# Plot tree
+ggtree(IQ_genetree, aes(color = group), layout = "rectangular") %<+% group_df +
+  geom_tiplab(size = 1.5, align = TRUE) +
+  geom_treescale() +
+  labs(title = "Rooted IQtree gene tree K3Pu+F+G4 substitution model")
 
-# Plot AFP copy number
-busco_df$tip.label = factor(
-  busco_df$tip.label, 
-  levels = rev(c('Ophthalmolycus amberensis', 'Lycodes diapterus', 'Lycodes pacificus', 
-             'Lycodes platyrhinus', 'Melanostigma gelatinosum', 'Anarhichas lupus',
-             'Anarhichas minor', 'Pholis gunnellus', 'Leptoclinus maculatus',
-             'Cebidichthys violaceus', 'Bathymaster signatus', 'Gasterosteus aculeatus')))
 
-p1 <- ggplot(busco_df, aes(y = tip.label, x = AFPs)) + 
-  geom_bar(stat = "identity") +
-  geom_text(aes(label=AFPs, y = tip.label), nudge_x = 5) +
-  theme_tree2() + 
-  theme(legend.position='none') +
-  scale_x_continuous(limits = c(0,50)) +
-  labs(title = "AFP copies")
+```
+
+Phylogenetically independent contrast of AFP CNV
+
+```{r}
+
+# With phylo-independent contrast
+pr_busco_df <- busco_df[-c(seq(13, 22, 1)), ]
+
+# Transform to phy-independent values (PICs)
+pic.pslogrisk <- pic(pr_busco_df$pslog_risk, tree)
+pic.pslogAFPs <- pic(pr_busco_df$pslog_AFPs, tree)
+pic.fr_risk <- pic(pr_busco_df$fr_risk, tree)
+pic.AFPs <- pic(pr_busco_df$AFPs, tree)
+
+# Correlation of PICs
+cor.test(pic.pslogrisk, pic.pslogAFPs)
+anova(lm(pic.pslogAFPs ~ pic.pslogrisk))
+anova(lm(pic.AFPs ~ pic.fr_risk))
+
+
+# Bayesian PIC
+library(brms)
+
+# Create dataframe of PIC values
+brm_df <- data.frame(PIC_pslogrisk = pic.pslogrisk,
+                     PIC_frrisk = pic.fr_risk,
+                     PIC_pslog_AFPs = pic.pslogAFPs,
+                     PIC_AFPS = pic.AFPs)
+
+brm_df$sc_pslogrisk <- scale(brm_df$PIC_pslogrisk)
+brm_df$sc_pslogAFPs <- scale(brm_df$PIC_pslog_AFPs)
+brm_df$sc_risk <- scale(brm_df$PIC_frrisk)
+brm_df$sc_AFPs <- scale(brm_df$PIC_AFPS)
+
+# Fit brm
+brm_AFP_frrisk <- brm(
+  sc_pslogAFPs ~ sc_pslogrisk,
+  data = brm_df,
+  family = gaussian(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(TRUE)
+)
+
+summary(brm_AFP_frrisk)
+plot(brm_AFP_frrisk)
+conditional_effects(brm_AFP_frrisk)
+pp_check(brm_AFP_frrisk)
+bayes_R2(brm_AFP_frrisk)
+
+ggplot(data = brm_df,
+       aes(x = PIC_AFPS, y = PIC_pslog_AFPs)) +
+  geom_point(size = 3, alpha = 0.5) +
+  geom_smooth(method = "lm", span = 5, se = TRUE)
+
 
 
 ```
