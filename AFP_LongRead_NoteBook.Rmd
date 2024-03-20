@@ -529,7 +529,7 @@ bedtools getfasta -fi /path/to/genome.fa \
 
 ## Combine all fasta's using concat.sh in 'Scripts' folder
 # Target directory containing .fa files
-TARGET_DIR="/Users/sambogan/Documents/GitHub/Long_AFP/Hand_Annot/GetFasta"
+TARGET_DIR="/Users/sambogan/Documents/GitHub/Long_AFP/Hand_Annot/GetFast/concat"
 
 # Output file
 OUTPUT_FILE="combined.fa"
@@ -580,6 +580,23 @@ ggtree(IQ_genetree, aes(color = group), layout = "rectangular") %<+% group_df +
   geom_treescale() +
   labs(title = "Rooted IQtree gene tree K3Pu+F+G4 substitution model")
 
+# IQtree 2
+IQ_genetree2 <- read.tree("Trees/Gene_Trees/02092024_MAFFT_AFP_SAS_Exons_IQTREE.newick")
+
+# Create factor for AFPs and SAS genes
+group_df2 <- data.frame(tip.label = IQ_genetree2$tip.label,
+  group = ifelse(
+  grepl("SAS", IQ_genetree2$tip.label), "SAS",
+  ifelse(grepl("AFP", IQ_genetree2$tip.label), "AFP", NA)))
+
+IQ_genetree2 <- reroot(IQ_genetree2, #181
+             node.number = 60)
+
+# Plot tree
+ggtree(IQ_genetree2, aes(color = group), layout = "rectangular") %<+% group_df2 +
+  geom_tiplab(size = 2, align = FALSE) +
+  geom_treescale() +
+  labs(title = "Rooted IQtree gene tree K2P+G4 substitution model")
 
 ```
 
@@ -589,4 +606,626 @@ As shown above, this preliminary analysis demonstrates two indpendent origins of
 * These derived SAS genes underwent relaxed constraint resemble AFPs in terms of their conserved exons 
 
 Additionally, some sorting of SAS-A and SAS-B appears incorrect and needs to be inspected as well.
+
+# Automating annotation of AFPs
+
+Automated annotationw as performed using exonerate and the M. americanus AFP III protein sequence as a query
+
+```{bash, eval = FALSE}
+
+# Exonerate bash script
+exonerate --model protein2genome --query Mamericanus_AFP.txt --target ~/Documents/GitHub/Long_AFP/Genomes/Oamb_GCA_024529925.1_ASM2452992v1_genomic.fna --showtargetgff TRUE --showquerygff FALSE > Oamb_AFP_exonerate_output.txt
+
+# Convert exonerate's gff3 to a bed file using bedops and filter for exons
+gff2bed < Oamb_AFP.gff3 > Oamb_AFP.bed
+
+
+# Filter bed file for exons only
+awk '$8 == "exon"' Oamb_AFP.bed > Oamb_AFP_exons.bed
+
+# Extract fasta sequences of exons
+bed tools getfasta -fi ~/Documents/GitHub/Long_AFP/Genomes/Oamb_GCA_024529925.1_ASM2452992v1_genomic.fna -bed Oamb_AFP_exons.bed -s > ~/Documents/GitHub/Long_AFP/Exonerate/FASTA/Oamb_AFP_exons.fa
+
+# Concatentate exons 1 and 2
+bash ~/Documents/GitHub/Long_AFP/Scripts/concat_fa_pairs.sh ~/Documents/GitHub/Long_AFP/Exonerate/FASTA/Oamb_AFP_exons.fa > ~/Documents/GitHub/Long_AFP/Exonerate/FASTA/Oamb_AFP_cds.fa
+
+# Resulting fasta files of AFP exons 1/2 and SAS exons 1/6 were combined in a single fasta and aligned using mafft,
+
+```
+
+Here is the bash script for concatenating read pairs
+
+```{r}
+
+# Read in IQTree gene tree
+IQtr_exonerate <- read.tree("Trees/Gene_Trees/02122024_MAFFT_Exonerate.newick")
+
+# Create factor for AFPs and SAS genes
+group_df <- data.frame(tip.label = IQtr_exonerate$tip.label,
+  group = ifelse(
+  grepl("SASA", IQtr_exonerate$tip.label), "SASA",
+  ifelse(grepl("SASB", IQtr_exonerate$tip.label), "SASB",
+  ifelse(grepl("AFP", IQtr_exonerate$tip.label), "AFP", NA))))
+
+IQtr_exonerate <- reroot(IQtr_exonerate, 
+             node.number = 71)
+
+# Plot tree
+ggtree(IQtr_exonerate, aes(color = group), layout = "rectangular") %<+% group_df +
+  geom_tiplab(size = 1.5, align = FALSE) +
+  geom_treescale() +
+  labs(title = "Rooted IQtree gene tree (Exonerate)")
+
+```
+
+03/04/2024
+
+Filter RepeatModeler/Masker gff annotations for scaffolds including syntenic or translocated AFP III genes
+
+```{r}
+
+# Create list of .gff files
+setwd("~/Documents/GitHub/Long_AFP/RepeatModeler/repeatmasker_gffs/AFP_scaffolds/")
+
+# Get the files names
+AFP_gff_ls <- list.files(pattern = "*.gff")
+
+# Read in .csv files listed in gffs
+AFP_gffs <- lapply(AFP_gff_ls, ape::read.gff)
+
+# Correct df names from AFP_gffs
+names(AFP_gffs) <- gsub("_.*",
+                        "",
+                        AFP_gff_ls)
+
+# Create data frame of AFP scaffolds for filtering
+AFP_scaff_df <- data.frame(
+  species = c("Alupus", "Aminor",
+              "Lmac", "Lplaty",
+              "Oamb", "Pgunn"),
+  scaff = c("ptg000026l, ptg000054l", "ptg000017l, ptg000003l, ptg000020l",
+            "JAVDOI010000015.1, JAVDOI010000034.1, JAVDOI010000050.1", "ptg000053l",
+            "JAFEUB010000084.1", "OU342824.1")
+  )
+
+for_NS <- data.frame(
+  species = c("Alupus", "Aminor",
+              "Lmac", "Lplaty",
+              "Oamb", "Pgunn"),
+  scaff_synt = c("ptg000026l", "ptg000017l",
+            "JAVDOI010000015.1, JAVDOI010000050.1", "ptg000053l",
+            "JAFEUB010000084.1", "OU342824.1"),
+  scaff_trans = c("ptg000054l" , "ptg000003l, ptg000020l",
+                  "JAVDOI010000034.1" , NA,
+                  NA, NA)
+  )
+
+write.csv(for_NS, "~/Documents/GitHub/Long_AFP/Exonerate/BED/syn_trans_scaff_index.csv",
+          row.names = FALSE)
+
+table(AFP_gffs$Alupus$seqid %in% as.data.frame(strsplit(AFP_scaff_df[1,2], split = ", "))[,1])
+
+# Filter RepeatMasker gff's for scaffolds w AFPs
+filt_gffs <- list()
+
+for (i in seq_along(AFP_gffs)) {
+  # Filter the data frame to keep rows where seqid contains string1 or string2
+  filt_gffs[[i]] <- filter(
+    AFP_gffs[[i]], seqid %in% as.data.frame(strsplit(AFP_scaff_df[i,2], split = ", "))[,1])
+}
+
+# Export filtered gffs
+library(plyranges)
+
+for (i in seq_along(filt_gffs)) {
+  # Check if 'seqid' is a column name in the current data frame
+  if ('seqid' %in% colnames(filt_gffs[[i]])) {
+    # Change the name of the column from 'seqid' to '#seqid'
+    colnames(filt_gffs[[i]])[colnames(filt_gffs[[i]]) == 'seqid'] <- '#seqid'
+  }
+}
+
+for (i in seq_along(filt_gffs)) {
+  file_name <- paste0("~/Documents/GitHub/Long_AFP/RepeatModeler/repeatmasker_gffs/AFP_scaffolds/filt/", names(AFP_gffs)[[i]], "_AFP_scaffold_REs.gff")
+  write.table(filt_gffs[[i]], file_name, row.names = FALSE, quote = FALSE)
+}
+
+
+```
+
+### 03/06/2024
+
+Bash script for calculating N50s of fasta files
+
+```{bash, eval = FALSE}
+
+#!/bin/bash
+
+# Replace 'genome.fasta' with the path to your actual FASTA file.
+fasta_file="Gacul_GCA_016920845.1_GAculeatus_UGA_version5_genomic.fna" # Replace file with other genome assemblies
+
+# Step 1: Extract sequence lengths.
+awk '/^>/ {if (seqlen){print seqlen}; seqlen=0; next} {seqlen += length($0)} END {print seqlen}' $fasta_file > lengths.txt
+
+# Step 2: Sort lengths in descending order.
+sort -nr lengths.txt > sorted_lengths.txt
+
+# Step 3: Calculate N50 and write it to a file.
+awk '{sum += $0; if (sum >= total/2) {print $0 > "N50_value.txt"; exit}}' total=$(awk '{sum+=$0}END{print sum}' sorted_lengths.txt) sorted_lengths.txt
+
+```
+
+### 03/13/2024 Import and analyze bed files of AFP and RE/TE loci
+
+```{r}
+
+library(rtracklayer)
+library(GenomicRanges)
+library(plyranges)
+
+## First, AFPs
+
+# Create list of gff files in your directory
+gff_files <- c(
+  "~/Documents/GitHub/Long_AFP/AFP_TE_BEDs/BEDs/Alupus_AFP_exonerate_full.gff",
+  "~/Documents/GitHub/Long_AFP/AFP_TE_BEDs/BEDs/Aminor_AFP_exonerate_full.gff",
+  "~/Documents/GitHub/Long_AFP/AFP_TE_BEDs/BEDs/Lmac_AFP_exonerate_full.gff")
+
+# Function to read each gff file into a GRanges object
+gffs <- lapply(gff_files, function(x) import.gff(x))
+
+# Next, REs and TEs
+setwd("~/Documents/GitHub/Long_AFP/AFP_TE_BEDs/AFP_scaffold_RE_annots/")
+
+bed_RE_files <- c(
+"~/Documents/GitHub/Long_AFP/AFP_TE_BEDs/AFP_scaffold_RE_annots/Alupus_AFP_scaff_att.bed",
+  "~/Documents/GitHub/Long_AFP/AFP_TE_BEDs/AFP_scaffold_RE_annots/Aminor_AFP_scaff_att.bed",
+  "~/Documents/GitHub/Long_AFP/AFP_TE_BEDs/AFP_scaffold_RE_annots/Lmac_AFP_scaff_att.bed")
+
+# Convert REs to granges object
+bed_REs <- lapply(bed_RE_files, function(x) import.bed(x))
+
+### Calculate distances and mean dist between AFPs and RE's for each species, grouping by translocations
+
+## Filter AFP Granges for translocated and syntenic genes
+
+# First, read in index of synt vs trans scaffolds
+index <- filter(
+  read.csv("~/Documents/GitHub/Long_AFP/AFP_TE_BEDs/syn_trans_scaff_index.csv"),
+  species == "Alupus" |
+  species == "Aminor" |
+  species == "Lmac")
+
+print(index)
+
+# AFPs
+Alupus_AFPsynt_gr <- gffs[[1]][seqnames(gffs[[1]]) %in% index$scaff_synt]
+Aminor_AFPsynt_gr <- gffs[[2]][seqnames(gffs[[2]]) %in% index$scaff_synt]
+Lmac_AFPsynt_gr <- gffs[[3]][seqnames(gffs[[3]]) %in% index$scaff_synt]
+
+Alupus_AFPtrans_gr <- gffs[[1]][seqnames(gffs[[1]]) %in% index$scaff_trans]
+Aminor_AFPtransA_gr <- gffs[[2]][seqnames(gffs[[2]]) == "ptg000003l"]
+Aminor_AFPtransB_gr <- gffs[[2]][seqnames(gffs[[2]]) == "ptg000020l"]
+Lmac_AFPtransA_gr <- gffs[[3]][seqnames(gffs[[3]]) == "JAVDOI010000034.1"]
+Lmac_AFPtransB_gr <- gffs[[3]][seqnames(gffs[[3]]) == "JAVDOI010000050.1"]
+
+# REs
+Alupus_REsynt_gr <- bed_REs[[1]][seqnames(bed_REs[[1]]) %in% index$scaff_synt]
+Aminor_REsynt_gr <- bed_REs[[2]][seqnames(bed_REs[[2]]) %in% index$scaff_synt]
+Lmac_REsynt_gr <- bed_REs[[3]][seqnames(bed_REs[[3]]) %in% index$scaff_synt]
+
+Alupus_REtrans_gr <- bed_REs[[1]][seqnames(bed_REs[[1]]) %in% index$scaff_trans]
+Aminor_REtransA_gr <- bed_REs[[2]][seqnames(bed_REs[[2]]) == "ptg000003l"]
+Aminor_REtransB_gr <- bed_REs[[2]][seqnames(bed_REs[[2]]) == "ptg000020l"]
+Lmac_REtransA_gr <- bed_REs[[3]][seqnames(bed_REs[[3]]) == "JAVDOI010000034.1"]
+Lmac_REtransB_gr <- bed_REs[[3]][seqnames(bed_REs[[3]]) == "JAVDOI010000050.1"]
+
+```
+
+NS - Make draft plot of REs and AFPs in syntenic and translocated regions of the three species that have translocations (imported above) 
+
+```{r}
+
+
+
+```
+
+
+Calc RE density as number of elements within AFP tandem array
+
+```{r}
+### Calc density of REs near synt/trans AFPs
+## Density by bp
+# Subset RE granges within AFP regions
+Alupus_REsynt_f <- filter(Alupus_REsynt_gr,
+                          start >= min(as.data.frame(Alupus_AFPsynt_gr)$start) &
+                            end <= max(as.data.frame(Alupus_AFPsynt_gr)$end))
+
+Aminor_REsynt_f <- filter(Aminor_REsynt_gr,
+                          start >= min(as.data.frame(Aminor_AFPsynt_gr)$start) &
+                            end <= max(as.data.frame(Aminor_AFPsynt_gr)$end))
+
+Lmac_REsynt_f <- filter(Lmac_REsynt_gr,
+                          start >= min(as.data.frame(Lmac_AFPsynt_gr)$start) &
+                            end <= max(as.data.frame(Lmac_AFPsynt_gr)$end))
+
+Alupus_REtrans_f <- filter(Alupus_REtrans_gr,
+                          start >= min(as.data.frame(Alupus_AFPtrans_gr)$start) &
+                            end <= max(as.data.frame(Alupus_AFPtrans_gr)$end))
+
+Aminor_REtransA_f <- filter(Aminor_REtransA_gr,
+                          start >= min(as.data.frame(Aminor_AFPtransA_gr)$start) &
+                            end <= max(as.data.frame(Aminor_AFPtransA_gr)$end)) ### Empty because there is only one AFP - use proximity to object
+
+Aminor_REtransB_f <- filter(Aminor_REtransA_gr,
+                          start >= min(as.data.frame(Aminor_AFPtransB_gr)$start) &
+                            end <= max(as.data.frame(Aminor_AFPtransB_gr)$end)) ### Empty because there is only one AFP - use proximity to object
+
+Lmac_REtransA_f <- filter(Lmac_REtransA_gr,
+                          start >= min(as.data.frame(Lmac_AFPtransA_gr)$start) &
+                            end <= max(as.data.frame(Lmac_AFPtransA_gr)$end)) ### Empty because there is only one AFP - use proximity to object
+
+Lmac_REtransB_f <- filter(Aminor_REtransA_gr,
+                          start >= min(as.data.frame(Lmac_AFPtransB_gr)$start) &
+                            end <= max(as.data.frame(Lmac_AFPtransB_gr)$end))
+
+# Density by number of element
+dens_n_df <- data.frame(species = c("Alupus", "Alupus",
+                                    "Aminor", "Aminor", "Aminor",
+                                    "Lmac", "Lmac", "Lmac"),
+                        region = c("synt", "trans",
+                                   "synt", "trans", "trans",
+                                   "synt", "trans", "trans"),
+                        AFP_n = c(5, 18,
+                                  3, 1, 1,
+                                  4, 17, 21),
+                        RE_n = c(nrow(as.data.frame(Alupus_REsynt_f)), nrow(as.data.frame(Alupus_REtrans_f)),
+                                 nrow(as.data.frame(Aminor_REsynt_f)), nrow(as.data.frame(Aminor_REtransA_f)),
+                                 nrow(as.data.frame(Aminor_REtransB_f)),
+                                 nrow(as.data.frame(Lmac_REsynt_f)), nrow(as.data.frame(Lmac_REtransA_f)),
+                                 nrow(as.data.frame(Lmac_REtransB_f))))
+
+
+ggplot(data = dens_n_df,
+       aes(x = AFP_n, y = log(RE_n))) +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  geom_point(aes(shape = species, color = region)) +
+  theme_classic()
+
+```
+
+Calc RE density as mean distance of AFPs to REs
+
+```{r}
+
+# Create data frame
+dens_dist_df <- data.frame(species = c("Alupus", "Alupus",
+                                    "Aminor", "Aminor", "Aminor",
+                                    "Lmac", "Lmac", "Lmac"),
+                        region = c("synt", "trans",
+                                   "synt", "trans", "trans",
+                                   "synt", "trans", "trans"),
+                        AFP_n = c(5, 18,
+                                  3, 1, 1,
+                                  4, 17, 21),
+                        RE_dist = c(mean(nearest(Alupus_AFPsynt_gr, Alupus_REsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Alupus_AFPtrans_gr, Alupus_REtrans_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Aminor_AFPsynt_gr, Aminor_REsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Aminor_AFPtransA_gr, Aminor_REtransA_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Aminor_AFPsynt_gr, Aminor_REtransB_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Lmac_AFPsynt_gr, Lmac_REsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Lmac_AFPtransA_gr, Lmac_REtransA_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Lmac_AFPtransB_gr, Lmac_REtransB_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE))),
+                        RE_sd = c(sd(nearest(Alupus_AFPsynt_gr, Alupus_REsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Alupus_AFPtrans_gr, Alupus_REtrans_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Aminor_AFPsynt_gr, Aminor_REsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Aminor_AFPtransA_gr, Aminor_REtransA_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Aminor_AFPtransB_gr, Aminor_REtransB_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Lmac_AFPsynt_gr, Lmac_REsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Lmac_AFPtransA_gr, Lmac_REtransA_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Lmac_AFPsynt_gr, Lmac_REtransB_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE))))
+
+# Plot it!
+ggplot(data = dens_dist_df,
+       aes(x = AFP_n, y = RE_dist)) +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  geom_point(aes(shape = species, color = region), size = 3) +
+  theme_classic()
+
+```
+
+Filter RepeatModeler GRanges for TE's and plot, grouping by TE type
+
+```{r}
+
+## Create index of TE ID's and names
+
+library(Biostrings)
+
+# Function to read a FASTA file and extract names and annotations
+readFastaAnnotations <- function(fastaFile) {
+  # Read the FASTA file
+  fastaSequences <- readDNAStringSet(filepath = fastaFile, format = "fasta")
+  
+  # Extract names (IDs) and descriptions
+  names <- names(fastaSequences)
+  descriptions <- sapply(strsplit(names, " "), `[`, 2)
+  
+  # Replace NA with empty strings if there are no descriptions
+  descriptions[is.na(descriptions)] <- ""
+  
+  # Create a data frame to store the names and annotations
+  data <- data.frame(Name = sapply(strsplit(names, " "), `[`, 1), 
+                     Annotation = descriptions, stringsAsFactors = FALSE)
+  
+  return(data)
+}
+
+# Alupus
+Alupus_RE_fa <- 
+  "~/Documents/GitHub/Long_AFP/RepeatModeler/repeatmodeler_consensus_fastas/Alupus_consensus_sequences.fasta"
+
+Alupus_RE_annot <- readFastaAnnotations(Alupus_RE_fa)
+
+Alupus_RE_annot$Annotation <- gsub(".*#", "", Alupus_RE_annot$Name)
+Alupus_RE_annot$Name <- gsub("#.*", "", Alupus_RE_annot$Name)
+
+# Filter out Unknown, Simple_repeat, rRNA
+Alupus_RE_annot <- filter(Alupus_RE_annot, Annotation != "Unknown" & 
+                            Annotation != "Simple_repeat" & 
+                            Annotation != "rRNA")
+
+# Filter GRanges object for names that contain any of the substrings
+filter_condition <- sapply(Alupus_RE_annot$Name, 
+                           function(substring) grepl(substring, 
+                                                     Alupus_REsynt_gr$name))
+
+Alupus_TEsynt_gr <- Alupus_REsynt_gr[rowSums(filter_condition) > 0]
+
+filter_condition <- sapply(Alupus_RE_annot$Name, 
+                           function(substring) grepl(substring, 
+                                                     Alupus_REtrans_gr$name))
+
+Alupus_TEtrans_gr <- Alupus_REtrans_gr[rowSums(filter_condition) > 0]
+
+# Aminor
+Aminor_RE_fa <- 
+  "~/Documents/GitHub/Long_AFP/RepeatModeler/repeatmodeler_consensus_fastas/Aminor_consensus_sequences.fasta"
+
+Aminor_RE_annot <- readFastaAnnotations(Aminor_RE_fa)
+
+Aminor_RE_annot$Annotation <- gsub(".*#", "", Aminor_RE_annot$Name)
+Aminor_RE_annot$Name <- gsub("#.*", "", Aminor_RE_annot$Name)
+
+# Filter out Unknown, Simple_repeat, rRNA
+Aminor_RE_annot <- filter(Aminor_RE_annot, Annotation != "Unknown" & 
+                            Annotation != "Simple_repeat" & 
+                            Annotation != "rRNA")
+
+filter_condition <- sapply(Aminor_RE_annot$Name, 
+                           function(substring) grepl(substring, 
+                                                     Aminor_REsynt_gr$name))
+
+Aminor_TEsynt_gr <- Aminor_REsynt_gr[rowSums(filter_condition) > 0]
+
+filter_condition <- sapply(Aminor_RE_annot$Name, 
+                           function(substring) grepl(substring, 
+                                                     Aminor_REtransA_gr$name))
+
+Aminor_TEtransA_gr <- Aminor_REtransA_gr[rowSums(filter_condition) > 0]
+
+filter_condition <- sapply(Aminor_RE_annot$Name, 
+                           function(substring) grepl(substring, 
+                                                     Aminor_REtransB_gr$name))
+
+Aminor_TEtransB_gr <- Aminor_REtransB_gr[rowSums(filter_condition) > 0]
+
+# Lmac
+Lmac_RE_fa <- 
+  "~/Documents/GitHub/Long_AFP/RepeatModeler/repeatmodeler_consensus_fastas/Lmac_consensus_sequences.fasta"
+
+Lmac_RE_annot <- readFastaAnnotations(Lmac_RE_fa)
+
+Lmac_RE_annot$Annotation <- gsub(".*#", "", Lmac_RE_annot$Name)
+Lmac_RE_annot$Name <- gsub("#.*", "", Lmac_RE_annot$Name)
+
+Lmac_RE_annot <- filter(Lmac_RE_annot, Annotation != "Unknown" & 
+                            Annotation != "Simple_repeat" & 
+                            Annotation != "rRNA")
+
+filter_condition <- sapply(Lmac_RE_annot$Name, 
+                           function(substring) grepl(substring, 
+                                                     Lmac_REsynt_gr$name))
+
+Lmac_TEsynt_gr <- Lmac_REsynt_gr[rowSums(filter_condition) > 0]
+
+filter_condition <- sapply(Lmac_RE_annot$Name, 
+                           function(substring) grepl(substring, 
+                                                     Lmac_REtransA_gr$name))
+
+Lmac_TEtransA_gr <- Lmac_REtransA_gr[rowSums(filter_condition) > 0]
+
+filter_condition <- sapply(Lmac_RE_annot$Name, 
+                           function(substring) grepl(substring, 
+                                                     Lmac_REtransB_gr$name))
+
+Lmac_TEtransB_gr <- Lmac_REtransB_gr[rowSums(filter_condition) > 0]
+
+# Create AFP x TE density dataframe
+TE_dist_df <- data.frame(species = c("Alupus", "Alupus",
+                                    "Aminor", "Aminor", "Aminor",
+                                    "Lmac", "Lmac", "Lmac"),
+                        region = c("synt", "trans",
+                                   "synt", "trans", "trans",
+                                   "synt", "trans", "trans"),
+                        AFP_n = c(5, 18,
+                                  3, 1, 1,
+                                  4, 17, 21),
+                        TE_dist = c(mean(nearest(Alupus_AFPsynt_gr, Alupus_TEsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Alupus_AFPtrans_gr, Alupus_TEtrans_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Aminor_AFPsynt_gr, Aminor_TEsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Aminor_AFPtransA_gr, Aminor_TEtransA_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Aminor_AFPtransB_gr, Aminor_TEtransB_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Lmac_AFPsynt_gr, Lmac_TEsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Lmac_AFPtransA_gr, Lmac_TEtransA_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    mean(nearest(Lmac_AFPtransB_gr, Lmac_TEtransB_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE))),
+                        TE_sd = c(sd(nearest(Alupus_AFPsynt_gr, Alupus_TEsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Alupus_AFPtrans_gr, Alupus_TEtrans_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Aminor_AFPsynt_gr, Aminor_TEsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Aminor_AFPtransA_gr, Aminor_TEtransA_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Aminor_AFPsynt_gr, Aminor_TEtransB_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Lmac_AFPsynt_gr, Lmac_TEsynt_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Lmac_AFPtransA_gr, Lmac_TEtransA_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE)),
+                                    sd(nearest(Lmac_AFPsynt_gr, Lmac_TEtransB_gr, 
+                                                 select=c("arbitrary", "all"), 
+                                                 ignore.strand=TRUE))))
+
+# Plot it!
+ggplot(data = TE_dist_df,
+       aes(x = AFP_n, y = TE_dist)) +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  geom_point(aes(shape = species, color = region), size = 3) +
+  theme_classic()
+
+```
+
+Regress AFP CNV and number of TEs within AFP tandem arrays
+
+```{r}
+
+# Subset TE granges within AFP regions
+Alupus_TEsynt_f <- filter(Alupus_TEsynt_gr,
+                          start >= min(as.data.frame(Alupus_AFPsynt_gr)$start) &
+                            end <= max(as.data.frame(Alupus_AFPsynt_gr)$end))
+
+Aminor_TEsynt_f <- filter(Aminor_TEsynt_gr,
+                          start >= min(as.data.frame(Aminor_AFPsynt_gr)$start) &
+                            end <= max(as.data.frame(Aminor_AFPsynt_gr)$end))
+
+Lmac_TEsynt_f <- filter(Lmac_TEsynt_gr,
+                          start >= min(as.data.frame(Lmac_AFPsynt_gr)$start) &
+                            end <= max(as.data.frame(Lmac_AFPsynt_gr)$end))
+
+Alupus_TEtrans_f <- filter(Alupus_TEtrans_gr,
+                          start >= min(as.data.frame(Alupus_AFPtrans_gr)$start) &
+                            end <= max(as.data.frame(Alupus_AFPtrans_gr)$end))
+
+Aminor_TEtransA_f <- filter(Aminor_TEtransA_gr,
+                          start >= min(as.data.frame(Aminor_AFPtransA_gr)$start) &
+                            end <= max(as.data.frame(Aminor_AFPtransA_gr)$end)) ### Empty because there is only one AFP - use proximity to object
+
+Aminor_TEtransB_f <- filter(Aminor_TEtransA_gr,
+                          start >= min(as.data.frame(Aminor_AFPtransB_gr)$start) &
+                            end <= max(as.data.frame(Aminor_AFPtransB_gr)$end)) ### Empty because there is only one AFP - use proximity to object
+
+Lmac_TEtransA_f <- filter(Lmac_TEtransA_gr,
+                          start >= min(as.data.frame(Lmac_AFPtransA_gr)$start) &
+                            end <= max(as.data.frame(Lmac_AFPtransA_gr)$end)) ### Empty because there is only one AFP - use proximity to object
+
+Lmac_TEtransB_f <- filter(Aminor_TEtransA_gr,
+                          start >= min(as.data.frame(Lmac_AFPtransB_gr)$start) &
+                            end <= max(as.data.frame(Lmac_AFPtransB_gr)$end))
+
+# Density by number of element
+TE_n_df <- data.frame(species = c("Alupus", "Alupus",
+                                    "Aminor", "Aminor", "Aminor",
+                                    "Lmac", "Lmac", "Lmac"),
+                        region = c("synt", "trans",
+                                   "synt", "trans", "trans",
+                                   "synt", "trans", "trans"),
+                        AFP_n = c(5, 18,
+                                  3, 1, 1,
+                                  4, 17, 21),
+                        TE_n = c(nrow(as.data.frame(Alupus_TEsynt_f)), nrow(as.data.frame(Alupus_TEtrans_f)),
+                                 nrow(as.data.frame(Aminor_TEsynt_f)), nrow(as.data.frame(Aminor_TEtransA_f)),
+                                 nrow(as.data.frame(Aminor_TEtransB_f)),
+                                 nrow(as.data.frame(Lmac_TEsynt_f)), nrow(as.data.frame(Lmac_TEtransA_f)),
+                                 nrow(as.data.frame(Lmac_TEtransB_f))),
+                        len = c((max(as.data.frame(Alupus_AFPsynt_gr)$end) - 
+                                  min(as.data.frame(Alupus_AFPsynt_gr)$start)),
+                                (max(as.data.frame(Alupus_AFPtrans_gr)$end) - 
+                                  min(as.data.frame(Alupus_AFPtrans_gr)$start)),
+                                (max(as.data.frame(Aminor_AFPsynt_gr)$end) - 
+                                  min(as.data.frame(Aminor_AFPsynt_gr)$start)),
+                                (max(as.data.frame(Aminor_AFPtransA_gr)$end) - 
+                                  min(as.data.frame(Aminor_AFPtransA_gr)$start)),
+                                (max(as.data.frame(Aminor_AFPtransB_gr)$end) - 
+                                  min(as.data.frame(Aminor_AFPtransB_gr)$start)),
+                                (max(as.data.frame(Lmac_AFPsynt_gr)$end) - 
+                                  min(as.data.frame(Lmac_AFPsynt_gr)$start)),
+                                (max(as.data.frame(Lmac_AFPtransA_gr)$end) - 
+                                  min(as.data.frame(Lmac_AFPtransA_gr)$start)),
+                                (max(as.data.frame(Lmac_AFPtransB_gr)$end) - 
+                                  min(as.data.frame(Lmac_AFPtransB_gr)$start))))
+
+
+ggplot(data = TE_n_df,
+       aes(x = AFP_n, y = log(TE_n/len))) +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  geom_point(aes(shape = species, color = region), size = 3) +
+  theme_classic()
+
+```
 
