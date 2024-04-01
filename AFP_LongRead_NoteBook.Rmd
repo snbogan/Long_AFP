@@ -896,30 +896,25 @@ Lmac_REtransB_gr <- bed_REs[[3]][seqnames(bed_REs[[3]]) == "JAVDOI010000050.1"]
 
 library(Gviz)
 library(GenomicRanges)
-
-# Verify the class of Alupus_AFPsynt_gr
-class(Alupus_AFPsynt_gr) # This should return "GRanges"
-
-# Extract  chromosome names
-chr <- as.character(unique(seqnames(Alupus_AFPsynt_gr)))
-
-# Extract genome information. This typically refers to the reference name or assembly ID
-# Read in gff file for species if this doesn't work
-gen <- genome(Alupus_AFPsynt_gr)
-
-# Create an AnnotationTrack object for visualizations
-
-# disabled: options(ucscChromosomeNames=FALSE)
-atrack <- AnnotationTrack(Alupus_AFPsynt_gr, name = "Alupus_AFPsynt") 
-
-# Create a GenomeAxisTrack for displaying a genome axis
-gtrack <- GenomeAxisTrack()
-
-
 ```
 
+3/29/2024: NS - Below are 8 plots total: Alupus syntenic and translocated,
+Aminor syntenic, translocated A and translocated B, and Lmac syntenic and
+translocated A and B
+
+Comments: Alupus translocated has a vector error, it is trying to load a vector
+of around 25.7 Gb.  
+
+Aminor translocated A and B only displays the AFP, the plots
+need to be adjusted to show RE if they are present in the region.
+
+Lmac syntenic has no data present in the object for granges (Lmac_AFPsynt_gr) so
+when we plot the Lmac_AFPsynt_df we get the following error:
+
+Error in if ((maxBase - minBase) 
+== 0) { : missing value where TRUE/FALSE needed
 ```{r}
-# Create a genome axis track
+# Create a genome axis track using Alupus_AFPsynt/REsynt_df
 
 Alupus_AFPsynt_df <- as.data.frame(Alupus_AFPsynt_gr)
 
@@ -934,19 +929,199 @@ Alupus_synt_max <- max(c(max(Alupus_AFPsynt_df$end),
 
 genomeAxisTrack <- GenomeAxisTrack()
 
-# Create annotation tracks for the GRanges objects
+# Create annotation tracks for the Alupus synt GRanges objects
 track1 <- AnnotationTrack(range = Alupus_AFPsynt_gr, name = "AFP", col = "blue",
                           options(ucscChromosomeNames = FALSE))
 track2 <- AnnotationTrack(range = Alupus_REsynt_gr, name = "TE", col = "red" ,
                           options(ucscChromosomeNames = FALSE))
 
-# Plot the tracks
+# Plot the Alupus synt tracks using the Alupus_AFPsynt_df start and end
 plotTracks(list(genomeAxisTrack, track1, track2), 
            from = min(Alupus_AFPsynt_df$start), to = max(Alupus_AFPsynt_df$end))
 
 ```
+```{r}
+# Create a genome axis track using Alupus_AFPtrans/REtrans_df
+
+Alupus_AFPtrans_df <- as.data.frame(Alupus_AFPtrans_gr)
 
 
+Alupus_REtrans_df <- as.data.frame(Alupus_REtrans_gr)
+
+Alupus_trans_min <- min(c(min(Alupus_AFPtrans_df$start),
+                         min(Alupus_REtrans_df$start)))
+
+Alupus_trans_max <- max(c(max(Alupus_AFPtrans_df$end),
+                         max(Alupus_REtrans_df$end)))
+
+genomeAxisTrack <- GenomeAxisTrack()
+
+# Create annotation tracks for the Alupus trans GRanges objects
+track1 <- AnnotationTrack(range = Alupus_AFPtrans_gr, name = "AFP", col = "blue",
+                          options(ucscChromosomeNames = FALSE))
+track2 <- AnnotationTrack(range = Alupus_REtrans_gr, name = "TE", col = "red" ,
+                          options(ucscChromosomeNames = FALSE))
+
+# Plot the Alupus trans tracks using the Alupus_AFPtrans_df start and end
+plotTracks(list(genomeAxisTrack, track1, track2), 
+           from = min(Alupus_AFPtrans_df$start), to = max(Alupus_AFPtrans_df$end))
+```
+```{r}
+# Create a genome axis track using Aminor_AFPsynt/REsynt_df
+
+Aminor_AFPsynt_df <- as.data.frame(Aminor_AFPsynt_gr)
+
+
+Aminor_REsynt_df <- as.data.frame(Aminor_REsynt_gr)
+
+Aminor_synt_min <- min(c(min(Aminor_AFPsynt_df$start),
+                         min(Aminor_REsynt_df$start)))
+
+Aminor_synt_max <- max(c(max(Aminor_AFPsynt_df$end),
+                         max(Aminor_REsynt_df$end)))
+
+genomeAxisTrack <- GenomeAxisTrack()
+
+# Create annotation tracks for the Aminor synt GRanges objects
+track1 <- AnnotationTrack(range = Aminor_AFPsynt_gr, name = "AFP", col = "blue",
+                          options(ucscChromosomeNames = FALSE))
+track2 <- AnnotationTrack(range = Aminor_REsynt_gr, name = "TE", col = "red" ,
+                          options(ucscChromosomeNames = FALSE))
+
+# Plot the Aminor synt tracks using the Aminor_AFPsynt_df start and end
+plotTracks(list(genomeAxisTrack, track1, track2), 
+           from = min(Aminor_AFPsynt_df$start), to = max(Aminor_AFPsynt_df$end))
+```
+```{r}
+# Create a genome axis track using Aminor_AFPtransA/REtransA_df
+
+Aminor_AFPtransA_df <- as.data.frame(Aminor_AFPtransA_gr)
+
+
+Aminor_REtransA_df <- as.data.frame(Aminor_REtransA_gr)
+
+Aminor_transA_min <- min(c(min(Aminor_AFPtransA_df$start),
+                         min(Aminor_REtransA_df$start)))
+
+Aminor_transA_max <- max(c(max(Aminor_AFPtransA_df$end),
+                         max(Aminor_REtransA_df$end)))
+
+genomeAxisTrack <- GenomeAxisTrack()
+
+# Create annotation tracks for the Aminor transA GRanges objects
+track1 <- AnnotationTrack(range = Aminor_AFPtransA_gr, name = "AFP", col = "blue",
+                          options(ucscChromosomeNames = FALSE))
+track2 <- AnnotationTrack(range = Aminor_REtransA_gr, name = "TE", col = "red" ,
+                          options(ucscChromosomeNames = FALSE))
+
+# Plot the Aminor transA tracks using the Aminor_AFPtransA_df start and end
+plotTracks(list(genomeAxisTrack, track1, track2), 
+           from = min(Aminor_AFPtransA_df$start), to = max(Aminor_AFPtransA_df$end))
+```
+```{r}
+# Create a genome axis track using Aminor_AFPtransB/REtransB_df
+
+Aminor_AFPtransB_df <- as.data.frame(Aminor_AFPtransB_gr)
+
+
+Aminor_REtransB_df <- as.data.frame(Aminor_REtransB_gr)
+
+Aminor_transB_min <- min(c(min(Aminor_AFPtransB_df$start),
+                         min(Aminor_REtransB_df$start)))
+
+Aminor_transB_max <- max(c(max(Aminor_AFPtransB_df$end),
+                         max(Aminor_REtransB_df$end)))
+
+genomeAxisTrack <- GenomeAxisTrack()
+
+# Create annotation tracks for the Aminor transB GRanges objects
+track1 <- AnnotationTrack(range = Aminor_AFPtransB_gr, name = "AFP", col = "blue",
+                          options(ucscChromosomeNames = FALSE))
+track2 <- AnnotationTrack(range = Aminor_REtransB_gr, name = "TE", col = "red" ,
+                          options(ucscChromosomeNames = FALSE))
+
+# Plot the Alupus tracks using the Aminor_AFPtransB_df start and end
+plotTracks(list(genomeAxisTrack, track1, track2), 
+           from = min(Aminor_AFPtransB_df$start), to = max(Aminor_AFPtransB_df$end))
+```
+```{r}
+# Create a genome axis track using Lmac_AFPsynt/REsynt_df
+
+Lmac_AFPsynt_df <- as.data.frame(Lmac_AFPsynt_gr)
+
+
+Lmac_REsynt_df <- as.data.frame(Lmac_REsynt_gr)
+
+Lmac_synt_min <- min(c(min(Lmac_AFPsynt_df$start),
+                         min(Lmac_REsynt_df$start)))
+
+Lmac_synt_max <- max(c(max(Lmac_AFPsynt_df$end),
+                         max(Lmac_REsynt_df$end)))
+
+genomeAxisTrack <- GenomeAxisTrack()
+
+# Create annotation tracks for the Lmac synt GRanges objects
+track1 <- AnnotationTrack(range = Lmac_AFPsynt_gr, name = "AFP", col = "blue",
+                          options(ucscChromosomeNames = FALSE))
+track2 <- AnnotationTrack(range = Lmac_REsynt_gr, name = "TE", col = "red" ,
+                          options(ucscChromosomeNames = FALSE))
+
+# Plot the Lmac tracks using the Lmac_AFPsynt_df start and end
+plotTracks(list(genomeAxisTrack, track1, track2), 
+           from = min(Lmac_AFPsynt_df$start), to = max(Lmac_AFPsynt_df$end))
+```
+```{r}
+# Create a genome axis track using Lmac_AFPtransA/REtransA_df
+
+Lmac_AFPtransA_df <- as.data.frame(Lmac_AFPtransA_gr)
+
+
+Lmac_REtransA_df <- as.data.frame(Lmac_REtransA_gr)
+
+Lmac_transA_min <- min(c(min(Lmac_AFPtransA_df$start),
+                         min(Lmac_REtransA_df$start)))
+
+Lmac_transA_max <- max(c(max(Lmac_AFPtransA_df$end),
+                         max(Lmac_REtransA_df$end)))
+
+genomeAxisTrack <- GenomeAxisTrack()
+
+# Create annotation tracks for the Lmac transA GRanges objects
+track1 <- AnnotationTrack(range = Lmac_AFPtransA_gr, name = "AFP", col = "blue",
+                          options(ucscChromosomeNames = FALSE))
+track2 <- AnnotationTrack(range = Lmac_REtransA_gr, name = "TE", col = "red" ,
+                          options(ucscChromosomeNames = FALSE))
+
+# Plot the Lmac tracks using the Lmac_AFPsynt_df start and end
+plotTracks(list(genomeAxisTrack, track1, track2), 
+           from = min(Lmac_AFPtransA_df$start), to = max(Lmac_AFPtransA_df$end))
+```
+```{r}
+# Create a genome axis track using Lmac_AFPtransB/REtransB_df
+
+Lmac_AFPtransB_df <- as.data.frame(Lmac_AFPtransB_gr)
+
+
+Lmac_REtransB_df <- as.data.frame(Lmac_REtransB_gr)
+
+Lmac_transB_min <- min(c(min(Lmac_AFPtransB_df$start),
+                         min(Lmac_REtransB_df$start)))
+
+Lmac_transB_max <- max(c(max(Lmac_AFPtransB_df$end),
+                         max(Lmac_REtransB_df$end)))
+
+genomeAxisTrack <- GenomeAxisTrack()
+
+# Create annotation tracks for the Lmac transB GRanges objects
+track1 <- AnnotationTrack(range = Lmac_AFPtransB_gr, name = "AFP", col = "blue",
+                          options(ucscChromosomeNames = FALSE))
+track2 <- AnnotationTrack(range = Lmac_REtransB_gr, name = "TE", col = "red" ,
+                          options(ucscChromosomeNames = FALSE))
+
+# Plot the Lmac tracks using the Lmac_AFPtransB_df start and end
+plotTracks(list(genomeAxisTrack, track1, track2), 
+           from = min(Lmac_AFPtransB_df$start), to = max(Lmac_AFPtransB_df$end))
+```
 Calc RE density as number of elements within AFP tandem array
 
 ```{r}
