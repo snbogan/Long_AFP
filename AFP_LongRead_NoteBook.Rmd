@@ -826,7 +826,123 @@ NS - Make draft plot of REs and AFPs in syntenic and translocated regions of the
 
 ```{r}
 
+#Amended above with paths for NS local directory
 
+install.packages("BiocManager")
+
+BiocManager::install("plyranges")
+BiocManager::install("Gviz")
+
+library(rtracklayer)
+library(GenomicRanges)
+library(plyranges)
+
+## First, AFPs
+
+# Create list of gff files in your directory
+gff_files <- c(
+  "C:/Users/Nate/Long_AFP/AFP_TE_BEDs/BEDs/Alupus_AFP_exonerate_full.gff",
+  "C:/Users/Nate/Long_AFP/AFP_TE_BEDs/BEDs/Aminor_AFP_exonerate_full.gff",
+  "C:/Users/Nate/Long_AFP/AFP_TE_BEDs/BEDs/Lmac_AFP_exonerate_full.gff")
+
+# Function to read each gff file into a GRanges object
+gffs <- lapply(gff_files, function(x) import.gff(x))
+
+# Next, REs and TEs
+setwd("C:/Users/Nate/Long_AFP/AFP_TE_BEDs/AFP_scaffold_RE_annots/")
+
+bed_RE_files <- c(
+"C:/Users/Nate/Long_AFP/AFP_TE_BEDs/AFP_scaffold_RE_annots/Alupus_AFP_scaff_att.bed",
+  "C:/Users/Nate/Long_AFP/AFP_TE_BEDs/AFP_scaffold_RE_annots/Aminor_AFP_scaff_att.bed",
+  "C:/Users/Nate/Long_AFP/AFP_TE_BEDs/AFP_scaffold_RE_annots/Lmac_AFP_scaff_att.bed")
+
+# Convert REs to granges object
+bed_REs <- lapply(bed_RE_files, function(x) import.bed(x))
+
+### Calculate distances and mean dist between AFPs and RE's for each species, grouping by translocations
+
+## Filter AFP Granges for translocated and syntenic genes
+
+index <- filter(
+  read.csv("C:/Users/Nate/Long_AFP/AFP_TE_BEDs/syn_trans_scaff_index.csv"),
+  species == "Alupus" |
+  species == "Aminor" |
+  species == "Lmac")
+
+
+print(index)
+
+# AFPs
+Alupus_AFPsynt_gr <- gffs[[1]][seqnames(gffs[[1]]) %in% index$scaff_synt]
+Aminor_AFPsynt_gr <- gffs[[2]][seqnames(gffs[[2]]) %in% index$scaff_synt]
+Lmac_AFPsynt_gr <- gffs[[3]][seqnames(gffs[[3]]) %in% index$scaff_synt]
+
+Alupus_AFPtrans_gr <- gffs[[1]][seqnames(gffs[[1]]) %in% index$scaff_trans]
+Aminor_AFPtransA_gr <- gffs[[2]][seqnames(gffs[[2]]) == "ptg000003l"]
+Aminor_AFPtransB_gr <- gffs[[2]][seqnames(gffs[[2]]) == "ptg000020l"]
+Lmac_AFPtransA_gr <- gffs[[3]][seqnames(gffs[[3]]) == "JAVDOI010000034.1"]
+Lmac_AFPtransB_gr <- gffs[[3]][seqnames(gffs[[3]]) == "JAVDOI010000050.1"]
+
+# REs
+Alupus_REsynt_gr <- bed_REs[[1]][seqnames(bed_REs[[1]]) %in% index$scaff_synt]
+Aminor_REsynt_gr <- bed_REs[[2]][seqnames(bed_REs[[2]]) %in% index$scaff_synt]
+Lmac_REsynt_gr <- bed_REs[[3]][seqnames(bed_REs[[3]]) %in% index$scaff_synt]
+
+Alupus_REtrans_gr <- bed_REs[[1]][seqnames(bed_REs[[1]]) %in% index$scaff_trans]
+Aminor_REtransA_gr <- bed_REs[[2]][seqnames(bed_REs[[2]]) == "ptg000003l"]
+Aminor_REtransB_gr <- bed_REs[[2]][seqnames(bed_REs[[2]]) == "ptg000020l"]
+Lmac_REtransA_gr <- bed_REs[[3]][seqnames(bed_REs[[3]]) == "JAVDOI010000034.1"]
+Lmac_REtransB_gr <- bed_REs[[3]][seqnames(bed_REs[[3]]) == "JAVDOI010000050.1"]
+
+library(Gviz)
+library(GenomicRanges)
+
+# Verify the class of Alupus_AFPsynt_gr
+class(Alupus_AFPsynt_gr) # This should return "GRanges"
+
+# Extract  chromosome names
+chr <- as.character(unique(seqnames(Alupus_AFPsynt_gr)))
+
+# Extract genome information. This typically refers to the reference name or assembly ID
+# Read in gff file for species if this doesn't work
+gen <- genome(Alupus_AFPsynt_gr)
+
+# Create an AnnotationTrack object for visualizations
+
+# disabled: options(ucscChromosomeNames=FALSE)
+atrack <- AnnotationTrack(Alupus_AFPsynt_gr, name = "Alupus_AFPsynt") 
+
+# Create a GenomeAxisTrack for displaying a genome axis
+gtrack <- GenomeAxisTrack()
+
+
+```
+
+```{r}
+# Create a genome axis track
+
+Alupus_AFPsynt_df <- as.data.frame(Alupus_AFPsynt_gr)
+
+
+Alupus_REsynt_df <- as.data.frame(Alupus_REsynt_gr)
+
+Alupus_synt_min <- min(c(min(Alupus_AFPsynt_df$start),
+                         min(Alupus_REsynt_df$start)))
+
+Alupus_synt_max <- max(c(max(Alupus_AFPsynt_df$end),
+                         max(Alupus_REsynt_df$end)))
+
+genomeAxisTrack <- GenomeAxisTrack()
+
+# Create annotation tracks for the GRanges objects
+track1 <- AnnotationTrack(range = Alupus_AFPsynt_gr, name = "AFP", col = "blue",
+                          options(ucscChromosomeNames = FALSE))
+track2 <- AnnotationTrack(range = Alupus_REsynt_gr, name = "TE", col = "red" ,
+                          options(ucscChromosomeNames = FALSE))
+
+# Plot the tracks
+plotTracks(list(genomeAxisTrack, track1, track2), 
+           from = min(Alupus_AFPsynt_df$start), to = max(Alupus_AFPsynt_df$end))
 
 ```
 
