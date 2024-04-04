@@ -954,12 +954,14 @@ Alupus_trans_min <- min(c(min(Alupus_AFPtrans_df$start),
 Alupus_trans_max <- max(c(max(Alupus_AFPtrans_df$end),
                          max(Alupus_REtrans_df$end)))
 
+filtered_gr <- Alupus_REtrans_gr[start(Alupus_REtrans_gr) >= min(Alupus_AFPtrans_df$start) & end(Alupus_REtrans_gr) <= max(Alupus_AFPtrans_df$end)]
+
 genomeAxisTrack <- GenomeAxisTrack()
 
 # Create annotation tracks for the Alupus trans GRanges objects
 track1 <- AnnotationTrack(range = Alupus_AFPtrans_gr, name = "AFP", col = "blue",
                           options(ucscChromosomeNames = FALSE))
-track2 <- AnnotationTrack(range = Alupus_REtrans_gr, name = "TE", col = "red" ,
+track2 <- AnnotationTrack(range = filtered_gr, name = "TE", col = "red" ,
                           options(ucscChromosomeNames = FALSE))
 
 # Plot the Alupus trans tracks using the Alupus_AFPtrans_df start and end
@@ -1016,7 +1018,7 @@ track2 <- AnnotationTrack(range = Aminor_REtransA_gr, name = "TE", col = "red" ,
 
 # Plot the Aminor transA tracks using the Aminor_AFPtransA_df start and end
 plotTracks(list(genomeAxisTrack, track1, track2), 
-           from = min(Aminor_AFPtransA_df$start), to = max(Aminor_AFPtransA_df$end))
+           from = min(Aminor_AFPtransA_df$start)-10e3, to = max(Aminor_AFPtransA_df$end)+10e3)
 ```
 ```{r}
 # Create a genome axis track using Aminor_AFPtransB/REtransB_df
@@ -1467,7 +1469,7 @@ Aminor_TEtransA_f <- filter(Aminor_TEtransA_gr,
                           start >= min(as.data.frame(Aminor_AFPtransA_gr)$start) &
                             end <= max(as.data.frame(Aminor_AFPtransA_gr)$end)) ### Empty because there is only one AFP - use proximity to object
 
-Aminor_TEtransB_f <- filter(Aminor_TEtransA_gr,
+Aminor_TEtransB_f <- filter(Aminor_TEtransB_gr,
                           start >= min(as.data.frame(Aminor_AFPtransB_gr)$start) &
                             end <= max(as.data.frame(Aminor_AFPtransB_gr)$end)) ### Empty because there is only one AFP - use proximity to object
 
@@ -1475,7 +1477,7 @@ Lmac_TEtransA_f <- filter(Lmac_TEtransA_gr,
                           start >= min(as.data.frame(Lmac_AFPtransA_gr)$start) &
                             end <= max(as.data.frame(Lmac_AFPtransA_gr)$end)) ### Empty because there is only one AFP - use proximity to object
 
-Lmac_TEtransB_f <- filter(Aminor_TEtransA_gr,
+Lmac_TEtransB_f <- filter(Aminor_TEtransB_gr,
                           start >= min(as.data.frame(Lmac_AFPtransB_gr)$start) &
                             end <= max(as.data.frame(Lmac_AFPtransB_gr)$end))
 
