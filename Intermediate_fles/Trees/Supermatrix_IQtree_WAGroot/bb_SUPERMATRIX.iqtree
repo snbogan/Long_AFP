@@ -1,0 +1,149 @@
+IQ-TREE 2.2.5 COVID-edition built Sep 15 2023
+
+Input file name: SUPERMATRIX.phylip
+Type of analysis: tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 26437
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 12 sequences with 1601011 amino-acid sites
+Number of constant sites: 1.24559e+06 (= 77.8001% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 1.24559e+06 (= 77.8001% of all sites)
+Number of parsimony informative sites: 115928
+Number of distinct site patterns: 108031
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: WAG
+
+State frequencies: (model)
+
+Model of rate heterogeneity: Uniform
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -8123257.9642 (s.e. 5368.3575)
+Unconstrained log-likelihood (without tree): -8661819.0183
+Number of free parameters (#branches + #model parameters): 21
+Akaike information criterion (AIC) score: 16246557.9284
+Corrected Akaike information criterion (AICc) score: 16246557.9289
+Bayesian information criterion (BIC) score: 16246815.9374
+
+Total tree length (sum of branch lengths): 0.3257
+Sum of internal branch lengths: 0.0693 (21.2814% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'busco_assembly_Gacul_UGA_v5_genomic' is drawn at root
+Numbers in parentheses are SH-aLRT support (%) / ultrafast bootstrap support (%)
+
+                   +--busco_assembly_aminor.asm.p_ctg
+             +-----| (100/100)
+             |     +--busco_assembly_alupus.asm.p_ctg
+        +----| (100/100)
+        |    |          +--busco_assembly_byu.asm.p_ctg
+        |    |       +--| (100/100)
+        |    |       |  +--busco_assembly_oamb.asm.p_ctg
+        |    |    +--| (100/100)
+        |    |    |  +---busco_assembly_Lpac_genomic
+        |    +----| (100/100)
+        |         |  +-----busco_assembly_Melgel1.1_genomic
+        |         +--| (100/100)
+        |            +----busco_assembly_norway.asm.p_ctg
+    +---| (100/100)
+    |   |  +-----------busco_assembly_Lmac1_p1.0_genomic
+    |   +--| (100/100)
+    |      +------------busco_assembly_Pgunn1.2_genomic
++---| (100/100)
+|   +----------------busco_assembly_Cviol1.0.p_genomic
+|
++----------------busco_assembly_bsig.asm.p_ctg
+|
++----------------------------------------------------------busco_assembly_Gacul_UGA_v5_genomic
+
+Tree in newick format:
+
+(((((busco_assembly_aminor.asm.p_ctg:0.0029205025,busco_assembly_alupus.asm.p_ctg:0.0032579123)100/100:0.0121469298,(((busco_assembly_byu.asm.p_ctg:0.0000739181,busco_assembly_oamb.asm.p_ctg:0.0000687116)100/100:0.0069120611,busco_assembly_Lpac_genomic:0.0085653063)100/100:0.0065614474,(busco_assembly_Melgel1.1_genomic:0.0123458680,busco_assembly_norway.asm.p_ctg:0.0095839024)100/100:0.0045810692)100/100:0.0093090630)100/100:0.0098810719,(busco_assembly_Lmac1_p1.0_genomic:0.0233743924,busco_assembly_Pgunn1.2_genomic:0.0250428402)100/100:0.0030913580)100/100:0.0078864330,busco_assembly_Cviol1.0.p_genomic:0.0321893167)100/100:0.0089537630,busco_assembly_bsig.asm.p_ctg:0.0309409053,busco_assembly_Gacul_UGA_v5_genomic:0.1080579332);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -8123257.964185258
+Robinson-Foulds distance between ML tree and consensus tree: 0
+
+Branches with support >0.000000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
+                   +--busco_assembly_aminor.asm.p_ctg
+             +-----| (100)
+             |     +--busco_assembly_alupus.asm.p_ctg
+        +----| (100)
+        |    |          +--busco_assembly_byu.asm.p_ctg
+        |    |       +--| (100)
+        |    |       |  +--busco_assembly_oamb.asm.p_ctg
+        |    |    +--| (100)
+        |    |    |  +---busco_assembly_Lpac_genomic
+        |    +----| (100)
+        |         |  +-----busco_assembly_Melgel1.1_genomic
+        |         +--| (100)
+        |            +----busco_assembly_norway.asm.p_ctg
+    +---| (100)
+    |   |  +-----------busco_assembly_Lmac1_p1.0_genomic
+    |   +--| (100)
+    |      +------------busco_assembly_Pgunn1.2_genomic
++---| (100)
+|   +----------------busco_assembly_Cviol1.0.p_genomic
+|
++----------------busco_assembly_bsig.asm.p_ctg
+|
++-----------------------------------------------------------busco_assembly_Gacul_UGA_v5_genomic
+
+
+Consensus tree in newick format: 
+
+(((((busco_assembly_aminor.asm.p_ctg:0.0029205224,busco_assembly_alupus.asm.p_ctg:0.0032578813)100:0.0121469830,(((busco_assembly_byu.asm.p_ctg:0.0000739235,busco_assembly_oamb.asm.p_ctg:0.0000686773)100:0.0069120992,busco_assembly_Lpac_genomic:0.0085653331)100:0.0065615244,(busco_assembly_Melgel1.1_genomic:0.0123458475,busco_assembly_norway.asm.p_ctg:0.0095838780)100:0.0045811135)100:0.0093091557)100:0.0098810749,(busco_assembly_Lmac1_p1.0_genomic:0.0233743762,busco_assembly_Pgunn1.2_genomic:0.0250428840)100:0.0030913770)100:0.0078864158,busco_assembly_Cviol1.0.p_genomic:0.0321893214)100:0.0089537368,busco_assembly_bsig.asm.p_ctg:0.0309409358,busco_assembly_Gacul_UGA_v5_genomic:0.1080579200);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t bb_SUPERMATRIX.treefile -m "WAG" --length 1601011
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s SUPERMATRIX.phylip --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s SUPERMATRIX.phylip --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Fri Sep 27 15:49:35 2024
+Total CPU time used: 1920.839293 seconds (0h:32m:0s)
+Total wall-clock time used: 340.3626986 seconds (0h:5m:40s)
+

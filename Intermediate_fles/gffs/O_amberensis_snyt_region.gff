@@ -1,0 +1,171 @@
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    857585    864388    493    -    .    gene_id sncgb_1 ; sequence XP_040031911.1 ; gene_orientation + ; identity 95.41 ; similarity 98.17
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    864268    864388    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    864268    864388    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    864266    864267    .    -    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    860547    864267    .    -    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    860547    860548    .    -    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    860505    860546    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    860505    860546    .    -    .    insertions 0 ; deletions 0 ; identity 76.92 ; similarity 92.31
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    860503    860504    .    -    .    intron_id 2 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    859826    860504    .    -    .    intron_id 2
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    859826    859827    .    -    .    intron_id 1 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    859698    859825    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    859698    859825    .    -    .    insertions 0 ; deletions 0 ; identity 95.35 ; similarity 97.67
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    859696    859697    .    -    .    intron_id 3 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    857627    859697    .    -    .    intron_id 3
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    857627    857628    .    -    .    intron_id 2 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    857585    857626    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    857585    857626    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    857585    864388    493    -    .    alignment_id 1 ; Query XP_040031911.1 ; Align 864389 1 120 ; Align 860545 42 39 ; Align 859824 56 126 ; Align 857627 98 42
+JAFEUB010001797.1    exonerate:protein2genome:local    gene    100642    116921    1157    -    .    gene_id ldb3b1 ; sequence XP_040031907.1 ; gene_orientation + ; identity 89.38 ; similarity 94.87
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    116826    116921    .    -    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    116826    116921    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    116824    116825    .    -    .    intron_id 1 ; splice_site "GT"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    113533    116825    .    -    .    intron_id 1
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    113533    113534    .    -    .    intron_id 0 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    113381    113532    .    -    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    113381    113532    .    -    .    insertions 0 ; deletions 0 ; identity 88.00 ; similarity 98.00
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    113379    113380    .    -    .    intron_id 2 ; splice_site "GT"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    113086    113380    .    -    .    intron_id 2
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    113086    113087    .    -    .    intron_id 1 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    112993    113085    .    -    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    112993    113085    .    -    .    insertions 0 ; deletions 1 ; identity 63.33 ; similarity 73.33
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    112991    112992    .    -    .    intron_id 3 ; splice_site "AC"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    108136    112992    .    -    .    intron_id 3
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    108136    108137    .    -    .    intron_id 2 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    107938    108135    .    -    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    107938    108135    .    -    .    insertions 0 ; deletions 0 ; identity 95.38 ; similarity 96.92
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    107936    107937    .    -    .    intron_id 4 ; splice_site "GT"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    106075    107937    .    -    .    intron_id 4
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    106075    106076    .    -    .    intron_id 3 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    105908    106074    .    -    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    105908    106074    .    -    .    insertions 0 ; deletions 0 ; identity 89.09 ; similarity 94.55
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    105906    105907    .    -    .    intron_id 5 ; splice_site "GT"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    105719    105907    .    -    .    intron_id 5
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    105719    105720    .    -    .    intron_id 4 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    105682    105718    .    -    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    105682    105718    .    -    .    insertions 0 ; deletions 0 ; identity 90.91 ; similarity 100.00
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    105680    105681    .    -    .    intron_id 6 ; splice_site "GT"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    100733    105681    .    -    .    intron_id 6
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    100733    100734    .    -    .    intron_id 5 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    100642    100732    .    -    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    100642    100732    .    -    .    insertions 0 ; deletions 0 ; identity 93.33 ; similarity 100.00
+JAFEUB010001797.1    exonerate:protein2genome:local    similarity    100642    116921    1157    -    .    alignment_id 1 ; Query XP_040031907.1 ; Align 116922 1 96 ; Align 113533 33 150 ; Align 113085 84 24 ; Align 113061 93 66 ; Align 108135 116 195 ; Align 106074 182 165 ; Align 105717 238 33 ; Align 100732 250 90
+JAFEUB010001797.1    exonerate:protein2genome:local    gene    94892    95317    268    +    .    gene_id AFP_1 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 72.29 ; similarity 85.54
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    94892    94963    .    +    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    94892    94963    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    94964    94965    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    94964    95137    .    +    .    intron_id 1
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    95136    95137    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    95138    95317    .    +    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    95138    95317    .    +    .    insertions 0 ; deletions 0 ; identity 68.33 ; similarity 80.00
+JAFEUB010001797.1    exonerate:protein2genome:local    similarity    94892    95317    268    +    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 94892 1 57 ; Align 94952 20
+JAFEUB010001797.1    exonerate:protein2genome:local    gene    44125    60973    264    +    .    gene_id AFP_2 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 72.29 ; similarity 84.34
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    44125    44196    .    +    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    44125    44196    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    44197    44198    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    44197    60793    .    +    .    intron_id 1
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    60792    60793    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    60794    60973    .    +    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    60794    60973    .    +    .    insertions 0 ; deletions 0 ; identity 68.33 ; similarity 78.33
+JAFEUB010001797.1    exonerate:protein2genome:local    similarity    44125    60973    264    +    .    alignment_id 2 ; Query Mamericanus_AFP_protein ; Align 44125 1 57 ; Align 44185 20 12 ; Align 60794 24 180
+JAFEUB010001797.1    exonerate:protein2genome:local    gene    34477    34902    264    +    .    gene_id AFP_3 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 72.29 ; similarity 84.34
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    34477    34548    .    +    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    34477    34548    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010001797.1    exonerate:protein2genome:local    splice5    34549    34550    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010001797.1    exonerate:protein2genome:local    intron    34549    34722    .    +    .    intron_id 1
+JAFEUB010001797.1    exonerate:protein2genome:local    splice3    34721    34722    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010001797.1    exonerate:protein2genome:local    cds    34723    34902    .    +    .
+JAFEUB010001797.1    exonerate:protein2genome:local    exon    34723    34902    .    +    .    insertions 0 ; deletions 0 ; identity 68.33 ; similarity 78.33
+JAFEUB010001797.1    exonerate:protein2genome:local    similarity    34477    34902    264    +    .    alignment_id 3 ; Query Mamericanus_AFP_protein ; Align 34477 1 57 ; Align 34537 20 12 ; Align 34723 24 180
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    956215    956640    264    +    .    gene_id AFP_4 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 72.29 ; similarity 84.34
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    956215    956286    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    956215    956286    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    956287    956288    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    956287    956460    .    +    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    956459    956460    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    956461    956640    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    956461    956640    .    +    .    insertions 0 ; deletions 0 ; identity 68.33 ; similarity 78.33
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    956215    956640    264    +    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 956215 1 57 ; Align 956275 20 12 ; Align 956461 24 180
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    1014353    1014793    244    +    .    gene_id AFP_5 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 64.37 ; similarity 79.31
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    1014353    1014424    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    1014353    1014424    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    1014425    1014426    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    1014425    1014601    .    +    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    1014600    1014601    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    1014602    1014793    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    1014602    1014793    .    +    .    insertions 0 ; deletions 0 ; identity 57.81 ; similarity 71.88
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    1014353    1014793    244    +    .    alignment_id 2 ; Query Mamericanus_AFP_protein ; Align 1014353 1 57 ; Align 1014413 20 12 ; Align 1014602 24 192
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    962295    962735    244    +    .    gene_id AFP_6 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 64.37 ; similarity 79.31
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    962295    962366    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    962295    962366    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    962367    962368    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    962367    962543    .    +    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    962542    962543    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    962544    962735    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    962544    962735    .    +    .    insertions 0 ; deletions 0 ; identity 57.81 ; similarity 71.88
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    962295    962735    244    +    .    alignment_id 3 ; Query Mamericanus_AFP_protein ; Align 962295 1 57 ; Align 962355 20 12 ; Align 962544 24 192
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    998763    999191    243    +    .    gene_id AFP_7 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 66.27 ; similarity 81.93
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    998763    998834    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    998763    998834    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    998835    998836    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    998835    999011    .    +    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    999010    999011    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    999012    999191    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    999012    999191    .    +    .    insertions 0 ; deletions 0 ; identity 60.00 ; similarity 75.00
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    998763    999191    243    +    .    alignment_id 4 ; Query Mamericanus_AFP_protein ; Align 998763 1 57 ; Align 998823 20 12 ; Align 999012 24 180
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    989802    990230    243    +    .    gene_id AFP_8 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 66.27 ; similarity 81.93
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    989802    989873    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    989802    989873    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    989874    989875    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    989874    990050    .    +    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    990049    990050    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    990051    990230    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    990051    990230    .    +    .    insertions 0 ; deletions 0 ; identity 60.00 ; similarity 75.00
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    989802    990230    243    +    .    alignment_id 5 ; Query Mamericanus_AFP_protein ; Align 989802 1 57 ; Align 989862 20 12 ; Align 990051 24 180
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    981093    981522    243    +    .    gene_id AFP_9 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 66.27 ; similarity 81.93
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    981093    981164    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    981093    981164    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    981165    981166    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    981165    981342    .    +    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    981341    981342    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    981343    981522    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    981343    981522    .    +    .    insertions 0 ; deletions 0 ; identity 60.00 ; similarity 75.00
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    981093    981522    243    +    .    alignment_id 6 ; Query Mamericanus_AFP_protein ; Align 981093 1 57 ; Align 981153 20 12 ; Align 981343 24 180
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    971012    972560    243    +    .    gene_id AFP_10 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 66.27 ; similarity 81.93
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    971012    971083    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    971012    971083    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    971084    971085    .    +    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    971084    972380    .    +    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    972379    972380    .    +    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    972381    972560    .    +    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    972381    972560    .    +    .    insertions 0 ; deletions 0 ; identity 60.00 ; similarity 75.00
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    971012    972560    243    +    .    alignment_id 7 ; Query Mamericanus_AFP_protein ; Align 971012 1 57 ; Align 971072 20 12 ; Align 972381 24 180
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    1029282    1036967    264    -    .    gene_id AFP_11 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 72.29 ; similarity 84.34
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    1036896    1036967    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    1036896    1036967    .    -    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    1036894    1036895    .    -    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    1029462    1036895    .    -    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    1029462    1029463    .    -    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    1029282    1029461    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    1029282    1029461    .    -    .    insertions 0 ; deletions 0 ; identity 68.33 ; similarity 78.33
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    1029282    1036967    264    -    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 1036968 1 57 ; Align 1036908 20 12 ; Align 1029462 24 180
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    1047479    1066190    264    -    .    gene_id AFP_12 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 72.29 ; similarity 84.34
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    1066119    1066190    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    1066119    1066190    .    -    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    1066117    1066118    .    -    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    1047659    1066118    .    -    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    1047659    1047660    .    -    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    1047479    1047658    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    1047479    1047658    .    -    .    insertions 0 ; deletions 0 ; identity 68.33 ; similarity 78.33
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    1047479    1066190    264    -    .    alignment_id 2 ; Query Mamericanus_AFP_protein ; Align 1066191 1 57 ; Align 1066131 20 12 ; Align 1047659 24 180
+JAFEUB010000084.1    exonerate:protein2genome:local    gene    1073953    1074390    258    -    .    gene_id AFP_13 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 65.52 ; similarity 80.46
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    1074319    1074390    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    1074319    1074390    .    -    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+JAFEUB010000084.1    exonerate:protein2genome:local    splice5    1074317    1074318    .    -    .    intron_id 1 ; splice_site "GT"
+JAFEUB010000084.1    exonerate:protein2genome:local    intron    1074145    1074318    .    -    .    intron_id 1
+JAFEUB010000084.1    exonerate:protein2genome:local    splice3    1074145    1074146    .    -    .    intron_id 0 ; splice_site "AG"
+JAFEUB010000084.1    exonerate:protein2genome:local    cds    1073953    1074144    .    -    .
+JAFEUB010000084.1    exonerate:protein2genome:local    exon    1073953    1074144    .    -    .    insertions 0 ; deletions 0 ; identity 59.38 ; similarity 73.44
+JAFEUB010000084.1    exonerate:protein2genome:local    similarity    1073953    1074390    258    -    .    alignment_id 3 ; Query Mamericanus_AFP_protein ; Align 1074391 1 57 ; Align 1074331 20 12 ; Align 1074145 24 192
+

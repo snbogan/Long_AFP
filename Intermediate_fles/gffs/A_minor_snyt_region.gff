@@ -1,0 +1,80 @@
+ptg000017l    exonerate:protein2genome:local    gene    16619765    16619944    237    +    .    gene_id AFP_1 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 66.27 ; similarity 78.31
+ptg000017l    exonerate:protein2genome:local    cds    16599268    16599339    .    +    .
+ptg000017l    exonerate:protein2genome:local    exon    16599268    16599339    .    +    .    insertions 3 ; deletions 0 ; identity 87.50 ; similarity 95.83
+ptg000017l    exonerate:protein2genome:local    splice5    16599340    16599341    .    +    .    intron_id 1 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16599340    16619764    .    +    .    intron_id 1
+ptg000017l    exonerate:protein2genome:local    splice3    16619763    16619764    .    +    .    intron_id 0 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16619765    16619944    .    +    .
+ptg000017l    exonerate:protein2genome:local    exon    16619765    16619944    .    +    .    insertions 0 ; deletions 0 ; identity 58.33 ; similarity 71.67
+ptg000017l    exonerate:protein2genome:local    similarity    16599268    16619944    237    +    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 16599268 1 57 ; Align 16599328 20 12 ; Align 16619765 24 180
+ptg000017l    exonerate:protein2genome:local    gene    16611492    16611920    229    +    .    gene_id AFP_2 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 65.06 ; similarity 74.70
+ptg000017l    exonerate:protein2genome:local    cds    16611492    16611563    .    +    .
+ptg000017l    exonerate:protein2genome:local    exon    16611492    16611563    .    +    .    insertions 0 ; deletions 0 ; identity 76.00 ; similarity 88.00
+ptg000017l    exonerate:protein2genome:local    splice5    16611564    16611565    .    +    .    intron_id 1 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16611564    16611743    .    +    .    intron_id 1
+ptg000017l    exonerate:protein2genome:local    splice3    16611742    16611743    .    +    .    intron_id 0 ; splice_site "CC"
+ptg000017l    exonerate:protein2genome:local    cds    16611744    16611920    .    +    .
+ptg000017l    exonerate:protein2genome:local    exon    16611744    16611920    .    +    .    insertions 0 ; deletions 0 ; identity 61.02 ; similarity 69.49
+ptg000017l    exonerate:protein2genome:local    similarity    16611492    16611920    229    +    .    alignment_id 2 ; Query Mamericanus_AFP_protein ; Align 16611492 1 72 ; Align 16611744 25 177
+ptg000017l    exonerate:protein2genome:local    gene    16605395    16605823    241    -    .    gene_id AFP_1 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 63.86 ; similarity 79.52
+ptg000017l    exonerate:protein2genome:local    cds    16605752    16605823    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16605752    16605823    .    -    .    insertions 0 ; deletions 0 ; identity 72.00 ; similarity 88.00
+ptg000017l    exonerate:protein2genome:local    splice5    16605750    16605751    .    -    .    intron_id 1 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16605572    16605751    .    -    .    intron_id 1
+ptg000017l    exonerate:protein2genome:local    splice3    16605572    16605573    .    -    .    intron_id 0 ; splice_site "CC"
+ptg000017l    exonerate:protein2genome:local    cds    16605395    16605571    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16605395    16605571    .    -    .    insertions 0 ; deletions 0 ; identity 59.32 ; similarity 76.27
+ptg000017l    exonerate:protein2genome:local    similarity    16605395    16605823    241    -    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 16605824 1 72 ; Align 16605572 25 177
+ptg000017l    exonerate:protein2genome:local    gene    16585818    16592372    490    -    .    gene_id sncgb_1 ; sequence XP_040031911.1 ; gene_orientation + ; identity 94.50 ; similarity 98.17
+ptg000017l    exonerate:protein2genome:local    cds    16592252    16592372    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16592252    16592372    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+ptg000017l    exonerate:protein2genome:local    splice5    16592250    16592251    .    -    .    intron_id 1 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16588462    16592251    .    -    .    intron_id 1
+ptg000017l    exonerate:protein2genome:local    splice3    16588462    16588463    .    -    .    intron_id 0 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16588420    16588461    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16588420    16588461    .    -    .    insertions 0 ; deletions 0 ; identity 76.92 ; similarity 92.31
+ptg000017l    exonerate:protein2genome:local    splice5    16588418    16588419    .    -    .    intron_id 2 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16587736    16588419    .    -    .    intron_id 2
+ptg000017l    exonerate:protein2genome:local    splice3    16587736    16587737    .    -    .    intron_id 1 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16587608    16587735    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16587608    16587735    .    -    .    insertions 0 ; deletions 0 ; identity 93.02 ; similarity 97.67
+ptg000017l    exonerate:protein2genome:local    splice5    16587606    16587607    .    -    .    intron_id 3 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16585860    16587607    .    -    .    intron_id 3
+ptg000017l    exonerate:protein2genome:local    splice3    16585860    16585861    .    -    .    intron_id 2 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16585818    16585859    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16585818    16585859    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+ptg000017l    exonerate:protein2genome:local    similarity    16585818    16592372    490    -    .    alignment_id 1 ; Query XP_040031911.1 ; Align 16592373 1 120 ; Align 16588460 42 39 ; Align 16587734 56 126 ; Align 16585860 98 42
+ptg000017l    exonerate:protein2genome:local    gene    16625437    16636707    1172    -    .    gene_id ldb3b_1 ; sequence XP_040031907.1 ; gene_orientation + ; identity 90.48 ; similarity 95.60
+ptg000017l    exonerate:protein2genome:local    cds    16636612    16636707    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16636612    16636707    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+ptg000017l    exonerate:protein2genome:local    splice5    16636610    16636611    .    -    .    intron_id 1 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16633496    16636611    .    -    .    intron_id 1
+ptg000017l    exonerate:protein2genome:local    splice3    16633496    16633497    .    -    .    intron_id 0 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16633344    16633495    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16633344    16633495    .    -    .    insertions 0 ; deletions 0 ; identity 86.00 ; similarity 98.00
+ptg000017l    exonerate:protein2genome:local    splice5    16633342    16633343    .    -    .    intron_id 2 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16633036    16633343    .    -    .    intron_id 2
+ptg000017l    exonerate:protein2genome:local    splice3    16633036    16633037    .    -    .    intron_id 1 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16632943    16633035    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16632943    16633035    .    -    .    insertions 0 ; deletions 1 ; identity 70.00 ; similarity 80.00
+ptg000017l    exonerate:protein2genome:local    splice5    16632941    16632942    .    -    .    intron_id 3 ; splice_site "AC"
+ptg000017l    exonerate:protein2genome:local    intron    16628642    16632942    .    -    .    intron_id 3
+ptg000017l    exonerate:protein2genome:local    splice3    16628642    16628643    .    -    .    intron_id 2 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16628444    16628641    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16628444    16628641    .    -    .    insertions 0 ; deletions 0 ; identity 95.38 ; similarity 96.92
+ptg000017l    exonerate:protein2genome:local    splice5    16628442    16628443    .    -    .    intron_id 4 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16626540    16628443    .    -    .    intron_id 4
+ptg000017l    exonerate:protein2genome:local    splice3    16626540    16626541    .    -    .    intron_id 3 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16626373    16626539    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16626373    16626539    .    -    .    insertions 0 ; deletions 0 ; identity 89.09 ; similarity 94.55
+ptg000017l    exonerate:protein2genome:local    splice5    16626371    16626372    .    -    .    intron_id 5 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16626188    16626372    .    -    .    intron_id 5
+ptg000017l    exonerate:protein2genome:local    splice3    16626188    16626189    .    -    .    intron_id 4 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16626151    16626187    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16626151    16626187    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+ptg000017l    exonerate:protein2genome:local    splice5    16626149    16626150    .    -    .    intron_id 6 ; splice_site "GT"
+ptg000017l    exonerate:protein2genome:local    intron    16625528    16626150    .    -    .    intron_id 6
+ptg000017l    exonerate:protein2genome:local    splice3    16625528    16625529    .    -    .    intron_id 5 ; splice_site "AG"
+ptg000017l    exonerate:protein2genome:local    cds    16625437    16625527    .    -    .
+ptg000017l    exonerate:protein2genome:local    exon    16625437    16625527    .    -    .    insertions 0 ; deletions 0 ; identity 96.67 ; similarity 100.00
+ptg000017l    exonerate:protein2genome:local    similarity    16625437    16636707    1172    -    .    alignment_id 1 ; Query XP_040031907.1 ; Align 16636708 1 96 ; Align 16633496 33 150 ; Align 16633035 84 24 ; Align 16633011 93 66 ; Align 16628641 116 195 ; Align 16626539 182 165 ; Align 16626186 238 33 ; Align 16625527 250 90

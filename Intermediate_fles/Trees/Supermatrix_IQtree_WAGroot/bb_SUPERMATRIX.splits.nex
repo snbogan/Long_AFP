@@ -1,0 +1,48 @@
+#nexus
+
+BEGIN Taxa;
+DIMENSIONS ntax=12;
+TAXLABELS
+[1] 'busco_assembly_aminor.asm.p_ctg'
+[2] 'busco_assembly_Lmac1_p1.0_genomic'
+[3] 'busco_assembly_Cviol1.0.p_genomic'
+[4] 'busco_assembly_Pgunn1.2_genomic'
+[5] 'busco_assembly_alupus.asm.p_ctg'
+[6] 'busco_assembly_byu.asm.p_ctg'
+[7] 'busco_assembly_Melgel1.1_genomic'
+[8] 'busco_assembly_norway.asm.p_ctg'
+[9] 'busco_assembly_oamb.asm.p_ctg'
+[10] 'busco_assembly_bsig.asm.p_ctg'
+[11] 'busco_assembly_Gacul_UGA_v5_genomic'
+[12] 'busco_assembly_Lpac_genomic'
+;
+END; [Taxa]
+
+BEGIN Splits;
+DIMENSIONS ntax=12 nsplits=21;
+FORMAT labels=no weights=yes confidences=no intervals=no;
+MATRIX
+	100	 1,
+	100	 5,
+	100	 1 5,
+	100	 6,
+	100	 9,
+	100	 6 9,
+	100	 12,
+	100	 6 9 12,
+	100	 7,
+	100	 8,
+	100	 7 8,
+	100	 6 7 8 9 12,
+	100	 2 3 4 10 11,
+	100	 2,
+	100	 4,
+	100	 2 4,
+	100	 3 10 11,
+	100	 3,
+	100	 10 11,
+	100	 11,
+	100	 10,
+;
+END; [Splits]
+

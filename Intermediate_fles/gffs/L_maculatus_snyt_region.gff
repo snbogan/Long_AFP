@@ -1,0 +1,90 @@
+JAVDOI010000015.1    exonerate:protein2genome:local    gene    5763561    5770433    499    -    .    gene_id sncgb_1 ; sequence XP_040031911.1 ; gene_orientation + ; identity 96.33 ; similarity 99.08
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5770313    5770433    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5770313    5770433    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5770311    5770312    .    -    .    intron_id 1 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5766574    5770312    .    -    .    intron_id 1
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5766574    5766575    .    -    .    intron_id 0 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5766532    5766573    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5766532    5766573    .    -    .    insertions 0 ; deletions 0 ; identity 76.92 ; similarity 92.31
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5766530    5766531    .    -    .    intron_id 2 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5765840    5766531    .    -    .    intron_id 2
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5765840    5765841    .    -    .    intron_id 1 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5765712    5765839    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5765712    5765839    .    -    .    insertions 0 ; deletions 0 ; identity 97.67 ; similarity 100.00
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5765710    5765711    .    -    .    intron_id 3 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5763603    5765711    .    -    .    intron_id 3
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5763603    5763604    .    -    .    intron_id 2 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5763561    5763602    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5763561    5763602    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+JAVDOI010000015.1    exonerate:protein2genome:local    similarity    5763561    5770433    499    -    .    alignment_id 1 ; Query XP_040031911.1 ; Align 5770434 1 120 ; Align 5766572 42 39 ; Align 5765838 56 126 ; Align 5763603 98 42
+JAVDOI010000015.1    exonerate:protein2genome:local    gene    5857808    5868717    1186    -    .    gene_id ldb3b_1 ; sequence XP_040031907.1 ; gene_orientation + ; identity 90.48 ; similarity 96.34
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5868622    5868717    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5868622    5868717    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5868620    5868621    .    -    .    intron_id 1 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5865574    5868621    .    -    .    intron_id 1
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5865574    5865575    .    -    .    intron_id 0 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5865422    5865573    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5865422    5865573    .    -    .    insertions 0 ; deletions 0 ; identity 84.00 ; similarity 98.00
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5865420    5865421    .    -    .    intron_id 2 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5865133    5865421    .    -    .    intron_id 2
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5865133    5865134    .    -    .    intron_id 1 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5865040    5865132    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5865040    5865132    .    -    .    insertions 0 ; deletions 1 ; identity 73.33 ; similarity 80.00
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5865038    5865039    .    -    .    intron_id 3 ; splice_site "CT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5860691    5865039    .    -    .    intron_id 3
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5860691    5860692    .    -    .    intron_id 2 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5860493    5860690    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5860493    5860690    .    -    .    insertions 0 ; deletions 0 ; identity 96.92 ; similarity 98.46
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5860491    5860492    .    -    .    intron_id 4 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5858841    5860492    .    -    .    intron_id 4
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5858841    5858842    .    -    .    intron_id 3 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5858674    5858840    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5858674    5858840    .    -    .    insertions 0 ; deletions 0 ; identity 90.91 ; similarity 96.36
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5858672    5858673    .    -    .    intron_id 5 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5858543    5858673    .    -    .    intron_id 5
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5858543    5858544    .    -    .    intron_id 4 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5858506    5858542    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5858506    5858542    .    -    .    insertions 0 ; deletions 0 ; identity 90.91 ; similarity 100.00
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5858504    5858505    .    -    .    intron_id 6 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5857899    5858505    .    -    .    intron_id 6
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5857899    5857900    .    -    .    intron_id 5 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5857808    5857898    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5857808    5857898    .    -    .    insertions 0 ; deletions 0 ; identity 93.33 ; similarity 100.00
+JAVDOI010000015.1    exonerate:protein2genome:local    similarity    5857808    5868717    1186    -    .    alignment_id 1 ; Query XP_040031907.1 ; Align 5868718 1 96 ; Align 5865574 33 150 ; Align 5865132 84 24 ; Align 5865108 93 66 ; Align 5860690 116 195 ; Align 5858840 182 165 ; Align 5858541 238 33 ; Align 5857898 250 90
+JAVDOI010000015.1    exonerate:protein2genome:local    gene    5806752    5806937    228    +    .    gene_id AFP_1 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 62.65 ; similarity 77.11
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5786129    5786191    .    +    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5786129    5786191    .    +    .    insertions 0 ; deletions 0 ; identity 63.64 ; similarity 86.36
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5786192    5786193    .    +    .    intron_id 1 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5786192    5806751    .    +    .    intron_id 1
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5806750    5806751    .    +    .    intron_id 0 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5806752    5806937    .    +    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5806752    5806937    .    +    .    insertions 0 ; deletions 0 ; identity 61.29 ; similarity 72.58
+JAVDOI010000015.1    exonerate:protein2genome:local    similarity    5786129    5806937    228    +    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 5786129 1 63 ; Align 5806752 22 186
+JAVDOI010000015.1    exonerate:protein2genome:local    gene    5828572    5828751    209    +    .    gene_id AFP_2 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 63.86 ; similarity 75.90
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5806506    5806577    .    +    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5806506    5806577    .    +    .    insertions 3 ; deletions 0 ; identity 66.67 ; similarity 83.33
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5806578    5806579    .    +    .    intron_id 1 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5806578    5828571    .    +    .    intron_id 1
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5828570    5828571    .    +    .    intron_id 0 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5828572    5828751    .    +    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5828572    5828751    .    +    .    insertions 0 ; deletions 0 ; identity 61.67 ; similarity 71.67
+JAVDOI010000015.1    exonerate:protein2genome:local    similarity    5806506    5828751    209    +    .    alignment_id 2 ; Query Mamericanus_AFP_protein ; Align 5806506 1 57 ; Align 5806566 20 12 ; Align 5828572 24 180
+JAVDOI010000015.1    exonerate:protein2genome:local    gene    5775034    5781845    244    -    .    gene_id AFP_3 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 65.06 ; similarity 78.31
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5781777    5781845    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5781777    5781845    .    -    .    insertions 0 ; deletions 0 ; identity 62.50 ; similarity 87.50
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5781775    5781776    .    -    .    intron_id 1 ; splice_site "GT"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5775214    5781776    .    -    .    intron_id 1
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5775214    5775215    .    -    .    intron_id 0 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5775034    5775213    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5775034    5775213    .    -    .    insertions 0 ; deletions 0 ; identity 65.00 ; similarity 73.33
+JAVDOI010000015.1    exonerate:protein2genome:local    similarity    5775034    5781845    244    -    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 5781846 1 69 ; Align 5775214 24 180
+JAVDOI010000015.1    exonerate:protein2genome:local    gene    5801777    5802208    225    -    .    gene_id AFP_4 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 63.86 ; similarity 77.11
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5802146    5802208    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5802146    5802208    .    -    .    insertions 0 ; deletions 0 ; identity 68.18 ; similarity 86.36
+JAVDOI010000015.1    exonerate:protein2genome:local    splice5    5802144    5802145    .    -    .    intron_id 1 ; splice_site "GC"
+JAVDOI010000015.1    exonerate:protein2genome:local    intron    5801963    5802145    .    -    .    intron_id 1
+JAVDOI010000015.1    exonerate:protein2genome:local    splice3    5801963    5801964    .    -    .    intron_id 0 ; splice_site "AG"
+JAVDOI010000015.1    exonerate:protein2genome:local    cds    5801777    5801962    .    -    .
+JAVDOI010000015.1    exonerate:protein2genome:local    exon    5801777    5801962    .    -    .    insertions 0 ; deletions 0 ; identity 61.29 ; similarity 72.58
+JAVDOI010000015.1    exonerate:protein2genome:local    similarity    5801777    5802208    225    -    .    alignment_id 2 ; Query Mamericanus_AFP_protein ; Align 5802209 1 63 ; Align 5801963 22 186
+

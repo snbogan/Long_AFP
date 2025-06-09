@@ -1,0 +1,13 @@
+﻿id,tip.label,Genome_size,AFPs,AFP_synt,AFP_trans,AFP_pseudo,Kelley_Lab,Assoc_temp,Risk,Max_lat,Mode_lat,Min_lat,Min_depth,Mid_depth,Max_depth,UsMin_depth,UsMid_depth,UsMax_depth,Synt,Trans_1,Trans_2,Trans_3,Trans_4,Trans_5,Trans_6
+Alupus,Anarhichas lupus,627663113,18,5,13,10,Yes,15.98,1,82,53.25,40,1,300.5,600,18,64,110,1,0,0,1,1,0,0
+Aminor,Anarhichas minor,643864434,5,3,2,9,Yes,15.82,1,81,62.25,42,25,312.5,600,100,250,400,1,1,1,0,0,0,0
+Bsig,Bathymaster signatus,714261117,0,0,0,4,Yes,17.42,0,NA,44.75,NA,0,412.5,825,35,207.5,380,0,0,0,0,0,0,0
+Lplaty,Lycodes platyrhinus,718505254,1,1,0,7,Yes,8.14,1,73.8,73.8,67.1,1848.3,2280.265,2712.23,1848.3,2280.265,2712.23,1,0,0,0,0,0,0
+Ldiap,Lycodes diapterus,711911251,0,0,0,5,Yes,24.17,0,61.3,39.25,NA,146,495,844,300,450,600,0,0,0,0,0,0,0
+Mgel,Melanostigma gelatinosum,661975483,0,0,0,5,No,1.89,1,NA,60.25,NA,44,1302.5,2561,44,1302.5,2561,0,0,0,0,0,0,0
+Lpac,Lycodes pacificus,646369862,0,0,0,15,No,12.01,0,NA,39.75,NA,9,204,399,9,204,399,0,0,0,0,0,0,0
+Oamb,Ophthalmolycus amberensis,712582824,13,13,0,8,Yes,-1.73,1,78,65.75,60,140,483,826,140,483,826,1,0,0,0,0,0,0
+Pgunn,Pholis gunnellus,588696950,15,15,0,16,No,16.83,1,72,51.25,43,0,50,100,0,15,30,1,0,0,0,0,0,0
+Cviol,Cebidichthys violaceus,575660146,0,0,0,3,No,13.59,0,46,44.25,27,0,12,24,0,0.5,1,0,0,0,0,0,0,0
+Lmac,Leptoclinus maculatus,699894842,42,4,38,11,No,17.82,1,79,43.25,43,2,304.5,607,2,304.5,607,1,0,0,0,0,1,1
+Gacul,Gasterosteus aculeatus,471894361,0,0,0,0,No,0,0,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0

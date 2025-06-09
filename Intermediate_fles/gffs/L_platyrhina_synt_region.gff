@@ -1,0 +1,62 @@
+ptg000053l    exonerate:protein2genome:local    gene    3858216    3874552    260    +    .    gene_id AFP_1 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 71.08 ; similarity 84.34
+ptg000053l    exonerate:protein2genome:local    cds    3858216    3858287    .    +    .
+ptg000053l    exonerate:protein2genome:local    exon    3858216    3858287    .    +    .    insertions 3 ; deletions 0 ; identity 83.33 ; similarity 100.00
+ptg000053l    exonerate:protein2genome:local    splice5    3858288    3858289    .    +    .    intron_id 1 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3858288    3874372    .    +    .    intron_id 1
+ptg000053l    exonerate:protein2genome:local    splice3    3874371    3874372    .    +    .    intron_id 0 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3874373    3874552    .    +    .
+ptg000053l    exonerate:protein2genome:local    exon    3874373    3874552    .    +    .    insertions 0 ; deletions 0 ; identity 66.67 ; similarity 78.33
+ptg000053l    exonerate:protein2genome:local    similarity    3858216    3874552    260    +    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 3858216 1 57 ; Align 3858276 20 12 ; Align 3874373 24 180
+ptg000053l    exonerate:protein2genome:local    gene    3826929    3833710    489    -    .    gene_id sncgb_1 ; sequence XP_040031911.1 ; gene_orientation + ; identity 94.50 ; similarity 97.25
+ptg000053l    exonerate:protein2genome:local    cds    3833590    3833710    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3833590    3833710    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+ptg000053l    exonerate:protein2genome:local    splice5    3833588    3833589    .    -    .    intron_id 1 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3829876    3833589    .    -    .    intron_id 1
+ptg000053l    exonerate:protein2genome:local    splice3    3829876    3829877    .    -    .    intron_id 0 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3829834    3829875    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3829834    3829875    .    -    .    insertions 0 ; deletions 0 ; identity 76.92 ; similarity 92.31
+ptg000053l    exonerate:protein2genome:local    splice5    3829832    3829833    .    -    .    intron_id 2 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3829155    3829833    .    -    .    intron_id 2
+ptg000053l    exonerate:protein2genome:local    splice3    3829155    3829156    .    -    .    intron_id 1 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3829027    3829154    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3829027    3829154    .    -    .    insertions 0 ; deletions 0 ; identity 93.02 ; similarity 95.35
+ptg000053l    exonerate:protein2genome:local    splice5    3829025    3829026    .    -    .    intron_id 3 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3826971    3829026    .    -    .    intron_id 3
+ptg000053l    exonerate:protein2genome:local    splice3    3826971    3826972    .    -    .    intron_id 2 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3826929    3826970    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3826929    3826970    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+ptg000053l    exonerate:protein2genome:local    similarity    3826929    3833710    489    -    .    alignment_id 1 ; Query XP_040031911.1 ; Align 3833711 1 120 ; Align 3829874 42 39 ; Align 3829153 56 126 ; Align 3826971 98 42
+ptg000053l    exonerate:protein2genome:local    gene    3879447    3891358    1152    -    .    gene_id ldb3b_1 ; sequence XP_040031907.1 ; gene_orientation + ; identity 88.64 ; similarity 94.87
+ptg000053l    exonerate:protein2genome:local    cds    3891263    3891358    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3891263    3891358    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+ptg000053l    exonerate:protein2genome:local    splice5    3891261    3891262    .    -    .    intron_id 1 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3887973    3891262    .    -    .    intron_id 1
+ptg000053l    exonerate:protein2genome:local    splice3    3887973    3887974    .    -    .    intron_id 0 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3887821    3887972    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3887821    3887972    .    -    .    insertions 0 ; deletions 0 ; identity 86.00 ; similarity 98.00
+ptg000053l    exonerate:protein2genome:local    splice5    3887819    3887820    .    -    .    intron_id 2 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3887526    3887820    .    -    .    intron_id 2
+ptg000053l    exonerate:protein2genome:local    splice3    3887526    3887527    .    -    .    intron_id 1 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3887433    3887525    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3887433    3887525    .    -    .    insertions 0 ; deletions 1 ; identity 63.33 ; similarity 73.33
+ptg000053l    exonerate:protein2genome:local    splice5    3887431    3887432    .    -    .    intron_id 3 ; splice_site "AC"
+ptg000053l    exonerate:protein2genome:local    intron    3882594    3887432    .    -    .    intron_id 3
+ptg000053l    exonerate:protein2genome:local    splice3    3882594    3882595    .    -    .    intron_id 2 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3882396    3882593    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3882396    3882593    .    -    .    insertions 0 ; deletions 0 ; identity 95.38 ; similarity 96.92
+ptg000053l    exonerate:protein2genome:local    splice5    3882394    3882395    .    -    .    intron_id 4 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3880508    3882395    .    -    .    intron_id 4
+ptg000053l    exonerate:protein2genome:local    splice3    3880508    3880509    .    -    .    intron_id 3 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3880341    3880507    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3880341    3880507    .    -    .    insertions 0 ; deletions 0 ; identity 89.09 ; similarity 94.55
+ptg000053l    exonerate:protein2genome:local    splice5    3880339    3880340    .    -    .    intron_id 5 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3880156    3880340    .    -    .    intron_id 5
+ptg000053l    exonerate:protein2genome:local    splice3    3880156    3880157    .    -    .    intron_id 4 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3880119    3880155    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3880119    3880155    .    -    .    insertions 0 ; deletions 0 ; identity 90.91 ; similarity 100.00
+ptg000053l    exonerate:protein2genome:local    splice5    3880117    3880118    .    -    .    intron_id 6 ; splice_site "GT"
+ptg000053l    exonerate:protein2genome:local    intron    3879538    3880118    .    -    .    intron_id 6
+ptg000053l    exonerate:protein2genome:local    splice3    3879538    3879539    .    -    .    intron_id 5 ; splice_site "AG"
+ptg000053l    exonerate:protein2genome:local    cds    3879447    3879537    .    -    .
+ptg000053l    exonerate:protein2genome:local    exon    3879447    3879537    .    -    .    insertions 0 ; deletions 0 ; identity 90.00 ; similarity 100.00
+ptg000053l    exonerate:protein2genome:local    similarity    3879447    3891358    1152    -    .    alignment_id 1 ; Query XP_040031907.1 ; Align 3891359 1 96 ; Align 3887973 33 150 ; Align 3887525 84 24 ; Align 3887501 93 66 ; Align 3882593 116 195 ; Align 3880507 182 165 ; Align 3880154 238 33 ; Align 3879537 250 90

@@ -3,13 +3,15 @@ title: "Figures"
 author: "Sam Bogan"
 date: "2023-11-30"
 output: html_document
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
 
 knitr::opts_knit$set(root.dir = '~/Documents/GitHub/Long_AFP/')
 
-# Load packages for plotting quick species tree
+# Load packages
 library(tidyverse)
 library(fishtree)
 library(ggtree)
@@ -27,55 +29,16 @@ library(sf)
 library(geodata)
 library(data.table)
 library(ggrepel)
+library(scales)
+library(ncdf4)
+library(brms)
+library(phangorn)
+library(TreeTools)
+library(RSplitsTree)
 
 ```
 
-##Figure 1 - Ranges, depths, species tree, genome QC metrics
-
-###Panel A - range, depth, temperature
-
-```{r}
-
-# Read in SST data
-sst <- read.csv(("ncdcOisst2Agg_6cc2_4851_60b3.csv"))
-sst$sst <- as.numeric(gsub("NaN", NA, sst$sst))
-sst <- na.omit(sst)
-
-# Calc mean SST per coordinate
-sst_sum <- summarySE(measurevar = "sst",
-                     groupvars = c("latitude", "longitude"),
-                     data = sst)
-
-# Fix logitude object
-sst_sum$longitude <- sst_sum$longitude - 360
-
-sst_sum$longitude <- ifelse(sst_sum$longitude < -180,
-                            sst_sum$longitude + 360,
-                            sst_sum$longitude)
-
-# Create data for plotting
-df <- sst_sum %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
-
-world <- ne_countries(scale = "medium", returnclass = "sf")
-
-# Partial plot
-Fig1A <- ggplot() +
-  geom_sf(data = world, fill = "grey20", color = "black") +
-  geom_sf(data = df, aes(color = sst), alpha = 0.7, size = 0.1) +
-  theme_classic(base_size = 20) +
-  theme(legend.position = "top") +
-  scale_color_viridis_c() +
-  labs(color = "SST (°C)") +
-  theme(axis.title = element_blank())
-
-Fig1A
-
-Species_List <- read.csv("LongRead_SpeciesIDs.csv")
-
-```
-
-Plot most likely occurences derived from AquaMaps range data
+Plot most likely occurrences derived from AquaMaps range data
 
 ```{r}
 
@@ -91,30 +54,147 @@ AQUA_dfs <- lapply(AQUAs, read.csv)
 all_AQUA_df <- rbindlist(AQUA_dfs,
                          idcol = "species")
 
+# Create species id
 all_AQUA_df$species <- paste(all_AQUA_df$Genus,
                              all_AQUA_df$Species,
                              sep = " ")
 
+# Correct var names
 colnames(all_AQUA_df) <- c('species','Genus','Species',
                            'latitude', 'longitude', 'C.Square.Code', 
                            'Overall.Probability')
 
-# Color plot by max depth
+# Get fishbase metadata
 depth_df <- fb_tbl("species")
 
 depth_df$species <- paste(depth_df$Genus,
                           depth_df$Species,
                           sep = " ")
 
+# Keep study species
 depth_df <- filter(depth_df, species %in% Species_List$Species_ID)
 
+# Mean depth 
 depth_sum <- summarySE(measurevar = "DepthRangeDeep",
                        groupvars = c("species"),
                        data = depth_df)
 
+# Summarize coordiantes
+min_max <- all_AQUA_df %>%
+            dplyr::group_by(Species) %>%
+            dplyr::mutate(min_lat = min(latitude)) %>%
+            dplyr::mutate(max_lat = max(latitude)) %>%
+            dplyr::mutate(min_long = min(longitude)) %>%
+            dplyr::mutate(max_long = max(longitude))
+
+min_max <- unique(min_max[,c(1,8,9,10,11)])
+
+# Add in missing Lycenchelys/Lycodes
+min_max <- rbind(min_max,
+                   data.frame(species = "Lycodes platyrhinus",
+                              min_lat = 67.1,
+                              max_lat = 73.8,
+                              min_long = 6.9,
+                              max_long = 10.3))
+
+# # Create latitudinal range histogram
+# library(ggridges)
+
+# Fix L. diapterus range
+all_AQUA_f <- subset(all_AQUA_df, !(species == "Lycodes diapterus" & latitude < 0))
+
+# Calculate maximum latitude for each species
+species_order <- all_AQUA_f %>%
+  group_by(species) %>%
+  summarize(max_latitude = max(latitude)) %>%
+  arrange(desc(max_latitude)) %>%
+  pull(species)
+
+# Convert species to factor with levels ordered by max latitude
+all_AQUA_f$species <- factor(all_AQUA_f$species, levels = species_order)
+
+# Plot range ridges
+lat_dist_fig <- ggplot(data = all_AQUA_f,
+       aes(x = latitude, y = species)) +
+  # geom_density_ridges(size = 0, alpha = 1, fill = "grey") +
+  theme_classic() +
+  labs(x = "Latitude (°N)") +
+  theme(axis.text.x = element_blank(),
+        axis.line.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        ) +
+  #facet_grid(~species) +
+  coord_flip()
+
+# Sum occurence likelihoods across latitudinal bins
+bin_width <- 0.5
+bins <- seq(floor(min(all_AQUA_f$latitude)), ceiling(max(all_AQUA_f$latitude)), by = bin_width)
+
+# Calculate the midpoints of the bins
+midpoints <- bins[-length(bins)] + bin_width / 2
+
+# Assign latitude to bins and calculate the midpoint
+all_AQUA_b <- all_AQUA_f %>%
+  mutate(latitude_bin = cut(latitude, breaks = bins, include.lowest = TRUE, labels = midpoints))
+
+# Convert latitude_bin to numeric
+all_AQUA_b$latitude_bin <- as.numeric(as.character(all_AQUA_b$latitude_bin))
+
+# Summarize the data
+bin_sum <- all_AQUA_b %>%
+  group_by(species, latitude_bin) %>%
+  summarise(sum_prob = sum(Overall.Probability, na.rm = TRUE)) %>%
+  group_by(species) %>%
+  mutate(total_sum_prob = sum(sum_prob, na.rm = TRUE),
+         sum_prob_percentage = (sum_prob / total_sum_prob) * 100) %>%
+  select(-total_sum_prob)  # Optionally remove the total_sum_prob column
+
+species_order2 <- bin_sum %>%
+  group_by(species) %>%
+  summarize(mean_latitude = mean(latitude_bin)) %>%
+  arrange(desc(mean_latitude)) %>%
+  pull(species)
+
+# Convert species to factor with levels ordered by max latitude
+bin_sum$species <- factor(bin_sum$species, levels = species_order2)
+
+# # Plot range abundance ridges
+# lat_dist_fig <- ggplot(data = bin_sum, aes(x = latitude_bin, y = species, 
+#                            height = sum_prob_percentage, group = species)) +
+#   geom_density_ridges(stat = "identity", scale = 3, 
+#                       fill = "gray30", color = "transparent", alpha = 0.5) +
+#   theme_classic() +
+#   labs(x = "Latitude (°N)") +
+#   theme(axis.text.x = element_blank(),
+#         axis.line.x = element_blank(),
+#         axis.ticks.x = element_blank(),
+#         axis.title.x = element_blank(),
+#         ) +
+#   coord_flip()
+# 
+# # Save latitude ridge fig, if you want it
+# png("~/Documents/GitHub/Long_AFP/Figures/lat_dist_fig.png", units = "in", width = 3, 
+#     height = 6, 
+#     res = 600)
+# 
+# # Export fig
+# lat_dist_fig
+
+```
+
+Plot coordinates of max occurence likelihood 
+
+```{r}
+
+# Create coord df
 centroids <- all_AQUA_df %>%
             dplyr::group_by(Species) %>%
             dplyr::slice(which.max(Overall.Probability))
+
+# Correct aquamaps range error for L pacificus
+centroids[9,4] <- 37.75
+centroids[9,5] <- -123.25
 
 centroids <- merge(centroids, depth_sum, by = "species")
 
@@ -124,6 +204,7 @@ sum_range <- all_AQUA_df %>%
 
 centroids <- merge(centroids, sum_range, by = "species")
 
+# Define L. platyrhinus data
 centroids <- rbind(centroids,
                    data.frame(species = "Lycodes platyrhinus",
                               Genus = "Lycodes",
@@ -139,6 +220,14 @@ centroids <- rbind(centroids,
                               ci = NA,
                               sum =  NA))
 
+# Fix Lycenchelys name
+centroids$species  <- ifelse(centroids$species == "Lycodes platyrhinus",
+                         "Lycenchelys platyrhina", centroids$species)
+
+# Italicize species names
+centroids$species_it <- paste("italic('", centroids$species, "')", sep = "")
+
+# Plot and label spcies max occurrence likelihood
 Fig_1B <- ggplot() +
   geom_sf(data = df, aes(color = sst), alpha = 0.7, size = 0.1) +
   geom_sf(data = world, fill = "gray30", color = "gray10") +
@@ -148,16 +237,13 @@ Fig_1B <- ggplot() +
   scale_color_viridis_c() + 
   scale_alpha_continuous(range = c(0,0.4)) +
   geom_point(data = centroids,
-             aes(x = longitude, y = latitude, 
-                 size = sum), color = "white", shape = 1) +
-  geom_point(data = centroids,
              aes(x = longitude, y = latitude), size = 3, color = "black") +
   geom_point(data = centroids,
              aes(x = longitude, y = latitude), size = 2, color = "gold") +
   geom_label_repel(data = centroids, 
-             aes(label = species, x = longitude, 
+             aes(label = species_it, x = longitude, 
                  y = latitude), size = 4, nudge_y = 20, 
-             segment.color = "gold") +
+             segment.color = "gold", parse = TRUE) +
   scale_size_continuous(range = c(3.5,15))
 
 # Export Fig 1B as png
@@ -169,87 +255,25 @@ Fig_1B
                    
 ```
 
-Calculate freezing risk and plot against AFP copy number
+Wrangle, plot species tree and metadata
 
 ```{r}
 
-df_species_sf <- st_as_sf(centroids, coords = c("longitude", "latitude"), crs = 4326)
-
-nearest_indices <- st_nearest_feature(df_species_sf, df)
-
-df_species_sf$nearest_temperature <- df$sst[nearest_indices]
-
-as.data.frame(df_species_sf)[,c(1,13)]
-
-## Regression of crude freezing risk and AFP number
-busco_df <- read.csv(("Busco_results_genome_size.csv"))
-
-library(scales)
-
-ggplot(data = busco_df,
-       aes(x = Mode_lat*Risk*(1/UsMid_depth), y = AFPs)) +
-  geom_point() +
-  scale_x_continuous(trans = pseudo_log_trans(0.001, 10)) +
-  geom_smooth(method = "lm", se = TRUE) +
-  theme_classic()
-
-Fig_2A <- ggplot(data = busco_df,
-       aes(x = Mode_lat*Risk*(1/UsMid_depth), y = AFPs)) +
-  geom_smooth(method = "loess", se = TRUE, span = .95) +
-  geom_point(size = 2) +
-  scale_x_continuous(trans = pseudo_log_trans(0.01, 10)) +
-  scale_y_continuous(trans = pseudo_log_trans(0.01, 10), breaks = c(0,1,10,50)) +
-  theme_classic(base_size = 20) +
-  labs(y = "log(AFP copy number)", x = "log(Freezing risk)")
-
-Fig_B <- ggplot(data = busco_df,
-       aes(x = Mode_lat*Risk, y = AFPs)) +
-  #geom_smooth(method = "lm", se = TRUE) +
-  geom_point(size = 2) +
-  #scale_x_continuous(trans = pseudo_log_trans(0.1, 10)) +
-  #scale_y_continuous(trans = pseudo_log_trans(0.1, 10), breaks = c(0,1,2,5,10,25,50, 100, 1000, 1000)) +
-  theme_classic() +
-  labs(y = "AFP copy number", x = "Polar x Latitude", title = "No depth")
-
-# Arrange
-Fig_1 <- ggarrange(Fig_A, Fig_B,
-                   labels = c("A", "B"),
-                   widths = c(1, 1),
-                   ncol = 2, nrow = 1, align = "hv")
-
-Fig_1
-
-# No phylo correction
-busco_df$fr_risk <- busco_df$Mode_lat * busco_df$Risk * (1/busco_df$UsMid_depth)
-busco_df$pslog_risk <- log10(busco_df$fr_risk + (0.5*0.03236466))
-busco_df$pslog_AFPs <- log10(busco_df$AFPs + (0.5*1))
-
-busco_df$exp_risk <- busco_df$fr_risk^2
-
-
-ggplot(busco_df,
-       aes(x = pslog_risk, y = pslog_AFPs)) +
-  geom_point() +
-  geom_smooth(method = "lm", 
-              se = TRUE)
-
-# ANOVA without phylogenetically independent contrast
-anova(lm(pslog_AFPs ~ pslog_risk, data = busco_df))
-
-```
-
-
-```{r}
+# Read in species metadata not from fishbase (genome size, AFP annots, temp, depth)
+busco_df <- read.csv("Busco_results_genome_size.csv")
 
 # Read tree file
-tree <- read.newick("Trees/Supermatrix_IQtree_WAGroot/SUPERMATRIX.phylip.treefile")
+tree <- read.newick("Trees/Supermatrix_IQtree_WAGroot/bb_SUPERMATRIX.treefile")
 
+# Fix tip names
 tree$tip.label <- gsub("busco_assembly_", "", tree$tip.label)
 
+# Root tree to position stickelback the outgroup
 tree <- reroot(tree, 
              node.number = 12, 
              position = .5*(max(tree$edge.length)))
 
+# Define labels
 tree$tip.label <- c("Anarhichas minor", "Anarhichas lupus", "Lycodes diapterus", 
                     "Ophthalmolycus amberensis", "Lycodes pacificus", "Melanostigma gelatinosum",
                     "Lycodes platyrhinus", "Leptoclinus maculatus", "Pholis gunnellus", 
@@ -263,70 +287,112 @@ busco_df$tip.label = factor(
              'Anarhichas minor', 'Pholis gunnellus', 'Leptoclinus maculatus',
              'Cebidichthys violaceus', 'Bathymaster signatus', 'Gasterosteus aculeatus')))
 
-p1 <- ggplot(busco_df, aes(y = tip.label, x = AFPs)) + 
-  geom_bar(stat = "identity") +
-  geom_text(aes(label=AFPs, y = tip.label), nudge_x = 5) +
+# Create a df for AFP count bar plot
+df_stack <- rbind(
+  data.frame(tip.label = busco_df$tip.label,
+             allAFPs = busco_df$AFPs,
+             pseudo = busco_df$AFP_pseudo,
+             AFPs = busco_df$AFP_synt,
+             type = "Syntenic"),
+  data.frame(tip.label = busco_df$tip.label,
+             allAFPs = busco_df$AFPs,
+             pseudo = busco_df$AFP_pseudo,
+             AFPs = busco_df$AFP_trans,
+             type = "Translocated"),
+  data.frame(tip.label = busco_df$tip.label,
+             allAFPs = busco_df$AFPs,
+             pseudo = busco_df$AFP_pseudo,
+             AFPs = busco_df$AFP_pseudo,
+             type = "Pseudogene"))
+
+df_stack$pseudo_col <- ifelse(df_stack$tip.label == "Gasterosteus aculeatus", "white", "gray40")
+
+p1 <- ggplot(df_stack, aes(y = tip.label, x = AFPs, fill = type)) + 
+  geom_bar(stat = "identity", position = "stack") +
+  geom_text(data = filter(df_stack, type == "Syntenic" & AFPs > 0),
+    aes(label=AFPs, y = tip.label, 
+        x = ifelse(tip.label == "Lycodes platyrhinus", .5, allAFPs - 2)), 
+    parse = TRUE, color = "white") +
+  geom_text(data = filter(df_stack, type == "Translocated" & AFPs > 0),
+    aes(label=AFPs, y = tip.label, 
+        x = ifelse(tip.label == "Anarhichas minor", 1,  AFPs - 2)), 
+    parse = TRUE, color = "black") +
+  geom_text(data = filter(df_stack, type == "Pseudogene"),
+    aes(label=pseudo, y = tip.label, x = (allAFPs+pseudo) - 2, color = pseudo_col), 
+    parse = TRUE) +
   theme_tree2() + 
-  theme(legend.position='none') +
-  scale_x_continuous(limits = c(0,50)) +
-  labs(title = "AFP copies")
+  theme(legend.position=c(.66,.8)) +
+  #scale_x_continuous(limits = c(-2,55)) +
+  scale_color_manual(values = c("gray40", "white"), guide = FALSE) +
+  scale_fill_manual(values = c("gray", "skyblue4", "goldenrod1")) +
+  labs(title = "AFP III  copies", fill = "AFP location")
+
+p1
 
 library(cowplot)
 
-```
+# Fix L. platyrhina name
+tree$tip.label <- ifelse(tree$tip.label == "Lycodes platyrhinus",
+                         "Lycenchelys platyrhina", tree$tip.label)
 
-```{r}
+busco_df$tip.label <- gsub("Lycodes platyrhinus",
+                           "Lycenchelys platyrhina",
+                           busco_df$tip.label)
+
+tree$node.label <- ifelse(tree$node.label == "100/100", "100", 
+                          ifelse(tree$node.label == "Root", "", tree$node.label))
 
 # Plot species tree
-
-tree$node.label <- seq(1,11,1)
-
-hl_nodes <- data.frame(id = c(10))
-
-selected_nodes <- data.frame(nodes = c(5,4))
-
-Fig_1A <- ggtree(tree, layout = "rectangular", size = 1) %<+% busco_df +
-  geom_tiplab(color = "black", nudge_x = .005, align = TRUE, size = 5) +
-  geom_tippoint(aes(size = Kelley_Lab), color = "skyblue3") +
-  #geom_nodepoint(data = selected_nodes, aes(node = nodes), shape = "square") +
+Fig_1A <- ggtree(tree) %<+% busco_df +
+  geom_hilight(node=c(1,2,3,4,7,11), 
+               fill = "skyblue1", color = "transparent", 
+               extend = 5*max(tree$edge.length), size = 0) +
+  geom_tree(layout = "rectangular", size = 1) +
+  geom_tiplab(color = "black", nudge_x = .005, 
+              align = TRUE, size = 5, fontface = 'italic') +
+  geom_nodelab(color = "black", size = 3, nudge_x = 0.003) +
   theme(legend.position = "none",
         strip.background = element_blank(),
         axis.line = element_blank(),
         axis.ticks = element_blank()) +
   scale_size_manual(values = c(0,4)) +
+  geom_treescale(y = 1.8, x = .025) +
+  # Instead of geom_point2, manually place the red diamond
+  geom_point(aes(x = 0.04, y = 3.33),  # move left by 0.01 units
+             size = 8, fill = "salmon", shape = 23, color = "black", stroke = 1) +
+  # Also adjust text position to match
+  geom_text(aes(x = 0.04, y = 3.33, label = "AFP III origin"),
+            hjust = 1.2, vjust = -1) +
   xlim(0, .175)
+
+# Create Fig 1A panel
+Fig_1Ap <- ggarrange(Fig_1A, p1,
+                   labels = c("", ""),
+                   widths = c(1,.5),
+                   ncol = 2, nrow = 1, align = "hv")
 
 Fig_1A
 
+plot(Fig_1A)
 
-```
-
-
-```{r}
-library(patchwork)
-
-Fig_1Ap <- Fig_1A + p1 + plot_layout(widths = c(77, 23))
-
-# Export Fig 1B as png
+# Export Fig 1A as png
 png("~/Documents/GitHub/Long_AFP/Figures/Fig_1A.png", units = "in", width = 8, 
     height = 6, 
     res = 600)
 
-Fig_1A
+plot(Fig_1A)
 
-```
-
-```{r}
-
-Fig_1 <- ggarrange(Fig_1Ap, Fig_1B,
+# Arrange Fig 1
+Fig_1 <- ggarrange(Fig_1A, Fig_1B,
                    labels = c("A", "B"),
-                   widths = c(1, 1.5),
-                   ncol = 1, nrow = 2, align = "hv")
+                   widths = c(1, 2),
+                   heights = c(.75,1),
+                   ncol = 1, nrow = 2, align = "v")
 
 Fig_1
 
 # Export Fig 1A as png
-png("~/Documents/GitHub/Long_AFP/Figures//Fig_1.png", units = "in", width = 12, 
+png("~/Documents/GitHub/Long_AFP/Figures/Fig_1.png", units = "in", width = 12, 
     height = 12, 
     res = 600)
 
@@ -334,99 +400,2062 @@ Fig_1
 
 ```
 
-# AFPIII Gene Tree
+GLORYS freezing risk calculations
 
 ```{r}
 
-# Read in IQTree gene tree
-IQ_genetree <- read.tree("Trees/Gene_Trees/01042024_IQTREE_K3Pu+F+G4_SAS_AFP_genetree.newick")
+# Move to input data directory for tempm time series
+setwd("~/Documents/GitHub/Long_AFP/GLORYS/")
 
-# Create factor for AFPs and SAS genes
-group_df <- data.frame(tip.label = IQ_genetree$tip.label,
-  group = ifelse(
-  grepl("SAS", IQ_genetree$tip.label), "SAS",
-  ifelse(grepl("AFP", IQ_genetree$tip.label), "AFP", NA)))
+# Get the files names
+glorys <- list.files(pattern = "*.nc")
 
-IQ_genetree <- reroot(IQ_genetree, 
-             node.number = 193, 
-             position = .5*(max(tree$edge.length)))
+# Loop over the list of .nc files
+myglorys <- lapply(glorys, nc_open)
 
-# Plot tree
-Fig_2B <- ggtree(IQ_genetree, aes(color = group), layout = "rectangular") %<+% group_df +
-  geom_tiplab(size = 1.5, align = FALSE) +
-  geom_treescale(x = 2, offset = 2) +
-  theme(legend.title = element_text(size = 20)) +
-  scale_color_manual(values = c("salmon", "skyblue3")) +
-  labs(color = "Gene")
+## Create data frame from list of netcdf files
+glorys_df <- list()  
 
-Fig_2 <- ggarrange(Fig_2A, Fig_2B,
-                   labels = c("A", "B"),
-                   widths = c(.75, 1),
+for (i in 1:length(myglorys)) {
+  glorys_df[[i]] <- na.omit(data.frame(id = gsub("_.*", "", glorys[[i]]),
+                         thetao = as.vector(na.omit(ncvar_get(myglorys[[i]], "thetao"))),
+                         so = as.vector(na.omit(ncvar_get(myglorys[[i]], "so"))),
+                         depth = as.vector(na.omit(ncvar_get(myglorys[[i]], "depth"))),
+                         bottomT = as.vector(na.omit(ncvar_get(myglorys[[i]], "bottomT")))))
+  
+}
+
+new_df_list <- list()
+
+for (i in 1:length(glorys_df)) {
+  df <- glorys_df[[i]]
+  
+  # Calculate mean and standard deviation for each variable
+new_df <- data.frame(id = unique(df$id),
+                     thetao = mean(df$thetao),
+                     thetao_sd = sd(df$thetao),
+                     thetao_min = min(df$thetao),
+                     depth = mean(df$depth),
+                     so = mean(df$so))
+
+# Add the new dataframe to the list
+new_df_list[[i]] <- new_df
+}
+
+# Combine all new dataframes into one
+final_df <- do.call(rbind, new_df_list)
+
+mean(glorys_df[[2]]$thetao)
+
+# Merge cdf temp/salinity data with depth and AFP CNV
+glorys_depth <- merge(final_df,
+      data.frame(id = busco_df$id,
+                 species = busco_df$tip.label,
+                 AFP_CNV = busco_df$AFPs,
+                 AFP_synt = busco_df$AFP_synt,
+                 AFP_trans = busco_df$AFP_trans,
+                 AFP_pseudo = busco_df$AFP_pseudo,
+                 latitude = busco_df$Mode_lat,
+                 Min_depth = busco_df$Min_depth,
+                 Mid_depth = busco_df$Mid_depth,
+                 Max_depth = busco_df$Max_depth,
+                 UsMin_depth = busco_df$UsMin_depth,
+                 UsMid_depth = busco_df$UsMid_depth,
+                 UsMax_depth = busco_df$UsMax_depth),
+      by = "id")
+
+# Convert depth to pressure
+convertDepthToPressure <- function(depth, latitude, salinity) {
+  # Adjusted gravity formula
+  g <- 9.780327 * (1 + 5.2792e-3 * sin(latitude * pi/180)^2 + 2.32718e-5 * sin(latitude * pi/180)^4)
+  
+  # Adjusted density for salinity
+  rho <- 1025 + 0.77 * (salinity - 35)
+  
+  Pa_to_dbar <- 1e-4 # conversion factor from Pascal to decibars
+  
+  # Calculate pressure in decibars
+  pressure <- depth * g * rho * Pa_to_dbar
+  
+  return(pressure)
+}
+
+glorys_depth$pressure <- convertDepthToPressure(glorys_depth$depth,
+                                                glorys_depth$latitude,
+                                                glorys_depth$so)
+
+glorys_depth$atm <- glorys_depth$depth * .1
+
+# Calculate freezing point
+glorys_depth$freezing_point = -0.0575*glorys_depth$so + 
+     1.710523e-3*glorys_depth$so^1.5 + 
+     -2.154996e-4*glorys_depth$so^2 + 
+     -7.53e-4*glorys_depth$pressure
+
+glorys_depth$freezing_risk = ifelse(glorys_depth$thetao <= glorys_depth$freezing_point, 
+                                    glorys_depth$freezing_point - glorys_depth$thetao, 0)
+
+
+# Check your calculation against UNESCO, which just uses depth and latitude
+library(oce)
+
+glorys_depth$unesco_pr <- swPressure(depth = glorys_depth$depth,
+                                     latitude = glorys_depth$latitude)
+
+# Ensure that correlation is near-1.00
+ggplot(data = glorys_depth,
+       aes(x = log(pressure), y = log(unesco_pr))) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+# Remove stickelback from downstream analyses with environmental data
+new_data <- filter(glorys_depth, species != "Gasterosteus aculeatus")
+loo_data <- filter(glorys_depth, species != c("Gasterosteus aculeatus",
+                                              "Lycodes platyrhinus"))
+
+# Cache
+write.csv(new_data, file = "~/Documents/GitHub/Long_AFP/new_Data.csv")
+new_data <- read.csv("~/Documents/GitHub/Long_AFP/new_Data.csv")
+
+# Fix L. platyrhina name
+new_data$species <- ifelse(new_data$species == "Lycodes platyrhinus",
+                         "Lycenchelys platyrhina", new_data$species)
+
+tree$tip.label <- ifelse(tree$tip.label == "Lycodes platyrhinus",
+                         "Lycenchelys platyrhina", tree$tip.label)
+
+# Check that all species in new_data are in tree
+tree$tip.label %in% new_data$species
+
+# Convert species tree to variance-covariance matrix
+A <- as.matrix(ape::vcv.phylo(tree))
+
+# Fit phyl mixed model of AFP copy number vs pressure, temp
+brm_glorys <- brm(
+  bf(AFP_CNV ~ thetao_min + poly(pressure,2) + (1|gr(species, cov = A))), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(all = TRUE)
+)
+
+summary(brm_glorys)
+
+# Scaled version
+brm_glorys_sc <- brm(
+  bf(AFP_CNV ~ scale(thetao_min) + poly(scale(pressure),2) + (1|gr(species, cov = A))), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(all = TRUE)
+)
+
+summary(brm_glorys_sc)
+
+# Expand model for convergence test
+brm_env_phy <- brm(
+  bf(AFP_CNV ~ thetao_min + poly(pressure,2) + (1|gr(species, cov = A))) +
+    bf(pressure ~ (1|gr(species, cov = A)), family = "gaussian") + 
+    bf(thetao_min ~ (1|gr(species, cov = A)), family = "gaussian") + set_rescor(rescor = FALSE), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(all = TRUE)
+)
+
+summary(brm_env_phy)
+
+# Run scaled version of convergence model for coef comparison
+brm_env_phy_sc <- brm(
+  bf(AFP_CNV ~ thetao_min + poly(thetao_min,2) + (1|gr(species, cov = A))) +
+    bf(pressure ~ (1|gr(species, cov = A)), family = "gaussian") + 
+    bf(thetao_min ~ (1|gr(species, cov = A)), family = "gaussian") + set_rescor(rescor = FALSE), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(all = TRUE)
+)
+
+summary(brm_env_phy_sc)
+
+# Use bayes factor to figure out if pressure is truly a better predictor than depth
+brm_glorys_uniA <- brm(
+  AFP_CNV ~ thetao_min + poly(pressure,2) + (1|gr(species, cov = A)), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(TRUE)
+)
+
+plot(brm_glorys_uniA)
+
+brm_glorys_uniB <- brm(
+  AFP_CNV ~ thetao_min + poly(depth,2) + (1|gr(species, cov = A)), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(TRUE)
+)
+
+bayesfactor_models(brm_glorys_uniA, denominator = brm_glorys_uniB)
+
+## Multivariate model with synt and trans copies
+# Because of bad convergence, run multiple iterations and combine their converged chains
+new_data$sc_thetao_min <- scale(new_data$thetao_min)
+new_data$sc_pressure <- scale(new_data$pressure)
+
+# Define negative priors for the fixed effects
+prior_neg <- c(
+  set_prior("normal(-2, .5)", class = "b"),
+  set_prior("normal(0, 1)", class = "Intercept")
+)
+
+brm_glorys_mv4 <- brm(
+  bf(AFP_synt ~ sc_thetao_min + sc_pressure + (1|gr(species, cov = A))) +
+    bf(AFP_trans ~ sc_thetao_min + sc_pressure + (1|gr(species, cov = A))) + 
+      set_rescor(rescor = FALSE), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_poisson(),
+  chains = 4, iter = 40000, warmup = 10000,
+  save_pars = save_pars(TRUE)
+)
+
+plot(brm_glorys_mv4)
+summary(brm_glorys_mv4)
+
+# Mv4 not scaled
+brm_glorys_mv4_ns <- brm(
+  bf(AFP_synt ~ thetao_min + pressure + (1|gr(species, cov = A))) +
+    bf(AFP_trans ~ thetao_min + pressure + (1|gr(species, cov = A))) + 
+      set_rescor(rescor = FALSE), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_poisson(),
+  chains = 4, iter = 40000, warmup = 10000,
+  save_pars = save_pars(TRUE)
+)
+
+plot(brm_glorys_mv4_ns)
+summary(brm_glorys_mv4_ns)
+
+# Extract posterior samples
+posterior_samples <- as.data.frame(posterior_samples(brm_glorys))
+
+## Evaluate whether model was skewed by L. platy ID and metadata
+
+# Extract Gaussian process kernel values and phylogenetic distances
+phylo_distance <- as.vector(dist(A))
+gp_kernel_values <- c(mean(posterior_samples$`r_species[Anarhichas.lupus,Intercept]`))
+
+# Create a data frame for plotting
+plot_data <- data.frame(phylo_distance, gp_kernel_values)
+
+# Lplaty loo. w/ out scaling - no effect
+ggplot(decay_df, aes(x = distance)) +
+  geom_line(aes(y = decay_mean), color = "blue") +
+  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.2) +
+  labs(
+    title = "Gaussian Process Decay",
+    x = "Inverse Covariance (Distance)",
+    y = "Covariance"
+  ) +
+  theme_minimal() AFP_CNV ~ thetao_min + poly(pressure,2) + (1|gr(species, cov = A)), 
+  data = loo_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(TRUE)
+)
+
+# Multivariate Lplaty loo
+brm_loo_mv <- brm(
+  bf(AFP_synt ~ scale(thetao_min) + poly(scale(pressure),2) + 
+       (1|gr(species, cov = A))) +
+    bf(AFP_trans ~ scale(thetao_min) + poly(scale(pressure),2) + 
+         (1|gr(species, cov = A))) + 
+    set_rescor(rescor = FALSE), 
+  data = loo_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(TRUE)
+)
+
+plot(brm_loo_mv)
+summary(brm_loo_mv)
+
+# Scaled effect estimates
+brm_loo_sc <- brm(
+  AFP_CNV ~ scale(thetao_min) + poly(scale(pressure),2) + (1|gr(species, cov = A)),
+  data = loo_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(TRUE)
+)
+
+summary(brm_loo_sc)
+
+```
+
+Plot temperature effect
+
+```{r}
+
+# Step 1: Extract predicted effects
+effects_t <- conditional_effects(brm_glorys, effects = "thetao_min")
+efft_data <- data.frame(
+  lower = effects_t$thetao_min$lower__,
+  upper = effects_t$thetao_min$upper__,
+  thetao_min = effects_t$thetao_min$thetao_min,
+  estimate = effects_t$thetao_min$estimate__,
+  se = effects_t$thetao_min$se__) # Adjust 'x' based on your variable of interest
+
+# Step 2: Prepare your observation data for plotting
+# Make sure 'data' is your original dataset used for fitting the model
+obst_data <- new_data %>%
+  select(thetao_min, AFP_CNV) # Adjust 'x' and 'y' based on your actual variable names
+
+# Step 3: Plot with ggplot2
+temp_fig <- ggplot() +
+  geom_ribbon(data = efft_data, aes(x = thetao_min, ymin = estimate - se, ymax = estimate + se), alpha = 0.2) + # Confidence interval
+  geom_line(data = efft_data, aes(x = thetao_min, y = estimate), color = "blue", size = 1) + # Predicted line
+  geom_point(data = obst_data, aes(x = thetao_min, y = AFP_CNV), size = 2) + # Observation points
+  labs(x = "Thermal minimum (°C)", y = "AFP III copies") + # Adjust axis labels as needed
+  theme_classic(base_size = 20) +
+  coord_cartesian(ylim = c(0,50))
+
+temp_fig
+
+# Plot temperature posteriors for synt and trans AFPs
+posts <- posterior_samples(brm_glorys_mv4)
+
+posts_df <- rbind(
+  data.frame(
+    class = "Syntenic",
+    temp = posts$b_AFPsynt_sc_thetao_min,
+    pressure = posts$b_AFPsynt_sc_pressure),
+  data.frame(
+    class = "Translocated",
+    temp = posts$b_AFPtrans_sc_thetao_min,
+    pressure = posts$b_AFPtrans_sc_pressure
+  ))
+
+temp_post <- ggplot(data = posts_df,
+                    aes(x = temp, fill = class)) +
+  geom_density(alpha = 0.75, color = "transparent") +
+  geom_vline(xintercept = 0, lty = 2, size = 1, color = "black") +
+  scale_fill_manual(values = c("skyblue4", "goldenrod1")) +
+  theme_classic(base_size = 20) +
+  theme(legend.position = "none") +
+  labs(x = expression("Thermal minimum"~italic("β")), 
+       y = "Density") +
+  xlim(-6,2.5)
+
+temp_post
+
+pressure_post <- ggplot(data = posts_df,
+                    aes(x = pressure, fill = class)) +
+  geom_density(alpha = 0.75, color = "transparent") +
+  geom_vline(xintercept = 0, lty = 2, size = 1, color = "black") +
+  scale_fill_manual(values = c("skyblue4", "goldenrod1")) +
+  theme_classic(base_size = 20) +
+  theme(legend.position = c(0.2, 0.8),
+        legend.title = element_text(size = 15),
+        legend.text = element_text(size = 12)) +
+  labs(x = expression("Pressure"~italic("β")), y = "Density",
+        fill = "AFP class") +
+  xlim(-25,2)
+
+pressure_post
+
+```
+
+Plot pressure effect
+
+```{r}
+
+# Step 1: Extract predicted effects
+effects <- conditional_effects(brm_glorys, effects = "pressure")
+eff_data <- data.frame(
+  lower = effects$pressure$lower__,
+  upper = effects$pressure$upper__,
+  pressure = effects$pressure$pressure,
+  estimate = effects$pressure$estimate__,
+  se = effects$pressure$se__) # Adjust 'x' based on your variable of interest
+
+# Step 2: Prepare your observation data for plotting
+# Make sure 'data' is your original dataset used for fitting the model
+obs_data <- new_data %>%
+  select(pressure, AFP_CNV) # Adjust 'x' and 'y' based on your actual variable names
+
+# Step 3: Plot with ggplot2
+pressure_fig <- ggplot() +
+  geom_ribbon(data = eff_data, aes(x = pressure/10, ymin = estimate - se, ymax = estimate + se), alpha = 0.2) + # Confidence interval
+  geom_line(data = eff_data, aes(x = pressure/10, y = estimate), color = "blue", size = 1) + # Predicted line
+  geom_point(data = obs_data, aes(x = pressure/10, y = AFP_CNV),  size = 2) + # Observation points
+  labs(x = "Pressure (bars)", y = "AFP III copies") + # Adjust axis labels as needed
+  theme_classic(base_size = 20) +
+  coord_cartesian(ylim = c(0,50))
+
+pressure_fig
+
+# Plots temp x pressure
+eff_all <- cbind(eff_data,
+                 efft_data$thetao_min)
+
+obs_all <- cbind(obs_data,
+                 obst_data$thetao_min)
+
+temp_press_fig <- ggplot(data = new_data, 
+                         aes(x = (thetao_min - min(thetao_min) + 0.001) * (pressure/10), y = AFP_CNV)) +
+  stat_smooth(method = "glm", method.args = list(family = "poisson"), se = TRUE, col = "blue") +
+  geom_point(size = 3) + # Observation points
+  labs(x = "Thermal minimum x pressure (°C bars)", y = "AFP III copies") + # Adjust axis labels as needed
+  theme_classic(base_size = 20)  +
+  coord_cartesian(ylim = c(0,50))
+
+temp_press_fig
+
+# Plot Fig 2 narrow panel
+Fig2_narrow <- ggarrange(temp_fig, pressure_fig,
+                   labels = c("B", "C"),
+                   widths = c(1,1),
+                   ncol = 1, nrow = 2, align = "h")
+
+
+Fig_2 <- ggarrange(temp_press_fig, Fig2_narrow,
+                   labels = c("A", ""),
+                   widths = c(1,.75),
                    ncol = 2, nrow = 1, align = "v")
 
-png("~/Documents/GitHub/Long_AFP/Figures/Fig_2.png", units = "in", width = 12, 
-    height = 6, 
+Fig_2
+
+# Export Fig_2 as png
+png("~/Documents/GitHub/Long_AFP/Figures/Fig2_narrow.png", units = "in", width = 6, 
+    height = 12, 
+    res = 600)
+
+Fig2_narrow
+
+png("~/Documents/GitHub/Long_AFP/Figures/revision/Fig_2.png", units = "in", width = 12, 
+    height = 8, 
     res = 600)
 
 Fig_2
 
+# Plot Fig 4 narrow panel
+Fig4_narrow <- ggarrange(temp_post, pressure_post,
+                   labels = c("A", "B"),
+                   widths = c(1,1),
+                   ncol = 1, nrow = 2, align = "hv")
+
+Fig4_narrow
+
+# Export Fig_2 as png
+png("~/Documents/GitHub/Long_AFP/Figures/Fig4_narrow.png", units = "in", width = 6, 
+    height = 12, 
+    res = 600)
+
+Fig4_narrow
+
 
 ```
 
-Phylogenetically independent contrast of AFP CNV
+Hansen model of stabilizing selection
 
 ```{r}
 
-# With phylo-independent contrast
-pr_busco_df <- busco_df[-c(seq(13, 22, 1)), ]
+library(POUMM)
 
-# Transform to phy-independent values (PICs)
-pic.pslogrisk <- pic(pr_busco_df$pslog_risk, tree)
-pic.pslogAFPs <- pic(pr_busco_df$pslog_AFPs, tree)
-pic.fr_risk <- pic(pr_busco_df$fr_risk, tree)
-pic.AFPs <- pic(pr_busco_df$AFPs, tree)
+tree_trim <- drop.tip(tree, tip = "Gasterosteus aculeatus")
 
-# Correlation of PICs
-cor.test(pic.pslogrisk, pic.pslogAFPs)
-anova(lm(pic.pslogAFPs ~ pic.pslogrisk))
-anova(lm(pic.AFPs ~ pic.fr_risk))
+# Fit POUMM to syntenic AFP counts
+z_synt <- as.numeric(as.vector(new_data$AFP_synt))
+
+names(z_synt) <- new_data$species
+
+z_synt_o <- z_synt[tree_trim$tip.label]
+
+specPMM_synt <- specifyPMM(z_synt_o, tree_trim)
+
+fitPMM_synt <- POUMM(z_synt_o, tree_trim, spec = specPMM_synt, doMCMC=TRUE)
+fitPOUMM_synt <- POUMM(z_synt_o, tree_trim, doMCMC=TRUE)
+
+synt_lrt <- lmtest::lrtest(fitPMM_synt, fitPOUMM_synt)
+
+# Fit POUMM to trans AFP counts
+z_trans <- as.numeric(as.vector(new_data$AFP_trans))
+
+names(z_trans) <- new_data$species
+
+z_trans_o <- z_trans[tree_trim$tip.label]
+
+specPMM_trans <- specifyPMM(z_trans_o, tree_trim)
+
+fitPMM_trans <- POUMM(z_trans_o, tree_trim, spec = specPMM_trans, doMCMC=TRUE)
+fitPOUMM_trans <- POUMM(z_trans_o, tree_trim, doMCMC=TRUE)
+
+trans_lrt <- lmtest::lrtest(fitPMM_trans, fitPOUMM_trans)
+
+# Compare alpha posterior means
+summary(fitPOUMM_synt) # alpha = 111.22; theta = 4.31
+summary(fitPOUMM_trans) # alpha = 56.18; theta = 4.01
+
+# Extract alpha posteriors
+fitPOUMM_synt$fitMCMC
+
+```
+
+Plot covariance between temperature and depth
+
+```{r}
+
+# Move to input data directory for monthly glorys
+setwd("~/Documents/GitHub/Long_AFP/GLORYS/Monthly/")
+
+# Get the files names
+glorysm <- list.files(pattern = "*.nc")
+
+# Loop over the list of .nc files
+myglorysm <- lapply(glorysm, nc_open)
+
+## Create data frame from list of netcdf files
+glorysm_df <- list()  
+
+for (i in 1:length(myglorysm)) {
+  glorysm_df[[i]] <- na.omit(data.frame(id = gsub("_.*", "", glorysm[[i]]),
+                         thetao = as.vector(na.omit(ncvar_get(myglorysm[[i]], "thetao"))),
+                         so = as.vector(na.omit(ncvar_get(myglorysm[[i]], "so"))),
+                         depth = as.vector(na.omit(ncvar_get(myglorysm[[i]], "depth")))))
+  
+}
+
+glorysm_all <- do.call(rbind, glorysm_df)
+
+glorysm_all <- merge(glorysm_all,
+      data.frame(id = busco_df$id,
+                 latitude = busco_df$Mode_lat),
+      by = "id")
+
+# Calc pressure
+glorysm_all$pressure <- convertDepthToPressure(glorysm_all$depth,
+                                                glorysm_all$latitude,
+                                                glorysm_all$so)
+
+# Plot pressure-temp relationship
+ggplot(data = glorysm_all,
+       aes(x = pressure, y = thetao)) +
+  geom_smooth()
+
+```
+
+Plot AFP/SAS gene tree
+
+```{r}
+
+# Read in IQTree gene tree
+IQtr_exonerate <- read.tree("prank_hyphy/revision/prank_SAS_AFP_codon.contree")
+
+# Create factor for AFPs and SAS genes
+group_df <- data.frame(tip.label = IQtr_exonerate$tip.label,
+  group = ifelse(
+  grepl("SASA", IQtr_exonerate$tip.label), "SASA",
+  ifelse(grepl("SASB", IQtr_exonerate$tip.label), "SASB",
+  ifelse(grepl("flank", IQtr_exonerate$tip.label), "AFP syntenic", "AFP translocation"))))
+
+IQtr_exonerate <- reroot(IQtr_exonerate, 
+             node.number = 15) #63 places gacul as outgroup
+
+# #Make dataframe for clade nodes
+# clades.df <- data.frame(
+#   clade=unique(group_df$group),
+#   node=NA
+# )
+# 
+# # Find the most recent common ancestor for each clade
+# for (i in 1:length(clades.df$clade)) {
+#   
+#   clades.df$node[i] <- MRCA(
+#     IQtr_exonerate,
+#     group_df$tip.label[group_df$group == clades.df$clade[i]]
+#     )
+#   
+# }
+
+# Plot the consensus tree
+IQtr_exonerate$node.label <- ifelse(IQtr_exonerate$node.label %in% 
+                               c("100", "99", "86", "75"),
+                             IQtr_exonerate$node.label, "")
+
+# Create function to include certain node labels
+modify_node_labels <- function(phy, keep_nodes) {
+  # Replace all node labels with "" unless the node number is in keep_nodes
+  phy$node.label <- ifelse(seq_along(phy$node.label) %in% keep_nodes, phy$node.label, "")
+  return(phy)
+}
+
+keep_nodes <- c(19, 22, 43, 94)
+
+IQtr_exonerate_f <- modify_node_labels(IQtr_exonerate, keep_nodes)
+
+# Fortify tree and join group info
+tree_df <- fortify(IQtr_exonerate_f) %>%
+  filter(isTip)
+
+names(tree_df)[names(tree_df) == "label"] <- "tip.label"
+tree_df <- left_join(tree_df, group_df, by = "tip.label")
+
+# Determine max x to extend all lines to
+x_max <- max(tree_df$x) + 0.1
+n_segments <- 100  # More segments = smoother gradient
+
+# Generate fading segments for each tip
+fade_segments <- tree_df %>%
+  rowwise() %>%
+  do({
+    x_vals <- seq(.$x, x_max, length.out = n_segments)
+    data.frame(
+      x = x_vals[-length(x_vals)],
+      xend = x_vals[-1],
+      y = .$y,
+      yend = .$y,
+      alpha = seq(0, 1, length.out = n_segments - 1)^2,  # fade OUT from tip to edge
+      group = .$group
+    )
+  }) %>%
+  ungroup()
+
+# Plot
+Fig_3C <- ggtree(IQtr_exonerate_f, layout = "rectangular") %<+% group_df +
+  geom_segment(data = fade_segments,
+               aes(x = x, xend = xend, y = y, yend = yend,
+                   color = group, alpha = alpha),
+               size = 3,  lineend = "square", linejoin = "mitre") +
+  geom_tiplab(aes(color = group), align = TRUE, size = 0, linesize = 0) +  # Invisible label
+  geom_treescale(offset = 2, y = 50, x = -.8) +
+  geom_nodelab(data = IQtr_exonerate_f,
+               color = "black", size = 3,
+               nudge_x = 0.075, nudge_y = 3) +
+  scale_color_manual(values = c("skyblue4", "goldenrod1", "skyblue", "skyblue3"),
+                     labels = c("AFP syntenic",
+                                "AFP translocated",
+                                expression(italic("sasa")),
+                                expression(italic("sasb")))) +
+  scale_alpha(range = c(0, 1), guide = "none") +
+  theme(legend.position = "left",
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 20),
+        plot.background = element_rect(fill = "transparent", color = NA),
+        panel.background = element_rect(fill = "transparent")) +
+  labs(color = "Gene family") +
+  coord_flip() +
+  scale_x_reverse()
+
+ggsave(Fig_3C,
+       units = "in", width = 12, height = 3, 
+       filename = "~/Documents/GitHub/Long_AFP/Figures/revision/Fig_3C.png",
+       bg = "white")
+
+```
+
+Gene birth/death via ancestral state reconstruction
+
+```{r}
+
+library(phangorn)
+
+busco_df$tip.label[4] <- "Lycenchelys platyrhina"
+row.names(busco_df) <- busco_df$tip.label
+
+# Plot AFP copy number
+busco_df$tip.label = factor(
+  busco_df$tip.label, 
+  levels = rev(c('Ophthalmolycus amberensis', 'Lycodes diapterus', 'Lycodes pacificus', 
+             'Lycenchelys platyrhina', 'Melanostigma gelatinosum', 'Anarhichas lupus',
+             'Anarhichas minor', 'Pholis gunnellus', 'Leptoclinus maculatus',
+             'Cebidichthys violaceus', 'Bathymaster signatus', 'Gasterosteus aculeatus')))
+
+AFPs <-setNames(busco_df[,4],rownames(busco_df))
+
+fitER <-ace(AFPs,tree,type="continuous", method = "ML")
+
+ace_df <- data.frame(node = rownames(as.data.frame(fitER$ace)),
+                    ace = as.data.frame(fitER$ace)[,1])
+
+for(i in 1:Nnode(tree)) {
+  # Example of assigning data: here, just assigning a numeric value converted to character
+  tree$node.label[i] <- round(ace_df$ace[i],0)  # Example data
+}
 
 
-# Bayesian PIC
-library(brms)
+round(ace_df$ace,0)
 
-# Create dataframe of PIC values
-brm_df <- data.frame(PIC_pslogrisk = pic.pslogrisk,
-                     PIC_frrisk = pic.fr_risk,
-                     PIC_pslog_AFPs = pic.pslogAFPs,
-                     PIC_AFPS = pic.AFPs)
+tree_data <- fortify(tree)
 
-brm_df$sc_pslogrisk <- scale(brm_df$PIC_pslogrisk)
-brm_df$sc_pslogAFPs <- scale(brm_df$PIC_pslog_AFPs)
-brm_df$sc_risk <- scale(brm_df$PIC_frrisk)
-brm_df$sc_AFPs <- scale(brm_df$PIC_AFPS)
+# Plot reconstruction on the species tree
+asr_AFP <- ggtree(tree, layout = "rectangular", size = 1) %<+% busco_df +
+  geom_nodepoint(size = 6, color = "black") +
+  geom_nodelab(hjust = 0.5, color = "white", size = 3) +
+  geom_tiplab() +
+  theme(legend.position = "none",
+        strip.background = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank()) +
+  scale_size_manual(values = c(0,3)) +
+  geom_treescale(y = 2, x = .022) +
+  #geom_point2(aes(subset=node==23), size=8, fill="salmon", shape = 23, color = "black", stroke = 1) +
+  xlim(0, .25)
 
-# Fit brm
-brm_AFP_frrisk <- brm(
-  sc_pslogAFPs ~ sc_pslogrisk,
-  data = brm_df,
+asr_AFP
+
+p1
+
+ggarrange(asr_AFP, p1,
+          labels = c("", ""),
+          widths = c(1, 1),
+          ncol = 2, nrow = 1, align = "hv")
+
+```
+
+# Synteny plot of translocated AFP regions and scaffolds
+
+```{r}
+
+# Read in MAUVE backbone converted to csv
+mauve_bb <- read.csv(
+  "~/Documents/GitHub/Long_AFP/Synteny/scaffolds/mauve_transAFP_scaffolds.csv"
+  )
+
+make_absolute <- function(df) {
+  numeric_columns <- sapply(df, is.numeric)  # Identify numeric columns
+  df[numeric_columns] <- abs(df[numeric_columns])  # Apply abs() to numeric columns
+  return(df)
+}
+
+mauve_bb <- make_absolute(mauve_bb)
+
+# Convert to tabular format
+df_long <- mauve_bb %>%
+  mutate(block_id = row_number()) %>%
+  pivot_longer(
+    cols = -block_id,
+    names_to = c("species", "type"),
+    names_pattern = "([^_]+)_(.*)"
+  ) %>%
+  pivot_wider(
+    names_from = type,
+    values_from = value
+  ) %>%
+  # Now filtering correctly using the separated start and end columns
+  filter(leftend != 0, rightend != 0) %>%
+  # Correct conversion of species to factor after filtering
+  mutate(species = factor(species, levels = unique(species)))
+
+# Histogram of syntenic block lengths
+df_long$len <- abs(df_long$rightend - df_long$leftend)
+
+ggplot(data = df_long,
+       aes(x = len)) +
+  geom_histogram(binwidth = 1000) +
+  xlim(0, 50000)
+
+df_long$pos <- median(df_long$leftend + 
+                        abs(df_long$leftend - df_long$rightend) *.5)
+
+# Collapse multiple scaffolds from one species and adjust coordinates for plotting
+
+# Create geom rect variables for starts and ends of scaffolds rather than conserved blocks
+df_long$fish <- ifelse(df_long$species == "seq0", "A. lupus", 
+                       ifelse(df_long$species == "seq1" | 
+                                df_long$species == "seq2", "A. minor", 
+                              "L. maculatus"))
+
+df_long$fish_num <- ifelse(df_long$fish == "A. lupus", 1, 
+                       ifelse(df_long$fish == "A. minor", 2, 5))
+
+# Adjust Y-Coordinates
+df_long$y_position <- ifelse(df_long$species %in% c("seq1", "seq2"), 2,
+                             ifelse(df_long$species %in% c("seq3","seq4"), 5, 1))
+
+# Adjust X-Coordinates
+x_nudge <- 3e6  # Define a small nudge value, adjust as necessary
+df_long$leftend_adjusted <- df_long$leftend + ifelse(df_long$species %in% c("seq1", "seq3"), x_nudge, 0)
+df_long$rightend_adjusted <- df_long$rightend + ifelse(df_long$species %in% c("seq1", "seq3"), x_nudge, 0)
+df_long$pos_adjusted <- (df_long$leftend_adjusted + df_long$rightend_adjusted) / 2
+
+# Create gray scaffolds for synteny plot
+seq0_len <- 28177530 
+seq1_len <- 20014581 # Aminor scaff 3
+seq2_len <- 4617301 # Aminor scaff 20
+seq3_len <- 2084861 # Lmac scaff 34
+seq4_len <- 1348363 # Aminor scaff 50
+
+# Adjust y for geom_line clarity
+df_long$line_y <- ifelse(df_long$fish_num == 1, df_long$fish_num + 0.035,
+                           ifelse(df_long$fish_num %in% c(2,5), 
+                                  df_long$fish_num - 0.035, df_long$fish_num))
+
+# Adjust all range values so they're positive
+pos_adj <- 0 - min(df_long$leftend_adjusted)
+df_long$leftend_adj <- df_long$leftend_adjusted + pos_adj
+df_long$rightend_adj <- df_long$rightend_adjusted + pos_adj
+
+# A. minor adjustments
+df_long$leftend_adj <- ifelse(df_long$fish_num == "2", df_long$leftend_adjusted + (0-min(filter(df_long, fish_num == "2")$leftend_adjusted)),
+                              ifelse(df_long$fish_num == "5", df_long$leftend_adjusted + (0-min(filter(df_long, fish_num == "5")$leftend_adjusted)),
+                                     df_long$leftend_adj))
+
+df_long$rightend_adj <- ifelse(df_long$fish_num == "2", df_long$rightend_adjusted + (0-min(filter(df_long, fish_num == "2")$rightend_adjusted)),
+                              ifelse(df_long$fish_num == "5", df_long$rightend_adjusted + (0-min(filter(df_long, fish_num == "5")$rightend_adjusted)),
+                                     df_long$rightend_adj))
+
+df_long$pos_adjstd <- (df_long$leftend_adj + df_long$rightend_adj) / 2
+
+## Synteny plot
+# Scale to Mb
+df_long <- df_long %>%
+  mutate(pos_adjstd = pos_adjstd / 1e6,
+         leftend_adj = leftend_adj / 1e6,
+         rightend_adj = rightend_adj / 1e6)
+
+# Create df of scaffold names and label coordinates
+scaff_labels <- data.frame(fish_num = c(.65, 1.65, 1.65, 2.65, 2.65),
+                           pos_adjstd = c(.5 * max(filter(df_long, species == "seq0")$rightend_adj),
+                                  max(filter(df_long, species == "seq1")$rightend_adj) - (.5 * (seq1_len / 1e6)),
+                                  .5 * max(filter(df_long, species == "seq2")$rightend_adj),
+                                  max(filter(df_long, species == "seq3")$rightend_adj) - (.5 * (seq3_len / 1e6)) - .9,
+                                  .5 * max(filter(df_long, species == "seq4")$rightend_adj)),
+                           label = c("contig 54", "contig 3", "contig 20", "scaff 34", "scaff 50"))
+
+# Create a df of AFP locations
+point_df <- data.frame(fish_num = c(1.3, 1.3, 2.3, 2.3, 5.3, 5.3, 5.3, 5.3),
+                           pos_adjstd = c(seq0_len - 2379960, seq0_len - 22446313,
+                                          8344819 + 3e6, 1747907, 
+                                          90836.06 + 3e6, 112920.1 + 3e6, 81878.91, 24636.25)/1e6)
+
+# Filter df_long
+valid_block_ids <- df_long %>%
+  group_by(block_id) %>%
+  filter(any(sapply(pos_adjstd, function(x) any(abs(x - point_df$pos_adjstd) <= 0.1)))) %>%
+  pull(block_id) %>%
+  unique()
+
+filtered_df_long <- df_long %>%
+  filter(block_id %in% valid_block_ids)
+
+# Syntenty plot of ancestral AFP array
+synt_plot <- ggplot(data = df_long, 
+       aes(y = fish,
+           x = pos_adjstd)) +
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq0")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq0")$rightend_adj), # Alupus scaffold bar
+           ymin = 1 - 0.035, 
+           ymax = 1 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq1")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq1")$rightend_adj), # Aminor scaffold A
+           ymin = 2 - 0.035, 
+           ymax = 2 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq2")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq2")$rightend_adj), # Aminor scaffold B
+           ymin = 2 - 0.035, 
+           ymax = 2 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq3")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq3")$rightend_adj), # Lmac scaffold A
+           ymin = 3 - 0.035, 
+           ymax = 3 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq4")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq4")$rightend_adj), # Lmac scaffold B
+           ymin = 3 - 0.035, 
+           ymax = 3 + 0.035), fill = "gray80") +
+  geom_line(aes(x = pos_adjstd, 
+                y = line_y, group = as.factor(block_id),),
+            stat = "identity", color = "gray80", 
+            alpha = 0.025, size = .2, orientation = "x") +
+  geom_line(data = filtered_df_long, aes(x = pos_adjstd, 
+                y = line_y, group = as.factor(block_id),),
+            stat = "identity", color = "goldenrod1", 
+            alpha = 0.5, size = 1, orientation = "x") +
+  geom_rect(aes(xmin = max(filter(df_long, species == "seq2")$rightend_adj), 
+                xmax = min(filter(df_long, species == "seq1")$leftend_adj), # Cover Aminor horiz line
+           ymin = 2 - 0.075, 
+           ymax = 2 + 0.025), fill = "white") +
+  geom_rect(aes(xmin = max(filter(df_long, species == "seq4")$rightend_adj), 
+                xmax = min(filter(df_long, species == "seq3")$leftend_adj), # Cover Lmac horiz line
+           ymin = 3 - 0.075, 
+           ymax = 3 + 0.025), fill = "white") +
+  geom_rect(aes(xmin = leftend_adj, xmax = rightend_adj, group = as.factor(block_id), fill = as.factor(block_id), 
+           ymin = as.numeric(fish_num) - 0.1, 
+           ymax = as.numeric(fish_num) + 0.1)) +
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq0")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq0")$rightend_adj), # Alupus scaffold bar
+           ymin = 1 - 0.15, 
+           ymax = 1 - 0.14), fill = "black") + # Alupus scaffold underline
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq1")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq1")$rightend_adj), # Aminor scaffold A
+           ymin = 2 - 0.15, 
+           ymax = 2 - 0.14), fill = "black") + # Aminor scaffold A underline
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq2")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq2")$rightend_adj), # Aminor scaffold B
+           ymin = 2 - 0.15, 
+           ymax = 2 - 0.14), fill = "black") + # Aminor scaffold B underline
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq3")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq3")$rightend_adj), # Lmac scaffold A
+           ymin = 3 - 0.15, 
+           ymax = 3 - 0.14), fill = "black") + # Lmac scaffold A underline
+  geom_rect(aes(xmin = min(filter(df_long, species == "seq4")$leftend_adj), 
+                xmax = max(filter(df_long, species == "seq4")$rightend_adj), # Lmac scaffold B
+           ymin = 3 - 0.15, 
+           ymax = 3 - 0.14), fill = "black") + # Lmac scaffold B underline
+  geom_point(data = point_df,
+             aes(x = pos_adjstd, y = fish_num), color = "goldenrod4", size = 2.5) +
+  geom_point(data = point_df,
+             aes(x = pos_adjstd, y = fish_num), color = "goldenrod1", size = 1.5) +
+  geom_text(data = scaff_labels,
+            aes(x = pos_adjstd, y = fish_num, label = label),
+            size = 3.5) +
+  theme_classic(base_size = 20) +
+  theme(legend.position = "none",
+        axis.title.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_text(face = "italic", size = 15)) +
+  labs(x = "Mb", y = "Species", fill = "Block ID") +
+  theme(axis.text.y = element_text(angle = 0, hjust = 0.5, vjust = 0.5))
+
+synt_plot
+
+# Export synteny plot
+png("~/Documents/GitHub/Long_AFP/Figures/synt_plot.png", units = "in", width = 12, 
+    height = 6, 
+    res = 600)
+
+synt_plot
+
+# Reperform synteny plot, removing horizontal links within the same species
+
+df_long_filt <- df_long %>%
+  group_by(block_id) %>%
+  filter(n_distinct(fish) > 1) %>%
+  ungroup()
+
+# Function to reverse the x axis where fish == "A. minor"
+reverse_x_for_specific_fish <- function(data) {
+  # Identify rows where fish == "A. minor"
+  condition <- data$fish == "A. lupus"
+  
+  # Find the maximum x value in these rows (or overall if you want a global max)
+  max_x <- max(data$pos_adjstd[condition])
+  max_start <- max(data$leftend_adj[condition])
+  max_end <- max(data$rightend_adj[condition])
+
+  # Reverse the x values for these specific rows
+  data$pos_adjstd[condition] <- max_x - (data$pos_adjstd[condition] - 
+                                  min(data$pos_adjstd[condition]))
+  
+  data$leftend_adj[condition] <- max_start - (data$leftend_adj[condition] - 
+                                  min(data$leftend_adj[condition]))
+  
+  data$rightend_adj[condition] <- max_end - (data$rightend_adj[condition] - 
+                                  min(data$rightend_adj[condition]))
+  
+  return(data)
+}
+
+df_long_filt <- reverse_x_for_specific_fish(df_long_filt)
+
+# Add in species with AFPs but no translocated AFPs
+
+df_long_filt$fish <- as.factor(df_long_filt$fish)
+
+# Filter df_long
+valid_block_ids <- df_long %>%
+  group_by(block_id) %>%
+  filter(sum(sapply(pos_adjstd, function(x) any(abs(x - point_df$pos_adjstd) <= 0))) >= 2) %>%
+  pull(block_id) %>%
+  unique()
+
+filtered_df_long <- df_long_filt %>%
+  filter(block_id %in% valid_block_ids)
+
+# Order y axis
+# Add empty rows for missing species
+missing_species <- data.frame(
+  block_id = NA,    # No x-axis data
+  species = NA,   # For rects and scaffolds
+  leftend = NA,  # For rects and scaffolds
+  rightend = NA,       # Species placeholder
+  len = NA,      # Numeric version of fish for rects/points
+  pos = NA,
+  fish = c("L. platyrhina", "O. amberensis", "P. gunnelus"),
+  fish_num = c(4, 3, 6),
+  y_position = NA,
+  leftend_adjusted = NA,
+  rightend_adjusted = NA,
+  pos_adjusted = NA,
+  line_y = NA,
+  leftend_adj = NA,
+  rightend_adj = NA,
+  pos_adjstd = NA
+  # Placeholder for block groupings
+)
+
+# Combine with the original data frame
+df_long_filt <- rbind(df_long_filt, missing_species)
+
+df_long_filt$Category <- factor(df_long_filt$fish,
+                                levels = c("L. platyrhina", "O. amberensis", "A. lupus",
+                                           "A. minor", "P. gunnelus", "L. maculatus"))
+
+synt_plot_filt <- ggplot(data = df_long_filt, 
+       aes(y = fish,
+           x = pos_adjstd)) +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq0")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq0")$rightend_adj), # Alupus scaffold bar
+           ymin = 1 - 0.035, 
+           ymax = 1 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq1")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq1")$rightend_adj), # Aminor scaffold A
+           ymin = 2 - 0.035, 
+           ymax = 2 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq2")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq2")$rightend_adj), # Aminor scaffold B
+           ymin = 2 - 0.035, 
+           ymax = 2 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq3")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq3")$rightend_adj), # Lmac scaffold A
+           ymin = 5 - 0.035, 
+           ymax = 5 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq4")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq4")$rightend_adj), # Lmac scaffold B
+           ymin = 5 - 0.035, 
+           ymax = 5 + 0.035), fill = "gray80") +
+  geom_line(aes(x = pos_adjstd, 
+                y = fish_num, group = as.factor(block_id),),
+            stat = "identity", color = "gray80", 
+            alpha = 0.05, size = .2, orientation = "x") +
+  # geom_line(data = filtered_df_long, aes(x = pos_adjstd, 
+  #               y = fish, group = as.factor(block_id),),
+  #           stat = "identity", color = "goldenrod1", 
+  #           alpha = 0.05, size = 2, orientation = "x") +
+  # geom_rect(aes(xmin = max(filter(df_long, species == "seq2")$rightend_adj),
+  #               xmax = min(filter(df_long, species == "seq1")$leftend_adj), # Cover Aminor horiz line
+  #          ymin = 2 - 0.025,
+  #          ymax = 2 + 0.025), fill = "white") +
+  # geom_rect(aes(xmin = max(filter(df_long, species == "seq4")$rightend_adj),
+  #               xmax = min(filter(df_long, species == "seq3")$leftend_adj), # Cover Lmac horiz line
+  #          ymin = 3 - 0.025,
+  #          ymax = 3 + 0.025), fill = "white") +
+  geom_rect(aes(xmin = leftend_adj, xmax = rightend_adj, group = as.factor(block_id), fill = as.factor(block_id), 
+           ymin = as.numeric(fish_num) - 0.15, 
+           ymax = as.numeric(fish_num) + 0.15)) +
+  # geom_rect(aes(xmin = min(filter(df_long, species == "seq0")$leftend_adj), 
+  #               xmax = max(filter(df_long, species == "seq0")$rightend_adj), # Alupus scaffold bar
+  #          ymin = 1 - 0.15, 
+  #          ymax = 1 - 0.14), fill = "black") + # Alupus scaffold underline
+  # geom_rect(aes(xmin = min(filter(df_long, species == "seq1")$leftend_adj), 
+  #               xmax = max(filter(df_long, species == "seq1")$rightend_adj), # Aminor scaffold A
+  #          ymin = 2 - 0.15, 
+  #          ymax = 2 - 0.14), fill = "black") + # Aminor scaffold A underline
+  # geom_rect(aes(xmin = min(filter(df_long, species == "seq2")$leftend_adj), 
+  #               xmax = max(filter(df_long, species == "seq2")$rightend_adj), # Aminor scaffold B
+  #          ymin = 2 - 0.15, 
+  #          ymax = 2 - 0.14), fill = "black") + # Aminor scaffold B underline
+  # geom_rect(aes(xmin = min(filter(df_long, species == "seq3")$leftend_adj), 
+  #               xmax = max(filter(df_long, species == "seq3")$rightend_adj), # Lmac scaffold A
+  #          ymin = 3 - 0.15, 
+  #          ymax = 3 - 0.14), fill = "black") + # Lmac scaffold A underline
+  # geom_rect(aes(xmin = min(filter(df_long, species == "seq4")$leftend_adj), 
+  #               xmax = max(filter(df_long, species == "seq4")$rightend_adj), # Lmac scaffold B
+  #          ymin = 3 - 0.15, 
+  #          ymax = 3 - 0.14), fill = "black") + # Lmac scaffold B underline
+  geom_point(data = point_df,
+             aes(x = pos_adjstd, y = fish_num), color = "goldenrod4", size = 2.5) +
+  geom_point(data = point_df,
+             aes(x = pos_adjstd, y = fish_num), color = "goldenrod1", size = 1.5) +
+  # geom_text(data = scaff_labels,
+  #           aes(x = pos_adjstd, y = fish_num, label = label),
+  #           size = 3.5) +
+  scale_y_discrete(limits = c("L. platyrhina", "O. amberensis", "A. lupus",
+                                           "A. minor", "P. gunnelus", "L. maculatus")) +
+  theme_classic(base_size = 20) +
+  theme(legend.position = "none",
+        axis.title.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(x = "Mb")
+
+synt_plot_filt
+
+```
+
+Synteny plot of ancestral AFP III region in all AFP species
+
+```{r}
+
+# Read in MAUVE backbone conerted to csv
+mauve_synt_bb <- read.csv(
+  "~/Documents/GitHub/Long_AFP/Synteny/synt_scaffolds/synt_afp_scaff_mauve_r1.csv"
+  )
+
+make_absolute <- function(df) {
+  numeric_columns <- sapply(df, is.numeric)  # Identify numeric columns
+  df[numeric_columns] <- abs(df[numeric_columns])  # Apply abs() to numeric columns
+  return(df)
+}
+
+mauve_synt_bb <- make_absolute(mauve_synt_bb)
+
+# Convert to tabular format
+df_long_synt <- mauve_synt_bb %>%
+  mutate(block_id = row_number()) %>%
+  pivot_longer(
+    cols = -block_id,
+    names_to = c("species", "type"),
+    names_pattern = "([^_]+)_(.*)"
+  ) %>%
+  pivot_wider(
+    names_from = type,
+    values_from = value
+  ) %>%
+  # Now filtering correctly using the separated start and end columns
+  filter(leftend != 0, rightend != 0) %>%
+  # Correct conversion of species to factor after filtering
+  mutate(species = factor(species, levels = unique(species)))
+
+# Histogram of syntenic block lengths
+df_long_synt$len <- abs(df_long_synt$rightend - df_long_synt$leftend)
+
+df_long_synt$pos <- median(df_long_synt$leftend + 
+                        abs(df_long_synt$leftend - df_long_synt$rightend) *.5)
+
+# Create geom rect variables for starts and ends of scaffolds rather than conserved blocks
+df_long_synt$fish <- ifelse(df_long_synt$species == "seq0", "A. lupus", 
+                       ifelse(df_long_synt$species == "seq1", "A. minor", 
+                                ifelse(df_long_synt$species == "seq2", "L. maculatus",
+                                       ifelse(df_long_synt$species == "seq3", "L. platyrhina",
+                                              ifelse(df_long_synt$species == "seq4" | df_long_synt$species == "seq5", "O. amberensis", "P. gunnelus")))))
+
+df_long_synt$fish_num <- ifelse(df_long_synt$fish == "A. minor", 1, 
+                       ifelse(df_long_synt$fish == "A. lupus", 2,
+                              ifelse(df_long_synt$fish == "L. maculatus", 5,
+                                     ifelse(df_long_synt$fish == "L. platyrhina", 4,
+                                            ifelse(df_long_synt$fish == "O. amberensis", 3, 6)))))
+
+# Adjust X-Coordinates
+x_nudge <- 2556042  # Define a small nudge value, adjust as necessary
+df_long_synt$leftend_adjusted <- df_long_synt$leftend + ifelse(df_long_synt$species %in% c("seqn"), x_nudge, 0)
+df_long_synt$rightend_adjusted <- df_long_synt$rightend + ifelse(df_long_synt$species %in% c("seqn"), x_nudge, 0)
+df_long_synt$pos_adjusted <- (df_long_synt$leftend_adjusted + df_long_synt$rightend_adjusted) / 2
+
+# Create gray scaffolds for synteny plot
+seq0_len <- 13233881 # A lupus synt scaff 
+seq1_len <- 20701002 # Aminor synt scaff
+seq2_len <- 18301156 # Lmac synt scaff
+seq3_len <- 5309815 # Lplaty synt scaff
+seq4_len <- 1083389 # Oamb synt scaff 84
+seq5_len <- 2556042 # Oamb synt scaff 1797
+seq6_len <- 20225815 # Pgunn synt scaff
+
+# # Adjust y for geom_line clarity
+# df_long$line_y <- ifelse(df_long$fish_num == 1, df_long$fish_num + 0.035,
+#                            ifelse(df_long$fish_num %in% c(2,3), 
+#                                   df_long$fish_num - 0.035, df_long$fish_num))
+
+# # Adjust all range values so they're positive
+# pos_adj_synt <- 0 - min(df_long_synt$leftend_adjusted)
+# df_long_synt$leftend_adj <- df_long_synt$leftend_adjusted + pos_adj_synt
+# df_long_synt$rightend_adj <- df_long_synt$rightend_adjusted + pos_adj_synt
+
+# Function to reverse values for specified species
+reverse_values <- function(df, species_name, variable) {
+  species_filter <- df$fish == species_name
+  max_val <- max(df[species_filter, variable], na.rm = TRUE)
+  min_val <- min(df[species_filter, variable], na.rm = TRUE)
+  df[species_filter, variable] <- max_val + min_val - df[species_filter, variable]
+  df
+}
+
+# Apply the reversal for specified fish species and variables
+species_to_reverse <- c("L. platyrhina", "P. gunnelus", "O. amberensis")
+variables_to_reverse <- c("pos_adjusted", "leftend_adjusted", "rightend_adjusted")
+
+for (species in species_to_reverse) {
+  for (variable in variables_to_reverse) {
+    df_long_synt <- reverse_values(df_long_synt, species, variable)
+  }
+}
+
+reverse_x_synt <- function(data) {
+  # Identify rows where fish == "A. minor"
+  condition <- data$fish == "A. minor"
+  
+  # Find the maximum x value in these rows (or overall if you want a global max)
+  max_x <- max(data$pos_adjusted[condition])
+  max_start <- max(data$leftend_adjusted[condition])
+  max_end <- max(data$rightend_adjusted[condition])
+
+  # Reverse the x values for these specific rows
+  data$pos_adjusted[condition] <- max_x - (data$pos_adjusted[condition] - 
+                                  min(data$pos_adjusted[condition]))
+  
+  data$leftend_adjusted[condition] <- max_start - (data$leftend_adjusted[condition] - 
+                                  min(data$leftend_adjusted[condition]))
+  
+  data$rightend_adjusted[condition] <- max_end - (data$rightend_adjusted[condition] - 
+                                  min(data$rightend_adjusted[condition]))
+  
+  return(data)
+}
+
+df_long_synt <- reverse_x_synt(df_long_synt)
+
+# A. minor adjustments
+df_long_synt$leftend_adj <- ifelse(df_long_synt$fish_num == "2", df_long_synt$leftend_adjusted + (0-min(filter(df_long_synt, fish_num == "2")$leftend_adjusted)),
+                              ifelse(df_long_synt$fish_num == "5", df_long_synt$leftend_adjusted + (0-min(filter(df_long_synt, fish_num == "5")$leftend_adjusted)),
+                                     ifelse(df_long_synt$fish_num == "4", df_long_synt$leftend_adjusted + (0-min(filter(df_long_synt, fish_num == "4")$leftend_adjusted)),
+                                            ifelse(df_long_synt$fish_num == "3", df_long_synt$leftend_adjusted + (0-min(filter(df_long_synt, fish_num == "3")$leftend_adjusted)),
+                                                   ifelse(df_long_synt$fish_num == "6", df_long_synt$leftend_adjusted + (0-min(filter(df_long_synt, fish_num == "6")$leftend_adjusted)),
+                                     df_long_synt$leftend_adjusted)))))
+
+df_long_synt$rightend_adj <- ifelse(df_long_synt$fish_num == "2", df_long_synt$rightend_adjusted + (0-min(filter(df_long_synt, fish_num == "2")$rightend_adjusted)),
+                              ifelse(df_long_synt$fish_num == "5", df_long_synt$rightend_adjusted + (0-min(filter(df_long_synt, fish_num == "5")$rightend_adjusted)),
+                                     ifelse(df_long_synt$fish_num == "4", df_long_synt$rightend_adjusted + (0-min(filter(df_long_synt, fish_num == "4")$rightend_adjusted)),
+                                            ifelse(df_long_synt$fish_num == "3", df_long_synt$rightend_adjusted + (0-min(filter(df_long_synt, fish_num == "3")$rightend_adjusted)),
+                                                   ifelse(df_long_synt$fish_num == "6", df_long_synt$rightend_adjusted + (0-min(filter(df_long_synt, fish_num == "6")$rightend_adjusted)),
+                                     df_long_synt$rightend_adjusted)))))
+
+df_long_synt$pos_adjstd <- (df_long_synt$leftend_adj + df_long_synt$rightend_adj) / 2
+
+## Synteny plot
+df_long_synt$leftend_adj <- df_long_synt$leftend_adj + ifelse(df_long_synt$species %in% c("seq4"), x_nudge, 0)
+df_long_synt$rightend_adj <- df_long_synt$rightend_adj + ifelse(df_long_synt$species %in% c("seq4"), x_nudge, 0)
+df_long_synt$pos_adjstd <- df_long_synt$pos_adjstd + ifelse(df_long_synt$species %in% c("seq4"), x_nudge, 0)
+
+# Scale to Mb
+df_long_synt <- df_long_synt %>%
+  mutate(pos_adjstd = pos_adjstd / 1e6,
+         leftend_adj = leftend_adj / 1e6,
+         rightend_adj = rightend_adj / 1e6)
+
+# Create df of scaffold names and label coordinates
+# scaff_labels_synt <- data.frame(fish_num = c(.65, 1.65, 2.65, 3.65, 4.65, 4.65, 5.65),
+#                            pos_adjstd = c(.5 * max(filter(df_long, species == "seq0")$rightend_adj),
+#                                   max(filter(df_long, species == "seq1")$rightend_adj) - (.5 * (seq1_len / 1e6)),
+#                                   .5 * max(filter(df_long, species == "seq2")$rightend_adj),
+#                                   max(filter(df_long, species == "seq3")$rightend_adj) - (.5 * (seq3_len / 1e6)) - .9,
+#                                   .5 * max(filter(df_long, species == "seq4")$rightend_adj)),
+#                            label = c("contig 54", "contig 3", "contig 20", "scaff 34", "scaff 50"))
+
+# Create a df of AFP locations
+point_df_synt <- data.frame(fish_num = c(2.3, 1.3, 5.3, 4.3, 3.3, 3.3, 6.3),
+                           pos_adjstd = c(3916777, seq1_len - 16599267,
+                                          5786128, seq3_len - 3858215, 
+                                          seq4_len - 956214 + min(filter(df_long_synt, species == "seq4")$leftend_adj)*1e6, seq5_len - 34476, 
+                                          seq6_len - 14428063)/1e6)
+
+df_long_synt_filt <- df_long_synt
+
+# # Filter out within-species block connections
+# df_long_synt_filt <- df_long_synt %>%
+#   group_by(block_id) %>%
+#   filter(n_distinct(fish) > 1) %>%
+#   ungroup()
+
+# # Calculate the halfway point of the dataframe
+# halfway_point <- nrow(df_long_synt_filt) / 2
+
+# # Filter the dataframe
+# df_long_synt_filt <- df_long_synt_filt %>%
+#   # Add row numbers to use for filtering the first half
+#   mutate(row_number = row_number()) %>%
+#   # Apply conditions: remove rows in the first half with 'fish' == "A. minor" and pos_adstd < 10
+#   filter(!(row_number >= halfway_point & fish == "A. minor" & pos_adjstd < 10)) %>%
+#   # Remove the auxiliary row_number column
+#   select(-row_number)
+
+# Filter df_long
+valid_block_ids_synt <- df_long_synt_filt %>%
+  group_by(block_id) %>%
+  filter(sum(sapply(pos_adjstd, function(x) any(abs(x - point_df_synt$pos_adjstd) <= 0.05))) >= 3) %>%
+  pull(block_id) %>%
+  unique()
+
+filtered_df_long2 <- df_long_synt_filt %>%
+  filter(block_id %in% valid_block_ids_synt)
+
+df_long_synt_filt$fish <- factor(df_long_synt_filt$fish,
+                                 levels = c("A. minor", "A. lupus", "O. amberensis",
+                                            "L. platyrhina", "L. maculatus", "P. gunnelus"))
+
+synt_synt_plot <- ggplot(data = df_long_synt_filt, 
+       aes(y = fish,
+           x = pos_adjstd)) +
+  # geom_line(aes(x = pos_adjstd, 
+  #                y = fish, group = as.factor(block_id),),
+  #            stat = "identity", color = "gray85", 
+  #            alpha = 0.01, linewidth = .05, orientation = "x") +
+  geom_line(aes(x = pos_adjstd, 
+                 y = fish, group = as.factor(block_id),),
+             stat = "identity", color = "gray80", 
+             alpha = 0.05, linewidth = .025, orientation = "x") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq0")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq0")$rightend_adj), # Alupus scaffold bar
+           ymin = 2 - 0.035, 
+           ymax = 2 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq1")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq1")$rightend_adj), # Aminor scaffold bar
+           ymin = 1 - 0.035, 
+           ymax = 1 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq2")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq2")$rightend_adj), # Lmac scaffold bar
+           ymin = 5 - 0.035, 
+           ymax = 5 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq3")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq3")$rightend_adj), # Lplaty scaffold bar
+           ymin = 4 - 0.035, 
+           ymax = 4 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq4")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq4")$rightend_adj), # Oamb scaffold A
+           ymin = 3 - 0.035, 
+           ymax = 3 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq5")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq5")$rightend_adj), # Oamb scaffold B
+           ymin = 3 - 0.035, 
+           ymax = 3 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq6")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq6")$rightend_adj), # Pgunn scaffold bar
+           ymin = 6 - 0.035, 
+           ymax = 6 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = pos_adjstd-0.0002, xmax = pos_adjstd+0.0002, group = as.factor(block_id), 
+                fill = as.factor(block_id), 
+           ymin = as.numeric(fish_num) - 0.15, 
+           ymax = as.numeric(fish_num) + 0.15)) +
+  geom_curve(aes(xend = (seq4_len - 956214 + (min(filter(df_long_synt, species == "seq4")$leftend_adj)*1e6))/1e6 -.1, 
+                 x = ((seq5_len - 34476)/1e6), 
+                 y = 3.2, yend = 3.2), curvature = -0.66, color = "skyblue4") +
+  geom_point(data = point_df_synt,
+             aes(x = pos_adjstd, y = fish_num), color = "skyblue4", size = 2.5) +
+  geom_point(data = point_df_synt,
+             aes(x = pos_adjstd, y = fish_num), color = "skyblue", size = 1.5) +
+  # geom_text(data = scaff_labels,
+  #           aes(x = pos_adjstd, y = fish_num, label = label),
+  #           size = 3.5) +
+  theme_classic(base_size = 20) +
+  scale_x_continuous(breaks = c(0,10,20)) +
+  theme(legend.position = "none",
+        axis.title.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_text(face = "italic", size = 15)) +
+  labs(x = "Mb", y = "Species") +
+  theme(axis.text.y = element_text(angle = 0, hjust = 0.5, vjust = 0.5))
+
+synt_synt_plot
+
+# Export syntenic synteny plot
+png("~/Documents/GitHub/Long_AFP/Figures/synt_synt_plot.png", units = "in", width = 12,
+    height = 6,
+    res = 600)
+
+synt_synt_plot
+
+# Create synteny panel
+synt_synt_plot <- synt_synt_plot + theme(plot.margin = margin(.1, .1, .1, .1, "cm"))
+synt_plot_filt <- synt_plot_filt + theme(plot.margin = margin(.1, .1, .1, .1, "cm"))
+
+Fig_3B <- ggarrange(synt_synt_plot, synt_plot_filt,
+                   labels = c("", ""),
+                   widths = c(1, .95),
+                   ncol = 2, nrow = 1, align = "h")
+
+Fig_3 <- ggarrange(Fig_3B, Fig_3C,
+                   labels = c("A", "B"),
+                   heights = c(1, 1),
+                   ncol = 1, nrow = 2, align = "h")
+
+# Export syntenic synteny plot
+png("~/Documents/GitHub/Long_AFP/Figures/Fig_3.png", units = "in", width = 12,
+    height = 6,
+    res = 600)
+
+Fig_3
+
+# Create final panel with microsynteny plot in editor
+
+```
+
+# Additional supplemental results
+
+```{r}
+
+## Do pseudogenized and putatively functional AFP copies correlate across species?
+
+# Fit model
+psAFP_corr_brm <- brm(
+  bf(AFP_CNV ~ (1|gr(species, cov = A))) +
+    bf(AFP_pseudo ~ AFP_CNV + (1|gr(species, cov = A))) + set_rescor(rescor = FALSE), 
+  data = new_data,
+  data2 = list(A = A),
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(all = TRUE)
+)
+
+summary(psAFP_corr_brm)
+
+# Without phylogeny
+psAFP_brm <- brm(
+  bf(AFP_pseudo ~ poly(AFP_CNV,2)), 
+  data = new_data,
+  family = zero_inflated_negbinomial(),
+  chains = 4, iter = 40000,
+  save_pars = save_pars(all = TRUE)
+)
+
+summary(psAFP_brm)
+
+# Get r2
+bayes_R2(psAFP_corr_brm)
+
+# Plot
+new_data_p <- cbind(new_data,
+                    fitted(psAFP_corr_brm))
+
+ggplot(data = new_data_p,
+       aes(x = AFP_CNV)) +
+  geom_smooth(aes(y = Estimate.AFPpseudo),
+              method = "lm", formula = y~poly(x,2), se = TRUE) +
+  geom_point(aes(y = AFP_pseudo), size = 3) +
+  theme_classic(base_size = 15) +
+  labs(x = "Putatively functional AFP III copy number", y = "AFP III pseudogene copy number")
+
+# Distributions of species thermal ranges
+all_df <- bind_rows(glorys_df, .id = "column_label")
+
+ggplot(data = all_df,
+       aes(x = thetao)) +
+  geom_density(fill = "grey") +
+  theme_classic(base_size = 15) +
+  theme(axis.line.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        strip.background = element_blank(),
+        legend.position = "none",
+        strip.text.y.left = element_text(angle = 0)) +
+  labs(x = "Habitat temperature (°C)", y = "Density") +
+  facet_grid(id~., scales = "free_y", switch = "y")
+
+# Range of thermal minima
+min(new_data$thetao_min)
+
+max(new_data$thetao_min)
+
+# How did depth and temperature correlate
+# Function to thin rows from a data frame
+thin_rows <- function(df, thinning_factor) {
+  # Check if thinning factor is between 0 and 1
+  if (thinning_factor <= 0 | thinning_factor >= 1) {
+    stop("Thinning factor should be between 0 and 1")
+  }
+  
+  # Calculate the number of rows to keep
+  num_rows <- nrow(df)
+  num_keep <- round(num_rows * thinning_factor)
+  
+  # Randomly sample row indices to keep
+  set.seed(123)  # Set seed for reproducibility
+  rows_to_keep <- sample(1:num_rows, num_keep)
+  
+  # Subset the data frame to keep only the sampled rows
+  thinned_df <- df[rows_to_keep, ]
+  
+  return(thinned_df)
+}
+
+# Thinning the data frame with a thinning factor of 0.1 (keeping 10% of rows)
+thin_df <- thin_rows(all_df, 0.01)
+
+thin_df <- merge(thin_df,
+                 data.frame(lat = new_data$latitude,
+                            id = new_data$id),
+                 by = "id")
+
+thin_df$pressure <- convertDepthToPressure(thin_df$depth,
+                                           thin_df$lat,
+                                           thin_df$so)
+
+ggplot(data = thin_df,
+       aes(x = pressure, y = thetao)) +
+  geom_smooth() +
+  theme_classic(base_size = 15) +
+  labs(y = "Temperature (°C)",  x = "Pressure (bars)")
+
+## Perform an ancestral state reconstruction of syntenic vs translocated positions as ancestral sequence
+
+tree_a <- read.newick("Trees/Supermatrix_IQtree_WAGroot/SUPERMATRIX.phylip.treefile")
+
+tree_a <- reroot(tree_a,
+                 node.number = 12,
+                 position = .5*(max(tree$edge.length)))
+
+tree_a$tip.label <- ifelse(tree_a$tip.label == "Lycodes platyrhinus",
+                           "Lycenchelys platyrhina", tree_a$tip.label)
+
+# Perform ancestral state reconsturction of discrete traits
+synt_vars1 <-setNames(busco_df$Trans_1, busco_df$tip.label)
+
+fitsyntvars1 <-ace(synt_vars1, tree_a,
+                   type = "discrete", method = "ML")
+
+synt_vars2 <-setNames(busco_df$Trans_2, busco_df$tip.label)
+
+fitsyntvars2 <-ace(synt_vars2, tree_a,
+                  type = "discrete", method = "ML")
+
+synt_vars3 <-setNames(busco_df$Trans_3, busco_df$tip.label)
+
+fitsyntvars3 <-ace(synt_vars3, tree_a,
+                  type = "discrete", method = "ML")
+
+synt_vars4 <-setNames(busco_df$Trans_4, busco_df$tip.label)
+
+fitsyntvars4 <-ace(synt_vars4, tree_a,
+                  type = "discrete", method = "ML")
+
+synt_vars5 <-setNames(busco_df$Trans_5, busco_df$tip.label)
+
+fitsyntvars5 <-ace(synt_vars5, tree_a,
+                  type = "discrete", method = "ML")
+
+synt_vars6 <-setNames(busco_df$Trans_6, busco_df$tip.label)
+
+fitsyntvars6 <-ace(synt_vars6, tree_a,
+                  type = "discrete", method = "ML")
+
+# Trans 1
+
+ace_lik <- c(.50/fitsyntvars1$lik.anc[2,2],
+             .50/fitsyntvars2$lik.anc[2,2],
+             .50/fitsyntvars3$lik.anc[2,2],
+             .50/fitsyntvars4$lik.anc[2,2],
+             .50/fitsyntvars5$lik.anc[2,2],
+             .50/fitsyntvars6$lik.anc[2,2])
+
+min(ace_lik)
+max(ace_lik)
+
+
+
+### Plot tests of convergence
+
+
+## Fitted values
+brm_env_phy_fit <- as.data.frame(fitted(brm_env_phy))
+
+ggplot(data = brm_env_phy_fit,
+       aes(x = Estimate.pressure, y = log(Estimate.AFPCNV))) +
+  stat_smooth(method = "glm", method.args = list(family = "poisson"), se = TRUE, col = "blue") +
+  geom_point() +
+  theme_classic(base_size = 15) +
+  labs(x = "PIC of pressure (bars)", 
+       y = "PIC of AFP III copy number")
+
+ggplot(data = brm_env_phy_fit,
+       aes(x = Estimate.thetaomin, y = log(Estimate.AFPCNV))) +
+  stat_smooth(method = "glm", method.args = list(family = "poisson"), se = TRUE, col = "blue") +
+  geom_point() +
+  theme_classic(base_size = 15) +
+  labs(x = "PIC of thermal minima (°C)", 
+       y = "PIC of AFP III copy number")
+
+### Conditional effects
+
+# Plot convergence in AFP III CNV across temp
+# Step 1: Extract predicted effects
+effects_phy <- conditional_effects(brm_env_phy, effects = "pressure")
+eff_phy_data <- data.frame(
+  lower = effects_phy$AFPCNV.AFPCNV_pressure$lower__,
+  upper = effects_phy$AFPCNV.AFPCNV_pressure$upper__,
+  pressure = effects_phy$AFPCNV.AFPCNV_pressure$effect1__,
+  estimate = effects_phy$AFPCNV.AFPCNV_pressure$estimate__,
+  se = effects_phy$AFPCNV.AFPCNV_pressure$se__)
+
+
+effectst_phy <- conditional_effects(brm_env_phy, effects = "thetao_min")
+efft_phy_data <- data.frame(
+  lower = effectst_phy$AFPCNV.AFPCNV_thetao_min$lower__,
+  upper = effectst_phy$AFPCNV.AFPCNV_thetao_min$upper__,
+  thetao_min = effectst_phy$AFPCNV.AFPCNV_thetao_min$effect1__,
+  estimate = effectst_phy$AFPCNV.AFPCNV_thetao_min$estimate__,
+  se = effectst_phy$AFPCNV.AFPCNV_thetao_min$se__) # Adjust 'x' based on your variable of interest
+
+# Step 2: Prepare your observation data for plotting
+
+ggplot(data = eff_phy_data,
+       aes(x = pressure, y = estimate)) +
+  geom_ribbon(data = eff_phy_data, 
+              aes(x = pressure, ymin = estimate - se, ymax = estimate + se), alpha = 0.2) +
+  geom_line(data = eff_phy_data, aes(x = pressure, y = estimate), 
+            color = "blue", size = 1) + # Predicted line
+  geom_point() +
+  theme_classic(base_size = 15) +
+  labs(x = "Phylogenetically-independent variation in pressure (bars)", 
+       y = "AFP III copy number")
+
+ggplot(data = efft_phy_data,
+       aes(x = thetao_min, y = estimate)) +
+  geom_ribbon(data = efft_phy_data, aes(x = thetao_min, ymin = estimate - se, ymax = estimate + se), alpha = 0.2) +
+  geom_point() +
+  geom_line(data = efft_phy_data, aes(x = thetao_min, y = estimate), color = "blue", size = 1) +
+  theme_classic(base_size = 15) +
+  labs(x = "Phylogenetically-independent variation in thermal minima (°C)", 
+       y = "AFP III copy number")
+
+## Create a supp plot of collection coordinates
+# Create data for plotting
+df <- sst_sum %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+
+# Create SST plot of collection coordinates
+coll_coord <- data.frame(species = c("Lycenchelys platyrhina", "Anarhichas lupus", "Anarhichas minor", "Bathymaster signatus",
+                                     "Lycodes diapterus", "Ophthalmolycus amberensis"),
+                         latitude = c(72.3286, 47.697222, 49.750000, 52.1861, 36.8009, -64.733333),
+                         longitude = c(1.5178, -52.921944, -60.166667, -173.596, -121.903867, -63.016667))
+
+coll_coord$species  <- ifelse(coll_coord$species == "Lycodes platyrhinus",
+                         "Lycenchelys platyrhina", coll_coord$species)
+
+coll_coord$species_it <- paste("italic('", coll_coord$species, "')", sep = "")
+
+supp_map <- ggplot() +
+  geom_sf(data = df, aes(color = sst), alpha = 0.7, size = 0.1) +
+  geom_sf(data = world, fill = "gray30", color = "gray10") +
+  theme_classic(base_size = 20) +
+  theme(legend.position = "none") +
+  theme(axis.title = element_blank()) +
+  scale_color_viridis_c() + 
+  scale_alpha_continuous(range = c(0,0.4)) +
+  # geom_point(data = centroids,
+  #            aes(x = longitude, y = latitude, 
+  #                size = sum), color = "white", shape = 1) +
+  geom_point(data = coll_coord,
+             aes(x = longitude, y = latitude), size = 3, color = "black") +
+  geom_point(data = coll_coord,
+             aes(x = longitude, y = latitude), size = 2, color = "gold") +
+  geom_label_repel(data = coll_coord, 
+             aes(label = species_it, x = longitude, 
+                 y = latitude), size = 4, nudge_y = 20, 
+             segment.color = "gold", parse = TRUE) +
+  scale_size_continuous(range = c(3.5,15))
+
+# Export Fig 1B as png
+png("~/Documents/GitHub/Long_AFP/Figures/supp_map.png", units = "in", width = 12, 
+    height = 6, 
+    res = 600)
+
+supp_map
+
+
+## Create small phylogeny for to inlay synteny plot
+
+
+tree_synt <- drop.tip(tree, tip = c("Lycodes diapterus", "Lycodes pacificus", "Melanostigma gelatinosum",
+                                    "Cebidichthys violaceus","Gasterosteus aculeatus", "Bathymaster signatus"))
+
+
+# Convert the phylogeny into a distance matrix
+dist_matrix <- cophenetic(tree_synt)
+
+# Perform hierarchical clustering on the distance matrix
+hclust_tree <- hclust(as.dist(dist_matrix))
+
+# Convert hclust object back into a phylogenetic tree
+hc_phylo <- as.phylo(hclust_tree)
+
+# Plot the resulting distance tree with aligned branch tips
+png("~/Documents/GitHub/Long_AFP/Figures/synt_phylo.png", units = "in", width = 2, 
+    height = 12, 
+    res = 600)
+
+plot.phylo(hc_phylo, type = "phylogram", use.edge.length = TRUE, 
+           show.tip.label = FALSE, align.tip.label = TRUE,
+           edge.width = 3,
+           main = "Distance Tree with Aligned Tips")
+
+```
+
+dN/dS test plot
+
+```{r}
+
+library(scales)
+
+pseudo_log_trans <- scales::trans_new(
+  name = "pseudo_log",
+  transform = function(x) sign(x) * log10(abs(x)),  # Handles negatives and zeros
+  inverse = function(x) sign(x) * (exp(abs(x)) - 1)  # Inverse for the scale
+)
+
+relax_df <- read.csv("~/Documents/GitHub/Long_AFP/prank_hyphy/revision/RELAX_summary_rev.csv")
+
+relax_df$afp_type <- ifelse(relax_df$afp_type == "synt", "Syntenic", "Translocated")
+
+relax_df <- relax_df %>%
+  mutate(IQTreeDNA_dNdS = ifelse(IQTreeDNA_dNdS == 0, 0.001, IQTreeDNA_dNdS))
+
+# Separate the points with muscle_dNdS == 0.0005 for abutting placement
+zero_points <- filter(relax_df, IQTreeDNA_dNdS == 0.001)
+
+dnds_plot <- ggplot(data = filter(relax_df, IQTreeDNA_dNdS > 0.001),
+                    aes(y = IQTreeDNA_dNdS, x = afp_type, group = afp_type)) +
+  geom_boxplot(aes(color = afp_type), outliers = FALSE, size = 1) +
+  geom_jitter(aes(size = GTR, color = afp_type),
+              width = .1, height = 0, shape = 1, color = "black") +
+   # Add abutting points for dNdS == 0.0005
+  geom_dotplot(data = zero_points, binaxis = "y", stackdir = "center",
+             aes(y = IQTreeDNA_dNdS, x = afp_type, 
+                 color = afp_type, fill = afp_type),
+             dotsize = .33) +
+  geom_hline(yintercept = 1.0, lty = 2, size = 1) +
+  theme_classic(base_size = 20) +
+  theme(legend.position = c(.8,.7)) +
+  labs(x = "AFP class", color = "AFP class", fill = "AFP class", size = "Branch length") +
+  scale_color_manual(values = c("skyblue4", "goldenrod1")) +
+  scale_fill_manual(values = c("skyblue4", "goldenrod1")) +
+  guides(fill = "none", color = "none") +
+  scale_y_continuous(
+    trans = pseudo_log_trans,
+    name = "dN/dS",
+    breaks = c(0.0005, 0.01, 0.1, 1),
+    labels = c("", "0.01", "0.1", "1")
+  )
+
+dnds_plot
+
+ggsave(dnds_plot,
+       units = "in", width = 5.9, height = 6,
+       filename = "~/Documents/GitHub/Long_AFP/Figures/rev_dnds_plot.png",
+       bg = "white")
+
+# Analysis of variation in dN/dS due to branch length
+anova(lm(IQTreeDNA_dNdS ~ afp_type + GTR,
+      data = filter(relax_df, IQTreeDNA_dNdS > 0.001)))
+
+# Bayesian test of above
+brm_dNdS <- brm(
+  scale(log(IQTreeDNA_dNdS)) ~ afp_type + scale(GTR),
+  data = filter(relax_df, IQTreeDNA_dNdS > 0.001),
   family = gaussian(),
   chains = 4, iter = 40000,
   save_pars = save_pars(TRUE)
 )
 
-summary(brm_AFP_frrisk)
-plot(brm_AFP_frrisk)
-conditional_effects(brm_AFP_frrisk)
-pp_check(brm_AFP_frrisk)
-bayes_R2(brm_AFP_frrisk)
-
-ggplot(data = brm_df,
-       aes(x = PIC_AFPS, y = PIC_pslog_AFPs)) +
-  geom_point(size = 3, alpha = 0.5) +
-  geom_smooth(method = "lm", span = 5, se = TRUE)
-
-
+summary(brm_dNdS)
 
 ```
+
+Supplemental continued
+
+```{r}
+
+## Create supplemental figure of non-zoarcoid species
+library(fishtree)
+scorp_phy <- fishtree_phylogeny(species = c("Anoplopoma fimbria", "Clinocottus analis",
+                               "Cottus gobio", "Cottus rhenanus", 
+                               "Myoxocephalus scorpius", "Taurulus bubalis",
+                               "Cyclopterus lumpus", "Apeltes quadracus",
+                               "Ophiodon elongatus", "Liparis tanakae",
+                               "Pseudoliparis swirei", 'Ophthalmolycus amberensis', 
+                               'Lycodes diapterus', 'Lycodes pacificus',
+                               'Lycenchelys platyrhina', 'Melanostigma gelatinosum', 'Anarhichas lupus',
+                               'Anarhichas minor', 'Pholis gunnellus', 'Leptoclinus maculatus',
+                               'Cebidichthys violaceus', 'Bathymaster signatus', 'Gasterosteus aculeatus'))
+
+
+scorp_phy$tip.label <- gsub("_", " ", scorp_phy$tip.label)
+
+ggtree(scorp_phy) +
+  geom_tiplab(fontface = 'italic') +
+  geom_treescale(x = 5, y = 15, width = 10) +
+  xlim(0,90)
+
+plot(scorp_phy)
+
+# Bootstrap tree of AFP/SAS
+bootstrap_trees <- read.tree(
+  "~/Documents/GitHub/Long_AFP/prank_hyphy/revision/prank_SAS_AFP_codon.ufboot"
+)
+
+contree <- read.tree(
+  "~/Documents/GitHub/Long_AFP/prank_hyphy/revision/prank_SAS_AFP_codon.contree"
+)
+
+# Check the number of trees read
+cat("Number of bootstrap trees read:", length(bootstrap_trees), "\n")
+
+multiphylo <- phytools::as.multiPhylo(bootstrap_trees)
+
+# Define a function to assign categories based on tip labels
+assign_category <- function(tip_label) {
+  if (grepl("trans", tip_label)) {
+    return("Translocated AFP")
+  } else if (grepl("flank", tip_label)) {
+    return("Syntenic AFP")
+  } else if (grepl("SASA", tip_label)) {
+    return("SASA/B")
+  } else if (grepl("SASB", tip_label)) {
+    return("SASA/B")
+  } else {
+    return("other")
+  }
+}
+
+# Extract tip positions and categories for all bootstrap trees
+tip_data <- lapply(multiphylo, function(tree) {
+  ggtree(tree)$data %>%
+    filter(isTip) %>%
+    mutate(category = sapply(label, assign_category))
+}) %>% bind_rows()
+
+# Convert tip categories for the consensus tree
+contree$tip.label <- sapply(contree$tip.label, assign_category)
+
+# Define colors for each category
+category_colors <- c(
+  "Translocated AFP" = "goldenrod1",
+  "Syntenic AFP" = "skyblue4",
+  "SASA/B" = "skyblue",
+  "other" = "black"
+)
+
+# Plot the consensus tree
+contree$node.label <- ifelse(contree$node.label %in% 
+                               c("100", "99", "86", "75"),
+                             contree$node.label, "")
+
+# Create function to include certain node labels
+modify_node_labels <- function(phy, keep_nodes) {
+  # Replace all node labels with "" unless the node number is in keep_nodes
+  phy$node.label <- ifelse(seq_along(phy$node.label) %in% keep_nodes, phy$node.label, "")
+  return(phy)
+}
+
+contree$node.label
+
+keep_nodes <- c(19, 22, 43, 94)
+
+contree_f <- modify_node_labels(contree, keep_nodes)
+
+p <- ggtree(multiphylo, layout = "rectangular", color = "gray", size = .005) +
+  geom_point(data = tip_data, aes(x = x, y = y, color = category), 
+             size = 1, alpha = 0.005) +
+  geom_treescale(x = -.5, y = 50, offset = 2, width = .1) +
+  scale_color_manual(values = category_colors) +
+  geom_tree(data = contree_f, layout = "rectangular", color = "black", size = .5) +
+  geom_tippoint(data = contree_f, aes(color = label), size = 2) +
+  geom_nodelab(data = contree_f, color = "black", size = 3, nudge_x =.1, nudge_y = -3) +
+  theme(legend.position = c(.8,.8)) +
+  coord_flip() +
+  scale_x_reverse(limits = c(2,0)) + 
+  labs(color = "Group")
+
+p
+
+```
+
+Microsynteny plots for Figure 3
+
+```{r}
+
+# Step 1: Read in the GFF file
+pgunn_gff <- "~/Documents/GitHub/Long_AFP/microsynteny/gffs/P_gunnellus_snyt_region.gff" 
+alupus_gff <- "~/Documents/GitHub/Long_AFP/microsynteny/gffs/A_lupus_snyt_region.gff"
+aminor_gff <- "~/Documents/GitHub/Long_AFP/microsynteny/gffs/A_minor_snyt_region.gff"
+lplaty_gff <- "~/Documents/GitHub/Long_AFP/microsynteny/gffs/L_platyrhina_synt_region.gff"
+oamb_gff <- "~/Documents/GitHub/Long_AFP/microsynteny/gffs/O_amberensis_snyt_region.gff"
+lmac_gff <- "~/Documents/GitHub/Long_AFP/microsynteny/gffs/L_maculatus_snyt_region.gff"
+
+# Read the file as a single string
+pgunn_content <- readLines(pgunn_gff)
+alupus_content <- readLines(alupus_gff)
+aminor_content <- readLines(aminor_gff)
+lplaty_content <- readLines(lplaty_gff)
+oamb_content <- readLines(oamb_gff)
+lmac_content <- readLines(lmac_gff)
+
+# Split each line by four or more spaces
+pgunn_data <- pgunn_content %>%
+  str_split("\\s{4,}", simplify = TRUE) %>%  # Split by four or more spaces
+  as.data.frame() %>%  # Convert to a data frame
+  setNames(c("seqid", "source", "type", "start", "end", 
+             "score", "strand", "phase", "attributes"))  # Set column names
+
+alupus_data <- alupus_content %>%
+  str_split("\\s{4,}", simplify = TRUE) %>%  # Split by four or more spaces
+  as.data.frame() %>%  # Convert to a data frame
+  setNames(c("seqid", "source", "type", "start", "end", 
+             "score", "strand", "phase", "attributes"))  # Set column names
+
+aminor_data <- aminor_content %>%
+  str_split("\\s{4,}", simplify = TRUE) %>%  # Split by four or more spaces
+  as.data.frame() %>%  # Convert to a data frame
+  setNames(c("seqid", "source", "type", "start", "end", 
+             "score", "strand", "phase", "attributes"))  # Set column names
+
+lplaty_data <- lplaty_content %>%
+  str_split("\\s{4,}", simplify = TRUE) %>%  # Split by four or more spaces
+  as.data.frame() %>%  # Convert to a data frame
+  setNames(c("seqid", "source", "type", "start", "end", 
+             "score", "strand", "phase", "attributes"))  # Set column names
+
+oamb_data <- oamb_content %>%
+  str_split("\\s{4,}", simplify = TRUE) %>%  # Split by four or more spaces
+  as.data.frame() %>%  # Convert to a data frame
+  setNames(c("seqid", "source", "type", "start", "end", 
+             "score", "strand", "phase", "attributes"))  # Set column names
+
+lmac_data <- lmac_content %>%
+  str_split("\\s{4,}", simplify = TRUE) %>%  # Split by four or more spaces
+  as.data.frame() %>%  # Convert to a data frame
+  setNames(c("seqid", "source", "type", "start", "end", 
+             "score", "strand", "phase", "attributes"))  # Set column names
+
+# Fix O amb coordinates
+oamb_data$start <- as.character(ifelse(oamb_data$seqid == "JAFEUB010000084.1",
+                          as.numeric(oamb_data$start),
+                           as.numeric(oamb_data$start) + 1083389))
+
+oamb_data$end <- as.character(ifelse(oamb_data$seqid == "JAFEUB010000084.1",
+                          as.numeric(oamb_data$end),
+                           as.numeric(oamb_data$end) + 1083389))
+
+# Step 2: Filter for full gene annotations
+pgunn_gene <- pgunn_data %>%
+  filter(type == "gene")
+
+alupus_gene <- alupus_data %>%
+  filter(type == "gene")
+
+aminor_gene <- aminor_data %>%
+  filter(type == "gene")
+
+lplaty_gene <- lplaty_data %>%
+  filter(type == "gene")
+
+oamb_gene <- oamb_data %>%
+  filter(type == "gene")
+
+lmac_gene <- lmac_data %>%
+  filter(type == "gene")
+
+pgunn_gene$Species <- "italic('P. gunnellus')"
+alupus_gene$Species <- "italic('A. lupus')"
+aminor_gene$Species <- "italic('A. minor')"
+lplaty_gene$Species <- "italic('L. platyrhina')"
+oamb_gene$Species <- "italic('O. amberensis')"
+lmac_gene$Species <- "italic('L. maculatus')"
+
+pgunn_gene <- filter(pgunn_gene, start < 19200000) # Filter out AFP outside of flanking genes
+
+gene <- rbind(pgunn_gene,
+              alupus_gene,
+              aminor_gene,
+              lplaty_gene,
+              oamb_gene,
+              lmac_gene)
+
+# Step 3: Extract gene IDs and categorize them
+gene <- gene %>%
+  mutate(
+    gene_id = str_extract(attributes, "gene_id [^;]+"),
+    gene_id = str_remove(gene_id, "gene_id "),
+    gene_category = case_when(
+      str_detect(gene_id, "AFP") ~ "AFP",
+      str_detect(gene_id, "sncgb") ~ "sncgb",
+      str_detect(gene_id, "ldb3b") ~ "ldb3b",
+      TRUE ~ "Other"
+    )
+  )
+
+# Step 4: Plot using ggplot2
+gene$start <- as.numeric(gene$start)
+gene$end <- as.numeric(gene$end)
+
+## Correct coordinates
+# Start
+gene$start <- ifelse(gene$Species == "italic('P. gunnellus')", 20225815 - gene$start,
+                     ifelse(gene$Species == "italic('A. minor')", 20701002 - gene$start,
+                            ifelse(gene$Species == "italic('L. platyrhina')", 5309815 - gene$start,
+                                   ifelse(gene$Species == "italic('O. amberensis')", (2556042 + 1083389) - gene$start,
+                                   gene$start))))
+
+# End
+gene$end <- ifelse(gene$Species == "italic('P. gunnellus')", 20225815 - gene$end,
+                     ifelse(gene$Species == "italic('A. minor')", 20701002 - gene$end,
+                            ifelse(gene$Species == "italic('L. platyrhina')", 5309815 - gene$end,
+                                   ifelse(gene$Species == "italic('O. amberensis')", (2556042 + 1083389) - gene$end,
+                                   gene$end))))
+
+
+# Correct strands
+gene$strand <- ifelse(gene$Species %in% c("italic('A. lupus')", "italic('L. maculatus')") == TRUE, gene$strand,
+                      ifelse(gene$strand == "+", "-", "+"))
+
+# Create rect ymin, ymax
+gene$rect_ymax <- ifelse(gene$Species == "italic('A. lupus')" & gene$strand == "+", 1,
+                         ifelse(gene$Species == "italic('A. lupus')" & gene$strand == "-", 0,
+                                ifelse(gene$Species %in% c("italic('A. lupus)'") == FALSE & gene$strand == "+", 1, 0)))
+
+gene$rect_ymin <- ifelse(gene$Species == "italic('A. lupus')" & gene$strand == "+", 0,
+                         ifelse(gene$Species == "italic('A. lupus')" & gene$strand == "-", -1,
+                                ifelse(gene$Species %in% c("italic('A. lupus)'") == FALSE & gene$strand == "+", 0, -1)))
+
+# Create vline for O. amberensis break
+vline_df <- data.frame(Species = "italic('O. amberensis')", xintercept = 2556042/1e+06)
+
+# Ensure the Species column is a factor with the specified levels
+gene$Species <- factor(gene$Species,
+                       levels = c("italic('A. minor')", "italic('A. lupus')", "italic('O. amberensis')", 
+                                  "italic('L. platyrhina')", "italic('L. maculatus')", "italic('P. gunnellus')"))
+
+# Plot
+revFig3A <- ggplot(gene, aes(xmin = start/1e+06, xmax = end/1e+06, ymin = rect_ymin, ymax = rect_ymax, 
+                 fill = gene_category, group = gene_id)) +
+  geom_rect() +
+  geom_hline(yintercept = 0, linetype = "solid", color = "black") +  # Add horizontal line at y = 0
+  geom_vline(data = vline_df, aes(xintercept = xintercept), lty = 2) +
+  labs(x = "Mb", y = "", fill = "Gene") +
+  theme_classic(base_size = 20) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        axis.line.y = element_blank(),
+        strip.background = element_blank(),
+        legend.position = "top") +
+  ylim(-1.2,1.2) +
+  facet_wrap(~Species, scale = "free_x", labeller = label_parsed) +
+  scale_fill_manual(values = c("skyblue4", "salmon", "green3"),
+                    labels = c(
+                      "AFP syntenic",  # Italicized label
+                      expression(italic("ldb3b")),  # Regular label
+                      expression(italic("sncgb"))   # Italicized label
+                    )) +
+  scale_x_continuous(labels = scales::number_format(accuracy = 0.01), 
+                     breaks = c(1.42, 1.44, 1.46, 1.48, 
+                                2.50, 2.60, 2.70,
+                                3.87, 3.90, 3.93,
+                                4.07, 4.09, 4.11,
+                                5.68, 5.72, 5.76, 5.80, 5.84, 5.88))
+
+revFig3A
+
+```
+
 

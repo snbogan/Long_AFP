@@ -1,0 +1,187 @@
+OU342824.1    exonerate:protein2genome:local    gene    14428064    14428477    287    +    .    gene_id AFP_1 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 75.58 ; similarity 86.05
+OU342824.1    exonerate:protein2genome:local    cds    14428064    14428131    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14428064    14428131    .    +    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14428132    14428133    .    +    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14428132    14428284    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14428283    14428284    .    +    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14428285    14428477    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14428285    14428477    .    +    .    insertions 0 ; deletions 0 ; identity 76.56 ; similarity 85.94
+OU342824.1    exonerate:protein2genome:local    similarity    14428064    14428477    287    +    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 14428064 1 66 ; Align 14428286 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14431393    14431806    285    +    .    gene_id AFP_2 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 75.58 ; similarity 84.88
+OU342824.1    exonerate:protein2genome:local    cds    14431393    14431460    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14431393    14431460    .    +    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14431461    14431462    .    +    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14431461    14431613    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14431612    14431613    .    +    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14431614    14431806    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14431614    14431806    .    +    .    insertions 0 ; deletions 0 ; identity 76.56 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14431393    14431806    285    +    .    alignment_id 2 ; Query Mamericanus_AFP_protein ; Align 14431393 1 66 ; Align 14431615 24 192
+OU342824.1    exonerate:protein2genome:local    cds    14437916    14437983    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14437916    14437983    .    +    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14437984    14437985    .    +    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14437984    14438136    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14438135    14438136    .    +    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14438137    14438329    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14438137    14438329    .    +    .    insertions 0 ; deletions 0 ; identity 76.56 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14437916    14438329    285    +    .    alignment_id 3 ; Query Mamericanus_AFP_protein ; Align 14437916 1 66 ; Align 14438138 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14444451    14444864    281    +    .    gene_id AFP_4 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 74.42 ; similarity 84.88
+OU342824.1    exonerate:protein2genome:local    cds    14444451    14444518    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14444451    14444518    .    +    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14444519    14444520    .    +    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14444519    14444671    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14444670    14444671    .    +    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14444672    14444864    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14444672    14444864    .    +    .    insertions 0 ; deletions 0 ; identity 75.00 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14444451    14444864    281    +    .    alignment_id 4 ; Query Mamericanus_AFP_protein ; Align 14444451 1 66 ; Align 14444673 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14434698    14435111    280    +    .    gene_id AFP_5 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 74.42 ; similarity 84.88
+OU342824.1    exonerate:protein2genome:local    cds    14434698    14434765    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14434698    14434765    .    +    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14434766    14434767    .    +    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14434766    14434918    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14434917    14434918    .    +    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14434919    14435111    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14434919    14435111    .    +    .    insertions 0 ; deletions 0 ; identity 75.00 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14434698    14435111    280    +    .    alignment_id 5 ; Query Mamericanus_AFP_protein ; Align 14434698 1 66 ; Align 14434920 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14441199    14441612    280    +    .    gene_id AFP_6 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 74.42 ; similarity 84.88
+OU342824.1    exonerate:protein2genome:local    cds    14441199    14441266    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14441199    14441266    .    +    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14441267    14441268    .    +    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14441267    14441419    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14441418    14441419    .    +    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14441420    14441612    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14441420    14441612    .    +    .    insertions 0 ; deletions 0 ; identity 75.00 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14441199    14441612    280    +    .    alignment_id 6 ; Query Mamericanus_AFP_protein ; Align 14441199 1 66 ; Align 14441421 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14501443    14514077    262    +    .    gene_id AFP_7 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 73.49 ; similarity 79.52
+OU342824.1    exonerate:protein2genome:local    cds    14501443    14501514    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14501443    14501514    .    +    .    insertions 0 ; deletions 0 ; identity 72.00 ; similarity 84.00
+OU342824.1    exonerate:protein2genome:local    splice5    14501515    14501516    .    +    .    intron_id 1 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14501515    14513900    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14513899    14513900    .    +    .    intron_id 0 ; splice_site "CC"
+OU342824.1    exonerate:protein2genome:local    cds    14513901    14514077    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14513901    14514077    .    +    .    insertions 0 ; deletions 0 ; identity 74.58 ; similarity 77.97
+OU342824.1    exonerate:protein2genome:local    similarity    14501443    14514077    262    +    .    alignment_id 7 ; Query Mamericanus_AFP_protein ; Align 14501443 1 72 ; Align 14513901 25 177
+OU342824.1    exonerate:protein2genome:local    gene    14458337    14458732    210    +    .    gene_id AFP_8 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 59.04 ; similarity 73.49
+OU342824.1    exonerate:protein2genome:local    cds    14458337    14458399    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14458337    14458399    .    +    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 81.82
+OU342824.1    exonerate:protein2genome:local    splice5    14458400    14458401    .    +    .    intron_id 1 ; splice_site "GC"
+OU342824.1    exonerate:protein2genome:local    intron    14458400    14458546    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14458545    14458546    .    +    .    intron_id 0 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14458547    14458732    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14458547    14458732    .    +    .    insertions 0 ; deletions 0 ; identity 53.23 ; similarity 69.35
+OU342824.1    exonerate:protein2genome:local    similarity    14458337    14458732    210    +    .    alignment_id 8 ; Query Mamericanus_AFP_protein ; Align 14458337 1 63 ; Align 14458547 22 186
+OU342824.1    exonerate:protein2genome:local    gene    14477378    14477791    207    +    .    gene_id AFP_9 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 57.47 ; similarity 70.11
+OU342824.1    exonerate:protein2genome:local    cds    14477378    14477440    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14477378    14477440    .    +    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 81.82
+OU342824.1    exonerate:protein2genome:local    splice5    14477441    14477442    .    +    .    intron_id 1 ; splice_site "GC"
+OU342824.1    exonerate:protein2genome:local    intron    14477441    14477593    .    +    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14477592    14477593    .    +    .    intron_id 0 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14477594    14477791    .    +    .
+OU342824.1    exonerate:protein2genome:local    exon    14477594    14477791    .    +    .    insertions 0 ; deletions 0 ; identity 51.52 ; similarity 65.15
+OU342824.1    exonerate:protein2genome:local    similarity    14477378    14477791    207    +    .    alignment_id 9 ; Query Mamericanus_AFP_protein ; Align 14477378 1 63 ; Align 14477594 22 198
+OU342824.1    exonerate:protein2genome:local    gene    14495259    14495672    280    -    .    gene_id AFP_1 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 74.42 ; similarity 84.88
+OU342824.1    exonerate:protein2genome:local    cds    14495605    14495672    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14495605    14495672    .    -    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14495603    14495604    .    -    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14495452    14495604    .    -    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14495452    14495453    .    -    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14495259    14495451    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14495259    14495451    .    -    .    insertions 0 ; deletions 0 ; identity 75.00 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14495259    14495672    280    -    .    alignment_id 1 ; Query Mamericanus_AFP_protein ; Align 14495673 1 66 ; Align 14495451 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14491985    14492398    280    -    .    gene_id AFP_2 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 74.42 ; similarity 84.88
+OU342824.1    exonerate:protein2genome:local    cds    14492331    14492398    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14492331    14492398    .    -    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14492329    14492330    .    -    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14492178    14492330    .    -    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14492178    14492179    .    -    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14491985    14492177    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14491985    14492177    .    -    .    insertions 0 ; deletions 0 ; identity 75.00 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14491985    14492398    280    -    .    alignment_id 2 ; Query Mamericanus_AFP_protein ; Align 14492399 1 66 ; Align 14492177 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14421965    14422378    280    -    .    gene_id AFP_3 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 74.42 ; similarity 84.88
+OU342824.1    exonerate:protein2genome:local    cds    14422311    14422378    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14422311    14422378    .    -    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14422309    14422310    .    -    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14422158    14422310    .    -    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14422158    14422159    .    -    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14421965    14422157    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14421965    14422157    .    -    .    insertions 0 ; deletions 0 ; identity 75.00 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14421965    14422378    280    -    .    alignment_id 3 ; Query Mamericanus_AFP_protein ; Align 14422379 1 66 ; Align 14422157 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14450885    14451298    277    -    .    gene_id AFP_4 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 73.26 ; similarity 84.88
+OU342824.1    exonerate:protein2genome:local    cds    14451231    14451298    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14451231    14451298    .    -    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 86.36
+OU342824.1    exonerate:protein2genome:local    splice5    14451229    14451230    .    -    .    intron_id 1 ; splice_site "CT"
+OU342824.1    exonerate:protein2genome:local    intron    14451078    14451230    .    -    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14451078    14451079    .    -    .    intron_id 0 ; splice_site "AA"
+OU342824.1    exonerate:protein2genome:local    cds    14450885    14451077    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14450885    14451077    .    -    .    insertions 0 ; deletions 0 ; identity 73.44 ; similarity 84.38
+OU342824.1    exonerate:protein2genome:local    similarity    14450885    14451298    277    -    .    alignment_id 4 ; Query Mamericanus_AFP_protein ; Align 14451299 1 66 ; Align 14451077 24 192
+OU342824.1    exonerate:protein2genome:local    gene    14462643    14471349    212    -    .    gene_id AFP_5 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 59.04 ; similarity 74.70
+OU342824.1    exonerate:protein2genome:local    cds    14471287    14471349    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14471287    14471349    .    -    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 81.82
+OU342824.1    exonerate:protein2genome:local    splice5    14471285    14471286    .    -    .    intron_id 1 ; splice_site "GC"
+OU342824.1    exonerate:protein2genome:local    intron    14462829    14471286    .    -    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14462829    14462830    .    -    .    intron_id 0 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14462643    14462828    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14462643    14462828    .    -    .    insertions 0 ; deletions 0 ; identity 53.23 ; similarity 70.97
+OU342824.1    exonerate:protein2genome:local    similarity    14462643    14471349    212    -    .    alignment_id 5 ; Query Mamericanus_AFP_protein ; Align 14471350 1 63 ; Align 14462829 22 186
+OU342824.1    exonerate:protein2genome:local    gene    14447679    14448074    205    -    .    gene_id AFP_6 ; sequence Mamericanus_AFP_protein ; gene_orientation + ; identity 59.04 ; similarity 72.29
+OU342824.1    exonerate:protein2genome:local    cds    14448012    14448074    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14448012    14448074    .    -    .    insertions 0 ; deletions 0 ; identity 72.73 ; similarity 81.82
+OU342824.1    exonerate:protein2genome:local    splice5    14448010    14448011    .    -    .    intron_id 1 ; splice_site "GC"
+OU342824.1    exonerate:protein2genome:local    intron    14447865    14448011    .    -    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14447865    14447866    .    -    .    intron_id 0 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14447679    14447864    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14447679    14447864    .    -    .    insertions 0 ; deletions 0 ; identity 53.23 ; similarity 67.74
+OU342824.1    exonerate:protein2genome:local    similarity    14447679    14448074    205    -    .    alignment_id 6 ; Query Mamericanus_AFP_protein ; Align 14448075 1 63 ; Align 14447865 22 186
+OU342824.1    exonerate:protein2genome:local    gene    14410611    14417050    489    -    .    gene_id sncgb_1 ; sequence XP_040031911.1 ; gene_orientation + ; identity 94.50 ; similarity 97.25
+OU342824.1    exonerate:protein2genome:local    cds    14416930    14417050    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14416930    14417050    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+OU342824.1    exonerate:protein2genome:local    splice5    14416928    14416929    .    -    .    intron_id 1 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14413291    14416929    .    -    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14413291    14413292    .    -    .    intron_id 0 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14413249    14413290    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14413249    14413290    .    -    .    insertions 0 ; deletions 0 ; identity 76.92 ; similarity 92.31
+OU342824.1    exonerate:protein2genome:local    splice5    14413247    14413248    .    -    .    intron_id 2 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14412602    14413248    .    -    .    intron_id 2
+OU342824.1    exonerate:protein2genome:local    splice3    14412602    14412603    .    -    .    intron_id 1 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14412474    14412601    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14412474    14412601    .    -    .    insertions 0 ; deletions 0 ; identity 93.02 ; similarity 95.35
+OU342824.1    exonerate:protein2genome:local    splice5    14412472    14412473    .    -    .    intron_id 3 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14410653    14412473    .    -    .    intron_id 3
+OU342824.1    exonerate:protein2genome:local    splice3    14410653    14410654    .    -    .    intron_id 2 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14410611    14410652    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14410611    14410652    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+OU342824.1    exonerate:protein2genome:local    similarity    14410611    14417050    489    -    .    alignment_id 1 ; Query XP_040031911.1 ; Align 14417051 1 120 ; Align 14413289 42 39 ; Align 14412600 56 126 ; Align 14410653 98 42
+OU342824.1    exonerate:protein2genome:local    gene    14530270    14542672    1155    -    .    gene_id ldb3b_1 ; sequence XP_040031907.1 ; gene_orientation + ; identity 89.74 ; similarity 94.14
+OU342824.1    exonerate:protein2genome:local    cds    14542577    14542672    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14542577    14542672    .    -    .    insertions 0 ; deletions 0 ; identity 100.00 ; similarity 100.00
+OU342824.1    exonerate:protein2genome:local    splice5    14542575    14542576    .    -    .    intron_id 1 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14539436    14542576    .    -    .    intron_id 1
+OU342824.1    exonerate:protein2genome:local    splice3    14539436    14539437    .    -    .    intron_id 0 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14539284    14539435    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14539284    14539435    .    -    .    insertions 0 ; deletions 0 ; identity 86.00 ; similarity 94.00
+OU342824.1    exonerate:protein2genome:local    splice5    14539282    14539283    .    -    .    intron_id 2 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14538972    14539283    .    -    .    intron_id 2
+OU342824.1    exonerate:protein2genome:local    splice3    14538972    14538973    .    -    .    intron_id 1 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14538879    14538971    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14538879    14538971    .    -    .    insertions 0 ; deletions 1 ; identity 76.67 ; similarity 80.00
+OU342824.1    exonerate:protein2genome:local    splice5    14538877    14538878    .    -    .    intron_id 3 ; splice_site "AT"
+OU342824.1    exonerate:protein2genome:local    intron    14533544    14538878    .    -    .    intron_id 3
+OU342824.1    exonerate:protein2genome:local    splice3    14533544    14533545    .    -    .    intron_id 2 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14533346    14533543    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14533346    14533543    .    -    .    insertions 0 ; deletions 0 ; identity 95.38 ; similarity 96.92
+OU342824.1    exonerate:protein2genome:local    splice5    14533344    14533345    .    -    .    intron_id 4 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14531329    14533345    .    -    .    intron_id 4
+OU342824.1    exonerate:protein2genome:local    splice3    14531329    14531330    .    -    .    intron_id 3 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14531162    14531328    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14531162    14531328    .    -    .    insertions 0 ; deletions 0 ; identity 85.45 ; similarity 92.73
+OU342824.1    exonerate:protein2genome:local    splice5    14531160    14531161    .    -    .    intron_id 5 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14531012    14531161    .    -    .    intron_id 5
+OU342824.1    exonerate:protein2genome:local    splice3    14531012    14531013    .    -    .    intron_id 4 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14530975    14531011    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14530975    14531011    .    -    .    insertions 0 ; deletions 0 ; identity 90.91 ; similarity 100.00
+OU342824.1    exonerate:protein2genome:local    splice5    14530973    14530974    .    -    .    intron_id 6 ; splice_site "GT"
+OU342824.1    exonerate:protein2genome:local    intron    14530361    14530974    .    -    .    intron_id 6
+OU342824.1    exonerate:protein2genome:local    splice3    14530361    14530362    .    -    .    intron_id 5 ; splice_site "AG"
+OU342824.1    exonerate:protein2genome:local    cds    14530270    14530360    .    -    .
+OU342824.1    exonerate:protein2genome:local    exon    14530270    14530360    .    -    .    insertions 0 ; deletions 0 ; identity 93.33 ; similarity 96.67
+OU342824.1    exonerate:protein2genome:local    similarity    14530270    14542672    1155    -    .    alignment_id 1 ; Query XP_040031907.1 ; Align 14542673 1 96 ; Align 14539436 33 150 ; Align 14538971 84 24 ; Align 14538947 93 66 ; Align 14533543 116 195 ; Align 14531328 182 165 ; Align 14531010 238 33 ; Align 14530360 250 90
