@@ -12,11 +12,10 @@ Joanna Kelley (PI, UCSC)
 
 ## Contents
 Directories
-1. /Archive - unused or significantly edited scripts w/ README explaining
-2. /HB_jobs - SLURM job scripts run on UCSC Hummingbird (HB)
+1. /Intermediate_files <- intermediate files used for analyses and plots
+2. /Gene_FASTAs - FASTA files for all annotated AFP and SAS genes
 
 Files
-1. AFP_LongRead_Notebook.Rmd - R markdown-style lab notebook
-2. AFP_LongRead_Notebook.md - Github-formatted html lab notebook 
+1. Figure_Analyses.Rmd - R markdown containing codee for all statistical tests and figures
+2. Bioinformatic_Code.Rmd - All bioinformatic code for genome assem, QC, tree building, and annotations
 3. Long_AFP.Rproj - git version-controlled R project for interfacing GitHub and R markdown
-4. LongRead_SpeciesID.csv - basic metadata file detailing assembly species names, abbreviations, and location
