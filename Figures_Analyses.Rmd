@@ -183,7 +183,7 @@ bin_sum$species <- factor(bin_sum$species, levels = species_order2)
 
 ```
 
-Plot coordinates of max occurence likelihood 
+Plot coordinates of max occurrence likelihood 
 
 ```{r}
 
@@ -1251,7 +1251,8 @@ valid_block_ids <- df_long %>%
 filtered_df_long <- df_long %>%
   filter(block_id %in% valid_block_ids)
 
-# Syntenty plot of ancestral AFP array
+# Syntenty plot of ancestral AFP array... this is just a test of the code
+# synt_plot is not formatted
 synt_plot <- ggplot(data = df_long, 
        aes(y = fish,
            x = pos_adjstd)) +
@@ -1330,17 +1331,16 @@ synt_plot <- ggplot(data = df_long,
   labs(x = "Mb", y = "Species", fill = "Block ID") +
   theme(axis.text.y = element_text(angle = 0, hjust = 0.5, vjust = 0.5))
 
-synt_plot
+synt_plot # Just a test 
 
 # Export synteny plot
 png("~/Documents/GitHub/Long_AFP/Figures/synt_plot.png", units = "in", width = 12, 
     height = 6, 
     res = 600)
 
-synt_plot
+synt_plot # synt_plot is not formatted... just a test
 
 # Reperform synteny plot, removing horizontal links within the same species
-
 df_long_filt <- df_long %>%
   group_by(block_id) %>%
   filter(n_distinct(fish) > 1) %>%
@@ -1790,6 +1790,147 @@ png("~/Documents/GitHub/Long_AFP/Figures/Fig_3.png", units = "in", width = 12,
 Fig_3
 
 # Create final panel with microsynteny plot in editor
+
+```
+
+Instead of all-to-all links between homologous regions of synt plot, use neighbor joining
+
+```{r}
+
+# Create pairwise links between nearest neighbors only
+pairwise_links <- df_long_synt_filt %>%
+  arrange(block_id, fish_num) %>%
+  group_by(block_id) %>%
+  mutate(next_fish_num = lead(fish_num),
+         next_pos = lead(pos_adjstd)) %>%
+  filter(!is.na(next_fish_num) & abs(fish_num - next_fish_num) == 1) %>%
+  ungroup()
+
+# Convert fish_num to numeric if not already
+df_long_synt_filt$fish_num <- as.numeric(df_long_synt_filt$fish_num)
+
+# Plot
+synt_synt_fix <- ggplot(data = df_long_synt_filt, 
+       aes(y = fish_num,
+           x = pos_adjstd)) +
+  geom_segment(data = pairwise_links,
+               aes(x = pos_adjstd, xend = next_pos,
+                   y = fish_num, yend = next_fish_num),
+               color = "gray80", alpha = 0.25, linewidth = 0.25) +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq0")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq0")$rightend_adj),
+           ymin = 2 - 0.035, 
+           ymax = 2 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq1")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq1")$rightend_adj),
+           ymin = 1 - 0.035, 
+           ymax = 1 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq2")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq2")$rightend_adj),
+           ymin = 5 - 0.035, 
+           ymax = 5 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq3")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq3")$rightend_adj),
+           ymin = 4 - 0.035, 
+           ymax = 4 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq4")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq4")$rightend_adj),
+           ymin = 3 - 0.035, 
+           ymax = 3 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq5")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq5")$rightend_adj),
+           ymin = 3 - 0.035, 
+           ymax = 3 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_synt_filt, species == "seq6")$leftend_adj), 
+                xmax = max(filter(df_long_synt_filt, species == "seq6")$rightend_adj),
+           ymin = 6 - 0.035, 
+           ymax = 6 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = pos_adjstd-0.0002, xmax = pos_adjstd+0.0002, group = as.factor(block_id), 
+                fill = as.factor(block_id), 
+           ymin = as.numeric(fish_num) - 0.15, 
+           ymax = as.numeric(fish_num) + 0.15)) +
+  geom_curve(aes(xend = (seq4_len - 956214 + (min(filter(df_long_synt, species == "seq4")$leftend_adj)*1e6))/1e6 -.1, 
+                 x = ((seq5_len - 34476)/1e6), 
+                 y = 3.2, yend = 3.2), curvature = -0.66, color = "skyblue4") +
+  geom_point(data = point_df_synt,
+             aes(x = pos_adjstd, y = fish_num), color = "skyblue4", size = 2.5) +
+  geom_point(data = point_df_synt,
+             aes(x = pos_adjstd, y = fish_num), color = "skyblue", size = 1.5) +
+  theme_classic(base_size = 20) +
+  scale_x_continuous(breaks = c(0, 10, 20)) +
+  scale_y_continuous(
+  breaks = c(1, 2, 3, 4, 5, 6),
+  labels = c("A. minor", "A. lupus", "O. amberensis",
+             "L. platyrhina", "L. maculatus", "P. gunnelus")
+  ) +
+  theme(legend.position = "none",
+      axis.title.y = element_blank(),
+      axis.line.y = element_blank(),
+      axis.ticks.y = element_blank(),
+      axis.text.y = element_text(face = "italic", size = 15)) +
+  labs(x = "Mb", y = "Species")
+
+# Print
+synt_synt_fix
+
+synt_plot_filt_fix <- ggplot(data = df_long_filt, 
+       aes(y = fish_num, x = pos_adjstd)) +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq0")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq0")$rightend_adj),
+                ymin = 1 - 0.035, ymax = 1 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq1")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq1")$rightend_adj),
+                ymin = 2 - 0.035, ymax = 2 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq2")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq2")$rightend_adj),
+                ymin = 2 - 0.035, ymax = 2 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq3")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq3")$rightend_adj),
+                ymin = 5 - 0.035, ymax = 5 + 0.035), fill = "gray80") +
+  geom_rect(aes(xmin = min(filter(df_long_filt, species == "seq4")$leftend_adj), 
+                xmax = max(filter(df_long_filt, species == "seq4")$rightend_adj),
+                ymin = 5 - 0.035, ymax = 5 + 0.035), fill = "gray80") +
+  geom_line(aes(x = pos_adjstd, 
+                y = fish_num, group = as.factor(block_id)),
+            stat = "identity", color = "gray80", 
+            alpha = 0.25, size = 0.25, orientation = "x") +
+  geom_rect(aes(xmin = leftend_adj, xmax = rightend_adj, group = as.factor(block_id), 
+                fill = as.factor(block_id), 
+                ymin = fish_num - 0.15, ymax = fish_num + 0.15)) +
+  geom_point(data = point_df,
+             aes(x = pos_adjstd, y = fish_num), color = "goldenrod4", size = 2.5) +
+  geom_point(data = point_df,
+             aes(x = pos_adjstd, y = fish_num), color = "goldenrod1", size = 1.5) +
+  scale_y_continuous(
+    breaks = c(1, 2, 3, 4, 5, 6),
+    labels = c("A. lupus", "A. minor", "O. amberensis", 
+               "L. platyrhina", "L. maculatus", "P. gunnelus")
+  ) +
+  theme_classic(base_size = 20) +
+  theme(legend.position = "none",
+        axis.title.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(x = "Mb")
+
+synt_plot_filt_fix
+
+# Create synteny panel
+synt_synt_fix <- synt_synt_fix + theme(plot.margin = margin(.1, .1, .1, .1, "cm"))
+synt_plot_filt_fix <- synt_plot_filt_fix + theme(plot.margin = margin(.1, .1, .1, .1, "cm"))
+
+Fig_3B_neighbor <- ggarrange(synt_synt_fix, synt_plot_filt_fix,
+                   labels = c("", ""),
+                   widths = c(1, .95),
+                   ncol = 2, nrow = 1, align = "h")
+
+# Export 3B neighbor
+png("~/Documents/GitHub/Long_AFP_04082024/Figures/Fig_3B_neighbor.png", units = "in", width = 12,
+    height = 2.66,
+    res = 600)
+
+Fig_3B_neighbor
 
 ```
 
@@ -2457,5 +2598,3 @@ revFig3A <- ggplot(gene, aes(xmin = start/1e+06, xmax = end/1e+06, ymin = rect_y
 revFig3A
 
 ```
-
-
